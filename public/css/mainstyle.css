@@ -1,0 +1,284 @@
+
+.nav-link{
+    color: #000000 !important;
+    font-weight: 500 !important;
+}
+nav.navbar{
+    background-color: #fff !important;
+    box-shadow: #ddd7d7 !important;
+}
+
+/* recomond section */
+
+.recomod{
+    /* margin-top: 2%; */
+    background-image: radial-gradient(circle, #e3dede, #e9e6e7, #efedef, #f6f5f6, #fdfdfd) !important;
+    /* margin-bottom: 50px !important; */
+    padding-bottom: 25px !important;
+}
+
+/* loging style section */
+
+.login{ 
+    min-height: 100vh; 
+    background-color: #ffffff; 
+}
+.login-body{
+    
+}
+.login .login-page{ 
+    background-color: #e7dddd;
+    margin-top: 5%;
+    height: 100%;
+    display: ﬂex;
+    align-items: center;
+}
+.login .login-sidebar , .login-form-wrapper{ 
+    /* background: #fff; */
+    height: 80vh; 
+} 
+.login .login-sidebar{ 
+    background:  url("css/images/B1.jpg"); 
+    background-size: cover; 
+    display: ﬂex; 
+    align-items: center; 
+    justify-content: center; 
+    position: relative; 
+} 
+.login .login-sidebar::before{ 
+    content: '';
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    left: 0; 
+    z-index: 1; 
+    background-image: linear-gradient(to bottom right,#21AEA2,#6472A5); 
+    opacity: .8; 
+} 
+.login .login-sidebar .login-gradient-background{ 
+    position: absolute;
+    z-index: 2; 
+} 
+.login .login-sidebar .login-gradient-background h1{
+     font-size: 2em;
+     font-weight: 600;
+     text-transform: uppercase;
+     color: #fff; 
+}
+.login-form-wrapper .register-btn a{
+     color: #fff;
+     border-radius: 18px;
+     padding: 0.57em 2em;
+     background: #21AEA2; 
+} 
+.login-form-wrapper .register-btn a:hover{ 
+    opacity: .8; 
+} 
+.ﬁeld-box .ﬁeld{
+    margin-bottom: 2.1em;
+} 
+.login-form-wrapper .ﬁeld-box{ 
+    display: ﬂex; height: 80%; 
+    align-items: center;
+} 
+.login-form-wrapper .ﬁeld-box .login-heading{ 
+    font-size: 1.95em; 
+} 
+.login-form-wrapper .ﬁeld-box .login-subheading{
+    margin-bottom: 2em;
+    font-size: 0.85em;
+    color: #787877; 
+}
+.login-form-wrapper .ﬁeld-box .login-btn-group .login-btn{ 
+    background: #6472A5;
+    color: #fff;
+    border-radius: 18px;
+    padding: 0.57em 2em; 
+} 
+.login-form-wrapper .ﬁeld-box .login-btn-group .forgot-link{ 
+    color: #777777;
+    font-size: 0.85em; 
+} 
+.login-form-wrapper .ﬁeld-box .login-btn-group .forgot-link:hover{ 
+    color: #444444;
+    font-size: 0.85em; 
+}
+
+/* Register form style */
+
+.r{
+    background-color:  #e7dddd; 
+}
+.regis{ 
+    /* background-color:  #e7dddd;  */
+}
+.regis-body{
+    
+}
+.regis .regis-page{ 
+    background-color:#ffffff;
+    margin-top: 2%;
+    margin-bottom: 20%;
+    height: 100%;
+    display: ﬂex;
+    align-items: center;
+    box-shadow: 2px #e7dddd;
+}
+.regis .regis-sidebar , .regis-form-wrapper{ 
+    /* background: #fff; */
+    height: 80vh; 
+} 
+.regis .regis-sidebar{ 
+    background:  url("css/images/B1.jpg"); 
+    background-size: cover; 
+    display: ﬂex; 
+    align-items: center; 
+    justify-content: center; 
+    position: relative; 
+} 
+.regis .regis-sidebar::before{ 
+    content: '';
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    left: 0; 
+    z-index: 1; 
+    background-image: linear-gradient(to bottom right,#21AEA2,#6472A5); 
+    opacity: .8; 
+} 
+.regis .regis-sidebar .regis-gradient-background{ 
+    position: absolute;
+    z-index: 2; 
+} 
+.regis .regis-sidebar .regis-gradient-background h1{
+     font-size: 2em;
+     font-weight: 600;
+     text-transform: uppercase;
+     color: #fff; 
+}
+.regis-form-wrapper .register-btn a{
+     color: #fff;
+     border-radius: 18px;
+     padding: 0.57em 2em;
+     background: rgb(1, 37, 34); 
+} 
+.regis-form-wrapper .register-btn a:hover{ 
+    opacity: .8; 
+} 
+.ﬁeld-box .ﬁeld{
+    margin-bottom: 2.1em;
+} 
+.regis-form-wrapper .ﬁeld-box{ 
+    display: ﬂex; height: 80%; 
+    align-items: center;
+} 
+.regis-form-wrapper .ﬁeld-box .regis-heading{ 
+    font-size: 1.95em; 
+} 
+.regis-form-wrapper .ﬁeld-box .regis-subheading{
+    margin-bottom: 2em;
+    font-size: 0.85em;
+    color: #787877; 
+}
+.regis-form-wrapper .ﬁeld-box .regis-btn-group .regis-btn{ 
+    background: #6472A5;
+    color: #fff;
+    border-radius: 18px;
+    padding: 0.57em 2em; 
+} 
+.regis-form-wrapper .ﬁeld-box .regis-btn-group .forgot-link{ 
+    color: #777777;
+    font-size: 0.85em;
+} 
+.regis-form-wrapper .ﬁeld-box .regis-btn-group .forgot-link:hover{ 
+    color: #444444;
+    font-size: 0.85em; 
+}
+
+
+/* bodims post section styles */
+
+.bodim{
+    margin-top: 40px !important;
+}
+.bodimps{
+    
+}
+.post{
+    padding: 50px 50px 50px 50px ;
+    background-image: radial-gradient(circle, #e3dede, #e9e6e7, #efedef, #f6f5f6, #fdfdfd);
+    margin-top: 4%;
+    /* margin-bottom: %; */
+}
+.column img{
+    height: 100%;
+    width: 100%;
+}
+.postdt{
+    /* background-color: #31de79; */
+    /* background-image: linear-gradient(to right, #05b322, #1ebd2b, #2dc834, #3ad23d, #45dd45); */
+    background-image: linear-gradient(135deg, rgb(159, 246, 105) 0%, rgb(49, 222, 121) 100%);
+    color: #fff;
+    padding-left: 20px;
+    font-weight: 700;
+}
+.dets{
+    color: #000000;
+}
+.grid{
+    margin-bottom: 20px !important;
+}
+
+
+/*footer sections styles*/
+
+.footsec{
+    background-color: #000000 !important;
+    margin-top: 0%;
+    padding: 4%;
+}
+.resection{
+    padding: 5%;
+    text-align: center;
+}
+.resection h1{
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 40px;
+    font-weight: 1000;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}
+.resection{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.ftsec{
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+
+}
+.ftsec h2{
+    color:#fff !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 8% !important;
+    
+}
+.ftsec ul li {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 1rem !important;
+    padding-top: 3% !important;
+    
+}
+.ftsec ul li a{
+    color: rgba(255, 255, 255, 0.7) !important;
+    
+    
+}
+
+/* media quary section */
+
+@media screen and (max-width: 600px) {
+    nav.navbar {
+        background-color: #fff !important;
+    }
