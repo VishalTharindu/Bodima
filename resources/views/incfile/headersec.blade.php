@@ -56,15 +56,15 @@
                       @else
                       <li class="nav-item dropdown">
                         <div class="btn-group">
-                            <button type="button" class="btn ">
-                                <a id="" class="" href="#" role="button">
+                            
+                                <a class="btn  dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false class=" href="#" role="button">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                            </button>
-                            <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                            {{-- <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
                               aria-expanded="false">
                               <span class="sr-only">Toggle Dropdown</span>
-                            </button>
+                            </button> --}}
                             <div class="dropdown-menu">
                               <a class="dropdown-item" href="http://">Profile</a>
                               <a class="dropdown-item" href="http://">Account Setting</a>

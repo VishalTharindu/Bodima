@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
         <link rel="stylesheet" href="{{asset('css/icomoon.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
 
     <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
         </head>

@@ -108,7 +108,8 @@ nav.navbar{
 /* Register form style */
 
 .r{
-    background-color:  #e7dddd; 
+    background-color:  #ffffff;
+    padding-top: 8%; 
 }
 .regis{ 
     /* background-color:  #e7dddd;  */
@@ -117,7 +118,7 @@ nav.navbar{
     
 }
 .regis .regis-page{ 
-    background-color:#ffffff;
+    background-color:#ececec;
     margin-top: 2%;
     margin-bottom: 20%;
     height: 100%;
@@ -127,7 +128,7 @@ nav.navbar{
 }
 .regis .regis-sidebar , .regis-form-wrapper{ 
     /* background: #fff; */
-    height: 80vh; 
+    height: 90vh; 
 } 
 .regis .regis-sidebar{ 
     background:  url("css/images/B1.jpg"); 
@@ -281,4 +282,7 @@ nav.navbar{
 @media screen and (max-width: 600px) {
     nav.navbar {
         background-color: #fff !important;
+    }
+    container.a.navbar-brand{
+        color: #000000 !important;
     }
