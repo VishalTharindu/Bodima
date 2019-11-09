@@ -38,7 +38,7 @@
                   <li class="nav-item"><a href="#services-section" class="nav-link"><span>Bodims</span></a></li>
                   <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Boders</span></a></li>
                   <li class="nav-item"><a href="#about-section" class="nav-link"><span>Add bodim</span></a></li>
-                  <li class="nav-item"><a href="#testimony-section" class="nav-link"><span">Request bodim</span></a></li>
+                  <li class="nav-item"><a href="#testimony-section" class="nav-link"><span>Request bodim</span></a></li>
                   <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
                   <li class="nav-item">
                     
@@ -57,14 +57,17 @@
                       <li class="nav-item dropdown">
                         <div class="btn-group">
                             <button type="button" class="btn ">
-                                <a id="navbarDropdown" class="" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="" class="" href="#" role="button">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                             </button>
-                            <button type="button" class="btn btn-success dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                            <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
                               aria-expanded="false">
+                              <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu">
+                              <a class="dropdown-item" href="http://">Profile</a>
+                              <a class="dropdown-item" href="http://">Account Setting</a>
                               <a class="dropdown-item" href="{{ route('logout') }}"
                               onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -96,9 +99,7 @@
                           <div class="text">
                               <span class="subheading">Welcome to the Bodima</span>
                             <h1 class="mb-4 mt-3">Find your dreamed <span>Bodima</span></h1>
-                            <p>Find your bodim place anywhere in the sri lnka with in a minits</p>
-                            
-                            <p><a href="#" class="btn btn-primary px-5 py-3 mt-3">Login</a></p>
+                            <p>Find your bodim place anywhere in the sri lnka with in a minits</p>                      
                         </div>
                       </div>
                     </div>
@@ -117,7 +118,6 @@
                               <span class="subheading">Welcome to the bodima</span>
                               <h1 class="mb-4 mt-3">Find your dreamed <span>Bodima</span></h1>
                               <p>Find your bodim place anywhere in the sri lnka with in a minits</p>
-                            <p><a href="#" class="btn btn-primary px-5 py-3 mt-3">Login</a></p>
                         </div>
                       </div>
                     </div>
