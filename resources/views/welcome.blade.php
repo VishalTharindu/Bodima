@@ -23,25 +23,16 @@
 
       <div class="recomod">
         <div class="container">
-            <!-- Start your project here-->
-           <!-- Section heading -->
           <h2 class="h1-responsive font-weight-bold my-5">Recomonded Bodims</h2>
-          <!-- Section description -->
           <p class="grey-text w-responsive mx-auto mb-5">This are the recomonded bording for you to check.those would be good offers for you</p>
-          
-          <!-- Grid row -->
           <div class="row text-center">
-          
-            <!-- Grid column -->
             <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
-              <!--Featured image-->
               <div class="view overlay rounded z-depth-1">
                 <img src="images/B1.jpg" class="img-fluid" alt="Sample project image">
                 <a>
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
-              <!--Excerpt-->
               <div class="card-body pb-0">
                 <h4 class="font-weight-bold my-3">Title of the news</h4>
                 <p class="grey-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
@@ -50,18 +41,13 @@
                 <a class="btn btn-indigo btn-sm"><i class="fas fa-clone left"></i> View project</a>
               </div>
             </div>
-            <!-- Grid column -->
-          
-            <!-- Grid column -->
             <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
-              <!--Featured image-->
               <div class="view overlay rounded z-depth-1">
                 <img src="images/B2.jpg" class="img-fluid" alt="Sample project image">
                 <a>
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
-              <!--Excerpt-->
               <div class="card-body pb-0">
                 <h4 class="font-weight-bold my-3">Title of the news</h4>
                 <p class="grey-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
@@ -70,18 +56,13 @@
                 <a class="btn btn-indigo btn-sm"><i class="fas fa-clone left"></i> View project</a>
               </div>
             </div>
-            <!-- Grid column -->
-          
-            <!-- Grid column -->
             <div class="col-lg-4 col-md-6">
-              <!--Featured image-->
               <div class="view overlay rounded z-depth-1">
                 <img src="images/B3.jpg" class="img-fluid" alt="Sample project image">
                 <a>
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
-              <!--Excerpt-->
               <div class="card-body pb-0">
                 <h4 class="font-weight-bold my-3">Title of the news</h4>
                 <p class="grey-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe

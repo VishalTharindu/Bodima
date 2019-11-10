@@ -7,25 +7,27 @@
     <title>AddBoarding</title>
 
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
 
 </head>
-<body>
+<body class="has-background-white-ter">
         @include('incfile.navibar')
+
     <div class="section is-medium">
         <div class="container">
-            <div class="columns">
+            <div class="columns is-centered">
                 <div class="column is-6">
-                    <div class="box has-background-white-ter">
+                    <div class="box has-background-white-bis">
                         <div class="columns is mobile is-centered">
                             <label class="label is-center">Boarding Type</label>
                         </div>
                         <div class="columns">
-                                <div class="column">
-                                    <label class="label is-center">Boarding Type</label>
-                                </div>
-                            <div class="column">
+                            <div class="column is-6">
+                                <label class="label is-center">Boarding Type</label>
+                            </div>
+                            <div class="column is-6">
                                 <div class="control is-6">
                                     <div class="select is-rounded is-primary">
                                         <select>
@@ -44,58 +46,105 @@
                         <div class="columns is mobile">
                             <div class="column">
                                 <label class="label is-center">No of Rooms</label>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="control is-6 ">
+                                            <div class="select is-rounded is-primary">
+                                                <select>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="column">
-                                 <label class="label is-center">No of Bed</label>
+                                <label class="label is-center">No of Bed</label>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="control is-6 ">
+                                            <div class="select is-rounded is-primary">
+                                                <select>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>More</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="columns">
-                            <div class="column">
-                                <div class="control is-6 ">
-                                    <div class="select is-rounded is-primary">
-                                        <select>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>Boarding For Share</option>
-                                        </select>
+                            <div class="column is-6">
+                                <label class="label is-center">AC Avalable</label>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="control">
+                                            <div class="field">
+                                                <div class="columns">
+                                                    <div class="column is-6">
+                                                        <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" name="exampleRtlRadioInline" checked="checked">
+                                                        <label for="exampleRtlRadioInline1">Yes</label>
+                                                    </div>
+                                                    <div class="column is-6">
+                                                        <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" name="exampleRtlRadioInline">
+                                                        <label for="exampleRtlRadioInline2">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="column">
-                                <div class="control is-6">
-                                    <div class="select is-rounded is-primary">
-                                        <select>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>Boarding For Share</option>
-                                        </select>
+                            <div class="column is-6">
+                                 <label class="label is-center">Other Furniture</label>
+                                 <div class="column">
+                                    <div class="columns">
+                                        <div class="column">
+                                            <div class="control">
+                                                <div class="field">
+                                                    <div class="columns">
+                                                        <div class="column is-6">
+                                                            <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="checkbox" name="exampleRtlRadioInline" checked="checked">
+                                                            <label for="exampleRtlRadioInline1">Tables</label>
+                                                        </div>
+                                                        <div class="column is-6">
+                                                            <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="exampleRtlRadioInline">
+                                                            <label for="exampleRtlRadioInline2">Chairs</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="columns is mobile">
-                            <div class="column">
-                                <label class="label is-center">No of Rooms</label>
-                            </div>
-                            <div class="column">
-                                 <label class="label is-center">No of Bed</label>
-                            </div>
-                        </div>
-                        <div class="columns">
-                            <div class="column">
-                                <div class="control">
-                                    <div class="field">
-                                        <input class="is-checkradio is-rtl" id="exampleRtlRadioInline1" type="radio" name="exampleRtlRadioInline" checked="checked">
-                                        <label for="exampleRtlRadioInline1">Option 1</label>
-    
-                                        <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" name="exampleRtlRadioInline">
-                                        <label for="exampleRtlRadioInline2">Option 2</label>
+                                <div class="column">
+                                        <div class="columns">
+                                            <div class="column">
+                                                <div class="control">
+                                                    <div class="field">
+                                                        <div class="columns">
+                                                            <div class="column is-6">
+                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="checkbox" name="exampleRtlRadioInline" checked="checked">
+                                                                <label for="exampleRtlRadioInline1">Racks</label>
+                                                            </div>
+                                                            <div class="column is-6">
+                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="exampleRtlRadioInline">
+                                                                <label for="exampleRtlRadioInline2">More</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -202,5 +251,6 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('css/bulma/bulmaCheckradio/gulpfile.js')}}"></script>
 </body>
 </html>

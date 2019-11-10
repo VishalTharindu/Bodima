@@ -1090,7 +1090,7 @@ a.has-text-danger:hover, a.has-text-danger:focus {
 }
 
 .has-background-white-bis {
-  background-color: #fafafa !important;
+  background-color: #ffffff !important;
 }
 
 .has-text-weight-light {
@@ -1572,7 +1572,7 @@ a.has-text-danger:hover, a.has-text-danger:focus {
 
 .box {
   background-color: white;
-  border-radius: 6px;
+  border-radius: 2px;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   color: #4a4a4a;
   display: block;
