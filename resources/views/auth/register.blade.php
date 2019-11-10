@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Registration</title>
 
     {{-- Style links --}}
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
@@ -34,8 +34,8 @@
                                         <h1 class="regis-heading">Welcome to the Bodima.lk</h1>
                                         <p class="regis-subheading">Fill out this form to Register used the website and enjoy it's features</p>
                                     </div>
-                                    <div class="column is-6 has-text-right register-btn">
-                                        <a class="btn" name="button">Login</a>
+                                    <div class="column is-6 has-text-right register-btn has-text-white">
+                                        <a class="btn" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </div>
                                 </div>  
                                 <form method="POST" action="{{ route('register') }}">

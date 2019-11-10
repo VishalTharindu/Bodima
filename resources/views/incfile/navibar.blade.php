@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>navibar</title>
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
@@ -41,7 +41,48 @@
                       <li class="nav-item"><a href="#about-section" class="nav-link"><span>Add bodim</span></a></li>
                       <li class="nav-item"><a href="#testimony-section" class="nav-link"><span>Request bodim</span></a></li>
                       <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
-                      <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Profile</span></a></li>
+                      <li class="nav-item">
+                    
+                        <ul class="navbar-nav nav ml-auto">
+                          <!-- Authentication Links -->
+                          @guest
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                              </li>
+                              @if (Route::has('register'))
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                  </li>
+                              @endif
+                          @else
+                          <li class="nav-item dropdown">
+                            <div class="btn-group">
+                                
+                                    <a class="btn  dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false class=" href="#" role="button">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+                                {{-- <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false">
+                                  <span class="sr-only">Toggle Dropdown</span>
+                                </button> --}}
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="http://">Profile</a>
+                                  <a class="dropdown-item" href="http://">Account Setting</a>
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                </div>
+                              </div>
+                            </li>
+                          @endguest
+                      </ul>
+                    </li>
                     </ul>
                   </div>
                 </div>

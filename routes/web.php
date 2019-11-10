@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/index','PageController@index');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/','PageController@index');
 Route::get('/dashboard','PageController@dashboard');
 Route::get('/addboarding','PageController@addboarding');
 

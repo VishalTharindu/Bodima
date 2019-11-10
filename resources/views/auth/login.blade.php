@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login</title>
 
     {{-- Style links --}}
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
@@ -16,11 +16,11 @@
 {{-- navibar include --}}
 @include('incfile.navibar') 
 {{-- break --}}
-<div class="r">
 
+<div class="r">
     <section class="login is-fullheight">  
         <div class="login-body"> 
-            <div class="container v-middle">
+            <div class="container">
                 <div class="columns login-page">
                     <div class="column is-5 login-sidebar">
                     <div class="login-gradient-background">
@@ -28,13 +28,17 @@
                     </div>
                     </div>
                     <div class="column is-7 login-form-wrapper">
-                    <div class="column is-12 has-text-right register-btn has-text-white">
-                        <a class="btn" name="button">Register</a>
-                    </div>
+                        <div class="columns">
+                            <div class="column is-8">
+                                <h1 class="login-heading">Welcome to the Bodima.lk</h1>
+                                <p class="login-subheading">Fill out this to login to the website and enjoy it's features</p>
+                            </div>
+                            <div class="column is-4 has-text-right register-btn has-text-white">
+                                <a class="btn" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </div>
+                        </div>
                     <div class="column is-12 ﬁeld-box">
                         <div class="column is-7 is-oﬀset-1">
-                            <h1 class="login-heading">Welcome to the Bodima.lk</h1>
-                            <p class="login-subheading">Fill out this to login to the website and enjoy it's features</p>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="ﬁeld">
@@ -48,7 +52,7 @@
                 
                                         </span> --}}
                                         @error('email')
-                                            <span class="invalid-feedback text-danger" role="alert">
+                                            <span class="" role="alert">
                                                 <strong class="has-text-danger">{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -66,13 +70,13 @@
                                         </span> --}}
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                                <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </p>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-md-6 offset-md-4">
+                                    <div class="col-md-6 ">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
