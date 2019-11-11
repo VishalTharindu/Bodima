@@ -16,17 +16,18 @@
 // });
 Route::get('/','PageController@index');
 Route::get('/dashboard','PageController@dashboard');
-Route::get('/addboarding','PageController@addboarding');
+Route::get('/bodim','BoardingController@index');
+Route::get('/addboarding','BoardingController@create');
 
-Route::get('/lg', function () {
-    return view('login');
-});
+// Route::get('/lg', function () {
+//     return view('login');
+// });
 // Route::get('/signup', function () {
 //     return view('signup');
 // });
-Route::get('/bodim', function () {
-    return view('bodimsec');
-});
+// Route::get('/bodim', function () {
+//     return view('bodimsec');
+// });
 
 /* inc file routes*/
 

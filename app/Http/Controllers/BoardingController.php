@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Boarding;
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class BoardingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,13 +14,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        return view('bodimsec');
     }
 
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +24,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('addbodim');
     }
 
     /**
@@ -44,10 +41,10 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Boarding  $boarding
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Boarding $boarding)
     {
         //
     }
@@ -55,10 +52,10 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Boarding  $boarding
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Boarding $boarding)
     {
         //
     }
@@ -67,10 +64,10 @@ class PageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Boarding  $boarding
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Boarding $boarding)
     {
         //
     }
@@ -78,10 +75,10 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Boarding  $boarding
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Boarding $boarding)
     {
         //
     }

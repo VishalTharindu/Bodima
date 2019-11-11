@@ -50,17 +50,16 @@
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item float-right">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link is-pilled-right" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else
-                    <li class="nav-item dropdown">
-                      <div class="btn-group">
-                          
-                              <a class="btn  dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
-                              aria-expanded="false class=" href="#" role="button">
-                                  {{ Auth::user()->name }} <span class="caret"></span>
-                              </a>
+                    <li class="nav-item dropdown is-pulled-right">
+                      <div class="btn-group is-pulled-right">
+                        <a class="btn  dropdown-toggle is-pulled-right" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false class=" href="#" role="button">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
                           {{-- <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
