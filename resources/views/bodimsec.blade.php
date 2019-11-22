@@ -48,7 +48,7 @@
                     </div> 
                   </div>
                   <div class="my-3"></div>
-                  <a class="btn btn-indigo btn-sm" href="/seemore"><i class="fas fa-clone left"></i> See More</a>
+                  <a class="btn btn-indigo btn-sm has-text-white" href="/seemore/{{$post->id}}"><i class="fas fa-clone left"></i> See More</a>
                 </div>
               </div>
               @endforeach

@@ -18,9 +18,9 @@ class VisitBoarding extends Controller
         return view('bodimsec',compact('Boadrings'));
     }
 
-    public function seemoreboarding()
+    public function seemoreboarding(Boarding $Boadrings)
     {
-        return view('seemore');
+        return view('seemore',compact('Boadrings'));
     }
 }
 

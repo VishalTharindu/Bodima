@@ -341,7 +341,12 @@
                                 <div class="box has-background-white-bis">
                                     <div class="my-4"></div>
                                     <div class="columns is mobile is-centered">
-                                        <label class="label has-text-centered">Map</label>
+                                        <div class="container">
+                                            <label class="label has-text-centered">Map</label>
+                                            <div>
+                                                <img src="images/map.png" alt="">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="columns">
                                         <div class="column is-12">

@@ -38,315 +38,316 @@
     @include('incfile.navibar')
     
     <div class="my-5"></div>
+        <div class="container">
 
-    <div class="container">
-
-        <div class="viewsection">
-    
-            <div class="column profileback">
-                <div class="container">
-                    <div class="carousel carousel-main" data-flickity='{"pageDots": false }'>
-                        <div class="carousel-cell">
-                            <img src="images/B2.jpg" />
-                        </div>
-                        <div class="carousel-cell">
-                            <img src="images/B2.jpg" />
+            <div class="viewsection">
+        
+                <div class="column profileback">
+                    <div class="container">
+                        <div class="carousel carousel-main" data-flickity='{"pageDots": false }'>
+                            <div class="carousel-cell">
+                                <img src="images/B2.jpg" />
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="images/B2.jpg" />
+                            </div>
                         </div>
                     </div>
-                </div>
-            <div class="container detailssection">
-                <div class="columns is-flex-mobile">
-                    <div class="column is-two-thirds is-flex-mobile">
-                        <div class="containerx">
-                        <a href="" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
-                            <div class="is-pulled-left">
-                                <div class="title">
-                                    {{-- {{$house->property->name}} --}}
-                                </div>
-                                <div class="subtitle">
-                                    {{-- {{$house->property->city}}, {{$house->property->postalCode}} --}}
-                                </div>
-                                <hr class="hrline">
-                                <div class="subtitle has-text-weight-semibold">
-                                    Boarding Details
-                                </div>
-                                <div class="columns">
-                                    <div class="column detailscolumn">
-                                        <p>Boarding  Type: <span class="has-text-weight-semibold"></span></p>
-                                        <p>No of Rooms: <span class="has-text-weight-semibold"></span></p>
-                                        <p>Kitchen: <span class="has-text-weight-semibold"></span></p>
-                                        <p>No. of Washrooms: <span class="has-text-weight-semibold"></span></p>
-                                        <p>No. of floors: <span class="has-text-weight-semibold"></span></p>
-                                        <p>Garden: <span class="has-text-weight-semibold"></span></p>
-                                        <p>Swimming Pool: <span class="has-text-weight-semibold"></span></p>
+                <div class="container detailssection">
+                    <div class="columns is-flex-mobile">
+                        <div class="column is-two-thirds is-flex-mobile">
+                            <div class="containerx">
+                            <a href="" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
+                                <div class="is-pulled-left">
+                                    <div class="title">
+                                        {{-- {{$house->property->name}} --}}
                                     </div>
-                                    {{-- <div class="column detailscolumn">
-                                        <p>Property Type: <span class="has-text-weight-semibold">{{$house->property->type}}</span></p>
-                                        <p>Bedrooms: <span class="has-text-weight-semibold">{{$house->noOfRooms}}</span></p>
-                                        <p>Kitchen: <span class="has-text-weight-semibold">{{$house->noOfKitchen}}</span></p>
-                                        <p>No. of Washrooms: <span class="has-text-weight-semibold">{{$house->noOfWashrooms}}</span></p>
-                                        <p>No. of floors: <span class="has-text-weight-semibold">{{$house->noOfFloors}}</span></p>
-                                        <p>Garden: <span class="has-text-weight-semibold">{{$house->garden}}</span></p>
-                                        <p>Swimming Pool: <span class="has-text-weight-semibold">{{$house->swimmingPool}}</span></p>
-                                    </div> --}}
-                                    <div class="column">
-                                        <p>Area of Property(Square Feet): <span class="has-text-weight-semibold"></span></p>
-                                        <p>Nearest School: <span class="has-text-weight-semibold"></span></p>
-                                        <p>Nearest Busstop: <span class="has-text-weight-semibold"></span></p>
-                                        <p>Nearest Railway Station: <span class="has-text-weight-semibold"></span></p>
-                                        <p>Availability:
-                                        </p>
-                                        {{-- <p>Area of Property(Square Feet): <span class="has-text-weight-semibold">{{$house->size}}</span></p>
-                                        <p>Nearest School: <span class="has-text-weight-semibold">{{$house->nearestSchool}}</span></p>
-                                        <p>Nearest Busstop: <span class="has-text-weight-semibold">{{$house->nearestRailway}}</span></p>
-                                        <p>Nearest Railway Station: <span class="has-text-weight-semibold">{{$house->nearestBusStop}}</span></p>
-                                        <p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
-                                            <span class="has-text-weight-semibold has-text-success">
-                                                {{$house->property->availability}}
-                                            </span> @else
-                                            <span class="has-text-weight-semibold has-text-danger">
+                                    <div class="subtitle">
+                                        {{-- {{$house->property->city}}, {{$house->property->postalCode}} --}}
+                                    </div>
+                                    <hr class="hrline">
+                                    <div class="subtitle has-text-weight-semibold">
+                                        Boarding Details
+                                    </div>
+                                    <div class="columns">
+                                        <div class="column detailscolumn">
+                                            <p>Boarding  Type: <span class="has-text-weight-semibold"></span></p>
+                                            <p>No of Rooms: <span class="has-text-weight-semibold"></span></p>
+                                            <p>No of Rooms: <span class="has-text-weight-semibold"></span></p>
+                                            <p>For Whome: <span class="has-text-weight-semibold"></span></p>
+                                            <p>Other Furniture: <span class="has-text-weight-semibold"></span></p>
+                                            <p>AC Availability: <span class="has-text-weight-semibold"></span></p>
+                                            <p>Approximate monthly rent: <span class="has-text-weight-semibold">{{$Boadrings->MonthlyRent}}</span></p>
+                                            <p>: <span class="has-text-weight-semibold"></span></p>
+                                            <p>: <span class="has-text-weight-semibold"></span></p>
+                                        </div>
+                                        {{-- <div class="column detailscolumn">
+                                            <p>Property Type: <span class="has-text-weight-semibold">{{$house->property->type}}</span></p>
+                                            <p>Bedrooms: <span class="has-text-weight-semibold">{{$house->noOfRooms}}</span></p>
+                                            <p>Kitchen: <span class="has-text-weight-semibold">{{$house->noOfKitchen}}</span></p>
+                                            <p>No. of Washrooms: <span class="has-text-weight-semibold">{{$house->noOfWashrooms}}</span></p>
+                                            <p>No. of floors: <span class="has-text-weight-semibold">{{$house->noOfFloors}}</span></p>
+                                            <p>Garden: <span class="has-text-weight-semibold">{{$house->garden}}</span></p>
+                                            <p>Swimming Pool: <span class="has-text-weight-semibold">{{$house->swimmingPool}}</span></p>
+                                        </div> --}}
+                                        <div class="column">
+                                            <p>Approximate Key Money: <span class="has-text-weight-semibold"></span></p>
+                                            <p>Address: <span class="has-text-weight-semibold"></span></p>
+                                            <p>Province: <span class="has-text-weight-semibold"></span></p>
+                                            <p>District: <span class="has-text-weight-semibold"></span></p>
+                                            <p>City:</p>
+                                            {{-- <p>Area of Property(Square Feet): <span class="has-text-weight-semibold">{{$house->size}}</span></p>
+                                            <p>Nearest School: <span class="has-text-weight-semibold">{{$house->nearestSchool}}</span></p>
+                                            <p>Nearest Busstop: <span class="has-text-weight-semibold">{{$house->nearestRailway}}</span></p>
+                                            <p>Nearest Railway Station: <span class="has-text-weight-semibold">{{$house->nearestBusStop}}</span></p>
+                                            <p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
+                                                <span class="has-text-weight-semibold has-text-success">
                                                     {{$house->property->availability}}
-                                            </span> @endif
-                                        </p> --}}
+                                                </span> @else
+                                                <span class="has-text-weight-semibold has-text-danger">
+                                                        {{$house->property->availability}}
+                                                </span> @endif
+                                            </p> --}}
+                                        </div>
+        
+                                        {{-- Mobile/Tablet Section --}}
+                                        {{-- <div class="column is-hidden-desktop">
+                                            <div class='is-flex is-horizontal-center'>
+                                                <figure class="image is-128x128">
+                                                    <img class="is-rounded is-horizontal-center" src="/uploads/avatars/{{$house->property->user->avatar}}">
+                                                </figure>
+                                            </div>
+                                            <div class="subtitle has-text-centered"><span>@</span>{{$house->property->user->name}}</div>
+                                            <div class="has-text-centered">
+                                                <button class="button is-success" onclick="showPnox()">Show Contact Number</button>
+                                                <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$house->property->contactNo}}" class="nounnounderlinelink">{{$house->property->contactNo}}</a></p>
+                                                <hr>
+                                                <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold">{{number_format($house->property->amount,2)}}</span>                                            LKR</p>
+                                                <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">   
+                                                        @if ($house->offers->count() > 0)
+                                                            {{number_format($house->offers->sortBy('offerAmount')->last()->offerAmount,2)}}
+                                                        @else
+                                                            0.00
+                                                        @endif
+                                                    </span> LKR</p>
+                                                <div id="myBtnM"><button class="button is-link">Make an offer</button></div>
+            @include('results.offeralerts')
+                                            </div>
+        
+                                        </div> --}}
+        
                                     </div>
-    
-                                    {{-- Mobile/Tablet Section --}}
-                                    {{-- <div class="column is-hidden-desktop">
-                                        <div class='is-flex is-horizontal-center'>
-                                            <figure class="image is-128x128">
-                                                <img class="is-rounded is-horizontal-center" src="/uploads/avatars/{{$house->property->user->avatar}}">
-                                            </figure>
-                                        </div>
-                                        <div class="subtitle has-text-centered"><span>@</span>{{$house->property->user->name}}</div>
-                                        <div class="has-text-centered">
-                                            <button class="button is-success" onclick="showPnox()">Show Contact Number</button>
-                                            <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$house->property->contactNo}}" class="nounnounderlinelink">{{$house->property->contactNo}}</a></p>
-                                            <hr>
-                                            <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold">{{number_format($house->property->amount,2)}}</span>                                            LKR</p>
-                                            <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">   
-                                                    @if ($house->offers->count() > 0)
-                                                        {{number_format($house->offers->sortBy('offerAmount')->last()->offerAmount,2)}}
-                                                    @else
-                                                        0.00
-                                                    @endif
-                                                </span> LKR</p>
-                                            <div id="myBtnM"><button class="button is-link">Make an offer</button></div>
-        @include('results.offeralerts')
-                                        </div>
-    
-                                    </div> --}}
-    
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="column is-hidden-touch">
-                        <div class='is-flex is-horizontal-center'>
-                            <figure class="image is-128x128">
-                                <img class="is-rounded is-horizontal-center" src="images/prof.jpg">
-                            </figure>
+                        <div class="column is-hidden-touch">
+                            <div class='is-flex is-horizontal-center'>
+                                <figure class="image is-128x128">
+                                    <img class="is-rounded is-horizontal-center" src="images/prof.jpg">
+                                </figure>
+                            </div>
+                            <div class="subtitle has-text-centered"><span>@</span></div>
+                            <div class="has-text-centered">
+                                <button class="button is-dark" onclick="location.href='#contactbox'">Email Owner</button>
+                                <button class="button is-success" onclick="showPno()">Call Owner</button>
+                                <p class="has-text-dark customerpno" id="pno"><a href="" class="nounnounderlinelink"></a></p>
+                                <hr>
+                                <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
+                                <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">   
+                                    {{-- @if ($house->offers->count() > 0)
+                                        {{number_format($house->offers->sortBy('offerAmount')->last()->offerAmount,2)}}
+                                    @else
+                                        0.00
+                                    @endif --}}
+                                </span> LKR</p>
+                                <div id="myBtn"><button class="button is-link">Make an offer</button></div>
+                                <br>
+            {{-- @include('results.offeralerts') --}}
+                            </div>
                         </div>
-                        <div class="subtitle has-text-centered"><span>@</span></div>
-                        <div class="has-text-centered">
-                            <button class="button is-dark" onclick="location.href='#contactbox'">Email Owner</button>
-                            <button class="button is-success" onclick="showPno()">Call Owner</button>
-                            <p class="has-text-dark customerpno" id="pno"><a href="" class="nounnounderlinelink"></a></p>
-                            <hr>
-                            <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
-                            <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">   
-                                {{-- @if ($house->offers->count() > 0)
-                                    {{number_format($house->offers->sortBy('offerAmount')->last()->offerAmount,2)}}
+                    </div>
+                    <hr>
+                    <div class="subtitle has-text-weight-semibold">
+                        Google Map
+                    </div> {{-- Google Map Here --}} {{--
+                    <div class=" is-flex-mobile"> --}}
+                        {{-- <div class="column maps is-flex-mobile">
+        
+                            <div class="mapouter">
+                                <div class="gmap_canvas">
+                                    <div id="map"></div>
+                                    <style>
+                                        .mapouter {
+                                            position: relative;
+                                            text-align: right;
+                                            /* height: 678px; */
+                                            width: 790px;
+                                        }
+        
+                                        .gmap_canvas {
+                                            overflow: hidden;
+                                            background: none!important;
+                                            /* /* height: 678px; */
+                                            width: 790px;
+                                        }
+                                    </style>
+                                </div>
+                                <br>
+        
+                            </div>
+                        </div>
+                        <a class="button is-info nounnounderlinebtn" href="http://www.google.com/maps/place/{{$house->property->latitude}},{{$house->property->longitude}}"
+                            target="_blank">Set Direction</a> </div> --}}
+                    <hr>
+                    <div class="subtitle has-text-weight-semibold">Property Description</div>
+                    <div class="column is-flex-mobile">
+                        <p class="content">
+                            {{-- {!! $house->property->description !!} --}}
+                        </p>
+                    </div>
+                    
+                    {{-- Contact Owner Email Box Start Here --}}
+                    <hr>
+                    {{-- <div class="subtitle has-text-weight-semibold" id="contactbox">Contact Owner</div>
+                    <div class="column is-flex-mobile">
+                        <form action="" method="post">
+                            @csrf
+                            <div class="field">
+                                <div class="control">
+                                <input class="input" type="hidden" name="owner" value="">
+                                <input class="input" type="hidden" name="path" value="">
+                                
+                                @if(Auth::check())
+                                    <input class="input" type="hidden" name="sender" value="">
                                 @else
-                                    0.00
-                                @endif --}}
-                            </span> LKR</p>
-                            <div id="myBtn"><button class="button is-link">Make an offer</button></div>
-                            <br>
-        {{-- @include('results.offeralerts') --}}
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="subtitle has-text-weight-semibold">
-                    Google Map
-                </div> {{-- Google Map Here --}} {{--
-                <div class=" is-flex-mobile"> --}}
-                    {{-- <div class="column maps is-flex-mobile">
-    
-                        <div class="mapouter">
-                            <div class="gmap_canvas">
-                                <div id="map"></div>
-                                <style>
-                                    .mapouter {
-                                        position: relative;
-                                        text-align: right;
-                                        /* height: 678px; */
-                                        width: 790px;
-                                    }
-    
-                                    .gmap_canvas {
-                                        overflow: hidden;
-                                        background: none!important;
-                                        /* /* height: 678px; */
-                                        width: 790px;
-                                    }
-                                </style>
-                            </div>
-                            <br>
-    
-                        </div>
-                    </div>
-                    <a class="button is-info nounnounderlinebtn" href="http://www.google.com/maps/place/{{$house->property->latitude}},{{$house->property->longitude}}"
-                        target="_blank">Set Direction</a> </div> --}}
-                <hr>
-                <div class="subtitle has-text-weight-semibold">Property Description</div>
-                <div class="column is-flex-mobile">
-                    <p class="content">
-                        {{-- {!! $house->property->description !!} --}}
-                    </p>
-                </div>
-                
-                {{-- Contact Owner Email Box Start Here --}}
-                <hr>
-                {{-- <div class="subtitle has-text-weight-semibold" id="contactbox">Contact Owner</div>
-                <div class="column is-flex-mobile">
-                    <form action="" method="post">
-                        @csrf
-                        <div class="field">
-                            <div class="control">
-                            <input class="input" type="hidden" name="owner" value="">
-                            <input class="input" type="hidden" name="path" value="">
-                            
-                            @if(Auth::check())
-                                <input class="input" type="hidden" name="sender" value="">
-                            @else
-                                <input class="input" type="hidden" name="sender" value="0" hidden>
-                            @endif
-                            </div>
-                        </div>
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Name</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control is-expanded has-icons-left">
-                                        <input class="input {{ $errors->has('name') ? ' is-danger' : '' }}" type="text" placeholder="Name" name="name">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-user"></i>
-                                        </span> 
-                                        {!! $errors->first('name', '<p class="help-block has-text-danger">:message</p>') !!}
-                                    </p>
-                                    
+                                    <input class="input" type="hidden" name="sender" value="0" hidden>
+                                @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Email</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control is-expanded has-icons-left">
-                                        <input class="input {{ $errors->has('email') ? ' is-danger' : '' }}" type="email" placeholder="Email" name="email">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-envelope"></i>
-                                          </span>
-                                          {!! $errors->first('email', '<p class="help-block has-text-danger">:message</p>') !!}
-                                    </p>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Name</label>
                                 </div>
-                            </div>
-                        </div>
-    
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Phone No</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field is-expanded">
-                                    <div class="field has-addons">
-                                        <p class="control">
-                                            <a class="button is-static">
-                                              +94
-                                            </a>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control is-expanded has-icons-left">
+                                            <input class="input {{ $errors->has('name') ? ' is-danger' : '' }}" type="text" placeholder="Name" name="name">
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-user"></i>
+                                            </span> 
+                                            {!! $errors->first('name', '<p class="help-block has-text-danger">:message</p>') !!}
                                         </p>
-                                        <p class="control is-expanded">
-                                            <input class="input {{ $errors->has('pno') ? ' is-danger' : '' }}" type="tel" placeholder="Your phone number" name="pno">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Email</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control is-expanded has-icons-left">
+                                            <input class="input {{ $errors->has('email') ? ' is-danger' : '' }}" type="email" placeholder="Email" name="email">
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                            {!! $errors->first('email', '<p class="help-block has-text-danger">:message</p>') !!}
                                         </p>
                                     </div>
-                                    {!! $errors->first('pno', '<p class="help-block has-text-danger">:message</p>') !!}
-                                    <p class="help has-text-link">Do not enter the first zero</p>
                                 </div>
                             </div>
-                        </div>
-    
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Subject</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control">
-                                        <input class="input {{ $errors->has('subject') ? ' is-danger' : '' }}" type="text" placeholder="e.g. Need to visit property" name="subject">
-                                        {!! $errors->first('subject', '<p class="help-block has-text-danger">:message</p>') !!}
+        
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Phone No</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-expanded">
+                                        <div class="field has-addons">
+                                            <p class="control">
+                                                <a class="button is-static">
+                                                +94
+                                                </a>
+                                            </p>
+                                            <p class="control is-expanded">
+                                                <input class="input {{ $errors->has('pno') ? ' is-danger' : '' }}" type="tel" placeholder="Your phone number" name="pno">
+                                            </p>
+                                        </div>
+                                        {!! $errors->first('pno', '<p class="help-block has-text-danger">:message</p>') !!}
+                                        <p class="help has-text-link">Do not enter the first zero</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-    
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label">Message</label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control">
-                                        <textarea class="textarea {{ $errors->has('message') ? ' is-danger' : '' }}" placeholder="Explain how I can help you" name="message"></textarea>
-                                        {!! $errors->first('message', '<p class="help-block has-text-danger">:message</p>') !!}
+        
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Subject</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input {{ $errors->has('subject') ? ' is-danger' : '' }}" type="text" placeholder="e.g. Need to visit property" name="subject">
+                                            {!! $errors->first('subject', '<p class="help-block has-text-danger">:message</p>') !!}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-    
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <!-- Left empty for spacing -->
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control">
-                                        <button class="button is-primary" type="submit">
-                                            Send message
-                                        </button>
+        
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Message</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea class="textarea {{ $errors->has('message') ? ' is-danger' : '' }}" placeholder="Explain how I can help you" name="message"></textarea>
+                                            {!! $errors->first('message', '<p class="help-block has-text-danger">:message</p>') !!}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+        
+                            <div class="field is-horizontal">
+                                <div class="field-label">
+                                    <!-- Left empty for spacing -->
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary" type="submit">
+                                                Send message
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <br>
+                        <br>
+        
+                    </div> --}}
+                    {{-- Contact Owner Emaik --}}
+                    <div class="notification is-danger">
+                        <button class="delete"></button>
+                        <strong>Important information:</strong> This ad has been posted on Realproperty.lk by the above mentioned
+                        advertiser. Realproperty.lk does not have any connection with this advertiser, nor do we vet the advertisers,
+                        guarantee their services, responsible for the accuracy of the ad's content or are responsible for services
+                        provided by the advertisers. Realproperty.lk does not provide any service other than list the advertisements
+                        posted by advertisers. You will be contacting the advertiser (owner/agent) of this property directly. We
+                        advise you to take precaution when making any payments or signing any agreements and be alert of any possible
+                        scams. If making any payments we recommend that you have two permanent & verified methods of contact of the
+                        payment receiver such as their landline number and home/business address.
+                    </div>
+                    <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
                     <br>
-                    <br>
-    
-                </div> --}}
-                {{-- Contact Owner Emaik --}}
-                <div class="notification is-danger">
-                    <button class="delete"></button>
-                    <strong>Important information:</strong> This ad has been posted on Realproperty.lk by the above mentioned
-                    advertiser. Realproperty.lk does not have any connection with this advertiser, nor do we vet the advertisers,
-                    guarantee their services, responsible for the accuracy of the ad's content or are responsible for services
-                    provided by the advertisers. Realproperty.lk does not provide any service other than list the advertisements
-                    posted by advertisers. You will be contacting the advertiser (owner/agent) of this property directly. We
-                    advise you to take precaution when making any payments or signing any agreements and be alert of any possible
-                    scams. If making any payments we recommend that you have two permanent & verified methods of contact of the
-                    payment receiver such as their landline number and home/business address.
+        
                 </div>
-                <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
-                <br>
-    
+        
             </div>
-    
+            </div>
         </div>
-        </div>
-    </div>
+
 
     {{-- @include('layouts.offer')
     @include('layouts.reporthouse') --}}
