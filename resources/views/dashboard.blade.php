@@ -28,10 +28,10 @@
     
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="https://versions.bulma.io/0.7.0/">
+          <a class="navbar-item" href="/">
             Home
           </a>
-          <div class="navbar-item has-dropdown is-hoverable">
+          {{-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="/documentation/overview/start/">
               Docs
             </a>
@@ -59,29 +59,27 @@
                 Components
               </a>
             </div>
-          </div>
+          </div> --}}
         </div>
     
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms">
-                  <span class="icon">
-                    <i class="fab fa-twitter"></i>
-                  </span>
-                  <span>
-                    Tweet
-                  </span>
-                </a>
-              </p>
-              <p class="control">
-                <a class="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.6.2/bulma-0.6.2.zip">
+                  <a class="button is-primary" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                 </a>
+                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                {{-- <a class="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.6.2/bulma-0.6.2.zip">
                   <span class="icon">
                     <i class="fas fa-download"></i>
                   </span>
-                  <span>Download</span>
-                </a>
+                  <span>Logout</span>
+                </a> --}}
               </p>
             </div>
           </div>
@@ -250,87 +248,36 @@
               </div>
             </div>
           </div>
-        <div class="columns is-multiline">
-          <div class="column is-4">
-            <div class="box is-paddingless">
-              <figure class="image is-1by1">
-                <img src="images/B1.jpg">
-              </figure>
-              <div class="panel-block">
-                  <ul class="is-clearfix">
-                    <li>Location:Colombo</li>
-                    <li>Price:2500 pre month</li>
-                    <li>Rooms:4 rooms</li>
-                  </ul>
+          <div class="columns is-multiline">
+              @foreach ($Boadrings as $item)
+              <div class="column is-3">
+                <div class="box is-paddingless">
+                  <figure class="image is-1by1">
+                    <img src="images/B1.jpg">
+                  </figure>
+                  <div class="panel-block">
+                      <ul class="is-clearfix">
+                        <li>Location:{{$item->District}}</li>
+                        <li>Price:{{$item->MonthlyRent}} pre month</li>
+                        <li>Rooms:{{$item->NoOfRooms}} rooms</li>
+                      </ul>
+                    </div>
+                    <div class="panel-block">
+                      <div class="">
+                        <button class="button is-success"><a href="" class="button is-success is-small">See More</a></button>
+                        <button class="button is-danger"><a href="" class="button is-danger is-small">Delete</a></button>
+                      </div>
+                    </div>
                 </div>
-                <div class="panel-block">
-                  <div class="">
-                    <button class="button is-success"><a href="" class="button is-success is-small">See More</a></button>
-                    <button class="button is-danger"><a href="" class="button is-danger is-small">Delete</a></button>
-                  </div>
-                </div>
+              </div>   
+            @endforeach
+            <div class="columns">
+              <div class="column is-4"></div>
+              <div class="column is-4">
+                {{$Boadrings->links()}}
+              </div>
+              <div class="column is-4"></div>
             </div>
-          </div>
-          <div class="column is-4">
-            <div class="box is-paddingless">
-              <figure class="image is-1by1">
-                <img src="images/B1.jpg">
-              </figure>
-              <div class="panel-block">
-                  <ul class="is-clearfix">
-                    <li>Location:Colombo</li>
-                    <li>Price:2500 pre month</li>
-                    <li>Rooms:4 rooms</li>
-                  </ul>
-                </div>
-                <div class="panel-block">
-                  <div class="">
-                    <button class="button is-success"><a href="" class="button is-success is-small">See More</a></button>
-                    <button class="button is-danger"><a href="" class="button is-danger is-small">Delete</a></button>
-                  </div>
-                </div>
-            </div>
-          </div>
-          <div class="column is-4">
-            <div class="box is-paddingless">
-              <figure class="image is-1by1">
-                <img src="images/B1.jpg">
-              </figure>
-              <div class="panel-block">
-                  <ul class="is-clearfix">
-                    <li>Location:Colombo</li>
-                    <li>Price:2500 pre month</li>
-                    <li>Rooms:4 rooms</li>
-                  </ul>
-                </div>
-                <div class="panel-block">
-                  <div class="">
-                    <button class="button is-success"><a href="" class="button is-success is-small">See More</a></button>
-                    <button class="button is-danger"><a href="" class="button is-danger is-small">Delete</a></button>
-                  </div>
-                </div>
-            </div>
-          </div>
-          <div class="column is-4">
-            <div class="box is-paddingless">
-              <figure class="image is-1by1">
-                <img src="images/B1.jpg">
-              </figure>
-              <div class="panel-block">
-                  <ul class="is-clearfix">
-                    <li>Location:Colombo</li>
-                    <li>Price:2500 pre month</li>
-                    <li>Rooms:4 rooms</li>
-                  </ul>
-                </div>
-                <div class="panel-block">
-                  <div class="">
-                    <button class="button is-success"><a href="" class="button is-success is-small">See More</a></button>
-                    <button class="button is-danger"><a href="" class="button is-danger is-small">Delete</a></button>
-                  </div>
-                </div>
-            </div>
-          </div>
         </main>
       </div>
     </div>

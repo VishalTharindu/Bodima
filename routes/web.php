@@ -12,9 +12,13 @@
 */
 
 Route::get('/','PageController@index');
-Route::get('/dashboard','PageController@dashboard');
-Route::get('/bodim','BoardingController@index');
-Route::get('/addboarding','BoardingController@create');
+// Route::get('/dashboard','PageController@dashboard');
+Route::get('/dashboard','BoardingController@show');
+Route::get('/bodim','VisitBoarding@index');
+Route::get('/seemore','VisitBoarding@seemoreboarding');
+Route::get('/bodim','VisitBoarding@showboarding');
+Route::get('/addboarding','BoardingController@create')->middleware('auth');
+Route::post('/addboarding','BoardingController@store')->middleware('auth');
 
 // Route::get('/lg', function () {
 //     return view('login');

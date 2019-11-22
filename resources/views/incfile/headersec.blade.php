@@ -34,10 +34,10 @@
     
               <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav nav ml-auto">
-                  <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-                  <li class="nav-item"><a href="#services-section" class="nav-link"><span>Bodims</span></a></li>
+                  <li class="nav-item"><a href="/" class="nav-link"><span>Home</span></a></li>
+                  <li class="nav-item"><a href="bodim" class="nav-link"><span>Bodims</span></a></li>
                   <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Boders</span></a></li>
-                  <li class="nav-item"><a href="#about-section" class="nav-link"><span>Add bodim</span></a></li>
+                  <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
                   <li class="nav-item"><a href="#testimony-section" class="nav-link"><span>Request bodim</span></a></li>
                   <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
                   <li class="nav-item">
@@ -65,7 +65,7 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                               </button> --}}
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="http://">Profile</a>
+                                <a class="dropdown-item" href="/dashboard">Profile</a>
                                 <a class="dropdown-item" href="http://">Account Setting</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
