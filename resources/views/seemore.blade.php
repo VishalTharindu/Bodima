@@ -45,12 +45,12 @@
                 <div class="column profileback">
                     <div class="container">
                         <div class="carousel carousel-main" data-flickity='{"pageDots": false }'>
-                            <div class="carousel-cell">
+                            @foreach (json_decode($Boadrings->filename ) as $image)
+                                <div class="carousel-cell"><img src="/images/uploads/boardingimg/{{$image}}" /></div>
+                             @endforeach
+                            {{-- <div class="carousel-cell">
                                 <img src="images/B2.jpg" />
-                            </div>
-                            <div class="carousel-cell">
-                                <img src="images/B2.jpg" />
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 <div class="container detailssection">
@@ -60,24 +60,53 @@
                             <a href="" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
                                 <div class="is-pulled-left">
                                     <div class="title">
-                                        {{-- {{$house->property->name}} --}}
+                                        {{$Boadrings->boardingType}}, {{$Boadrings->City}}
                                     </div>
                                     <div class="subtitle">
-                                        {{-- {{$house->property->city}}, {{$house->property->postalCode}} --}}
+                                        
                                     </div>
                                     <hr class="hrline">
                                     <div class="subtitle has-text-weight-semibold">
                                         Boarding Details
                                     </div>
                                     <div class="columns">
-                                        <div class="column detailscolumn">
-                                            <p>Boarding  Type: <span class="has-text-weight-semibold"></span></p>
-                                            <p>No of Rooms: <span class="has-text-weight-semibold"></span></p>
-                                            <p>No of Rooms: <span class="has-text-weight-semibold"></span></p>
-                                            <p>For Whome: <span class="has-text-weight-semibold"></span></p>
-                                            <p>Other Furniture: <span class="has-text-weight-semibold"></span></p>
-                                            <p>AC Availability: <span class="has-text-weight-semibold"></span></p>
+                                        <div class="column detailscolumn has-text-dark">
+                                            <p>Boarding  Type: <span class="has-text-weight-semibold">{{$Boadrings->boardingType}}</span></p>
+                                            <p>No of Rooms: <span class="has-text-weight-semibold">{{$Boadrings->NoOfRooms}}</span></p>
+                                            <p>No of Bed: <span class="has-text-weight-semibold">{{$Boadrings->NoOfBed}}</span></p>
+                                            <p>Other Furniture: 
+                                                <span class="has-text-weight-semibold">
+                                                    @if(($Boadrings->Table)==1)
+                                                        Table/
+                                                    @else
+                                                    @endif
+
+                                                    @if(($Boadrings->Chairs)==1)
+                                                        Chairs/
+                                                    @else
+                                                    @endif
+
+                                                    @if(($Boadrings->Uni_boys)==1)
+                                                        Racks/
+                                                    @else
+                                                    @endif
+
+                                                    @if(($Boadrings->Uni_girls)==1)
+                                                        More/
+                                                    @else
+                                                    @endif
+                                                    
+                                                </span>
+                                            </p>
+                                            <p>AC Availability: 
+                                                @if(($Boadrings->Acavalability)==1)
+                                                    <p><span class="has-text-weight-semibold">Yes</span></p>
+                                                @else
+                                                    <span class="has-text-weight-semibold">No</span>
+                                                @endif
+                                            </p>
                                             <p>Approximate monthly rent: <span class="has-text-weight-semibold">{{$Boadrings->MonthlyRent}}</span></p>
+                                            <p>Approximate Key Money: <span class="has-text-weight-semibold">{{$Boadrings->KeyMoney}}</span></p>
                                             <p>: <span class="has-text-weight-semibold"></span></p>
                                             <p>: <span class="has-text-weight-semibold"></span></p>
                                         </div>
@@ -90,11 +119,45 @@
                                             <p>Garden: <span class="has-text-weight-semibold">{{$house->garden}}</span></p>
                                             <p>Swimming Pool: <span class="has-text-weight-semibold">{{$house->swimmingPool}}</span></p>
                                         </div> --}}
-                                        <div class="column">
-                                            <p>Approximate Key Money: <span class="has-text-weight-semibold"></span></p>
-                                            <p>Address: <span class="has-text-weight-semibold"></span></p>
-                                            <p>Province: <span class="has-text-weight-semibold"></span></p>
-                                            <p>District: <span class="has-text-weight-semibold"></span></p>
+                                        <div class="column has-text-dark ">
+                                                <p>For Whome: 
+                                                        <span class="has-text-weight-semibold">
+                                                            @if(($Boadrings->School_boys)==1)
+                                                                School Boys/
+                                                            @else
+                                                            @endif
+        
+                                                            @if(($Boadrings->School_girls)==1)
+                                                                School girls/
+                                                            @else
+                                                            @endif
+        
+                                                            @if(($Boadrings->Uni_boys)==1)
+                                                                Uni Boys/
+                                                            @else
+                                                            @endif
+        
+                                                            @if(($Boadrings->Uni_girls)==1)
+                                                                School girls/
+                                                            @else
+                                                            @endif
+        
+                                                            @if(($Boadrings->Office_boys)==1)
+                                                                Office Boys/
+                                                            @else
+                                                            @endif
+        
+                                                            @if(($Boadrings->Office_girls)==1)
+                                                                Office girls
+                                                            @else
+                                                            @endif
+        
+                                                        </span>
+                                                    </p>
+                                            <p>Address: <span class="has-text-weight-semibold">{{$Boadrings->Address}}</span></p>
+                                            <p>Province: <span class="has-text-weight-semibold">{{$Boadrings->Province}}</span></p>
+                                            <p>District: <span class="has-text-weight-semibold">{{$Boadrings->District}}</span></p>
+                                            <p>City: <span class="has-text-weight-semibold">{{$Boadrings->City}}</span></p>
                                             <p>City:</p>
                                             {{-- <p>Area of Property(Square Feet): <span class="has-text-weight-semibold">{{$house->size}}</span></p>
                                             <p>Nearest School: <span class="has-text-weight-semibold">{{$house->nearestSchool}}</span></p>
@@ -146,11 +209,14 @@
                                     <img class="is-rounded is-horizontal-center" src="images/prof.jpg">
                                 </figure>
                             </div>
-                            <div class="subtitle has-text-centered"><span>@</span></div>
+                            <div class="subtitle has-text-centered"><span>@</span>{{$Boadrings->user->name}}</div>
+                            <div class="subtitle has-text-centered"><span></span>{{$Boadrings->user->email}}</div>
                             <div class="has-text-centered">
-                                <button class="button is-dark" onclick="location.href='#contactbox'">Email Owner</button>
                                 <button class="button is-success" onclick="showPno()">Call Owner</button>
-                                <p class="has-text-dark customerpno" id="pno"><a href="" class="nounnounderlinelink"></a></p>
+                                <button class="button is-warning" onclick="location.href='#contactbox'">Send Massage</button>
+                                {{-- <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$Boadrings->user->phone}}" class="nounnounderlinelink">{{$Boadrings->user->phone}}</a></p> --}}
+                                <p class="has-text-dark customerpno" id="pno"><a href="tel:{{$Boadrings->user->phone}}" class="nounnounderlinelink">{{$Boadrings->user->phone}}</a></p>
+                                
                                 <hr>
                                 <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
                                 <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">   
@@ -199,10 +265,10 @@
                         <a class="button is-info nounnounderlinebtn" href="http://www.google.com/maps/place/{{$house->property->latitude}},{{$house->property->longitude}}"
                             target="_blank">Set Direction</a> </div> --}}
                     <hr>
-                    <div class="subtitle has-text-weight-semibold">Property Description</div>
+                    <div class="subtitle has-text-weight-semibold">Description</div>
                     <div class="column is-flex-mobile">
                         <p class="content">
-                            {{-- {!! $house->property->description !!} --}}
+                            {{$Boadrings->Description}}
                         </p>
                     </div>
                     
@@ -328,7 +394,7 @@
         
                     </div> --}}
                     {{-- Contact Owner Emaik --}}
-                    <div class="notification is-danger">
+                    <div class="notification is-warning">
                         <button class="delete"></button>
                         <strong>Important information:</strong> This ad has been posted on Realproperty.lk by the above mentioned
                         advertiser. Realproperty.lk does not have any connection with this advertiser, nor do we vet the advertisers,
@@ -386,6 +452,17 @@
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKNG_uMsCgUvpLc_Adr2n9nwo6BWOImoM&libraries=places&callback=initMap"
         async defer></script>
 
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                $notification = $delete.parentNode;
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+    </script> --}}
     <script>
         function showPno() {
             var x = document.getElementById("pno");
@@ -405,16 +482,6 @@
             }
         }
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-                $notification = $delete.parentNode;
-                $delete.addEventListener('click', () => {
-                    $notification.parentNode.removeChild($notification);
-                });
-            });
-        });
-    </script> --}}
 
 </body>
 

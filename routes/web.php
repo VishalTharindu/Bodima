@@ -47,6 +47,9 @@ Route::get('/rec', function () {
 Route::get('/test', function () {
     return view('incfile.test');
 });
+Route::get('/pro', function () {
+    return view('membershoptype');
+});
 
 
 Auth::routes(['verify' => true]);

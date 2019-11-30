@@ -37,7 +37,7 @@ class CreateBoardingsTable extends Migration
             $table->string('Province');
             $table->string('District');
             $table->string('City');
-            $table->string('Name');
+            $table->string('filename');
             $table->string('Email');
             $table->string('Telephone');
             $table->timestamps();

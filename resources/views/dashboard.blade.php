@@ -264,7 +264,7 @@
                     </div>
                     <div class="panel-block">
                       <div class="">
-                        <button class="button is-success"><a href="" class="button is-success is-small">See More</a></button>
+                        <button class="button is-success"><a href="/seemore/{{$item->id}}" class="button is-success is-small">See More</a></button>
                         <button class="button is-danger"><a href="" class="button is-danger is-small">Delete</a></button>
                       </div>
                     </div>

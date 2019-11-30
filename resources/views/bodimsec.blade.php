@@ -28,6 +28,7 @@
               <div class="col-md-4">
                 <div class="view overlay rounded z-depth-1">
                   <img src="images/B1.jpg" class="img-fluid" alt="Sample project image">
+                  {{-- <img src="/images/uploads/boardingimg/" class="img-fluid" alt="Sample project image"/> --}}
                   <a>
                     <div class="mask rgba-white-slight"></div>
                   </a>

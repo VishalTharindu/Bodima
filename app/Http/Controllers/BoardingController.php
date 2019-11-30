@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Boarding;
 use Auth;
+use Image;
 use Illuminate\Http\Request;
 
 class BoardingController extends Controller
@@ -36,6 +37,8 @@ class BoardingController extends Controller
      */
     public function store(Request $request)
     {
+        
+        // return dd($request);
         $request->validate([
             'boardingType' => 'required',
             'NoOfRooms' => 'required',
@@ -47,10 +50,40 @@ class BoardingController extends Controller
             'Province' => 'required',
             'District' => 'required',
             'City' => 'required',
-            'Name' => 'required',
+            // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'Email' => 'required',
             'Telephone' => 'required',
         ]);
+
+        // $this->validate($request, [
+        //     'filename' => 'required',
+        //     'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // ]);
+
+       if($request->hasfile('filename'))
+             {
+
+            foreach($request->file('filename') as $image)
+            {
+                $name= uniqid('real_') . '.' . $image->getClientOriginalExtension();
+                //$image->move(public_path().'/uploads/property/house', $name);
+                Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $name));  
+                $data[] = $name;
+            }
+
+            
+         }
+
+        // if($request->hasfile('filename'))
+        //  {
+
+        //     foreach($request->file('filename') as $image)
+        //     {
+        //         $name=$image->getClientOriginalName();
+        //         $image->move(public_path().'/images/uploads/boardingimg/', $name);  
+        //         $data[] = $name;  
+        //     }
+        //  }
 
         $boarding = new Boarding;
         $boarding ->user_id = auth()->id();
@@ -126,7 +159,9 @@ class BoardingController extends Controller
         $boarding ->Province = request('Province');
         $boarding ->District = request('District');
         $boarding ->City = request('City');
-        $boarding ->Name = request('Name');
+
+        // $boarding ->Name = request('images');
+        $boarding->filename  = json_encode($data);
         $boarding ->Email = request('Email');
         $boarding ->Telephone = request('Telephone');
         $boarding->save();

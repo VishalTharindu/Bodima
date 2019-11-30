@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+
+    {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <style>
         .select, .select select{
             width: 100%;
@@ -22,7 +26,7 @@
 
     <div class="section is-medium">
         <div class="">
-            <form action="/addboarding" method="POST">
+            <form action="/addboarding" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="columns is-centered">
                         <div class="column is-6">
@@ -378,15 +382,21 @@
                                         <div class="column is-12">
                                             <div class="field">
                                                 <label class="label">Your Name</label>
-                                                <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input" name="Name">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
-                                                    </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                <div class="input-group control-group increment">
+                                                    <input type="file" name="filename[]" class="form-control">
+                                                    <div class="input-group-btn">
+                                                        <button class="button is-success addmore" type="button"><i
+                                                                class="glyphicon glyphicon-plus"></i>More</button>
+                                                    </div>
                                                 </div>
+                                                <div class="clone hide">
+                                                    <div class="control-group input-group" style="margin-top:10px">
+                                                      <input type="file" name="filename[]" class="form-control">
+                                                      <div class="input-group-btn"> 
+                                                        <button class="button is-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                                      </div>
+                                                    </div>
+                                                  </div>
                                             </div>
                                         </div>
                                     </div>
@@ -430,7 +440,7 @@
                 <div class="columns">
                     <div class="column is-12 is-pulled-right">
                         <button type="submit" class="button is-primary is-pulled-right" style="margin-left:10px">Upload Post</button>            
-                        <button type="submit" class="button is-danger is-pulled-right">Clear</button>
+                        <button type="submit" class=" button is-warning is-pulled-right">Clear</button>
                     </div> 
                 </div>
             </form>
@@ -521,7 +531,7 @@
             </div> --}}
         </div>
     </div>
-    <script src="{{asset('css/bulma/bulmaCheckradio/gulpfile.js')}}"></script>
+    {{-- <script src="{{asset('css/bulma/bulmaCheckradio/gulpfile.js')}}"></script> --}}
 
     <div class="footsec">
             <div class="container">
@@ -578,5 +588,21 @@
                 </div>
             </div>
         </div>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+        
+              $(".addmore").click(function(){ 
+                  var html = $(".clone").html();
+                  $(".increment").after(html);
+              });
+        
+              $("body").on("click",".is-danger",function(){ 
+                  $(this).parents(".control-group").remove();
+              });
+        
+            });
+        </script>
 </body>
 </html>
