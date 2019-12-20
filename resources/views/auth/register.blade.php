@@ -46,7 +46,7 @@
                                             
                                             <p class="control has-icons-left has-icons-right">
                                             
-                                                <input class="input  is-success" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                <input class="input  is-success" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Name" required autocomplete="name" autofocus>
                                             
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
                                         <div class="ﬁeld">
                                             <p class="control has-icons-left has-icons-right">
                                             
-                                                <input class="input  is-success" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                <input class="input  is-success" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email" autofocus>
                                             
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                                         <div class="ﬁeld">
                                             <p class="control has-icons-left has-icons-right">
                                             
-                                                <input class="input  is-success" id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus>
+                                                <input class="input  is-success" id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" placeholder="City" required autocomplete="city" autofocus>
                                             
                                                 @error('city')
                                                     <span class="invalid-feedback" role="alert">
@@ -120,7 +120,7 @@
                                         <div class="ﬁeld">
                                             <p class="control has-icons-left has-icons-right">
                                             
-                                                <input class="input  is-success" id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                                <input class="input  is-success" id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
                                             
                                                 @error('phone')
                                                     <span class="invalid-feedback" role="alert">
@@ -146,7 +146,7 @@
                                         <div class="ﬁeld">
                                            <p class="control has-icons-left has-icons-right">
                                             
-                                                <input class="input  is-success" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+                                                <input class="input  is-success" id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
                                             
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
@@ -171,7 +171,7 @@
                                             
                                             <p class="control has-icons-left has-icons-right">
                                                 
-                                                <input id="password-confirm" type="password" class="input  is-success" name="password_confirmation" required autocomplete="new-password">
+                                                <input id="password-confirm" type="password" class="input  is-success" name="password_confirmation" placeholder="Conform password" required autocomplete="new-password">
                                                 
                                                 <span class="icon is-small is-left">
                                                     <i class="fa fa-lock"></i>
@@ -185,6 +185,16 @@
                                             </p>
                                         
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ﬁeld">
+                                        
+                                        <p class="control has-icons-left has-icons-right">
+                                            
+                                            <input id="" type="hidden" class="input  is-success" name="usertype" value="0">
+                                        </p>
+                                    
                                     </div>
                                 </div>
                                 <div class="ﬁeld is-grouped is-grouped-centered regis-btn-group">

@@ -17,13 +17,6 @@ class CreateBoardingsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('boardingType');
-            $table->string('NoOfRooms');
-            $table->string('NoOfBed');
-            $table->string('Acavalability');
-            $table->boolean('Table');
-            $table->boolean('Chairs');
-            $table->boolean('Racks');
-            $table->boolean('More');
             $table->boolean('School_boys');
             $table->boolean('School_girls');
             $table->boolean('Uni_boys');

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
     <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
+    {{-- <link href={{asset('css/css/material-kit.css')}} rel="stylesheet"> --}}
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
@@ -215,6 +216,12 @@
                                         </div>
                                     </div>
                                     <div class="column is-3">
+                                            <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes">
+                                                        Unchecked
+                                                    </label>
+                                                </div>
                                         
                                     </div>
                                 </div>

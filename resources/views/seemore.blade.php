@@ -45,7 +45,7 @@
                 <div class="column profileback">
                     <div class="container">
                         <div class="carousel carousel-main" data-flickity='{"pageDots": false }'>
-                            @foreach (json_decode($Boadrings->filename ) as $image)
+                            @foreach (json_decode($House->boarding->filename ) as $image)
                                 <div class="carousel-cell"><img src="/images/uploads/boardingimg/{{$image}}" /></div>
                              @endforeach
                             {{-- <div class="carousel-cell">
@@ -60,7 +60,7 @@
                             <a href="" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
                                 <div class="is-pulled-left">
                                     <div class="title">
-                                        {{$Boadrings->boardingType}}, {{$Boadrings->City}}
+                                        {{$House->boarding->boardingType}}, {{$House->boarding->City}}
                                     </div>
                                     <div class="subtitle">
                                         
@@ -71,42 +71,28 @@
                                     </div>
                                     <div class="columns">
                                         <div class="column detailscolumn has-text-dark">
-                                            <p>Boarding  Type: <span class="has-text-weight-semibold">{{$Boadrings->boardingType}}</span></p>
-                                            <p>No of Rooms: <span class="has-text-weight-semibold">{{$Boadrings->NoOfRooms}}</span></p>
-                                            <p>No of Bed: <span class="has-text-weight-semibold">{{$Boadrings->NoOfBed}}</span></p>
+                                            <p>Boarding  Type: <span class="has-text-weight-semibold">{{$House->boarding->boardingType}}</span></p>
+                                            <p>No of Rooms: <span class="has-text-weight-semibold">{{$House->NoOfRooms}}</span></p>
+                                            <p>No of Bed: <span class="has-text-weight-semibold">{{$House->NoOfBed}}</span></p>
                                             <p>Other Furniture: 
-                                                <span class="has-text-weight-semibold">
-                                                    @if(($Boadrings->Table)==1)
-                                                        Table/
+                                                
+                                                    @if(($House->Withfurniture)==1)
+                                                    <span class="has-text-weight-semibold">Yes</span>
                                                     @else
-                                                    @endif
-
-                                                    @if(($Boadrings->Chairs)==1)
-                                                        Chairs/
-                                                    @else
-                                                    @endif
-
-                                                    @if(($Boadrings->Uni_boys)==1)
-                                                        Racks/
-                                                    @else
-                                                    @endif
-
-                                                    @if(($Boadrings->Uni_girls)==1)
-                                                        More/
-                                                    @else
-                                                    @endif
-                                                    
-                                                </span>
+                                                    <span class="has-text-weight-semibold">No</span>
+                                                    @endif                                                   
                                             </p>
                                             <p>AC Availability: 
-                                                @if(($Boadrings->Acavalability)==1)
+                                                {{-- @if(($House->boarding->Acavalability)==1)
                                                     <p><span class="has-text-weight-semibold">Yes</span></p>
                                                 @else
                                                     <span class="has-text-weight-semibold">No</span>
-                                                @endif
+                                                @endif --}}
+
+                                                <span class="has-text-weight-semibold">{{$House->Acavalability}}</span>
                                             </p>
-                                            <p>Approximate monthly rent: <span class="has-text-weight-semibold">{{$Boadrings->MonthlyRent}}</span></p>
-                                            <p>Approximate Key Money: <span class="has-text-weight-semibold">{{$Boadrings->KeyMoney}}</span></p>
+                                            <p>Approximate monthly rent: <span class="has-text-weight-semibold">{{$House->boarding->MonthlyRent}}</span></p>
+                                            <p>Approximate Key Money: <span class="has-text-weight-semibold">{{$House->boarding->KeyMoney}}</span></p>
                                             <p>: <span class="has-text-weight-semibold"></span></p>
                                             <p>: <span class="has-text-weight-semibold"></span></p>
                                         </div>
@@ -122,42 +108,42 @@
                                         <div class="column has-text-dark ">
                                                 <p>For Whome: 
                                                         <span class="has-text-weight-semibold">
-                                                            @if(($Boadrings->School_boys)==1)
+                                                            @if(($House->boarding->School_boys)==1)
                                                                 School Boys/
                                                             @else
                                                             @endif
         
-                                                            @if(($Boadrings->School_girls)==1)
+                                                            @if(($House->boarding->School_girls)==1)
                                                                 School girls/
                                                             @else
                                                             @endif
         
-                                                            @if(($Boadrings->Uni_boys)==1)
+                                                            @if(($House->boarding->Uni_boys)==1)
                                                                 Uni Boys/
                                                             @else
                                                             @endif
         
-                                                            @if(($Boadrings->Uni_girls)==1)
+                                                            @if(($House->boarding->Uni_girls)==1)
                                                                 School girls/
                                                             @else
                                                             @endif
         
-                                                            @if(($Boadrings->Office_boys)==1)
+                                                            @if(($House->boarding->Office_boys)==1)
                                                                 Office Boys/
                                                             @else
                                                             @endif
         
-                                                            @if(($Boadrings->Office_girls)==1)
+                                                            @if(($House->boarding->Office_girls)==1)
                                                                 Office girls
                                                             @else
                                                             @endif
         
                                                         </span>
                                                     </p>
-                                            <p>Address: <span class="has-text-weight-semibold">{{$Boadrings->Address}}</span></p>
-                                            <p>Province: <span class="has-text-weight-semibold">{{$Boadrings->Province}}</span></p>
-                                            <p>District: <span class="has-text-weight-semibold">{{$Boadrings->District}}</span></p>
-                                            <p>City: <span class="has-text-weight-semibold">{{$Boadrings->City}}</span></p>
+                                            <p>Address: <span class="has-text-weight-semibold">{{$House->boarding->Address}}</span></p>
+                                            <p>Province: <span class="has-text-weight-semibold">{{$House->boarding->Province}}</span></p>
+                                            <p>District: <span class="has-text-weight-semibold">{{$House->boarding->District}}</span></p>
+                                            <p>City: <span class="has-text-weight-semibold">{{$House->boarding->City}}</span></p>
                                             <p>City:</p>
                                             {{-- <p>Area of Property(Square Feet): <span class="has-text-weight-semibold">{{$house->size}}</span></p>
                                             <p>Nearest School: <span class="has-text-weight-semibold">{{$house->nearestSchool}}</span></p>
@@ -209,13 +195,13 @@
                                     <img class="is-rounded is-horizontal-center" src="images/prof.jpg">
                                 </figure>
                             </div>
-                            <div class="subtitle has-text-centered"><span>@</span>{{$Boadrings->user->name}}</div>
-                            <div class="subtitle has-text-centered"><span></span>{{$Boadrings->user->email}}</div>
+                            <div class="subtitle has-text-centered"><span>@</span>{{$House->boarding->user->name}}</div>
+                            <div class="subtitle has-text-centered"><span></span>{{$House->boarding->user->email}}</div>
                             <div class="has-text-centered">
-                                <button class="button is-success" onclick="showPno()">Call Owner</button>
+                                <button class="button is-success" onclick="showPnox()">Call Owner</button>
                                 <button class="button is-warning" onclick="location.href='#contactbox'">Send Massage</button>
                                 {{-- <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$Boadrings->user->phone}}" class="nounnounderlinelink">{{$Boadrings->user->phone}}</a></p> --}}
-                                <p class="has-text-dark customerpno" id="pno"><a href="tel:{{$Boadrings->user->phone}}" class="nounnounderlinelink">{{$Boadrings->user->phone}}</a></p>
+                                <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$House->boarding->user->phone}}" class="nounnounderlinelink">{{$House->boarding->user->phone}}</a></p>
                                 
                                 <hr>
                                 <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
@@ -268,7 +254,7 @@
                     <div class="subtitle has-text-weight-semibold">Description</div>
                     <div class="column is-flex-mobile">
                         <p class="content">
-                            {{$Boadrings->Description}}
+                            {{$House->boarding->Description}}
                         </p>
                     </div>
                     

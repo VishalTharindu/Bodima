@@ -7,6 +7,10 @@ use Auth;
 use Image;
 use Illuminate\Http\Request;
 
+use App\House;
+use App\Anex;
+use App\SingleRoom;
+
 class BoardingController extends Controller
 {
     /**
@@ -16,7 +20,7 @@ class BoardingController extends Controller
      */
     public function index()
     {
-    
+        
     }
 
     /**
@@ -26,19 +30,26 @@ class BoardingController extends Controller
      */
     public function create()
     {
-        return view('addbodim');
+        return view('addBoarding.addboarding');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function house()
     {
-        
-        // return dd($request);
+        return view('addBoarding.addHouse');
+    }
+
+    public function anex()
+    {
+        return view('addBoarding.addAnex');
+    }
+
+    public function singalroom()
+    {
+        return view('addBoarding.addSingalroom');
+    }
+
+    public function housestore(Request $request){
+
         $request->validate([
             'boardingType' => 'required',
             'NoOfRooms' => 'required',
@@ -88,33 +99,6 @@ class BoardingController extends Controller
         $boarding = new Boarding;
         $boarding ->user_id = auth()->id();
         $boarding ->boardingType = request('boardingType');
-        $boarding ->NoOfRooms = request('NoOfRooms');
-        $boarding ->NoOfBed = request('NoOfBed');
-        $boarding ->Acavalability = request('Acavalability');
-
-        if($request->has('Table')){
-            $boarding->Table = 1;
-        }else{
-            $boarding->Table = 0;
-        }
-
-        if($request->has('Chairs')){
-            $boarding->Chairs = 1;
-        }else{
-            $boarding->Chairs = 0;
-        }
-
-        if($request->has('Racks')){
-            $boarding->Racks = 1;
-        }else{
-            $boarding->Racks = 0;
-        }
-
-        if($request->has('More')){
-            $boarding->More = 1;
-        }else{
-            $boarding->More = 0;
-        }
 
         if($request->has('School_boys')){
             $boarding->School_boys = 1;
@@ -166,7 +150,288 @@ class BoardingController extends Controller
         $boarding ->Telephone = request('Telephone');
         $boarding->save();
 
+        $adhouse = new House;
+
+        $adhouse->Boarding()->associate($boarding);
+        $adhouse ->NoOfRooms = request('NoOfRooms');
+        $adhouse ->NoOfBed = request('NoOfBed');
+        $adhouse ->Acavalability = request('Acavalability');
+
+        $adhouse ->kitchenavalability = request('kitchenavalability');
+
+        if($request->has('Withfurniture')){
+            $adhouse->Withfurniture = 1;
+        }else{
+            $adhouse->Withfurniture = 0;
+        }
+
+        if($request->has('Garden')){
+            $adhouse->Garden = 1;
+        }else{
+            $adhouse->Garden = 0;
+        }
+
+        $adhouse ->NumberOfBthroom = request('NumberOfBthroom');
+
+        $adhouse->save();
+
         return back();
+    }
+
+    public function anexstore(Request $request){
+
+        $request->validate([
+            'boardingType' => 'required',
+            'NoOfRooms' => 'required',
+            'Acavalability' => 'required',
+            'MonthlyRent' => 'required',
+            'KeyMoney' => 'required',
+            'Address' => 'required',
+            'Description' => '',
+            'Province' => 'required',
+            'District' => 'required',
+            'City' => 'required',
+            // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'Email' => 'required',
+            'Telephone' => 'required',
+        ]);
+
+        // $this->validate($request, [
+        //     'filename' => 'required',
+        //     'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // ]);
+
+       if($request->hasfile('filename'))
+             {
+
+            foreach($request->file('filename') as $image)
+            {
+                $name= uniqid('real_') . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $name));  
+                $data[] = $name;
+            }
+
+            
+         }
+
+        // if($request->hasfile('filename'))
+        //  {
+
+        //     foreach($request->file('filename') as $image)
+        //     {
+        //         $name=$image->getClientOriginalName();
+        //         $image->move(public_path().'/images/uploads/boardingimg/', $name);  
+        //         $data[] = $name;  
+        //     }
+        //  }
+
+        $boarding = new Boarding;
+        $boarding ->user_id = auth()->id();
+        $boarding ->boardingType = request('boardingType');
+
+        if($request->has('School_boys')){
+            $boarding->School_boys = 1;
+        }else{
+            $boarding->School_boys = 0;
+        }
+
+        if($request->has('School_girls')){
+            $boarding->School_girls = 1;
+        }else{
+            $boarding->School_girls = 0;
+        }
+
+        if($request->has('Uni_boys')){
+            $boarding->Uni_boys = 1;
+        }else{
+            $boarding->Uni_boys = 0;
+        }
+
+        if($request->has('Uni_girls')){
+            $boarding->Uni_girls = 1;
+        }else{
+            $boarding->Uni_girls = 0;
+        }
+
+        if($request->has('Office_boys')){
+            $boarding->Office_boys = 1;
+        }else{
+            $boarding->Office_boys = 0;
+        }
+
+        if($request->has('Office_girls')){
+            $boarding->Office_girls = 1;
+        }else{
+            $boarding->Office_girls = 0;
+        } 
+
+        $boarding ->MonthlyRent = request('MonthlyRent');
+        $boarding ->KeyMoney = request('KeyMoney');
+        $boarding ->Address = request('Address');
+        $boarding ->Description = request('Description');
+        $boarding ->Province = request('Province');
+        $boarding ->District = request('District');
+        $boarding ->City = request('City');
+
+        $boarding->filename  = json_encode($data);
+        $boarding ->Email = request('Email');
+        $boarding ->Telephone = request('Telephone');
+        $boarding->save();
+
+        $adanex = new Anex;
+
+        $adanex->Boarding()->associate($boarding);
+        $adanex ->NoOfRooms = request('NoOfRooms');
+        $adanex ->NoOfBed = request('NoOfBed');
+        $adanex ->Acavalability = request('Acavalability');
+
+        $adanex ->kitchenavalability = request('kitchenavalability');
+
+        if($request->has('Withfurniture')){
+            $adanex->Withfurniture = 1;
+        }else{
+            $adanex->Withfurniture = 0;
+        }
+
+        $adanex ->NumberOfBthroom = request('NumberOfBthroom');
+
+        $adanex->save();
+
+        return back();
+    }
+
+
+    public function singleroomstore(Request $request){
+
+        $request->validate([
+            'boardingType' => 'required',
+            'Acavalability' => 'required',
+            'MonthlyRent' => 'required',
+            'KeyMoney' => 'required',
+            'Address' => 'required',
+            'Description' => '',
+            'Province' => 'required',
+            'District' => 'required',
+            'City' => 'required',
+            // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'Email' => 'required',
+            'Telephone' => 'required',
+        ]);
+
+        // $this->validate($request, [
+        //     'filename' => 'required',
+        //     'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // ]);
+
+       if($request->hasfile('filename'))
+             {
+
+            foreach($request->file('filename') as $image)
+            {
+                $name= uniqid('real_') . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $name));  
+                $data[] = $name;
+            }
+
+            
+         }
+
+        // if($request->hasfile('filename'))
+        //  {
+
+        //     foreach($request->file('filename') as $image)
+        //     {
+        //         $name=$image->getClientOriginalName();
+        //         $image->move(public_path().'/images/uploads/boardingimg/', $name);  
+        //         $data[] = $name;  
+        //     }
+        //  }
+
+        $boarding = new Boarding;
+        $boarding ->user_id = auth()->id();
+        $boarding ->boardingType = request('boardingType');
+
+        if($request->has('School_boys')){
+            $boarding->School_boys = 1;
+        }else{
+            $boarding->School_boys = 0;
+        }
+
+        if($request->has('School_girls')){
+            $boarding->School_girls = 1;
+        }else{
+            $boarding->School_girls = 0;
+        }
+
+        if($request->has('Uni_boys')){
+            $boarding->Uni_boys = 1;
+        }else{
+            $boarding->Uni_boys = 0;
+        }
+
+        if($request->has('Uni_girls')){
+            $boarding->Uni_girls = 1;
+        }else{
+            $boarding->Uni_girls = 0;
+        }
+
+        if($request->has('Office_boys')){
+            $boarding->Office_boys = 1;
+        }else{
+            $boarding->Office_boys = 0;
+        }
+
+        if($request->has('Office_girls')){
+            $boarding->Office_girls = 1;
+        }else{
+            $boarding->Office_girls = 0;
+        } 
+
+        $boarding ->MonthlyRent = request('MonthlyRent');
+        $boarding ->KeyMoney = request('KeyMoney');
+        $boarding ->Address = request('Address');
+        $boarding ->Description = request('Description');
+        $boarding ->Province = request('Province');
+        $boarding ->District = request('District');
+        $boarding ->City = request('City');
+
+        $boarding->filename  = json_encode($data);
+        $boarding ->Email = request('Email');
+        $boarding ->Telephone = request('Telephone');
+        $boarding->save();
+
+        $adsingleroom = new SingleRoom;
+
+        $adsingleroom->Boarding()->associate($boarding);
+        $adsingleroom ->NoOfBed = request('NoOfBed');
+
+        if($request->has('Acavalability')){
+            $adsingleroom->Acavalability = 1;
+        }else{
+            $adsingleroom->Acavalability = 0;
+        }
+
+        if($request->has('Withfurniture')){
+            $adsingleroom->Withfurniture = 1;
+        }else{
+            $adsingleroom->Withfurniture = 0;
+        }
+
+        $adsingleroom ->NumberOfBthroom = request('NumberOfBthroom');
+
+        $adsingleroom->save();
+
+        return back();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
 
     }
 

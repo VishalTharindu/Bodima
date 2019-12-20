@@ -31,6 +31,19 @@
           <a class="navbar-item" href="/">
             Home
           </a>
+          @if ((auth()->user()->name)==1)
+            <a class="navbar-item has-text-success" href="#">
+              Primium User
+            </a>
+          @else
+            <a class="navbar-item has-text-danger" href="#">
+              Free User
+            </a>
+            <a class="navbar-item has-text-primary" href="#">
+              Become Primium
+            </a>
+          @endif
+          
           {{-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="/documentation/overview/start/">
               Docs

@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'city', 'phone', 'email', 'password',
+        'name', 'city', 'phone', 'email', 'password','usertype'
     ];
 
     /**
@@ -40,5 +40,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function boardings()
     {
         return $this->hasMany(Boarding::class);
+    }
+
+    public function boardingsrequest()
+    {
+        return $this->hasMany(BoardingRequest::class);
     }
 }

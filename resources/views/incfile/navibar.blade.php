@@ -39,7 +39,7 @@
               <li class="nav-item"><a href="/bodim" class="nav-link"><span>Bodims</span></a></li>
               <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Boders</span></a></li>
               <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
-              <li class="nav-item"><a href="#testimony-section" class="nav-link"><span>Request bodim</span></a></li>
+              <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
               <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
               <li class="nav-item">
                   <ul class="navbar-nav nav ml-auto">

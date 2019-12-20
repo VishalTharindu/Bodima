@@ -360,6 +360,10 @@ nav.navbar{
     height: 90px;
     width: 120px;
   }
+  .customerpno{
+    display: none;
+    margin-bottom: 10px;
+}
   
   
   /* Atelierbram edit */

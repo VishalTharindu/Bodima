@@ -15,10 +15,39 @@ Route::get('/','PageController@index');
 // Route::get('/dashboard','PageController@dashboard');
 Route::get('/dashboard','BoardingController@show');
 Route::get('/bodim','VisitBoarding@index');
-Route::get('/seemore/{Boadrings}','VisitBoarding@seemoreboarding');
+Route::get('/seemore/{House}','VisitBoarding@seemoreboarding');
 Route::get('/bodim','VisitBoarding@showboarding');
+
+
+
+/* ------------- Boarding routes----------------------*/
+
+// ++++++++loadig views+++++++++++++++++
+
 Route::get('/addboarding','BoardingController@create')->middleware('auth');
-Route::post('/addboarding','BoardingController@store')->middleware('auth');
+Route::get('/add/house','BoardingController@house')->middleware('auth');
+Route::get('/add/anex','BoardingController@anex')->middleware('auth');
+Route::get('/add/singalroom','BoardingController@singalroom')->middleware('auth');
+
+// ++++++++fonction related routies++++++++
+
+Route::post('/add/houses','BoardingController@housestore')->middleware('auth');
+Route::post('/add/anexs','BoardingController@anexstore')->middleware('auth');
+Route::post('/add/singalrooms','BoardingController@singleroomstore')->middleware('auth');
+
+
+/*-------------Boarding Request Routers---------------*/
+
+
+// +++loadig views+++
+
+Route::get('/allboardingrequst','BoardingRequestController@index')->middleware('auth');
+Route::get('/requestboarding','BoardingRequestController@create')->middleware('auth');
+Route::get('/add/boardingrequst','BoardingRequestController@house')->middleware('auth');
+
+// ++++++++fonction related routies++++++++
+
+Route::post('/add/houserequst','BoardingRequestController@storeHouserRequest')->middleware('auth');
 
 // Route::get('/lg', function () {
 //     return view('login');

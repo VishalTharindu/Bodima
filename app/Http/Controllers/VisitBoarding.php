@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Boarding;
+use App\House;
 
 use Illuminate\Http\Request;
 
@@ -18,9 +19,10 @@ class VisitBoarding extends Controller
         return view('bodimsec',compact('Boadrings'));
     }
 
-    public function seemoreboarding(Boarding $Boadrings)
+    public function seemoreboarding(House $House)
     {
-        return view('seemore',compact('Boadrings'));
+        return view('seemore',compact('House'));
+        //return dd($House);
     }
 }
 

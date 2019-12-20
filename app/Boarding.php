@@ -10,4 +10,22 @@ class Boarding extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function houses(){
+
+        return $this->hasMany(House::class);
+
+    }
+
+    public function anexs(){
+
+        return $this->hasMany(Anex::class);
+
+    }
+
+    public function singleroom(){
+
+        return $this->hasMany(SingleRoom::class);
+
+    }
 }
