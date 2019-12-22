@@ -45,7 +45,7 @@
                                         <div class="control is-6">
                                             <div class="select is-primary">
                                                 <select name="boardingType">
-                                                    <option value="Singal Room For Rent">Singal Room For Rent</option>
+                                                    <option value="Singal_Room">Singal</option>
                                                 </select>
                                             </div>
                                         </div>

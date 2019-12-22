@@ -15,7 +15,9 @@ Route::get('/','PageController@index');
 // Route::get('/dashboard','PageController@dashboard');
 Route::get('/dashboard','BoardingController@show');
 Route::get('/bodim','VisitBoarding@index');
-Route::get('/seemore/{House}','VisitBoarding@seemoreboarding');
+Route::get('/view/house/{house}','VisitBoarding@viewHouse');
+Route::get('/view/anex/{anex}','VisitBoarding@viewAnex');
+Route::get('/view/singleroom/{singleroom}','VisitBoarding@viewSingleRoom');
 Route::get('/bodim','VisitBoarding@showboarding');
 
 
@@ -55,8 +57,8 @@ Route::post('/add/houserequst','BoardingRequestController@storeHouserRequest')->
 // Route::get('/signup', function () {
 //     return view('signup');
 // });
-// Route::get('/bodim', function () {
-//     return view('bodimsec');
+// Route::get('/bodimtest', function () {
+//     return view('bodims');
 // });
 
 /* inc file routes*/

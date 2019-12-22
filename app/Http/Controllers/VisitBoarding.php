@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Boarding;
 use App\House;
+use App\Anex;
 
 use Illuminate\Http\Request;
 
@@ -19,10 +20,28 @@ class VisitBoarding extends Controller
         return view('bodimsec',compact('Boadrings'));
     }
 
-    public function seemoreboarding(House $House)
+    public function seemoreboarding($boardingData)
     {
-        return view('seemore',compact('House'));
+        return view('seemore',$boardingData);
         //return dd($House);
+    }
+
+    public function viewHouse(House $house){
+
+        $boardingData = $house;
+        return view('seemore', compact('boardingData'));
+    }
+
+    public function viewAnex(Anex $anex){
+
+        $boardingData = $anex;
+        return view('seemore', compact('boardingData'));
+    }
+
+    public function viewSingleRoom(SingleRoom $singleroom){
+
+        $boardingData = $singleroom;
+        return view('seemore', compact('boardingData'));
     }
 }
 

@@ -45,9 +45,7 @@
                                         <div class="control is-6">
                                             <div class="select is-primary">
                                                 <select name="boardingType">
-                                                    <option value="House For Rent">House For Rent</option>
-                                                    <option value="Anex For Rent">Anex For Rent</option>
-                                                    <option value="Singal Room For Rent">Singal Room For Rent</option>
+                                                    <option value="House">House</option>                                                    
                                                 </select>
                                             </div>
                                         </div>

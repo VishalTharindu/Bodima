@@ -45,12 +45,9 @@
                 <div class="column profileback">
                     <div class="container">
                         <div class="carousel carousel-main" data-flickity='{"pageDots": false }'>
-                            @foreach (json_decode($House->boarding->filename ) as $image)
+                            @foreach (json_decode($boardingData->boarding->filename ) as $image)
                                 <div class="carousel-cell"><img src="/images/uploads/boardingimg/{{$image}}" /></div>
                              @endforeach
-                            {{-- <div class="carousel-cell">
-                                <img src="images/B2.jpg" />
-                            </div> --}}
                         </div>
                     </div>
                 <div class="container detailssection">
@@ -60,7 +57,7 @@
                             <a href="" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
                                 <div class="is-pulled-left">
                                     <div class="title">
-                                        {{$House->boarding->boardingType}}, {{$House->boarding->City}}
+                                        {{$boardingData->boarding->boardingType}}, {{$boardingData->boarding->City}}
                                     </div>
                                     <div class="subtitle">
                                         
@@ -69,87 +66,88 @@
                                     <div class="subtitle has-text-weight-semibold">
                                         Boarding Details
                                     </div>
+                                    @if (($boardingData->boarding->boardingType)=='House')
                                     <div class="columns">
                                         <div class="column detailscolumn has-text-dark">
-                                            <p>Boarding  Type: <span class="has-text-weight-semibold">{{$House->boarding->boardingType}}</span></p>
-                                            <p>No of Rooms: <span class="has-text-weight-semibold">{{$House->NoOfRooms}}</span></p>
-                                            <p>No of Bed: <span class="has-text-weight-semibold">{{$House->NoOfBed}}</span></p>
-                                            <p>Other Furniture: 
+                                            <p>Boarding  Type: <span class="has-text-weight-semibold">{{$boardingData->boarding->boardingType}}</span></p>
+                                            <p>No of Rooms: <span class="has-text-weight-semibold">{{$boardingData->NoOfRooms}}</span></p>
+                                            <p>No of Bed: <span class="has-text-weight-semibold">{{$boardingData->NoOfBed}}</span></p>
+                                            <p>With Furniture: 
                                                 
-                                                    @if(($House->Withfurniture)==1)
+                                                    @if(($boardingData->Withfurniture)==1)
                                                     <span class="has-text-weight-semibold">Yes</span>
                                                     @else
                                                     <span class="has-text-weight-semibold">No</span>
                                                     @endif                                                   
                                             </p>
                                             <p>AC Availability: 
-                                                {{-- @if(($House->boarding->Acavalability)==1)
+                                                @if(($boardingData->Acavalability)==1)
                                                     <p><span class="has-text-weight-semibold">Yes</span></p>
                                                 @else
                                                     <span class="has-text-weight-semibold">No</span>
-                                                @endif --}}
+                                                @endif
 
-                                                <span class="has-text-weight-semibold">{{$House->Acavalability}}</span>
                                             </p>
-                                            <p>Approximate monthly rent: <span class="has-text-weight-semibold">{{$House->boarding->MonthlyRent}}</span></p>
-                                            <p>Approximate Key Money: <span class="has-text-weight-semibold">{{$House->boarding->KeyMoney}}</span></p>
-                                            <p>: <span class="has-text-weight-semibold"></span></p>
-                                            <p>: <span class="has-text-weight-semibold"></span></p>
+                                            <p>Kitchen Availability: 
+                                                @if(($boardingData->kitchenavalability)==1)
+                                                    <p><span class="has-text-weight-semibold">Yes</span></p>
+                                                @else
+                                                    <span class="has-text-weight-semibold">No</span>
+                                                @endif
+
+                                            </p>
+                                            <p>Garden Availability: 
+                                                @if(($boardingData->Garden)==1)
+                                                    <p><span class="has-text-weight-semibold">Yes</span></p>
+                                                @else
+                                                    <span class="has-text-weight-semibold">No</span>
+                                                @endif
+                                            </p>
+                                            <p>For Whome: 
+                                                <span class="has-text-weight-semibold">
+                                                    @if(($boardingData->boarding->School_boys)==1)
+                                                        School Boys/
+                                                    @else
+                                                    @endif
+
+                                                    @if(($boardingData->boarding->School_girls)==1)
+                                                        School girls/
+                                                    @else
+                                                    @endif
+
+                                                    @if(($boardingData->boarding->Uni_boys)==1)
+                                                        Uni Boys/
+                                                    @else
+                                                    @endif
+
+                                                    @if(($boardingData->boarding->Uni_girls)==1)
+                                                        School girls/
+                                                    @else
+                                                    @endif
+
+                                                    @if(($boardingData->boarding->Office_boys)==1)
+                                                        Office Boys/
+                                                    @else
+                                                    @endif
+
+                                                    @if(($boardingData->boarding->Office_girls)==1)
+                                                        Office girls
+                                                    @else
+                                                    @endif
+
+                                                </span>
+                                            </p>
                                         </div>
-                                        {{-- <div class="column detailscolumn">
-                                            <p>Property Type: <span class="has-text-weight-semibold">{{$house->property->type}}</span></p>
-                                            <p>Bedrooms: <span class="has-text-weight-semibold">{{$house->noOfRooms}}</span></p>
-                                            <p>Kitchen: <span class="has-text-weight-semibold">{{$house->noOfKitchen}}</span></p>
-                                            <p>No. of Washrooms: <span class="has-text-weight-semibold">{{$house->noOfWashrooms}}</span></p>
-                                            <p>No. of floors: <span class="has-text-weight-semibold">{{$house->noOfFloors}}</span></p>
-                                            <p>Garden: <span class="has-text-weight-semibold">{{$house->garden}}</span></p>
-                                            <p>Swimming Pool: <span class="has-text-weight-semibold">{{$house->swimmingPool}}</span></p>
-                                        </div> --}}
                                         <div class="column has-text-dark ">
-                                                <p>For Whome: 
-                                                        <span class="has-text-weight-semibold">
-                                                            @if(($House->boarding->School_boys)==1)
-                                                                School Boys/
-                                                            @else
-                                                            @endif
-        
-                                                            @if(($House->boarding->School_girls)==1)
-                                                                School girls/
-                                                            @else
-                                                            @endif
-        
-                                                            @if(($House->boarding->Uni_boys)==1)
-                                                                Uni Boys/
-                                                            @else
-                                                            @endif
-        
-                                                            @if(($House->boarding->Uni_girls)==1)
-                                                                School girls/
-                                                            @else
-                                                            @endif
-        
-                                                            @if(($House->boarding->Office_boys)==1)
-                                                                Office Boys/
-                                                            @else
-                                                            @endif
-        
-                                                            @if(($House->boarding->Office_girls)==1)
-                                                                Office girls
-                                                            @else
-                                                            @endif
-        
-                                                        </span>
-                                                    </p>
-                                            <p>Address: <span class="has-text-weight-semibold">{{$House->boarding->Address}}</span></p>
-                                            <p>Province: <span class="has-text-weight-semibold">{{$House->boarding->Province}}</span></p>
-                                            <p>District: <span class="has-text-weight-semibold">{{$House->boarding->District}}</span></p>
-                                            <p>City: <span class="has-text-weight-semibold">{{$House->boarding->City}}</span></p>
+                                            <p>Approximate monthly rent: <span class="has-text-weight-semibold">{{$boardingData->boarding->MonthlyRent}}</span></p>
+                                            <p>Approximate Key Money: <span class="has-text-weight-semibold">{{$boardingData->boarding->KeyMoney}}</span></p>
+                                            <p>Address: <span class="has-text-weight-semibold">{{$boardingData->boarding->Address}}</span></p>
+                                            <p>Province: <span class="has-text-weight-semibold">{{$boardingData->boarding->Province}}</span></p>
+                                            <p>District: <span class="has-text-weight-semibold">{{$boardingData->boarding->District}}</span></p>
+                                            <p>City: <span class="has-text-weight-semibold">{{$boardingData->boarding->City}}</span></p>
                                             <p>City:</p>
-                                            {{-- <p>Area of Property(Square Feet): <span class="has-text-weight-semibold">{{$house->size}}</span></p>
-                                            <p>Nearest School: <span class="has-text-weight-semibold">{{$house->nearestSchool}}</span></p>
-                                            <p>Nearest Busstop: <span class="has-text-weight-semibold">{{$house->nearestRailway}}</span></p>
-                                            <p>Nearest Railway Station: <span class="has-text-weight-semibold">{{$house->nearestBusStop}}</span></p>
-                                            <p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
+                                            
+                                            {{--<p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
                                                 <span class="has-text-weight-semibold has-text-success">
                                                     {{$house->property->availability}}
                                                 </span> @else
@@ -158,34 +156,165 @@
                                                 </span> @endif
                                             </p> --}}
                                         </div>
-        
-                                        {{-- Mobile/Tablet Section --}}
-                                        {{-- <div class="column is-hidden-desktop">
-                                            <div class='is-flex is-horizontal-center'>
-                                                <figure class="image is-128x128">
-                                                    <img class="is-rounded is-horizontal-center" src="/uploads/avatars/{{$house->property->user->avatar}}">
-                                                </figure>
-                                            </div>
-                                            <div class="subtitle has-text-centered"><span>@</span>{{$house->property->user->name}}</div>
-                                            <div class="has-text-centered">
-                                                <button class="button is-success" onclick="showPnox()">Show Contact Number</button>
-                                                <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$house->property->contactNo}}" class="nounnounderlinelink">{{$house->property->contactNo}}</a></p>
-                                                <hr>
-                                                <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold">{{number_format($house->property->amount,2)}}</span>                                            LKR</p>
-                                                <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">   
-                                                        @if ($house->offers->count() > 0)
-                                                            {{number_format($house->offers->sortBy('offerAmount')->last()->offerAmount,2)}}
-                                                        @else
-                                                            0.00
-                                                        @endif
-                                                    </span> LKR</p>
-                                                <div id="myBtnM"><button class="button is-link">Make an offer</button></div>
-            @include('results.offeralerts')
-                                            </div>
-        
-                                        </div> --}}
-        
                                     </div>
+                                    @elseif(($boardingData->boarding->boardingType)=='Anex'))
+                                        <div class="columns">
+                                            <div class="column detailscolumn has-text-dark">
+                                                <p>Boarding  Type: <span class="has-text-weight-semibold">{{$boardingData->boarding->boardingType}}</span></p>
+                                                <p>No of Rooms: <span class="has-text-weight-semibold">{{$boardingData->NoOfRooms}}</span></p>
+                                                <p>No of Bed: <span class="has-text-weight-semibold">{{$boardingData->NoOfBed}}</span></p>
+                                                <p>With Furniture: 
+                                                    
+                                                        @if(($boardingData->Withfurniture)==1)
+                                                        <span class="has-text-weight-semibold">Yes</span>
+                                                        @else
+                                                        <span class="has-text-weight-semibold">No</span>
+                                                        @endif                                                   
+                                                </p>
+                                                <p>AC Availability: 
+                                                    @if(($boardingData->Acavalability)==1)
+                                                        <p><span class="has-text-weight-semibold">Yes</span></p>
+                                                    @else
+                                                        <span class="has-text-weight-semibold">No</span>
+                                                    @endif
+
+                                                </p>
+                                                <p>Kitchen Availability: 
+                                                    @if(($boardingData->kitchenavalability)==1)
+                                                        <p><span class="has-text-weight-semibold">Yes</span></p>
+                                                    @else
+                                                        <span class="has-text-weight-semibold">No</span>
+                                                    @endif
+
+                                                </p>
+                                                <p>For Whome: 
+                                                    <span class="has-text-weight-semibold">
+                                                        @if(($boardingData->boarding->School_boys)==1)
+                                                            School Boys/
+                                                        @else
+                                                        @endif
+    
+                                                        @if(($boardingData->boarding->School_girls)==1)
+                                                            School girls/
+                                                        @else
+                                                        @endif
+    
+                                                        @if(($boardingData->boarding->Uni_boys)==1)
+                                                            Uni Boys/
+                                                        @else
+                                                        @endif
+    
+                                                        @if(($boardingData->boarding->Uni_girls)==1)
+                                                            School girls/
+                                                        @else
+                                                        @endif
+    
+                                                        @if(($boardingData->boarding->Office_boys)==1)
+                                                            Office Boys/
+                                                        @else
+                                                        @endif
+    
+                                                        @if(($boardingData->boarding->Office_girls)==1)
+                                                            Office girls
+                                                        @else
+                                                        @endif
+    
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div class="column has-text-dark ">
+                                                <p>Approximate monthly rent: <span class="has-text-weight-semibold">{{$boardingData->boarding->MonthlyRent}}</span></p>
+                                                <p>Approximate Key Money: <span class="has-text-weight-semibold">{{$boardingData->boarding->KeyMoney}}</span></p>
+                                                <p>Address: <span class="has-text-weight-semibold">{{$boardingData->boarding->Address}}</span></p>
+                                                <p>Province: <span class="has-text-weight-semibold">{{$boardingData->boarding->Province}}</span></p>
+                                                <p>District: <span class="has-text-weight-semibold">{{$boardingData->boarding->District}}</span></p>
+                                                <p>City: <span class="has-text-weight-semibold">{{$boardingData->boarding->City}}</span></p>                                                
+                                                
+                                                {{--<p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
+                                                    <span class="has-text-weight-semibold has-text-success">
+                                                        {{$house->property->availability}}
+                                                    </span> @else
+                                                    <span class="has-text-weight-semibold has-text-danger">
+                                                            {{$house->property->availability}}
+                                                    </span> @endif
+                                                </p> --}}
+                                            </div>
+                                        </div>
+                                    @elseif(($boardingData->boarding->boardingType)=='Singal_Room'))
+                                        <div class="columns">
+                                            <div class="column detailscolumn has-text-dark">
+                                                <p>Boarding  Type: <span class="has-text-weight-semibold">{{$boardingData->boarding->boardingType}}</span></p>               
+                                                <p>No of Bed: <span class="has-text-weight-semibold">{{$boardingData->NoOfBed}}</span></p>
+                                                <p>With Furniture: 
+                                                    
+                                                        @if(($boardingData->Withfurniture)==1)
+                                                        <span class="has-text-weight-semibold">Yes</span>
+                                                        @else
+                                                        <span class="has-text-weight-semibold">No</span>
+                                                        @endif                                                   
+                                                </p>
+                                                <p>AC Availability: 
+                                                    @if(($boardingData->Acavalability)==1)
+                                                        <p><span class="has-text-weight-semibold">Yes</span></p>
+                                                    @else
+                                                        <span class="has-text-weight-semibold">No</span>
+                                                    @endif
+
+                                                </p>                                               
+                                                <p>For Whome: 
+                                                    <span class="has-text-weight-semibold">
+                                                        @if(($boardingData->boarding->School_boys)==1)
+                                                            School Boys/
+                                                        @else
+                                                        @endif
+
+                                                        @if(($boardingData->boarding->School_girls)==1)
+                                                            School girls/
+                                                        @else
+                                                        @endif
+
+                                                        @if(($boardingData->boarding->Uni_boys)==1)
+                                                            Uni Boys/
+                                                        @else
+                                                        @endif
+
+                                                        @if(($boardingData->boarding->Uni_girls)==1)
+                                                            School girls/
+                                                        @else
+                                                        @endif
+
+                                                        @if(($boardingData->boarding->Office_boys)==1)
+                                                            Office Boys/
+                                                        @else
+                                                        @endif
+
+                                                        @if(($boardingData->boarding->Office_girls)==1)
+                                                            Office girls
+                                                        @else
+                                                        @endif
+
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div class="column has-text-dark ">
+                                                <p>Approximate monthly rent: <span class="has-text-weight-semibold">{{$boardingData->boarding->MonthlyRent}}</span></p>
+                                                <p>Approximate Key Money: <span class="has-text-weight-semibold">{{$boardingData->boarding->KeyMoney}}</span></p>
+                                                <p>Address: <span class="has-text-weight-semibold">{{$boardingData->boarding->Address}}</span></p>
+                                                <p>Province: <span class="has-text-weight-semibold">{{$boardingData->boarding->Province}}</span></p>
+                                                <p>District: <span class="has-text-weight-semibold">{{$boardingData->boarding->District}}</span></p>
+                                                <p>City: <span class="has-text-weight-semibold">{{$boardingData->boarding->City}}</span></p>                                                
+                                                
+                                                {{--<p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
+                                                    <span class="has-text-weight-semibold has-text-success">
+                                                        {{$house->property->availability}}
+                                                    </span> @else
+                                                    <span class="has-text-weight-semibold has-text-danger">
+                                                            {{$house->property->availability}}
+                                                    </span> @endif
+                                                </p> --}}
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -195,13 +324,12 @@
                                     <img class="is-rounded is-horizontal-center" src="images/prof.jpg">
                                 </figure>
                             </div>
-                            <div class="subtitle has-text-centered"><span>@</span>{{$House->boarding->user->name}}</div>
-                            <div class="subtitle has-text-centered"><span></span>{{$House->boarding->user->email}}</div>
+                            <div class="subtitle has-text-centered"><span>@</span>{{$boardingData->boarding->user->name}}</div>
+                            <div class="subtitle has-text-centered"><span></span>{{$boardingData->boarding->user->email}}</div>
                             <div class="has-text-centered">
                                 <button class="button is-success" onclick="showPnox()">Call Owner</button>
                                 <button class="button is-warning" onclick="location.href='#contactbox'">Send Massage</button>
-                                {{-- <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$Boadrings->user->phone}}" class="nounnounderlinelink">{{$Boadrings->user->phone}}</a></p> --}}
-                                <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$House->boarding->user->phone}}" class="nounnounderlinelink">{{$House->boarding->user->phone}}</a></p>
+                                <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$boardingData->boarding->user->phone}}" class="nounnounderlinelink">{{$boardingData->boarding->user->phone}}</a></p>
                                 
                                 <hr>
                                 <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
@@ -254,7 +382,7 @@
                     <div class="subtitle has-text-weight-semibold">Description</div>
                     <div class="column is-flex-mobile">
                         <p class="content">
-                            {{$House->boarding->Description}}
+                            {{-- {{$House->boarding->Description}} --}}
                         </p>
                     </div>
                     
