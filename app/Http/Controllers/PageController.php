@@ -18,7 +18,12 @@ class PageController extends Controller
 
     public function dashboard()
     {
-        // return view('dashboard');
+        return view('profileManage.masterdashboard');
+    }
+
+    public function userprofile()
+    {
+        return view('profileManage.masterdashboard');
     }
     /**
      * Show the form for creating a new resource.

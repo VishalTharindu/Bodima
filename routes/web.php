@@ -12,8 +12,10 @@
 */
 
 Route::get('/','PageController@index');
-// Route::get('/dashboard','PageController@dashboard');
-Route::get('/dashboard','BoardingController@show');
+Route::get('/dashboard','PageController@dashboard');
+Route::get('/user/profile','PageController@userprofile');
+Route::get('/user/boarding','BoardingController@show');
+Route::get('/user/delete/boarding','BoardingController@show');
 Route::get('/bodim','VisitBoarding@index');
 Route::get('/view/house/{house}','VisitBoarding@viewHouse');
 Route::get('/view/anex/{anex}','VisitBoarding@viewAnex');
@@ -57,9 +59,9 @@ Route::post('/add/houserequst','BoardingRequestController@storeHouserRequest')->
 // Route::get('/signup', function () {
 //     return view('signup');
 // });
-// Route::get('/bodimtest', function () {
-//     return view('bodims');
-// });
+Route::get('/bodimtest', function () {
+    return view('boardingview');
+});
 
 /* inc file routes*/
 
@@ -82,6 +84,13 @@ Route::get('/pro', function () {
     return view('membershoptype');
 });
 
+Route::get('/prof', function () {
+    return view('profileManage.profile');
+});
+
+Route::get('/masterdash', function () {
+    return view('profileManage.masterdashboard');
+});
 
 Auth::routes(['verify' => true]);
 

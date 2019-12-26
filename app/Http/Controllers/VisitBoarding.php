@@ -16,8 +16,8 @@ class VisitBoarding extends Controller
 
     public function showboarding()
     {
-        $Boadrings = Boarding::orderBy('created_at','desc')->paginate(4);
-        return view('bodimsec',compact('Boadrings'));
+        $Boadrings = Boarding::orderBy('created_at','desc')->paginate(3);
+        return view('boardingview',compact('Boadrings'));
     }
 
     public function seemoreboarding($boardingData)

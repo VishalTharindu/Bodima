@@ -519,7 +519,13 @@
                         scams. If making any payments we recommend that you have two permanent & verified methods of contact of the
                         payment receiver such as their landline number and home/business address.
                     </div>
+                    @if (Auth::user())
+                    <a href="" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
+                    <a href="" class="btnajestment"><button class="button is-danger is-pulled-right btnajestment">Delete</button></a>
+                    @else
                     <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
+                    @endif
+                    
                     <br>
         
                 </div>

@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     {{-- <link href={{asset('css/css/material-kit.css')}} rel="stylesheet"> --}}
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/jquery-confirm.min.css')}}">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/jquery-confirm.js')}}"></script>
 
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <style>
@@ -480,7 +482,7 @@
                 </div>
                 <div class="columns">
                     <div class="column is-12 is-pulled-right">
-                        <button type="submit" class="button is-primary is-pulled-right" style="margin-left:10px">Upload Post</button>            
+                        <button type="submit" class="button is-primary is-pulled-right" onclick="boardingAdded()" style="margin-left:10px">Upload Post</button>            
                         <button type="submit" class=" button is-warning is-pulled-right">Clear</button>
                     </div> 
                 </div>
@@ -645,5 +647,32 @@
         
             });
         </script>
+
+        <script>
+            function boardingAdded() {
+            // event.preventDefault();
+            // var form = event.target.form;
+            $.alert({
+                title: 'Success',
+                content: 'You have successfully added',
+                animation: 'zoom',
+                closeAnimation: 'scale',
+                icon: 'fa fa-trash-alt',
+                theme: 'material',
+                closeIcon: true,
+                type: 'red',
+                animateFromElement: false,
+                // buttons: {
+                //     confirm: function() {
+                //         $.alert('Deleted');
+                //         form.submit();
+                //     },
+                //     cancel: function() {
+                //         $.alert('Canceled');
+                //     }
+                // }
+            });
+        }
+</script>
 </body>
 </html>

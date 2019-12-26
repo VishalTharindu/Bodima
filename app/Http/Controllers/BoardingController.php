@@ -450,7 +450,7 @@ class BoardingController extends Controller
         })->paginate(4);
 
     
-      return view('dashboard',compact('Boadrings'));
+      return view('profileManage.masterdashboard',compact('Boadrings'));
     }
 
     /**
