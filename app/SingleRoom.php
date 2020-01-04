@@ -13,4 +13,9 @@ class SingleRoom extends Model
         return $this->belongsTo(Boarding::class);
 
     }
+
+    public function favourities()
+    {
+        return $this->hasMany(MyFavourit::class);
+    }
 }

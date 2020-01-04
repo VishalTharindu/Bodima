@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\House;
+use App\Boarding;
+use Alert;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HouseController extends Controller
@@ -57,7 +60,10 @@ class HouseController extends Controller
      */
     public function edit(House $house)
     {
-        //
+        
+        // $houseupdt = $house;
+        // dd($houseupdt);
+        return view('addBoarding.editHouse',compact('house'));
     }
 
     /**
@@ -80,6 +86,9 @@ class HouseController extends Controller
      */
     public function destroy(House $house)
     {
-        //
+        DB::table('houses')->where('id', '=', $house->id)->delete();
+        DB::table('boardings')->where('id', '=', $house->boarding->id)->delete();
+        Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
+        return back();
     }
 }

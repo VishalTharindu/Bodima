@@ -26,7 +26,7 @@ class CreateBoardingsTable extends Migration
             $table->string('MonthlyRent');
             $table->string('KeyMoney');
             $table->string('Address');
-            $table->string('Description');
+            $table->text('Description');
             $table->string('Province');
             $table->string('District');
             $table->string('City');

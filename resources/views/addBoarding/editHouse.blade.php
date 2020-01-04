@@ -26,17 +26,9 @@
 </head>
 <body class="has-background-white-ter">
         @include('incfile.navibar')
+
     <div class="section is-medium">
         <div class="">
-            <div class="column is-8">
-                {{-- @include('layouts.errors') --}}
-                @if(session()->has('message'))
-                <div class="notification is-success">
-                    <button class="delete"></button>
-                    <h1 class="is-size-4"><b> {{ session()->get('message') }}</b></h1>
-                </div>
-                @endif
-            </div>
             <form action="/add/houses" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="columns is-centered">
@@ -75,12 +67,31 @@
                                                 <div class="control is-6 ">
                                                     <div class="select is-primary">
                                                         <select name="NoOfRooms">
-                                                            <option>Select No of Rooms</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="Other">Other</option>
+                                                            <option value="1"
+                                                                @if($house->NoOfRooms == '1')
+                                                                selected
+                                                                @endif
+                                                            >1</option>
+                                                            <option value="2"
+                                                                @if($house->NoOfRooms == '2')
+                                                                selected
+                                                                @endif
+                                                            >2</option>
+                                                            <option value="3"
+                                                                @if($house->NoOfRooms == '3')
+                                                                selected
+                                                                @endif
+                                                            >3</option>
+                                                            <option value="4"
+                                                                @if($house->NoOfRooms == '4')
+                                                                selected
+                                                                @endif
+                                                            >4</option>
+                                                            <option value="More"
+                                                                @if($house->NoOfRooms== 'More')
+                                                                selected
+                                                                @endif
+                                                            >More</option> 
                                                         </select>
                                                     </div>
                                                 </div>
@@ -96,11 +107,32 @@
                                                     <div class="select is-primary">
                                                         <select name="NoOfBed">
                                                             <option>Select No of Bed</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="More">More</option>
+                                                            
+                                                            <option value="1"
+                                                                @if($house->NoOfBed == '1')
+                                                                selected
+                                                                @endif
+                                                            >1</option>
+                                                            <option value="2"
+                                                                @if($house->NoOfBed == '2')
+                                                                selected
+                                                                @endif
+                                                            >2</option>
+                                                            <option value="3"
+                                                                @if($house->NoOfBed == '3')
+                                                                selected
+                                                                @endif
+                                                            >3</option>
+                                                            <option value="4"
+                                                                @if($house->NoOfBed == '4')
+                                                                selected
+                                                                @endif
+                                                            >4</option>
+                                                            <option value="More"
+                                                                @if($house->NoOfBed== 'More')
+                                                                selected
+                                                                @endif
+                                                            >More</option>                                                                                                                       
                                                         </select>
                                                     </div>
                                                 </div>
@@ -259,7 +291,7 @@
                                     </div>
                                     <div class="column is-6">
                                         <div class="control has-icons-left has-icons-right">
-                                            <input class="input" type="text" placeholder="Text input" name="MonthlyRent">
+                                        <input class="input" type="text" placeholder="Text input" name="MonthlyRent" value="{{$house->boarding->MonthlyRent}}">
                                             <span class="icon is-small is-left">
                                                 <i class="fas fa-user"></i>
                                             </span>
@@ -276,7 +308,7 @@
                                     </div>
                                     <div class="column is-6">
                                         <div class="control has-icons-left has-icons-right">
-                                            <input class="input" type="text" placeholder="Text input" name="KeyMoney">
+                                            <input class="input" type="text" placeholder="Text input" value="{{$house->boarding->MonthlyRent}}" name="KeyMoney">
                                             <span class="icon is-small is-left">
                                                 <i class="fas fa-user"></i>
                                             </span>
@@ -657,16 +689,6 @@
         </script>
 
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-                    $notification = $delete.parentNode;
-                    $delete.addEventListener('click', () => {
-                        $notification.parentNode.removeChild($notification);
-                    });
-                });
-            });
-        </script>
-        {{-- <script>
             function boardingAdded() {
             // event.preventDefault();
             // var form = event.target.form;
@@ -691,6 +713,16 @@
                 // }
             });
         }
-</script> --}}
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

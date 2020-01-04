@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/flickity.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
+
+    
     {{-- <link rel="stylesheet" href="/css/flickity.css"> Google Fonts --}}
     <link href="https://fonts.googleapis.com/css?family=Exo+2:300i,400,400i,500,500i,600|Kanit:300,300i,400,400i,500,500i,600"
         rel="stylesheet">
@@ -54,7 +56,28 @@
                     <div class="columns is-flex-mobile">
                         <div class="column is-two-thirds is-flex-mobile">
                             <div class="containerx">
-                            <a href="" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
+                                {{-- <button id="deletefavourite" 
+                                    onClick="deleteFromFavourites()" 
+                                    name="addfavourite" 
+                                    class="btn btn-lg"
+                                    style="color: #ad1707;">
+                                    <i class="fas fa-heartbeat"></i>
+                                </button>
+                        
+                            <!-- hide if favourited -->
+                            <form action="" method="post">
+                                <button id="addfavourites" 
+                                    onclick="addToFavourites({{$boardingData->boarding->id}},{{ Auth::user()->id }})" 
+                                    name="deletefavourite" 
+                                    class="btn btn-lg">
+                                <i class="fas fa-heart" ></i>
+                                </button>
+                            </form> --}}
+                            
+
+                            {{-- <button onclick="sex({{$boardingData->boarding->id}},{{ Auth::user()->id }})">test</button> --}}
+                            {{-- <input type="button" value="test" onclick="sex({{$boardingData->boarding->id}},{{ Auth::user()->id }})"> --}}
+
                                 <div class="is-pulled-left">
                                     <div class="title">
                                         {{$boardingData->boarding->boardingType}}, {{$boardingData->boarding->City}}
@@ -327,21 +350,22 @@
                             <div class="subtitle has-text-centered"><span>@</span>{{$boardingData->boarding->user->name}}</div>
                             <div class="subtitle has-text-centered"><span></span>{{$boardingData->boarding->user->email}}</div>
                             <div class="has-text-centered">
-                                <button class="button is-success" onclick="showPnox()">Call Owner</button>
+                                
                                 <button class="button is-warning" onclick="location.href='#contactbox'">Send Massage</button>
+                                <button class="button is-success" onclick="showPnox()">Call Owner</button>
                                 <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$boardingData->boarding->user->phone}}" class="nounnounderlinelink">{{$boardingData->boarding->user->phone}}</a></p>
                                 
                                 <hr>
-                                <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
-                                <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">   
+                                {{-- <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
+                                <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">    --}}
                                     {{-- @if ($house->offers->count() > 0)
                                         {{number_format($house->offers->sortBy('offerAmount')->last()->offerAmount,2)}}
                                     @else
                                         0.00
                                     @endif --}}
-                                </span> LKR</p>
+                                {{-- </span> LKR</p>
                                 <div id="myBtn"><button class="button is-link">Make an offer</button></div>
-                                <br>
+                                <br> --}}
             {{-- @include('results.offeralerts') --}}
                             </div>
                         </div>
@@ -519,9 +543,13 @@
                         scams. If making any payments we recommend that you have two permanent & verified methods of contact of the
                         payment receiver such as their landline number and home/business address.
                     </div>
-                    @if (Auth::user())
-                    <a href="" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
-                    <a href="" class="btnajestment"><button class="button is-danger is-pulled-right btnajestment">Delete</button></a>
+                    @if (Auth::user()==$boardingData->boarding->user)
+                    <a href="/edit/houses/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
+                    <a href="/delete/houses/{{$boardingData->id}}" onclick="deleteMe();" class="btnajestment"><button class="button is-danger is-pulled-right btnajestment">Delete<i class="far fa-trash-alt"></i></button></a>
+                    <form action="/delete/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" method="post">
+                        @csrf
+                        <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
+                    </form>
                     @else
                     <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
                     @endif
@@ -531,7 +559,7 @@
                 </div>
         
             </div>
-            </div>
+            </div>            
         </div>
 
 
@@ -546,8 +574,13 @@
     <script src="/js/flickity.pkgd.min.js"></script>
     <script src="/js/sweetalert.min.js"></script> --}}
 
+    <script type="text/javascript" src={{asset('js/jquery-3.3.1.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+
+    {{-- <script type="text/javascript" src={{asset('js/jquery-3.4.1.min.js')}}></script> --}}
     
-    <script type="text/javascript" src={{asset('js/jquery-3.4.1.min.js')}}></script>
+    {{-- <script type="text/javascript" src={{asset('js/jquery-migrate-3.0.1.min.js')}}></script> --}}
     <script type="text/javascript" src={{asset('js/flickity.pkgd.min.js')}}></script>
     
     <!-- MDB core JavaScript -->
@@ -602,6 +635,117 @@
             }
         }
     </script>
+
+    <script>
+        function deleteMe() {
+        event.preventDefault();
+        var form = event.target.form;
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: "hsl(141, 71%, 48%)",
+            cancelButtonColor: "hsl(348, 100%, 61%)",
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                
+                // form.submit();
+                // Swal.fire(
+                // 'Deleted!',
+                // 'Your file has been deleted.',
+                // 'success'
+
+            } else if (
+                // Read more about handling dismissals
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                Swal.fire(
+                    'Cancelled',
+                    'Boarding is safe :)',
+                    'info'
+                )
+            }
+        });
+    }
+    </script>
+
+    {{-- <script>
+        function addToFavourites(boarding_id, user_id) {
+            var boarding_id = boarding_id;
+            var user_id = user_id;
+
+            $.ajax({
+                type: 'post',
+                url: '/view/house/add/favourite',
+                data: {
+                    '"_token": "{{ csrf_token() }}",
+                    'boarding_id': boarding_id,
+                    'user_id': user_id,
+                },
+                success: function () {
+                    $('#addfavourites' + item_id).css({
+                        'color': '#ad1707'
+                    });
+                },
+                error: function (XMLHttpRequest) {
+                    // handle error
+                }
+            });
+        }
+    </script>
+    <script>
+        function sex(test1, test2) {
+            var boarding_id = test1;
+            var user_id = test2;
+
+            $.ajax({
+                type: 'post',
+                url: '/view/house/add/favourite',
+                data: {
+                    '"_token": "{{ csrf_token() }}",
+                    'boarding_id': boarding_id,
+                    'user_id': user_id,
+                },
+                success: function () {
+                    $('#addfavourites' + item_id).css({
+                        'color': '#ad1707'
+                    });
+                },
+                error: function (XMLHttpRequest) {
+                    // handle error
+                }
+            });
+        }
+    </script> --}}
+    {{-- <script>
+        function addToFavourites(boarding_id, user_id, ) {
+        var boarding_id = boarding_id;
+        var user_id = user_id;
+
+        $.ajax({
+            type: 'post',
+            url: '/view/house/add/favourite',
+            data: {
+                '"_token": "{{ csrf_token() }}",
+                'boarding_id': boarding_id,
+                'user_id': user_id,
+            },
+            success: function () {
+                $('#addfavourites' + item_id).css({
+                    'color': '#ad1707'
+                });
+            },
+            error: function (XMLHttpRequest) {
+                // handle error
+            }
+        });
+    }
+    </script> --}}
+    
 
 </body>
 

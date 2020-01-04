@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="{{asset('css/bulma/argon-dashboard.css')}}">
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/x.y.z/css/bulma.css" /> --}}
 
+
+  <script type="text/javascript" src={{asset('js/jquery-3.4.1.min.js')}}></script>
+
 </head>
   <body>
 
@@ -152,7 +155,7 @@
                 <div class="level-right">
                 <div class="level-item">
                     <button type="button" class="button is-small">
-                    March 8, 2017 - April 6, 2017
+                    {{\Carbon\Carbon::now()}}
                     </button>
                 </div>
                 </div>
