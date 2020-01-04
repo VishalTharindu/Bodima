@@ -13,8 +13,6 @@
 
 Route::get('/','PageController@index');
 Route::get('/dashboard','PageController@dashboard');
-Route::get('/user/profile','PageController@userprofile');
-Route::get('/user/boarding','BoardingController@show');
 Route::get('/user/delete/boarding','BoardingController@show');
 Route::get('/bodim','VisitBoarding@index');
 Route::get('/view/house/{house}','VisitBoarding@viewHouse');
@@ -23,19 +21,31 @@ Route::get('/view/singleroom/{singleroom}','VisitBoarding@viewSingleRoom');
 Route::get('/bodim','VisitBoarding@showboarding');
 
 
+// -----------------Favourite Routies--------------------------
+Route::post('/view/house/add/favourite','MyFavouritController@store')->middleware('auth');
+
+
 
 /* ------------- Boarding routes----------------------*/
+
+   /****************House routes********************/
+   Route::get('/add/house','BoardingController@house')->middleware('auth');
+   Route::post('/add/houses','BoardingController@housestore')->middleware('auth');
+   Route::get('/edit/houses/{house}','HouseController@edit')->middleware('auth');
+   Route::post('/delete/house/{house}','HouseController@destroy')->middleware('auth');
 
 // ++++++++loadig views+++++++++++++++++
 
 Route::get('/addboarding','BoardingController@create')->middleware('auth');
-Route::get('/add/house','BoardingController@house')->middleware('auth');
+
 Route::get('/add/anex','BoardingController@anex')->middleware('auth');
 Route::get('/add/singalroom','BoardingController@singalroom')->middleware('auth');
 
 // ++++++++fonction related routies++++++++
 
-Route::post('/add/houses','BoardingController@housestore')->middleware('auth');
+
+
+
 Route::post('/add/anexs','BoardingController@anexstore')->middleware('auth');
 Route::post('/add/singalrooms','BoardingController@singleroomstore')->middleware('auth');
 
@@ -52,6 +62,14 @@ Route::get('/add/boardingrequst','BoardingRequestController@house')->middleware(
 // ++++++++fonction related routies++++++++
 
 Route::post('/add/houserequst','BoardingRequestController@storeHouserRequest')->middleware('auth');
+
+
+
+/* -----------------User profile related routies-----------------*/
+Route::get('/user/profile','PageController@userprofile')->middleware('auth');
+Route::get('/user/boarding','BoardingController@show')->middleware('auth');
+Route::post('profile/UpdateAccount','ProfileController@updateAccount')->middleware('auth');
+
 
 // Route::get('/lg', function () {
 //     return view('login');

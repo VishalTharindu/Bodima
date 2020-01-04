@@ -1,12 +1,4 @@
 <?php
-if (!function_exists('sexME')) {
-    function sexME()
-    {
-  
-      return "SEXME";
-    }
-  }
-
   if (!function_exists('getBoardingTypeIdById')) {
     function getBoardingTypeIdById($id)
     {

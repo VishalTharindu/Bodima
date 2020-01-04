@@ -28,4 +28,9 @@ class Boarding extends Model
         return $this->hasMany(SingleRoom::class);
 
     }
+
+    public function favourities()
+    {
+        return $this->hasMany(MyFavourit::class);
+    }
 }

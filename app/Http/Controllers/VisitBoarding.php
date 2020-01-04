@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Boarding;
 use App\House;
 use App\Anex;
+use App\SingleRoom;
+use App\MyFavourit;
 
 use Illuminate\Http\Request;
 
@@ -27,7 +29,9 @@ class VisitBoarding extends Controller
     }
 
     public function viewHouse(House $house){
-
+        
+        // $fevouriteid = MyFavourit::select('id')->where('house_id','$house->id')->get()->first();
+        // dd($house->id);
         $boardingData = $house;
         return view('seemore', compact('boardingData'));
     }

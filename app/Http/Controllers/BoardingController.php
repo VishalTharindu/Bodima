@@ -175,7 +175,7 @@ class BoardingController extends Controller
 
         $adhouse->save();
 
-        return back();
+        return back()->with('message', 'Your House has been successfully updated!');
     }
 
     public function anexstore(Request $request){
