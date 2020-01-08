@@ -29,9 +29,6 @@
           <time datetime="2016-1-1">{{$item->created_at->isoFormat('LLLL')}}</time>
           <div class="my-2"></div>
           <div class="">
-            <form action="/user/post/delete/" method="post">
-              <button class="button is-danger is-pulled-right btnajestment">Delete</button>
-            </form>
             <a href="/view/{{getBoardingTypeIdById($item->id)}}/{{getPropertyTypeIdById($item->id)}}" class="btnajestment"><button class="button is-success is-pulled-right">See More</button></a>
           </div>
         </div>

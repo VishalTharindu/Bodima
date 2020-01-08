@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Boarding;
 use Auth;
 use Image;
+use Alert;
 use Illuminate\Http\Request;
 
 use App\House;
@@ -58,9 +59,9 @@ class BoardingController extends Controller
             'KeyMoney' => 'required',
             'Address' => 'required',
             'Description' => '',
-            'Province' => 'required',
-            'District' => 'required',
-            'City' => 'required',
+            // 'Province' => 'required',
+            // 'District' => 'required',
+            // 'City' => 'required',
             // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'Email' => 'required',
             'Telephone' => 'required',
@@ -85,16 +86,6 @@ class BoardingController extends Controller
             
          }
 
-        // if($request->hasfile('filename'))
-        //  {
-
-        //     foreach($request->file('filename') as $image)
-        //     {
-        //         $name=$image->getClientOriginalName();
-        //         $image->move(public_path().'/images/uploads/boardingimg/', $name);  
-        //         $data[] = $name;  
-        //     }
-        //  }
 
         $boarding = new Boarding;
         $boarding ->user_id = auth()->id();
@@ -165,17 +156,10 @@ class BoardingController extends Controller
             $adhouse->Withfurniture = 0;
         }
 
-        if($request->has('Garden')){
-            $adhouse->Garden = 1;
-        }else{
-            $adhouse->Garden = 0;
-        }
-
-        $adhouse ->NumberOfBthroom = request('NumberOfBthroom');
-
         $adhouse->save();
 
-        return back()->with('message', 'Your House has been successfully updated!');
+        Alert::success('User Boarding has been added successfully!', 'Successfully Added!')->autoclose(3000);
+        return back()->with('message', 'Your Boarding has been successfully added!');
     }
 
     public function anexstore(Request $request){

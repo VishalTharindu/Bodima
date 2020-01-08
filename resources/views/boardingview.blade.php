@@ -136,5 +136,11 @@
             @endforeach
         </div>
     </div>
+
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
+    @include('sweet::alert')
 </body>
 </html>

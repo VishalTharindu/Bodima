@@ -17,7 +17,6 @@ class ProfileController extends Controller
         // dd($request);
 
         
-
         $id = Auth::user()->id;
 
         

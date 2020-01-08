@@ -25,7 +25,7 @@ class VisitBoarding extends Controller
     public function seemoreboarding($boardingData)
     {
         return view('seemore',$boardingData);
-        //return dd($House);
+        
     }
 
     public function viewHouse(House $house){

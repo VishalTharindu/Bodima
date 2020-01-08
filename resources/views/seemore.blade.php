@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>vcvj</title>
+    <title>Moredetails</title>
 
     {{-- CSS Files --}}
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
@@ -41,7 +41,7 @@
     
     <div class="my-5"></div>
         <div class="container">
-
+            @include('sweet::alert')
             <div class="viewsection">
         
                 <div class="column profileback">
@@ -543,13 +543,12 @@
                         scams. If making any payments we recommend that you have two permanent & verified methods of contact of the
                         payment receiver such as their landline number and home/business address.
                     </div>
-                    @if (Auth::user()==$boardingData->boarding->user)
-                    <a href="/edit/houses/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
-                    <a href="/delete/houses/{{$boardingData->id}}" onclick="deleteMe();" class="btnajestment"><button class="button is-danger is-pulled-right btnajestment">Delete<i class="far fa-trash-alt"></i></button></a>
+                    @if (Auth::user()==$boardingData->boarding->user)                    
                     <form action="/delete/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" method="post">
                         @csrf
                         <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
                     </form>
+                    <a href="/edit/houses/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
                     @else
                     <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
                     @endif
@@ -653,7 +652,8 @@
         }).then((result) => {
             if (result.value) {
                 
-                // form.submit();
+                form.submit();
+
                 // Swal.fire(
                 // 'Deleted!',
                 // 'Your file has been deleted.',

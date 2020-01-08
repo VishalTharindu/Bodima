@@ -89,6 +89,6 @@ class HouseController extends Controller
         DB::table('houses')->where('id', '=', $house->id)->delete();
         DB::table('boardings')->where('id', '=', $house->boarding->id)->delete();
         Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
-        return back();
+        return redirect()->route('home');
     }
 }

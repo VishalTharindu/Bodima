@@ -24,7 +24,7 @@ class HouseRequestController extends Controller
      */
     public function create()
     {
-        //
+        return view('requestBoarding.addHouserequest');
     }
 
     /**

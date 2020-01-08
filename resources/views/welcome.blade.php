@@ -19,6 +19,7 @@
     <body>
         @include('incfile.headersec')
 
+        @include('sweet::alert')
         {{-- recomonded post section --}}
 
       <div class="recomod">

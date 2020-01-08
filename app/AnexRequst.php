@@ -10,4 +10,10 @@ class AnexRequst extends Model
     {
         return $this->hasMany(MyFavourit::class);
     }
+
+    public function boardingrequest(){
+
+        return $this->belongsTo(BoardingRequest::class);
+
+    }
 }

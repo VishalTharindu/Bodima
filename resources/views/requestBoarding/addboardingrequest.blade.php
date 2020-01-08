@@ -30,21 +30,21 @@
         <div class="my-5"></div>
             <div class="container downmargin">
                 <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
-                    <a href="/add/boardingrequst" class="column gapme has-text-centered selectboxx">
+                    <a href="/add/houserequst" class="column gapme has-text-centered selectboxx">
                         <div>
                             <i class="fas fa-home fa-5x"></i>
                             <br>
                             <div class="subtitle">House</div>
                         </div>
                     </a>
-                    <a href="/add/land" class="column gapme has-text-centered selectboxx">
+                    <a href="/add/singelroomrequest" class="column gapme has-text-centered selectboxx">
                         <div>
                             <i class="fas fa-bed fa-5x"></i>
                             <br>
                             <div class="subtitle">Single Room</div>
                         </div>
                     </a>
-                    <a href="add/building" class="column gapme has-text-centered selectboxx">
+                    <a href="add/annexrequst" class="column gapme has-text-centered selectboxx">
                         <div>
                             <i class="far fa-building fa-5x"></i>
                             <br>

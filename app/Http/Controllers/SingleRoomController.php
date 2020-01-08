@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\SingleRoom;
+use Alert;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SingleRoomController extends Controller
@@ -80,6 +82,9 @@ class SingleRoomController extends Controller
      */
     public function destroy(SingleRoom $singleRoom)
     {
-        //
+        DB::table('single_rooms')->where('id', '=', $singleRoom->id)->delete();
+        DB::table('boardings')->where('id', '=', $singleRoom->boarding->id)->delete();
+        Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
+        return view('home');
     }
 }

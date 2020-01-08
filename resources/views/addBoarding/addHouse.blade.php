@@ -7,13 +7,20 @@
     <title>AddBoarding</title>
 
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}"> --}}
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
-    {{-- <link href={{asset('css/css/material-kit.css')}} rel="stylesheet"> --}}
-    <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    <link rel="stylesheet" href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    {{-- <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select.bootstrap4.min.css')}} rel="stylesheet"> --}}
+    <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/jquery-confirm.min.css')}}">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/select2/select2.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+    
+    <script type="text/javascript" src={{asset('js/datatables.net/js/jquery.dataTables.min.js')}}></script>
+    <script type="text/javascript" src={{asset('datatables.net-select-bs4/js/select.bootstrap4.min.js')}}></script>
     <script src="{{asset('js/jquery-confirm.js')}}"></script>
 
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
@@ -25,10 +32,12 @@
 
 </head>
 <body class="has-background-white-ter">
-        @include('incfile.navibar')
+    @include('incfile.innernav')
+
+        @include('sweet::alert')
     <div class="section is-medium">
         <div class="">
-            <div class="column is-8">
+            <div class="column is-12">
                 {{-- @include('layouts.errors') --}}
                 @if(session()->has('message'))
                 <div class="notification is-success">
@@ -156,8 +165,9 @@
                                     </div>
                                 </div>
                                 <div class="columns">
-                                    <div class="column is-6">
+                                    <div class="column is-6">                                
                                         <hr>
+                                        <div class="my-5"></div>
                                         <label class="label has-text-centered">With Furniture</label>
                                         <div class="my-3"></div>
                                         <div class="column">
@@ -179,29 +189,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <label class="label has-text-centered">Garden Need</label>
-                                        <div class="column">
-                                            <div class="columns">
-                                                <div class="column">
-                                                    <div class="control">
-                                                        <div class="field">
-                                                            <div class="columns is-centered">
-                                                                <div class="column is-6 is-centered">
-                                                                    <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="Garden">
-                                                                    <label for="exampleRtlRadioInline1">Yes</label>
-                                                                </div>
-                                                                <div class="column is-6">
-                                                                    <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Garden">
-                                                                    <label for="exampleRtlRadioInline2">No</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </div>                                      
                                     </div>
                                     <div class="column is-6">
                                         <hr>
@@ -286,28 +274,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <div class="columns">
-                                        <div class="column is-6">
-                                            <label class="label">Number of bath rooms</label>
-                                        </div>
-                                        <div class="column is-6">
-                                            <div class="control is-6">
-                                                <div class="select is-primary">
-                                                    <select name="NumberOfBthroom">
-                                                        <option >Select No of bath rooms</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="More">More</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
+                                <div class="my-4"></div>                                
                                 <div class="my-4"></div>
                                 <div class="columns">
                                     <div class="column is-12">
@@ -347,29 +314,62 @@
                                         <div class="field">
                                             <label class="label">Province</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="Province">
-                                                <span class="icon is-small is-left">
-                                                    <i class="fas fa-user"></i>
-                                                </span>
-                                                <span class="icon is-small is-right">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
+                                                <div class="form-group">
+                                                    <select name="Province" class="form-control form-control-lg" id="province">
+                                                        <option value="Central Province">Central Province</option>
+                                                        <option  value="Eastern Province">Eastern Province</option>
+                                                        <option  value="Northern Province">Northern Province</option>
+                                                        <option  value="Southern Province">Southern Province</option>
+                                                        <option  value="Western Province">Western Province</option>
+                                                        <option  value="Western Province">North Western Province</option>
+                                                        <option  value="Western Province">North Central Province</option>
+                                                        <option  value="Western Province">Uva Province</option>
+                                                        <option  value="Western Province">Sabaragamuwa Province</option>
+                                                    </select>
+                                                    <script>
+                                                        $("#province").select2(); 
+                                                    </script>             
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div>                                    
+                                </div>                              
                                 <div class="columns">
                                     <div class="column is-12">
                                         <div class="field">
                                             <label class="label">District</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="District">
-                                                <span class="icon is-small is-left">
-                                                    <i class="fas fa-user"></i>
-                                                </span>
-                                                <span class="icon is-small is-right">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
+                                                <div class="form-group">
+                                                    <select name="District" class="form-control form-control-lg" id="distric">
+                                                        <option value="Ampara">Ampara</option>
+                                                        <option  value="Anuradhapura">Anuradhapura</option>
+                                                        <option  value="Badulla">Badulla</option>
+                                                        <option  value="Batticaloa">Batticaloa</option>
+                                                        <option  value="Colombo">Colombo</option>
+                                                        <option  value="Galle">Galle</option>
+                                                        <option  value="Gampaha">Gampaha</option>
+                                                        <option  value="Hambantota">Hambantota</option>
+                                                        <option  value="Kalutara">Kalutara</option>
+                                                        <option  value="Kandy">Kandy</option>
+                                                        <option  value="Kegalle">Kegalle</option>
+                                                        <option  value="Kilinochchi">Kilinochchi</option>
+                                                        <option  value="Kurunegala">Kurunegala</option>
+                                                        <option  value="Mannar">Mannar</option>
+                                                        <option  value="Matale">Matale</option>
+                                                        <option  value="Matara">Matara</option>
+                                                        <option  value="Monaragala">Monaragala</option>
+                                                        <option  value="Mullaitivu">Mullaitivu</option>
+                                                        <option  value="Nuwara Eliya">Nuwara Eliya</option>
+                                                        <option  value="Polonnaruwa">Polonnaruwa</option>
+                                                        <option  value="Puttalam">Puttalam</option>
+                                                        <option  value="Ratnapura">Ratnapura</option>
+                                                        <option  value="Trincomalee">Trincomalee</option>
+                                                        <option  value="Vavuniya">Vavuniya</option>                                   
+                                                    </select>
+                                                    <script>
+                                                        $("#distric").select2(); 
+                                                    </script>             
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -584,7 +584,7 @@
     </div>
     {{-- <script src="{{asset('css/bulma/bulmaCheckradio/gulpfile.js')}}"></script> --}}
 
-    <div class="footsec">
+    {{-- <div class="footsec">
             <div class="container">
                 <div class="block">
                     <div class="columns">
@@ -638,7 +638,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
         <script type="text/javascript">
@@ -692,5 +692,6 @@
             });
         }
 </script> --}}
+    
 </body>
 </html>

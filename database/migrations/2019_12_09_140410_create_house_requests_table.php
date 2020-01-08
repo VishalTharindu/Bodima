@@ -21,10 +21,6 @@ class CreateHouseRequestsTable extends Migration
             $table->string('Acavalability');
             $table->string('kitchenavalability');
             $table->boolean('Withfurniture');
-            $table->boolean('Gardenneed');
-            // $table->boolean('Racks');
-            // $table->boolean('More');
-            $table->string('NumberOfBthroom');
             $table->timestamps();
 
             $table->foreign('boardingrequest_id')

@@ -36,7 +36,7 @@
                 <ul class="navbar-nav nav ml-auto">
                   <li class="nav-item"><a href="/" class="nav-link"><span>Home</span></a></li>
                   <li class="nav-item"><a href="bodim" class="nav-link"><span>Bodims</span></a></li>
-                  <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Boders</span></a></li>
+                  <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
                   <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
                   <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
                   <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
@@ -65,8 +65,8 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                               </button> --}}
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/dashboard">Profile</a>
-                                <a class="dropdown-item" href="http://">Account Setting</a>
+                                <a class="dropdown-item" href="user/profile">Profile</a>
+                                <a class="dropdown-item" href="user/boarding">Account Setting</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">

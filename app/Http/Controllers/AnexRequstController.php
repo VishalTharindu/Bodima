@@ -24,7 +24,7 @@ class AnexRequstController extends Controller
      */
     public function create()
     {
-        //
+        return view('requestBoarding.addAnexrequest');
     }
 
     /**

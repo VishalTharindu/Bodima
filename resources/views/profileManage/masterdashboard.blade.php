@@ -131,7 +131,7 @@
             <ul class="menu-list">
               <li><a href="/user/boarding" class="text-dark heading-medium">My Boarding</a></li>
               <li><a class="text-dark heading-medium">My Request</a></li>
-              <li><a class="text-dark heading-medium">Add Boarding</a></li>
+              <li><a href="/addboarding" class="text-dark heading-medium">Add Boarding</a></li>
               <li><a class="text-dark heading-medium">Post Request</a></li>
             </ul>
             <p class="menu-label has-text-black heading is-size-6">
