@@ -31,11 +31,10 @@
     </style>
 </head>
 <body>
-    <div class="section is-medium">
-        {{-- @include('incfile.navibar') --}}
+    @include('incfile.innernav')
+    <div class="section is-medium">       
         <div class="columns is-mobile is-centered">
-            <div class="column is-8">
-                {{-- @include('layouts.errors') --}}
+            <div class="column is-8">                
                 @if(session()->has('message'))
                 <div class="notification is-success">
                     <button class="delete"></button>
