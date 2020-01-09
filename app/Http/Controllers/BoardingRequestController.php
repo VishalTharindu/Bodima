@@ -6,7 +6,8 @@ use App\BoardingRequest;
 use Illuminate\Http\Request;
 
 use App\HouseRequest;
-
+use App\SingleRoomRequest;
+use App\AnexRequst;
 class BoardingRequestController extends Controller
 {
     /**
@@ -31,7 +32,7 @@ class BoardingRequestController extends Controller
     }
     public function house()
     {
-        return view('requestBoarding.tradeHouse');
+        return view('requestBoarding.addHouserequest');
     }
 
     /**
@@ -98,7 +99,6 @@ class BoardingRequestController extends Controller
 
         $boarding_requests ->MonthlyRent = request('MonthlyRent');
         $boarding_requests ->KeyMoney = request('KeyMoney');
-        // $boarding_requests ->Address = request('Address');
         // $boarding_requests ->Description = request('Description');
         $boarding_requests ->Province = request('Province');
         $boarding_requests ->District = request('District');
@@ -123,30 +123,181 @@ class BoardingRequestController extends Controller
             $houses->Withfurniture = 0;
         }
 
-        if($request->has('Gardenneed')){
-            $houses->Gardenneed = 1;
-        }else{
-            $houses->Gardenneed = 0;
-        }
-
-        // if($request->has('Racks')){
-        //     $houses->Racks = 1;
-        // }else{
-        //     $houses->Racks = 0;
-        // }
-
-        // if($request->has('More')){
-        //     $houses->More = 1;
-        // }else{
-        //     $houses->More = 0;
-        // }
-
-        $houses ->NumberOfBthroom = request('NumberOfBthroom');
-
-
         $houses->save();
 
-        return back()->with('message', 'Your property has been successfully added!');
+        return back()->with('message', 'Your Request has been successfully added!');
+    }
+
+    public function storeAnnexRequest(Request $request)
+    {
+        
+        $request->validate([
+            'boardingType' => 'required',
+            'MonthlyRent' => 'required',
+            'KeyMoney' => 'required',
+            'Province' => 'required',
+            'District' => 'required',
+            'City' => 'required',
+            // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'Email' => 'required',
+            'Telephone' => 'required',
+        ]);
+
+
+        $boarding_requests = new BoardingRequest;
+        $boarding_requests ->user_id = auth()->id();
+        $boarding_requests ->boardingType = request('boardingType');
+
+        if($request->has('School_boys')){
+            $boarding_requests->School_boys = 1;
+        }else{
+            $boarding_requests->School_boys = 0;
+        }
+
+        if($request->has('School_girls')){
+            $boarding_requests->School_girls = 1;
+        }else{
+            $boarding_requests->School_girls = 0;
+        }
+
+        if($request->has('Uni_boys')){
+            $boarding_requests->Uni_boys = 1;
+        }else{
+            $boarding_requests->Uni_boys = 0;
+        }
+
+        if($request->has('Uni_girls')){
+            $boarding_requests->Uni_girls = 1;
+        }else{
+            $boarding_requests->Uni_girls = 0;
+        }
+
+        if($request->has('Office_boys')){
+            $boarding_requests->Office_boys = 1;
+        }else{
+            $boarding_requests->Office_boys = 0;
+        }
+
+        if($request->has('Office_girls')){
+            $boarding_requests->Office_girls = 1;
+        }else{
+            $boarding_requests->Office_girls = 0;
+        } 
+
+        $boarding_requests ->MonthlyRent = request('MonthlyRent');
+        $boarding_requests ->KeyMoney = request('KeyMoney');
+        // $boarding_requests ->Description = request('Description');
+        $boarding_requests ->Province = request('Province');
+        $boarding_requests ->District = request('District');
+        $boarding_requests ->City = request('City');
+
+        $boarding_requests ->Name = request('Name');
+        // $boarding_requests->filename  = json_encode($data);
+        $boarding_requests ->Email = request('Email');
+        $boarding_requests ->Telephone = request('Telephone');
+        $boarding_requests->save();
+
+        $annex = new AnexRequst;
+        $annex->BoardingRequest()->associate($boarding_requests);
+        $annex ->NoOfRooms = request('NoOfRooms');
+        $annex ->NoOfBed = request('NoOfBed');
+        $annex ->Acavalability = request('Acavalability');
+        $annex ->kitchenavalability = request('kitchenavalability');
+
+        if($request->has('Withfurniture')){
+            $annex->Withfurniture = 1;
+        }else{
+            $annex->Withfurniture = 0;
+        }
+
+        $annex->save();
+
+        return back()->with('message', 'Your Request has been successfully added!');
+    }
+
+    public function storeSingelRoomRequest(Request $request)
+    {
+        
+        $request->validate([
+            'boardingType' => 'required',
+            'MonthlyRent' => 'required',
+            'KeyMoney' => 'required',
+            'Province' => 'required',
+            'District' => 'required',
+            'City' => 'required',
+            // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'Email' => 'required',
+            'Telephone' => 'required',
+        ]);
+
+
+        $boarding_requests = new BoardingRequest;
+        $boarding_requests ->user_id = auth()->id();
+        $boarding_requests ->boardingType = request('boardingType');
+
+        if($request->has('School_boys')){
+            $boarding_requests->School_boys = 1;
+        }else{
+            $boarding_requests->School_boys = 0;
+        }
+
+        if($request->has('School_girls')){
+            $boarding_requests->School_girls = 1;
+        }else{
+            $boarding_requests->School_girls = 0;
+        }
+
+        if($request->has('Uni_boys')){
+            $boarding_requests->Uni_boys = 1;
+        }else{
+            $boarding_requests->Uni_boys = 0;
+        }
+
+        if($request->has('Uni_girls')){
+            $boarding_requests->Uni_girls = 1;
+        }else{
+            $boarding_requests->Uni_girls = 0;
+        }
+
+        if($request->has('Office_boys')){
+            $boarding_requests->Office_boys = 1;
+        }else{
+            $boarding_requests->Office_boys = 0;
+        }
+
+        if($request->has('Office_girls')){
+            $boarding_requests->Office_girls = 1;
+        }else{
+            $boarding_requests->Office_girls = 0;
+        } 
+
+        $boarding_requests ->MonthlyRent = request('MonthlyRent');
+        $boarding_requests ->KeyMoney = request('KeyMoney');
+        // $boarding_requests ->Description = request('Description');
+        $boarding_requests ->Province = request('Province');
+        $boarding_requests ->District = request('District');
+        $boarding_requests ->City = request('City');
+
+        $boarding_requests ->Name = request('Name');
+        // $boarding_requests->filename  = json_encode($data);
+        $boarding_requests ->Email = request('Email');
+        $boarding_requests ->Telephone = request('Telephone');
+        $boarding_requests->save();
+
+        $singelroom = new SingleRoomRequest;
+        $singelroom->BoardingRequest()->associate($boarding_requests);
+        $singelroom ->NoOfBed = request('NoOfBed');
+        $singelroom->Acavalability = request('Acavalability');
+
+        if($request->has('Withfurniture')){
+            $singelroom->Withfurniture = 1;
+        }else{
+            $singelroom->Withfurniture = 0;
+        }
+
+        $singelroom->save();
+
+        return back()->with('message', 'Your Request has been successfully added!');
     }
 
     /**

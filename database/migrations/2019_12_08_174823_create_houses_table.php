@@ -20,9 +20,7 @@ class CreateHousesTable extends Migration
             $table->string('NoOfBed');
             $table->string('Acavalability');
             $table->string('kitchenavalability');
-            $table->boolean('Withfurniture');
-            $table->boolean('Garden');
-            $table->string('numberofbthroom');
+            $table->boolean('Withfurniture');           
             $table->timestamps();
 
             $table->foreign('boarding_id')

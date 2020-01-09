@@ -19,10 +19,13 @@
     <body>
         @include('incfile.headersec')
 
+        
+        @include('sweet::alert')
         {{-- recomonded post section --}}
 
       <div class="recomod">
         <div class="container">
+          
             <!-- Start your project here-->
            <!-- Section heading -->
           <h2 class="h1-responsive font-weight-bold my-5">Recomonded Bodims</h2>

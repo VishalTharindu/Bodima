@@ -75,28 +75,7 @@
                 </div>
                     <div class="columns is-centered">
                         <div class="column is-6">
-                            <div class="box has-background-white-bis">
-                                <div class="my-5"></div>
-                                {{-- <div class="columns is mobile is-centered">
-                                    <label class="label has-text-centered">Request Type</label>
-                                </div>
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-6">
-                                        <label class="label has-text-centered">Request Type</label>
-                                    </div>
-                                    <div class="column is-6">
-                                        <div class="control is-6">
-                                            <div class="select is-primary">
-                                                <select name="boardingType">
-                                                    <option value="Boarding For Rent">Boarding For Rent</option>
-                                                    <option value="Boarding For Share">Boarding For Share</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                <hr>
+                            <div class="box has-background-white-bis"> 
                                 <div class="my-5"></div>
                                 <div class="columns is mobile is-centered">
                                     <label class="label is-center">Fetures You Want</label>
@@ -194,6 +173,7 @@
                                     <div class="my-5"></div>
                                     <div class="column is-6">
                                             <hr>
+                                            <div class="my-5"></div>
                                             <label class="label has-text-centered">With Furniture</label>
                                             <div class="my-3"></div>
                                             <div class="column">
@@ -216,28 +196,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <label class="label has-text-centered">Garden Need</label>
-                                            <div class="column">
-                                                <div class="columns">
-                                                    <div class="column">
-                                                        <div class="control">
-                                                            <div class="field">
-                                                                <div class="columns is-centered">
-                                                                    <div class="column is-6 is-centered">
-                                                                        <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="Gardenneed">
-                                                                        <label for="exampleRtlRadioInline1">Yes</label>
-                                                                    </div>
-                                                                    <div class="column is-6">
-                                                                        <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Gardenneed">
-                                                                        <label for="exampleRtlRadioInline2">No</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <hr>                                           
                                         </div>
                                     <div class="column is-6">
                                         <hr>
@@ -296,12 +255,6 @@
                                     <div class="column is-6">
                                         <div class="control has-icons-left has-icons-right">
                                             <input class="input" type="text" placeholder="Text input" name="MonthlyRent">
-                                            <span class="icon is-small is-left">
-                                                <i class="fas fa-user"></i>
-                                            </span>
-                                            <span class="icon is-small is-right">
-                                                <i class="fas fa-check"></i>
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -312,38 +265,10 @@
                                     </div>
                                     <div class="column is-6">
                                         <div class="control has-icons-left has-icons-right">
-                                            <input class="input" type="text" placeholder="Text input" name="KeyMoney">
-                                            <span class="icon is-small is-left">
-                                                <i class="fas fa-user"></i>
-                                            </span>
-                                            <span class="icon is-small is-right">
-                                                <i class="fas fa-check"></i>
-                                            </span>
+                                            <input class="input" type="text" placeholder="Text input" name="KeyMoney">                                           
                                         </div>
                                     </div>
-                                </div>
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <div class="columns">
-                                        <div class="column is-6">
-                                            <label class="label">Number of bath rooms</label>
-                                        </div>
-                                        <div class="column is-6">
-                                            <div class="control is-6">
-                                                <div class="select is-primary">
-                                                    <select name="NumberOfBthroom">
-                                                        <option >Select No of bath rooms</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="More">More</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
+                                </div>                                                              
                                 <div class="my-4"></div>
                                 <div class="columns">
                                     <div class="column is-12">

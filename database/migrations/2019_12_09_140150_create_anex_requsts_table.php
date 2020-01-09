@@ -15,7 +15,18 @@ class CreateAnexRequstsTable extends Migration
     {
         Schema::create('anex_requsts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('boardingrequest_id');
+            $table->string('NoOfRooms');
+            $table->string('NoOfBed');
+            $table->string('Acavalability');
+            $table->string('kitchenavalability');
+            $table->boolean('Withfurniture');           
             $table->timestamps();
+
+            $table->foreign('boardingrequest_id')
+            ->references('id')
+            ->on('boarding_requests')
+            ->onDelete('cascade');
         });
     }
 
