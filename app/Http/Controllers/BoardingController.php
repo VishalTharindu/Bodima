@@ -62,15 +62,9 @@ class BoardingController extends Controller
             // 'Province' => 'required',
             // 'District' => 'required',
             // 'City' => 'required',
-            // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'Email' => 'required',
             'Telephone' => 'required',
         ]);
-
-        // $this->validate($request, [
-        //     'filename' => 'required',
-        //     'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        // ]);
 
        if($request->hasfile('filename'))
              {
@@ -158,7 +152,7 @@ class BoardingController extends Controller
 
         $adhouse->save();
 
-        Alert::success('User Boarding has been added successfully!', 'Successfully Added!')->autoclose(3000);
+        // Alert::success('User Boarding has been added successfully!', 'Successfully Added!')->autoclose(3000);
         return back()->with('message', 'Your Boarding has been successfully added!');
     }
 
@@ -180,11 +174,6 @@ class BoardingController extends Controller
             'Telephone' => 'required',
         ]);
 
-        // $this->validate($request, [
-        //     'filename' => 'required',
-        //     'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        // ]);
-
        if($request->hasfile('filename'))
              {
 
@@ -198,17 +187,7 @@ class BoardingController extends Controller
             
          }
 
-        // if($request->hasfile('filename'))
-        //  {
-
-        //     foreach($request->file('filename') as $image)
-        //     {
-        //         $name=$image->getClientOriginalName();
-        //         $image->move(public_path().'/images/uploads/boardingimg/', $name);  
-        //         $data[] = $name;  
-        //     }
-        //  }
-
+        
         $boarding = new Boarding;
         $boarding ->user_id = auth()->id();
         $boarding ->boardingType = request('boardingType');
@@ -281,7 +260,7 @@ class BoardingController extends Controller
 
         $adanex->save();
 
-        return back();
+        return back()->with('message', 'Your Boarding has been successfully added!');
     }
 
 
@@ -302,11 +281,6 @@ class BoardingController extends Controller
             'Telephone' => 'required',
         ]);
 
-        // $this->validate($request, [
-        //     'filename' => 'required',
-        //     'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        // ]);
-
        if($request->hasfile('filename'))
              {
 
@@ -320,16 +294,6 @@ class BoardingController extends Controller
             
          }
 
-        // if($request->hasfile('filename'))
-        //  {
-
-        //     foreach($request->file('filename') as $image)
-        //     {
-        //         $name=$image->getClientOriginalName();
-        //         $image->move(public_path().'/images/uploads/boardingimg/', $name);  
-        //         $data[] = $name;  
-        //     }
-        //  }
 
         $boarding = new Boarding;
         $boarding ->user_id = auth()->id();
@@ -405,7 +369,7 @@ class BoardingController extends Controller
 
         $adsingleroom->save();
 
-        return back();
+        return back()->with('message', 'Your Boarding has been successfully added!');
     }
 
     /**

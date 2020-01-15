@@ -173,7 +173,7 @@
                                                     <div class="field">
                                                         <div class="columns is-centered">
                                                             <div class="column is-6 is-centered">
-                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="kitchenavalability">
+                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="$house->kitchenavalability" name="kitchenavalability">
                                                                 <label for="exampleRtlRadioInline1">Yes</label>
                                                             </div>
                                                             <div class="column is-6">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\House;
 use App\Boarding;
 use Alert;
@@ -47,9 +48,10 @@ class HouseController extends Controller
      * @param  \App\House  $house
      * @return \Illuminate\Http\Response
      */
-    public function show(House $house)
+    public function show()
     {
-        //
+        $Houses = House::orderBy('created_at','desc')->paginate(3);
+        return view('addBoarding.showHouse', compact('Houses'));
     }
 
     /**
@@ -60,10 +62,15 @@ class HouseController extends Controller
      */
     public function edit(House $house)
     {
-        
-        // $houseupdt = $house;
-        // dd($houseupdt);
-        return view('addBoarding.editHouse',compact('house'));
+        if ($house->boarding->user_id == auth()->id()) {
+
+            return view('addBoarding.editHouse',compact('house'), array('user' => Auth::user()));
+        } else {
+
+            Alert::error('Your request has been denied by the system', 'Unauthorized Attempt')->autoclose(3000);
+            return redirect('/');
+        }
+
     }
 
     /**
@@ -90,5 +97,69 @@ class HouseController extends Controller
         DB::table('boardings')->where('id', '=', $house->boarding->id)->delete();
         Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
         return redirect()->route('home');
+    }
+    public function searchHouse(Request $request)
+    {
+        // dd($request);
+        $keyword = $request->input('searchquery');
+        $room = $request->input('room');
+        $type = $request->input('brtype');
+        // $withfetu = $request->input('furniture');
+        // $minRent = $request->input('minrent');
+        // $maxRent = $request->input('maxrent');
+
+        if ($acavb = $request->has('ac')) {
+
+            $acavb = "Yes";
+        } else {
+
+            $acavb = "%%";
+        }
+
+        if ($withfetu = $request->has('furniture')) {
+
+            $withfetu = 1;
+        } else {
+
+            $withfetu = "%%";
+        }
+
+        // if ($outdoor = $request->has('outdoor')) {
+
+        //     $outdoor = "Available";
+        // } else {
+
+        //     $outdoor = "%%";
+        // }
+
+        $House = House::where(function ($query) use ($room) {
+            $query->where('NoOfRooms', '>=', $room);
+        })->whereHas('boarding', function ($query) use ($keyword) {
+            $query->where(function ($query) use ($keyword) {
+                $query->orwhere('District', 'LIKE', $keyword)
+                    ->orWhere('Province', 'LIKE', $keyword)
+                    ->orWhere('City', 'LIKE', $keyword);
+            });
+        // })->whereHas('boarding', function ($query) use ($minRent, $maxRent) {
+
+        //     $query->whereBetween('MonthlyRent', array($minRent, $maxRent));
+        })->whereHas('boarding', function ($query) use ($type){
+
+            $query->where('boardingType', '=', $type);
+
+        })->where(function ($query) use ($acavb){
+
+            $query->where('Acavalability', 'LIKE', $acavb);
+
+        })->where(function ($query) use ($withfetu) {
+
+            $query->where('Withfurniture', 'LIKE', $withfetu);
+        })->get();
+
+        return view('SearchResult.houseresult', compact('House'));
+    }
+
+    public function searcresultview(){
+        return view('SearchResult.houseresult');
     }
 }

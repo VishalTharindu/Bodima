@@ -14,7 +14,7 @@ class PrimiumMemberPaymentController extends Controller
      */
     public function index()
     {
-        //
+        return view('membershoptype');
     }
 
     /**

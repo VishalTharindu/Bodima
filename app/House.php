@@ -14,8 +14,8 @@ class House extends Model
 
     }
 
-    public function favourities()
-    {
-        return $this->hasMany(MyFavourit::class);
-    }
+    // public function favourities()
+    // {
+    //     return $this->hasMany(MyFavourit::class);
+    // }
 }

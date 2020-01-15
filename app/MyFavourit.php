@@ -19,22 +19,22 @@ class MyFavourit extends Model
     }
 
 
-    public function house(){
+    // public function house(){
 
-        return $this->belongsTo(House::class);
+    //     return $this->belongsTo(House::class);
 
-    }
+    // }
 
-    public function anex(){
+    // public function anex(){
 
-        return $this->belongsTo(Anex::class);
+    //     return $this->belongsTo(Anex::class);
 
-    }
+    // }
 
-    public function singleroom(){
+    // public function singleroom(){
 
-        return $this->belongsTo(SingleRoom::class);
+    //     return $this->belongsTo(SingleRoom::class);
 
-    }
+    // }
 }
 

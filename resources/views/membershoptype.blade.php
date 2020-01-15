@@ -42,7 +42,7 @@
                                 <div class="tim-typo">
                                     <h3 class="title"><span class=" category text-success tim-note">Premium</span></h3>
                                 </div>
-                                <h1 class="card-title"><small>$</small>89</h1>
+                                <h1 class="card-title"><small>$</small>10</h1>
                                 <ul>
                                     <li><span><i class="fas fa-check text-success"></span></i>&nbsp;Add Post</li>
                                     <li><i class="fas fa-check text-success"></i>&nbsp;Top Add</li>
@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer footer-black footer-big">
+    {{-- <footer class="footer footer-black footer-big">
             <div class="container">
 
                 <div class="content">
@@ -110,6 +110,6 @@
                 </div>
                 <hr />
             </div>
-        </footer>
+        </footer> --}}
 </body>
 </html>

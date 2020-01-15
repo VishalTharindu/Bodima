@@ -43,7 +43,7 @@
             <i class="ni location_pin mr-2"></i>{{Auth::user()->address}}
           </div>
           <div class="h5 mt-4">
-            <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+            <i class="ni business_briefcase-24 mr-2"></i>
           </div>
           <div>
             <i class="ni education_hat mr-2"></i>University of Computer Science
@@ -124,7 +124,7 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-first-name">First name</label>
-                  <input type="text" name="first_name" id="input-first-name" class="form-control form-control-alternative{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
+                  <input type="textarea" name="first_name" id="input-first-name" class="form-control form-control-alternative{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
                   placeholder="{{ __('First name') }}" value="{{Auth::user()->first_name}}"
                   autofocus>
 
