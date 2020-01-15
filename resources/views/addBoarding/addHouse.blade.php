@@ -8,11 +8,12 @@
 
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
     {{-- <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}"> --}}
-    <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">    
     <link rel="stylesheet" href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
-    {{-- <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select.bootstrap4.min.css')}} rel="stylesheet"> --}}
     <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/jquery-confirm.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/open-iconic-bootstrap.min.css')}}">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src={{asset('js/select2/select2.min.js')}}></script>
@@ -22,28 +23,101 @@
     <script type="text/javascript" src={{asset('js/datatables.net/js/jquery.dataTables.min.js')}}></script>
     <script type="text/javascript" src={{asset('datatables.net-select-bs4/js/select.bootstrap4.min.js')}}></script>
     <script src="{{asset('js/jquery-confirm.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
 
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <style>
         .select, .select select{
             width: 100%;
         }
+        .navbar-item{
+            
+        }
+        
     </style>
 
 </head>
 <body class="has-background-white-ter">
-    @include('incfile.innernav')
-
+    <div class="data-spy="scroll" data-target=".site-navbar-target" data-offset="300"">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target shadow p-1 mb-5 bg-white rounded navbar-fixed" id="ftco-navbar">
+            <div class="container">
+              <a class="navbar-brand nav-link" href="index.html">Bo<span>dima</span></a>
+              <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="fa fa-bars"></span>Menu
+              </button>
+    
+              <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                  <li class="nav-item"><a href="/" class="nav-link"><span>Home</span></a></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Boarding
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/bodim">House</a>
+                      <a class="dropdown-item" href="/bodim">Annex</a>
+                      <a class="dropdown-item" href="/bodim">Single Room</a>                 
+                    </div>
+                  </li>
+                  <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
+                  <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
+                  <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
+                  <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
+                  <li class="nav-item">
+                      <ul class="navbar-nav nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item float-right">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item float-right">
+                                    <a class="nav-link is-pilled-right" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                        <li class="nav-item dropdown is-pulled-right">
+                          <div class="btn-group is-pulled-right">
+                            <a class="btn  dropdown-toggle is-pulled-right" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false class=" href="#" role="button">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                              {{-- <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button> --}}
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/user/profile">Profile</a>
+                                <a class="dropdown-item" href="/user/boarding">Account Setting</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                  {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                  @csrf
+                              </form>
+                              </div>
+                            </div>
+                          </li>
+                        @endguest
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+    </div>
         @include('sweet::alert')
     <div class="section is-medium">
         <div class="">
-            <div class="column is-12">
+            <div class="column is-12 is-marginless">
                 {{-- @include('layouts.errors') --}}
                 @if(session()->has('message'))
-                <div class="notification is-success">
-                    <button class="delete"></button>
-                    <h1 class="is-size-4"><b> {{ session()->get('message') }}</b></h1>
-                </div>
+                    <div class="notification is-success">
+                        <button class="delete"></button>
+                        <h1 class="is-size-4"><b> {{ session()->get('message') }}</b></h1>
+                    </div>
                 @endif
             </div>
             <form action="/add/houses" method="POST" enctype="multipart/form-data">
@@ -135,6 +209,11 @@
                                                                 <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Acavalability">
                                                                 <label for="exampleRtlRadioInline2">No</label>
                                                             </div>
+                                                            @if ($errors->has('Acavalability'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('Acavalability') }}</strong>
+                                                                </span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -157,6 +236,11 @@
                                                                 <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="kitchenavalability">
                                                                 <label for="exampleRtlRadioInline2">No</label>
                                                             </div>
+                                                            @if ($errors->has('kitchenavalability'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('kitchenavalability') }}</strong>
+                                                                </span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -184,6 +268,11 @@
                                                                     <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Withfurniture">
                                                                     <label for="exampleRtlRadioInline2">No</label>
                                                                 </div>
+                                                                @if ($errors->has('Withfurniture'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('Withfurniture') }}</strong>
+                                                                </span>
+                                                            @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -228,7 +317,7 @@
                                                                 <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="Office_girls">
                                                                 <label for="exampleRtlRadioInline2">Office girls</label>
                                                             </div>
-                                                        </div>
+                                                        </div>                                   
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,15 +336,14 @@
                                     </div>
                                     <div class="column is-6">
                                         <div class="control has-icons-left has-icons-right">
-                                            <input class="input" type="text" placeholder="Text input" name="MonthlyRent">
-                                            <span class="icon is-small is-left">
-                                                <i class="fas fa-user"></i>
-                                            </span>
-                                            <span class="icon is-small is-right">
-                                                <i class="fas fa-check"></i>
-                                            </span>
-                                        </div>
+                                            <input class="input" type="text" placeholder="Text input" name="MonthlyRent">                                           
+                                        </div>                                       
                                     </div>
+                                    @if ($errors->has('MonthlyRent'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong class="has-text-danger">{{ $errors->first('MonthlyRent') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="my-4"></div>
                                 <div class="columns">
@@ -271,6 +359,11 @@
                                             <span class="icon is-small is-right">
                                                 <i class="fas fa-check"></i>
                                             </span>
+                                            @if ($errors->has('KeyMoney'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('KeyMoney') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -285,6 +378,11 @@
                                                     <textarea class="textarea" placeholder="Textarea" name="Address"></textarea>
                                                 </div>
                                             </div>
+                                            @if ($errors->has('Address'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('Address') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -297,6 +395,11 @@
                                                 <div class="control">
                                                     <textarea class="textarea" placeholder="Textarea" name="Description"></textarea>
                                                 </div>
+                                                @if ($errors->has('Description'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('Description') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -386,6 +489,11 @@
                                                 <span class="icon is-small is-right">
                                                     <i class="fas fa-check"></i>
                                                 </span>
+                                                @if ($errors->has('City'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('City') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -457,13 +565,13 @@
                                                 <label class="label">Your Email Address</label>
                                                 <div class="control has-icons-left has-icons-right">
                                                     <input class="input" type="text" placeholder="Text input" name="Email">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
-                                                    </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                    <span class="icon is-small is-left">                                        
                                                 </div>
+                                                @if ($errors->has('Email'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('Email') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -472,14 +580,13 @@
                                             <div class="field">
                                                 <label class="label">Your Telephone No</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input" name="Telephone">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
-                                                    </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                    <input class="input {{ $errors->has('Telephone') ? ' is-invalid' : '' }}" type="text" placeholder="Text input" name="Telephone" required>
                                                 </div>
+                                                @if ($errors->has('Telephone'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong class="has-text-danger">{{ $errors->first('Telephone') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -584,63 +691,7 @@
     </div>
     {{-- <script src="{{asset('css/bulma/bulmaCheckradio/gulpfile.js')}}"></script> --}}
 
-    {{-- <div class="footsec">
-            <div class="container">
-                <div class="block">
-                    <div class="columns">
-                        <div class="column">
-                            <div class="ftsec fstcl">
-                                <h2>About bodima.lk</h2>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                <ul class="">
-                                    <li><a href="#"><span class="fas fa-facebook"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"><span class="fa fa-arrow-right"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"><span class="fa fa-arrow-right"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="ftsec seccl">
-                                <h2>Links</h2>
-                                <ul class="list-unstyled">
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspHome</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspAbout</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspServices</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspProjects</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspContact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="ftsec tridcl">
-                                <h2>Services</h2>
-                                <ul class="list-unstyled">
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspWeb Design</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspWeb Development</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspBusiness Strategy</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspData Analysis</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspGraphic Design</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="ftsec fortcl">
-                                <h2 class="ftco-heading-2">Have a Questions?</h2>
-                                <div class="block-23 mb-3">
-                                <ul>
-                                    <li><span class="icon icon-map-marker"></span><span class="text">205 colombo 7, SriLnka</span></li>
-                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">+11 25 34 689</span></a></li>
-                                    <li><a href="#"><span class="icon icon-envelope"></span><span class="text">bodimahelp@gmail.com</span></a></li>
-                                </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-
+    {{-- @include('incfile.footer') --}}
         <script type="text/javascript">
             $(document).ready(function() {
         

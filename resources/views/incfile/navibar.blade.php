@@ -36,7 +36,16 @@
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav nav ml-auto">
               <li class="nav-item"><a href="/" class="nav-link"><span>Home</span></a></li>
-              <li class="nav-item"><a href="/bodim" class="nav-link"><span>Bodims</span></a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Boarding
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/show/house">House</a>
+                  <a class="dropdown-item" href="/show/Annex">Annex</a>
+                  <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
+                </div>
+              </li>
               <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
               <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
               <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>

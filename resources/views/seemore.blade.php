@@ -38,12 +38,28 @@
 
 <body>
     @include('incfile.navibar')
-    
     <div class="my-5"></div>
         <div class="container">
-            @include('sweet::alert')
+            <div class="my-5"></div>           
             <div class="viewsection">
-        
+                <div class="col-md-12">
+                    @if(session()->has('message'))
+                    <div class="notification is-success">
+                        <button class="delete"></button>
+                        <h1 class="is-size-4"><b> {{ session()->get('message') }}</b></h1>
+                    </div>
+                    @endif
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                                $notification = $delete.parentNode;
+                                $delete.addEventListener('click', () => {
+                                    $notification.parentNode.removeChild($notification);
+                                });
+                            });
+                        });
+                    </script>
+                </div>
                 <div class="column profileback">
                     <div class="container">
                         <div class="carousel carousel-main" data-flickity='{"pageDots": false }'>
@@ -56,28 +72,7 @@
                     <div class="columns is-flex-mobile">
                         <div class="column is-two-thirds is-flex-mobile">
                             <div class="containerx">
-                                {{-- <button id="deletefavourite" 
-                                    onClick="deleteFromFavourites()" 
-                                    name="addfavourite" 
-                                    class="btn btn-lg"
-                                    style="color: #ad1707;">
-                                    <i class="fas fa-heartbeat"></i>
-                                </button>
-                        
-                            <!-- hide if favourited -->
-                            <form action="" method="post">
-                                <button id="addfavourites" 
-                                    onclick="addToFavourites({{$boardingData->boarding->id}},{{ Auth::user()->id }})" 
-                                    name="deletefavourite" 
-                                    class="btn btn-lg">
-                                <i class="fas fa-heart" ></i>
-                                </button>
-                            </form> --}}
-                            
-
-                            {{-- <button onclick="sex({{$boardingData->boarding->id}},{{ Auth::user()->id }})">test</button> --}}
-                            {{-- <input type="button" value="test" onclick="sex({{$boardingData->boarding->id}},{{ Auth::user()->id }})"> --}}
-
+                                <a href="/house/favorite/{{$boardingData->id}}" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
                                 <div class="is-pulled-left">
                                     <div class="title">
                                         {{$boardingData->boarding->boardingType}}, {{$boardingData->boarding->City}}
@@ -412,7 +407,7 @@
                     
                     {{-- Contact Owner Email Box Start Here --}}
                     <hr>
-                    {{-- <div class="subtitle has-text-weight-semibold" id="contactbox">Contact Owner</div>
+                    <div class="subtitle has-text-weight-semibold" id="contactbox">Contact Owner</div>
                     <div class="column is-flex-mobile">
                         <form action="" method="post">
                             @csrf
@@ -435,7 +430,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <p class="control is-expanded has-icons-left">
-                                            <input class="input {{ $errors->has('name') ? ' is-danger' : '' }}" type="text" placeholder="Name" name="name">
+                                            <input class="input {{ $errors->has('name') ? ' is-danger' : '' }} is-primary" type="text" placeholder="Name" name="name">
                                             <span class="icon is-small is-left">
                                                 <i class="fas fa-user"></i>
                                             </span> 
@@ -452,7 +447,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <p class="control is-expanded has-icons-left">
-                                            <input class="input {{ $errors->has('email') ? ' is-danger' : '' }}" type="email" placeholder="Email" name="email">
+                                            <input class="input {{ $errors->has('email') ? ' is-danger' : '' }} is-primary" type="email" placeholder="Email" name="email">
                                             <span class="icon is-small is-left">
                                                 <i class="fas fa-envelope"></i>
                                             </span>
@@ -475,11 +470,11 @@
                                                 </a>
                                             </p>
                                             <p class="control is-expanded">
-                                                <input class="input {{ $errors->has('pno') ? ' is-danger' : '' }}" type="tel" placeholder="Your phone number" name="pno">
+                                                <input class="input {{ $errors->has('pno') ? ' is-danger' : '' }} is-primary" type="tel" placeholder="Your phone number" name="pno">
                                             </p>
                                         </div>
                                         {!! $errors->first('pno', '<p class="help-block has-text-danger">:message</p>') !!}
-                                        <p class="help has-text-link">Do not enter the first zero</p>
+                                        <p class="help has-text-danger">Do not enter the first zero</p>
                                     </div>
                                 </div>
                             </div>
@@ -491,7 +486,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input {{ $errors->has('subject') ? ' is-danger' : '' }}" type="text" placeholder="e.g. Need to visit property" name="subject">
+                                            <input class="input {{ $errors->has('subject') ? ' is-danger' : '' }} is-primary" type="text" placeholder="e.g. Need to visit property" name="subject">
                                             {!! $errors->first('subject', '<p class="help-block has-text-danger">:message</p>') !!}
                                         </div>
                                     </div>
@@ -505,7 +500,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <textarea class="textarea {{ $errors->has('message') ? ' is-danger' : '' }}" placeholder="Explain how I can help you" name="message"></textarea>
+                                            <textarea class="textarea {{ $errors->has('message') ? ' is-danger' : '' }} is-primary" placeholder="Explain how I can help you" name="message"></textarea>
                                             {!! $errors->first('message', '<p class="help-block has-text-danger">:message</p>') !!}
                                         </div>
                                     </div>
@@ -519,7 +514,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <button class="button is-primary" type="submit">
+                                            <button class="button is-success" type="submit">
                                                 Send message
                                             </button>
                                         </div>
@@ -530,10 +525,10 @@
                         <br>
                         <br>
         
-                    </div> --}}
+                    </div>
                     {{-- Contact Owner Emaik --}}
                     <div class="notification is-warning">
-                        <button class="delete"></button>
+                        <button class="deletenotify"></button>
                         <strong>Important information:</strong> This ad has been posted on Realproperty.lk by the above mentioned
                         advertiser. Realproperty.lk does not have any connection with this advertiser, nor do we vet the advertisers,
                         guarantee their services, responsible for the accuracy of the ad's content or are responsible for services
@@ -564,23 +559,14 @@
 
     {{-- @include('layouts.offer')
     @include('layouts.reporthouse') --}}
-    {{-- Footer --}}
-    {{-- @include('layouts.footer') --}}
+   
+
      {{-- JavaScript Files --}}
-    {{-- <script src="/js/jquery-3.4.1.min.js"></script>
-    <script src="/js/fontawesome.js"></script>
-    <script src="/js/bootstrap.js"></script>
-    <script src="/js/flickity.pkgd.min.js"></script>
-    <script src="/js/sweetalert.min.js"></script> --}}
-
     <script type="text/javascript" src={{asset('js/jquery-3.3.1.min.js')}}></script>
-    <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
+    {{-- <script type="text/javascript" src={{asset('js/SweetAlert.js')}}></script> --}}
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
-
-    {{-- <script type="text/javascript" src={{asset('js/jquery-3.4.1.min.js')}}></script> --}}
-    
-    {{-- <script type="text/javascript" src={{asset('js/jquery-migrate-3.0.1.min.js')}}></script> --}}
     <script type="text/javascript" src={{asset('js/flickity.pkgd.min.js')}}></script>
+    @include('sweet::alert')
     
     <!-- MDB core JavaScript -->
     {{-- <script type="text/javascript" src={{asset('js/mdb.min.js')}}></script> --}}
@@ -603,150 +589,69 @@
     </script> --}}
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKNG_uMsCgUvpLc_Adr2n9nwo6BWOImoM&libraries=places&callback=initMap"
         async defer></script>
-
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-                $notification = $delete.parentNode;
-                $delete.addEventListener('click', () => {
-                    $notification.parentNode.removeChild($notification);
+--}}
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                (document.querySelectorAll('.notification .deletenotify') || []).forEach(($delete) => {
+                    $notification = $delete.parentNode;
+                    $delete.addEventListener('click', () => {
+                        $notification.parentNode.removeChild($notification);
+                    });
                 });
             });
-        });
-    </script> --}}
-    <script>
-        function showPno() {
-            var x = document.getElementById("pno");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
+        </script>
+    
+        <script>
+            function showPno() {
+                var x = document.getElementById("pno");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
             }
-        }
 
-        function showPnox() {
-            var x = document.getElementById("pnox");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
+            function showPnox() {
+                var x = document.getElementById("pnox");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
             }
-        }
-    </script>
+        </script>
 
-    <script>
-        function deleteMe() {
-        event.preventDefault();
-        var form = event.target.form;
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: "hsl(141, 71%, 48%)",
-            cancelButtonColor: "hsl(348, 100%, 61%)",
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                
-                form.submit();
+        <script>
+            function deleteMe() {
+            event.preventDefault();
+            var form = event.target.form;
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "hsl(141, 71%, 48%)",
+                cancelButtonColor: "hsl(348, 100%, 61%)",
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    
+                    form.submit();
 
-                // Swal.fire(
-                // 'Deleted!',
-                // 'Your file has been deleted.',
-                // 'success'
-
-            } else if (
-                // Read more about handling dismissals
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                Swal.fire(
-                    'Cancelled',
-                    'Boarding is safe :)',
-                    'info'
-                )
-            }
-        });
-    }
-    </script>
-
-    {{-- <script>
-        function addToFavourites(boarding_id, user_id) {
-            var boarding_id = boarding_id;
-            var user_id = user_id;
-
-            $.ajax({
-                type: 'post',
-                url: '/view/house/add/favourite',
-                data: {
-                    '"_token": "{{ csrf_token() }}",
-                    'boarding_id': boarding_id,
-                    'user_id': user_id,
-                },
-                success: function () {
-                    $('#addfavourites' + item_id).css({
-                        'color': '#ad1707'
-                    });
-                },
-                error: function (XMLHttpRequest) {
-                    // handle error
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    Swal.fire(
+                        'Cancelled',
+                        'Boarding is safe :)',
+                        'info'
+                    )
                 }
             });
         }
-    </script>
-    <script>
-        function sex(test1, test2) {
-            var boarding_id = test1;
-            var user_id = test2;
-
-            $.ajax({
-                type: 'post',
-                url: '/view/house/add/favourite',
-                data: {
-                    '"_token": "{{ csrf_token() }}",
-                    'boarding_id': boarding_id,
-                    'user_id': user_id,
-                },
-                success: function () {
-                    $('#addfavourites' + item_id).css({
-                        'color': '#ad1707'
-                    });
-                },
-                error: function (XMLHttpRequest) {
-                    // handle error
-                }
-            });
-        }
-    </script> --}}
-    {{-- <script>
-        function addToFavourites(boarding_id, user_id, ) {
-        var boarding_id = boarding_id;
-        var user_id = user_id;
-
-        $.ajax({
-            type: 'post',
-            url: '/view/house/add/favourite',
-            data: {
-                '"_token": "{{ csrf_token() }}",
-                'boarding_id': boarding_id,
-                'user_id': user_id,
-            },
-            success: function () {
-                $('#addfavourites' + item_id).css({
-                    'color': '#ad1707'
-                });
-            },
-            error: function (XMLHttpRequest) {
-                // handle error
-            }
-        });
-    }
-    </script> --}}
-    
-
-</body>
-
+        </script>   
+    </body>
 </html>

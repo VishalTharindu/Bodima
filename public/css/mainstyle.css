@@ -2,10 +2,21 @@
 .nav-link{
     color: #000000 !important;
     font-weight: 500 !important;
+    
 }
 nav.navbar{
     background-color: #fff !important;
     box-shadow: #ddd7d7 !important;
+}
+.navbar-brand {
+  font-weight: 900;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #000000; 
+}
+.navbar-brand span {
+  font-weight: 900;
+  color: #31de79;
 }
 
 /* recomond section */
@@ -15,6 +26,10 @@ nav.navbar{
     background-image: radial-gradient(circle, #e3dede, #e9e6e7, #efedef, #f6f5f6, #fdfdfd) !important;
     /* margin-bottom: 50px !important; */
     padding-bottom: 25px !important;
+}
+
+.boardingSearch{
+  margin-top: 5%;
 }
 
 /* loging style section */

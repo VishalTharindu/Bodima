@@ -39,6 +39,64 @@ class SingleRoomController extends Controller
     {
         //
     }
+    
+    public function searchsingleroom(Request $request)
+    {
+        // dd($request);
+        $keyword = $request->input('searchquery');       
+        // $withfetu = $request->input('furniture');
+        // $minRent = $request->input('minrent');
+        // $maxRent = $request->input('maxrent');
+
+        if ($acavb = $request->has('ac')) {
+
+            $acavb = "Yes";
+        } else {
+
+            $acavb = "%%";
+        }
+
+        if ($withfetu = $request->has('furniture')) {
+
+            $withfetu = 1;
+        } else {
+
+            $withfetu = "%%";
+        }
+
+        // if ($outdoor = $request->has('outdoor')) {
+
+        //     $outdoor = "Available";
+        // } else {
+
+        //     $outdoor = "%%";
+        // }
+
+        $SingleRoom = SingleRoom::whereHas('boarding', function ($query) use ($keyword) {
+            $query->where(function ($query) use ($keyword) {
+                $query->orwhere('District', 'LIKE', $keyword)
+                    ->orWhere('Province', 'LIKE', $keyword)
+                    ->orWhere('City', 'LIKE', $keyword);
+            });
+        // })->whereHas('boarding', function ($query) use ($minRent, $maxRent) {
+
+        //     $query->whereBetween('MonthlyRent', array($minRent, $maxRent));
+        })->where(function ($query) use ($acavb){
+
+            $query->where('Acavalability', 'LIKE', $acavb);
+
+        })->where(function ($query) use ($withfetu) {
+
+            $query->where('Withfurniture', 'LIKE', $withfetu);
+        })->get();
+
+        return view('SearchResult.singleroomresult', compact('SingleRoom'));
+    }
+
+    // public function searcresultview(){
+    //     return view('SearchResult.singleroomresult');
+    // }
+    
 
     /**
      * Display the specified resource.
@@ -46,9 +104,10 @@ class SingleRoomController extends Controller
      * @param  \App\SingleRoom  $singleRoom
      * @return \Illuminate\Http\Response
      */
-    public function show(SingleRoom $singleRoom)
+    public function show()
     {
-        //
+        $SingleRoom = SingleRoom::orderBy('created_at','desc')->paginate(3);
+        return view('addBoarding.showSingleRoom', compact('SingleRoom'));
     }
 
     /**

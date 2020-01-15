@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\MyFavourit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use Alert;
+use App\House;
+use App\Anex;
+use App\SingleRoom;
 
 class MyFavouritController extends Controller
 {
@@ -25,6 +32,58 @@ class MyFavouritController extends Controller
     public function create()
     {
         //
+    }
+    public function showfavorite()
+    {
+        $userID = Auth::user()->id;
+        $MyFavourit = MyFavourit::where(function($query) use ($userID){
+            $query->where('user_id','=',$userID);
+        })->paginate(4);
+
+        // dd($MyFavourit);
+      return view('profileManage.masterdashboard',compact('MyFavourit'));
+    }
+
+    public function favoriteHouse(House $house)
+    {
+
+
+        $isExits = MyFavourit::where('boarding_id', '=', $house->boarding->id)
+            ->where('user_id', '=', auth()->id())
+            ->get();
+        if ($isExits->count() <= 0) {
+            $favorite = new MyFavourit;
+            $favorite->boarding_id = $house->boarding->id;
+            $favorite->user_id = auth()->id();
+            $favorite->house_id = $house->id;
+
+
+            try {
+                $favorite->save();
+                // Alert::success('Favorite has been added successfully!', 'Favorite Added')->autoclose(3000);
+                return back()->with('message', 'Your Favourite has been successfully added!');
+            } catch (\Illuminate\Database\QueryException $e) {
+
+                $errorCode = $e->errorInfo[1];
+                if ($errorCode == '1062') {
+                    Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
+                    return back();
+                }
+            }
+
+            Alert::error('Something went wrong!', 'Oops!')->autoclose(3000);
+            return back();
+        } else {
+            // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
+            return back()->with('message', 'Favorite has been already added!');
+        }
+    }
+
+    public function destroyfavorite(MyFavourit $favoriteid)
+    {
+        DB::table('my_favourits')->where('id', '=', $favoriteid->id)->delete();
+        // Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
+        return back();
     }
 
     /**

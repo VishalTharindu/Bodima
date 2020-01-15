@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Boarding;
 use App\BoardingRequest;
 use Illuminate\Http\Request;
 
@@ -124,6 +125,14 @@ class BoardingRequestController extends Controller
         }
 
         $houses->save();
+
+        $Boadrings = Boarding::where('boardingType','LIKE', request('boardingType'))
+                        ->where('Province','LIKE',request('Province'))
+                        ->latest('created_at')->first();
+
+        if($Boadrings){
+        //    sendSms(); 
+        }
 
         return back()->with('message', 'Your Request has been successfully added!');
     }

@@ -46,7 +46,8 @@ class HouseRequestController extends Controller
      */
     public function show(HouseRequest $houseRequest)
     {
-        //
+        $HouseRequest = HouseRequest::orderBy('created_at','desc')->get();
+        return view('requestBoarding.showHouseRequest', compact('HouseRequest'));
     }
 
     /**

@@ -11,10 +11,17 @@
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     {{-- <link href={{asset('css/css/material-kit.css')}} rel="stylesheet"> --}}
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
-    <link href={{asset('css/sweetalert2.min.css')}} rel="stylesheet">
+    <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/select2/select2.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+    
+    <script type="text/javascript" src={{asset('js/datatables.net/js/jquery.dataTables.min.js')}}></script>
+    <script type="text/javascript" src={{asset('datatables.net-select-bs4/js/select.bootstrap4.min.js')}}></script>
+    <script src="{{asset('js/jquery-confirm.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
 
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <style>
@@ -293,13 +300,22 @@
                                         <div class="field">
                                             <label class="label">Province</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="Province">
-                                                <span class="icon is-small is-left">
-                                                    <i class="fas fa-user"></i>
-                                                </span>
-                                                <span class="icon is-small is-right">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
+                                                <div class="form-group">
+                                                    <select name="Province" class="form-control form-control-lg" id="province">
+                                                        <option value="Central Province">Central Province</option>
+                                                        <option  value="Eastern Province">Eastern Province</option>
+                                                        <option  value="Northern Province">Northern Province</option>
+                                                        <option  value="Southern Province">Southern Province</option>
+                                                        <option  value="Western Province">Western Province</option>
+                                                        <option  value="Western Province">North Western Province</option>
+                                                        <option  value="Western Province">North Central Province</option>
+                                                        <option  value="Western Province">Uva Province</option>
+                                                        <option  value="Western Province">Sabaragamuwa Province</option>
+                                                    </select>
+                                                    <script>
+                                                        $("#province").select2(); 
+                                                    </script>             
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
