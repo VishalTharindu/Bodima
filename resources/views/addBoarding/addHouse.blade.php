@@ -282,7 +282,7 @@
                                     </div>
                                     <div class="column is-6">
                                         <hr>
-                                        <label class="label has-text-centered">For Whome</label>
+                                        <label class="label has-text-centered">For Whom</label>
                                         <div class="my-3"></div>
                                         <div class="columns">
                                             <div class="column">
@@ -393,7 +393,7 @@
                                             <label class="label">Description</label>
                                             <div class="field">
                                                 <div class="control">
-                                                    <textarea class="textarea" placeholder="Textarea" name="Description"></textarea>
+                                                    <textarea class="textarea" placeholder="Textarea" name="Description" required></textarea>
                                                 </div>
                                                 @if ($errors->has('Description'))
                                                     <span class="invalid-feedback" role="alert">
@@ -482,7 +482,7 @@
                                         <div class="field">
                                             <label class="label">City</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="City">
+                                                <input class="input" type="text" placeholder="Text input" name="City" required>
                                                 <span class="icon is-small is-left">
                                                     <i class="fas fa-user"></i>
                                                 </span>

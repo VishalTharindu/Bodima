@@ -529,10 +529,10 @@
                     {{-- Contact Owner Emaik --}}
                     <div class="notification is-warning">
                         <button class="deletenotify"></button>
-                        <strong>Important information:</strong> This ad has been posted on Realproperty.lk by the above mentioned
-                        advertiser. Realproperty.lk does not have any connection with this advertiser, nor do we vet the advertisers,
+                        <strong>Important information:</strong> This ad has been posted on Bodima.lk by the above mentioned
+                        advertiser. Bodima.lk does not have any connection with this advertiser, nor do we vet the advertisers,
                         guarantee their services, responsible for the accuracy of the ad's content or are responsible for services
-                        provided by the advertisers. Realproperty.lk does not provide any service other than list the advertisements
+                        provided by the advertisers. Bodima.lk does not provide any service other than list the advertisements
                         posted by advertisers. You will be contacting the advertiser (owner/agent) of this property directly. We
                         advise you to take precaution when making any payments or signing any agreements and be alert of any possible
                         scams. If making any payments we recommend that you have two permanent & verified methods of contact of the

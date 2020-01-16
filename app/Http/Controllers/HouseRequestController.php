@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\HouseRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Alert;
 
 class HouseRequestController extends Controller
 {
@@ -81,6 +83,10 @@ class HouseRequestController extends Controller
      */
     public function destroy(HouseRequest $houseRequest)
     {
-        //
+        // DB::table('houses')->where('id', '=', $house->id)->delete();
+        $te = DB::table('boarding_requests')->where('id', '=', $houseRequest->id)->get();
+        dd($te);
+        Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
+        return back();
     }
 }

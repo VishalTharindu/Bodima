@@ -28,7 +28,7 @@
           
             <!-- Start your project here-->
            <!-- Section heading -->
-          <h2 class="h1-responsive font-weight-bold my-5">Recomonded Bodims</h2>
+          <h2 class="h1-responsive font-weight-bold my-5">High Rated Boarding</h2>
           <!-- Section description -->
           <p class="grey-text w-responsive mx-auto mb-5">This are the recomonded bording for you to check.those would be good offers for you</p>
           

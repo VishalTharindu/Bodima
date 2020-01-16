@@ -87,6 +87,7 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::get('/show/houserequest','HouseRequestController@show');
     Route::get('/add/houserequst','HouseRequestController@create')->middleware('auth');
     Route::post('/add/houserequst','BoardingRequestController@storeHouserRequest')->middleware('auth');
+    Route::post('/delete/boarding_requestsRequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
 
     /****************Annex request routes********************/
     Route::get('/add/annexrequst','AnexRequstController@create')->middleware('auth');

@@ -55,7 +55,7 @@
                           <p>Key Money : Rs {{$requestdetails->KeyMoney}}</p>
                         </div>
                         <div class="col-md-3">
-                          <div class="has-background-danger text-center rounded mb-0">
+                          <div class="has-background-success text-center rounded mb-0">
                             <h5 class="text-white">Finding by: </h5>
                           </div>
                           <div class="my-3"></div>
@@ -92,7 +92,7 @@
                           </p>
                         </div>
                         <div class="col-md-3">
-                          <div class="has-background-danger text-center rounded mb-0">
+                          <div class="has-background-success text-center rounded mb-0">
                             <h5 class="text-white">Contact Details</h5>
                           </div>
                           <div class="my-3"></div>
@@ -107,16 +107,15 @@
                         <div class="column">
     
                         </div>
-                        <div class="column text-center">
-                          <!-- Linkedin -->
-                          <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
-                          <!-- Twitter -->
-                          <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
-                          <!-- Dribbble -->
-                          <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
-                        </div>
+                        
                         <div class="column is-pulled-right">
                           <a href="http://" class="button is-success is-pulled-right">More Details</a>
+                          @if (Auth::user()==$requestdetails->user)                    
+                        <form action="/delete/boarding_requestsRequest/{{$requestdetails->id}}" method="post">
+                              @csrf
+                              <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
+                          </form>
+                         @endif 
                         </div>
                       </div>
                   
@@ -125,13 +124,15 @@
                   </div>
               </div>
             </div>
-            <div class="my-5"></div>             
+            <div class="my-5"></div>                   
           @endforeach
         </div>
         
     </div>
   <!-- Card -->
-
+  <script type="text/javascript" src={{asset('js/jquery-3.3.1.min.js')}}></script>
+  {{-- <script type="text/javascript" src={{asset('js/SweetAlert.js')}}></script> --}}
+  <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
   <script type="text/javascript" src={{asset('js/flickity.pkgd.min.js')}}></script>
 
   <script>
@@ -152,6 +153,39 @@
             x.style.display = "none";
         }
     }
+</script>
+
+<script>
+  function deleteMe() {
+  event.preventDefault();
+  var form = event.target.form;
+  Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: "hsl(141, 71%, 48%)",
+      cancelButtonColor: "hsl(348, 100%, 61%)",
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+  }).then((result) => {
+      if (result.value) {
+          
+          form.submit();
+
+      } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+      ) {
+          Swal.fire(
+              'Cancelled',
+              'Boarding is safe :)',
+              'info'
+          )
+      }
+  });
+}
 </script>
 </body>
 </html>

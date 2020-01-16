@@ -49,7 +49,6 @@
               <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
               <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
               <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
-              <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
               <li class="nav-item">
                   <ul class="navbar-nav nav ml-auto">
                     <!-- Authentication Links -->
