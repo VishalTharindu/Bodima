@@ -100,7 +100,7 @@
                 <div class="card">
                     <div class="card-image">
                       <figure class="image is-4by3">
-                        <img src="/images/B1.jpg" alt="Placeholder image">
+                        <img src="/images/uploads/boardingimg/{{json_decode($post->boarding->filename)[0]}}" alt="Placeholder image">
                       </figure>
                     </div>
                     <div class="card-content">

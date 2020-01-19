@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Boarding;
 use App\BoardingRequest;
 use Illuminate\Http\Request;
+use Nexmo\Laravel\Facade\Nexmo;
+use Illuminate\Support\Facades\DB;
+use Alert;
 
 use App\HouseRequest;
 use App\SingleRoomRequest;
@@ -44,7 +47,7 @@ class BoardingRequestController extends Controller
      */
     public function storeHouserRequest(Request $request)
     {
-        
+        // dd($request);
         $request->validate([
             'boardingType' => 'required',
             'MonthlyRent' => 'required',
@@ -131,7 +134,15 @@ class BoardingRequestController extends Controller
                         ->latest('created_at')->first();
 
         if($Boadrings){
-        //    sendSms(); 
+            $test = $request->Telephone;
+            Nexmo::message()->send([
+                'to' => '94' .$test,
+                'from' => 'Nexmo',
+                'text' => 'We Found Boarding Place Matching With Your Requirement.'
+            ]);
+    
+            // Session::flash('success', 'Message sent');
+            return back()->with('message', 'Your Request has been successfully added!');
         }
 
         return back()->with('message', 'Your Request has been successfully added!');
@@ -351,6 +362,9 @@ class BoardingRequestController extends Controller
      */
     public function destroy(BoardingRequest $boarding_requestsRequest)
     {
-        //
+        // dd($boarding_requestsRequest);
+        DB::table('boarding_requests')->where('id', '=', $boarding_requestsRequest->id)->delete();
+        Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
+        return back();
     }
 }
