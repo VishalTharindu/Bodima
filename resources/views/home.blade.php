@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Bodima Home</title>
 
         <!-- Styles&Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
         <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
         <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+        <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
         <link href="{{asset('css/css/mdb.css')}}" rel="stylesheet">
 
 
@@ -152,12 +153,14 @@
                 </div>
             </div>
         </div>
-        {{-- script section --}}
-        <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-        <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
-        <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
-        <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
-        
-        @include('sweet::alert')
     </body>
+    {{-- script section --}}
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+    
+    @include('sweet::alert')
+    @toastr_render
 </html>

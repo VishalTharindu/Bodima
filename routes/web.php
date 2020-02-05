@@ -16,12 +16,6 @@ Route::get('/dashboard','PageController@dashboard');
 Route::get('/user/delete/boarding','BoardingController@show');
 Route::get('/membertype','PrimiumMemberPaymentController@index');
 
-
-
-
-
-
-
 // -----------------Favourite Routies--------------------------
 Route::post('/view/house/add/favourite','MyFavouritController@store')->middleware('auth');
 
@@ -42,6 +36,7 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::post('/searchresult/house/','HouseController@searchHouse')->middleware('auth');
    Route::get('/searchresult/house/','HouseController@searcresultview')->middleware('auth');
    Route::get('/house/favorite/{house}','MyFavouritController@favoriteHouse')->middleware('auth');
+   Route::post('/house/contactowner/{house}','UserEmailController@houseContact');
 
 
    /****************Single room routes********************/
@@ -59,7 +54,7 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::get('/view/anex/{anex}','VisitBoarding@viewAnex')->middleware('auth');
    Route::get('/add/anex','BoardingController@anex')->middleware('auth');
    Route::post('/add/anexs','BoardingController@anexstore')->middleware('auth');
-   Route::post('/delete/anex/{anex}','SingleRoomController@destroy')->middleware('auth');
+   Route::post('/delete/anex/{anex}','AnexController@destroy')->middleware('auth');
    Route::post('/searchresult/annex/','AnexController@searchannex')->middleware('auth');
    Route::get('/searchresult/annex/','AnexController@searcresultview')->middleware('auth');
    
@@ -109,6 +104,12 @@ Route::get('/user/boarding','BoardingController@show')->middleware('auth');
 Route::post('profile/UpdateAccount','ProfileController@updateAccount')->middleware('auth');
 Route::get('/house/favorite','MyFavouritController@showfavorite')->middleware('auth');
 Route::get('/remove/favorite/{favoriteid}','MyFavouritController@destroyfavorite')->middleware('auth');
+Route::get('/user/message','ProfileController@myMessage')->middleware('auth');
+Route::get('/user/message/all','ProfileController@viewAllMessage')->middleware('auth');
+Route::get('/user/message/{message}/view','ProfileController@viewMessage')->middleware('auth');
+Route::post('/profile/message/reply','UserEmailController@replyMessage')->middleware('auth');
+Route::post('/user/message/{message}/delete','ProfileController@deleteMessage')->middleware('auth');
+
 
 
 // Route::get('/lg', function () {

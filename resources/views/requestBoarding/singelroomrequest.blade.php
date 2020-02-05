@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="{{asset('css/bulma/argon-dashboard.css')}}">
     <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
     <link href={{asset('css/sweetalert2.min.css')}} rel="stylesheet">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
     <script type="text/javascript" src={{asset('js/select2/select2.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
@@ -34,14 +36,14 @@
     @include('incfile.innernav')
     <div class="section is-medium">       
         <div class="columns is-mobile is-centered">
-            <div class="column is-8">                
+            {{-- <div class="column is-8">                
                 @if(session()->has('message'))
                 <div class="notification is-success">
                     <button class="delete"></button>
                     <h1 class="is-size-4"><b> {{ session()->get('message') }}</b></h1>
                 </div>
                 @endif
-            </div>
+            </div> --}}
         </div>
         <div class="">
             <form action="/add/singelroomrequest" method="POST" enctype="multipart/form-data">

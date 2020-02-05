@@ -19,6 +19,34 @@ nav.navbar{
   color: #31de79;
 }
 
+/* toast alert style */
+
+#toast-container>div {
+  opacity: 1;
+}
+
+.toast {
+  font-size: initial !important;
+  border: initial !important;
+  backdrop-filter: blur(0) !important;
+}
+
+.toast-success {
+  background-color: #19D895 !important;
+}
+
+.toast-error {
+  background-color: #ff6258 !important;
+}
+
+.toast-info {
+  background-color: #8862e0, !important;
+}
+
+.toast-warning {
+  background-color: #ffaf00 !important;
+}
+
 /* recomond section */
 
 .recomod{

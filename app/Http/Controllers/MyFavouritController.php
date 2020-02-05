@@ -60,13 +60,15 @@ class MyFavouritController extends Controller
 
             try {
                 $favorite->save();
+                toastr()->success('Your Favourite has been successfully added!');
                 // Alert::success('Favorite has been added successfully!', 'Favorite Added')->autoclose(3000);
-                return back()->with('message', 'Your Favourite has been successfully added!');
+                return back();
             } catch (\Illuminate\Database\QueryException $e) {
 
                 $errorCode = $e->errorInfo[1];
                 if ($errorCode == '1062') {
-                    Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
+                    toastr()->warning('Your Favourite has been successfully added!');
+                    // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
                     return back();
                 }
             }
@@ -74,8 +76,9 @@ class MyFavouritController extends Controller
             Alert::error('Something went wrong!', 'Oops!')->autoclose(3000);
             return back();
         } else {
+            toastr()->warning('Favorite has been already added!');
             // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
-            return back()->with('message', 'Favorite has been already added!');
+            return back();
         }
     }
 

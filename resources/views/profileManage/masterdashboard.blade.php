@@ -8,13 +8,13 @@
 
   <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
   <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+  <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
   <link rel="stylesheet" href="{{asset('css/bulma/argon-dashboard.css')}}">
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/x.y.z/css/bulma.css" /> --}}
 
 
-  <script type="text/javascript" src={{asset('js/jquery-3.4.1.min.js')}}></script>
-
+  {{-- <script type="text/javascript" src={{asset('js/jquery-3.4.1.min.js')}}></script> --}}
 </head>
   <body>
 
@@ -123,7 +123,7 @@
             <ul class="menu-list">
               <li><a href="/user/profile" class="text-dark heading-medium">Profile</a></li>
               <li><a class="text-dark heading-medium" href="/house/favorite">My Favorit</a></li>
-              <li><a class="text-dark heading-medium">My Inbox</a></li>
+              <li><a class="text-dark heading-medium" href="/user/message">My Inbox</a></li>
             </ul>
             <p class="menu-label has-text-black heading is-size-6">
               Administration
@@ -168,6 +168,12 @@
             @include('profileManage.userboarding')
             @elseif(Request::is('house/favorite'))
             @include('profileManage.userfavourite')
+            @elseif(Request::is('user/message/all'))
+            @include('profileManage.allmessage')
+            @elseif(Request::is('user/message'))
+            @include('profileManage.message')
+            @elseif(Request::is('profile/message/*/view'))
+            @include('profileManage.viewmassage')
             @else
             @include('profileManage.dashboard')
             @endif
@@ -183,33 +189,70 @@
             </div>
         </main>
       </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    </div> 
+  </body>
+  <script type="text/javascript" src={{asset('js/jquery-3.3.1.min.js')}}></script>
+  <script src="{{asset('js/toastr.min.js')}}"></script>
+  <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
 // Get all "navbar-burger" elements
-          const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-          // Check if there are any navbar burgers
-          if ($navbarBurgers.length > 0) {
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
 
-            // Add a click event on each of them
-            $navbarBurgers.forEach( el => {
-              el.addEventListener('click', () => {
+        // Add a click event on each of them
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
 
-                // Get the target from the "data-target" attribute
-                const target = el.dataset.target;
-                const $target = document.getElementById(target);
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
 
-                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                el.classList.toggle('is-active');
-                $target.classList.toggle('is-active');
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
 
-              });
-            });
-          }
-
+          });
         });
-    </script>
-  </body>
+      }
+
+    });
+</script>
+<script>
+  function deleteMe() {
+  event.preventDefault();
+  var form = event.target.form;
+  Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: "hsl(141, 71%, 48%)",
+      cancelButtonColor: "hsl(348, 100%, 61%)",
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+  }).then((result) => {
+      if (result.value) {
+          
+          form.submit();
+
+      } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+      ) {
+          Swal.fire(
+              'Cancelled',
+              'Boarding is safe :)',
+              'info'
+          )
+        }
+      });
+    }
+  </script>
+  @toastr_render
+  @include('sweet::alert')
 </html>

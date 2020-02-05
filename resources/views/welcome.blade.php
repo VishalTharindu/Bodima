@@ -24,7 +24,7 @@
 
       <div class="recomod">
         <div class="container">
-          <h2 class="h1-responsive font-weight-bold my-5">Recomonded Bodims</h2>
+          <h2 class="h1-responsive font-weight-bold my-5">High Rated Boarding</h2>
           <p class="grey-text w-responsive mx-auto mb-5">This are the recomonded bording for you to check.those would be good offers for you</p>
           <div class="row text-center">
             <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">

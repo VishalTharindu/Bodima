@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
     <link href="{{asset('css/css/mdb.css')}}" rel="stylesheet">
     <title>All Request</title>
     <style>
@@ -131,6 +132,8 @@
     </div>
   <!-- Card -->
   <script type="text/javascript" src={{asset('js/jquery-3.3.1.min.js')}}></script>
+  <script src="{{asset('js/toastr.min.js')}}"></script>
+  @toastr_render
   {{-- <script type="text/javascript" src={{asset('js/SweetAlert.js')}}></script> --}}
   <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
   <script type="text/javascript" src={{asset('js/flickity.pkgd.min.js')}}></script>
