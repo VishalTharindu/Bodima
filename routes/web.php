@@ -35,7 +35,7 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::post('/delete/house/{house}','HouseController@destroy')->middleware('auth');
    Route::post('/searchresult/house/','HouseController@searchHouse')->middleware('auth');
    Route::get('/searchresult/house/','HouseController@searcresultview')->middleware('auth');
-   Route::get('/house/favorite/{house}','MyFavouritController@favoriteHouse')->middleware('auth');
+   Route::get('/add/favorite/house/{house}','MyFavouritController@favoriteHouse')->middleware('auth');
    Route::post('/house/contactowner/{house}','UserEmailController@houseContact');
 
 
@@ -47,6 +47,7 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::post('/delete/singleroom/{singleRoom}','SingleRoomController@destroy')->middleware('auth');
    Route::post('/searchresult/singleroom/','SingleRoomController@searchsingleroom')->middleware('auth');
    Route::get('/searchresult/singleroom/','SingleRoomController@searcresultview')->middleware('auth');
+   Route::get('/add/favorite/singleroom/{singleroom}','MyFavouritController@favoriteHouse')->middleware('auth');
 
 
    /****************Annex routes********************/
@@ -57,6 +58,7 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::post('/delete/anex/{anex}','AnexController@destroy')->middleware('auth');
    Route::post('/searchresult/annex/','AnexController@searchannex')->middleware('auth');
    Route::get('/searchresult/annex/','AnexController@searcresultview')->middleware('auth');
+   Route::get('/add/favorite/anex/{annex}','MyFavouritController@favoriteHouse')->middleware('auth');
    
 
 // ++++++++loadig views+++++++++++++++++

@@ -82,6 +82,82 @@ class MyFavouritController extends Controller
         }
     }
 
+    public function favoriteannex(Anex $annex)
+    {
+
+
+        $isExits = MyFavourit::where('boarding_id', '=', $annex->boarding->id)
+            ->where('user_id', '=', auth()->id())
+            ->get();
+        if ($isExits->count() <= 0) {
+            $favorite = new MyFavourit;
+            $favorite->boarding_id = $annex->boarding->id;
+            $favorite->user_id = auth()->id();
+            $favorite->house_id = $annex->id;
+
+
+            try {
+                $favorite->save();
+                toastr()->success('Your Favourite has been successfully added!');
+                // Alert::success('Favorite has been added successfully!', 'Favorite Added')->autoclose(3000);
+                return back();
+            } catch (\Illuminate\Database\QueryException $e) {
+
+                $errorCode = $e->errorInfo[1];
+                if ($errorCode == '1062') {
+                    toastr()->warning('Your Favourite has been successfully added!');
+                    // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
+                    return back();
+                }
+            }
+
+            Alert::error('Something went wrong!', 'Oops!')->autoclose(3000);
+            return back();
+        } else {
+            toastr()->warning('Favorite has been already added!');
+            // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
+            return back();
+        }
+    }
+
+    public function favoritesingleroom(SingleRoom $singleroom)
+    {
+
+
+        $isExits = MyFavourit::where('boarding_id', '=', $singleroom->boarding->id)
+            ->where('user_id', '=', auth()->id())
+            ->get();
+        if ($isExits->count() <= 0) {
+            $favorite = new MyFavourit;
+            $favorite->boarding_id = $singleroom->boarding->id;
+            $favorite->user_id = auth()->id();
+            $favorite->house_id = $singleroom->id;
+
+
+            try {
+                $favorite->save();
+                toastr()->success('Your Favourite has been successfully added!');
+                // Alert::success('Favorite has been added successfully!', 'Favorite Added')->autoclose(3000);
+                return back();
+            } catch (\Illuminate\Database\QueryException $e) {
+
+                $errorCode = $e->errorInfo[1];
+                if ($errorCode == '1062') {
+                    toastr()->warning('Your Favourite has been successfully added!');
+                    // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
+                    return back();
+                }
+            }
+
+            Alert::error('Something went wrong!', 'Oops!')->autoclose(3000);
+            return back();
+        } else {
+            toastr()->warning('Favorite has been already added!');
+            // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
+            return back();
+        }
+    }
+
     public function destroyfavorite(MyFavourit $favoriteid)
     {
         DB::table('my_favourits')->where('id', '=', $favoriteid->id)->delete();
