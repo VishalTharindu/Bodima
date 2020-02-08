@@ -142,10 +142,12 @@ class BoardingRequestController extends Controller
             ]);
     
             // Session::flash('success', 'Message sent');
-            return back()->with('message', 'Your Request has been successfully added!');
+            toastr()->success('Your Favourite has been successfully added!');
+            return back();;
         }
 
-        return back()->with('message', 'Your Request has been successfully added!');
+        toastr()->success('Your Favourite has been successfully added!');
+        return back();
     }
 
     public function storeAnnexRequest(Request $request)

@@ -89,11 +89,12 @@ class MyFavouritController extends Controller
         $isExits = MyFavourit::where('boarding_id', '=', $annex->boarding->id)
             ->where('user_id', '=', auth()->id())
             ->get();
+            
         if ($isExits->count() <= 0) {
             $favorite = new MyFavourit;
             $favorite->boarding_id = $annex->boarding->id;
             $favorite->user_id = auth()->id();
-            $favorite->house_id = $annex->id;
+            $favorite->anex_id = $annex->id;
 
 
             try {
@@ -131,7 +132,7 @@ class MyFavouritController extends Controller
             $favorite = new MyFavourit;
             $favorite->boarding_id = $singleroom->boarding->id;
             $favorite->user_id = auth()->id();
-            $favorite->house_id = $singleroom->id;
+            $favorite->singleroom_id = $singleroom->id;
 
 
             try {
@@ -161,6 +162,7 @@ class MyFavouritController extends Controller
     public function destroyfavorite(MyFavourit $favoriteid)
     {
         DB::table('my_favourits')->where('id', '=', $favoriteid->id)->delete();
+        toastr()->success('Your Favourite has been successfully removed!');
         // Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
         return back();
     }

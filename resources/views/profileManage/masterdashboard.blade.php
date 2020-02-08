@@ -122,7 +122,7 @@
             </p>
             <ul class="menu-list">
               <li><a href="/user/profile" class="text-dark heading-medium">Profile</a></li>
-              <li><a class="text-dark heading-medium" href="/house/favorite">My Favorit</a></li>
+              <li><a class="text-dark heading-medium" href="/my/favorite">My Favorit</a></li>
               <li><a class="text-dark heading-medium" href="/user/message">My Inbox</a></li>
             </ul>
             <p class="menu-label has-text-black heading is-size-6">
@@ -166,8 +166,8 @@
             @include('profileManage.profile')
             @elseif(Request::is('user/boarding'))
             @include('profileManage.userboarding')
-            @elseif(Request::is('house/favorite'))
-            @include('profileManage.userfavourite')
+            @elseif(Request::is('my/favorite'))
+            @include('profileManage.userfavouritehandler')
             @elseif(Request::is('user/message/all'))
             @include('profileManage.allmessage')
             @elseif(Request::is('user/message'))

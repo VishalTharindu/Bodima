@@ -38,5 +38,5 @@
             </div>
         </div>
         <h2>Nothing to Display</h2>
-        <p><em>If you think something wrong here, please contact us.</em></p>
+        <p class="has-text-danger"><em>If you think something wrong here, please contact us.</em></p>
     </div>
