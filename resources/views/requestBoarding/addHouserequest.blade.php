@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
     <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     {{-- <link href={{asset('css/css/material-kit.css')}} rel="stylesheet"> --}}
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
     <script type="text/javascript" src={{asset('js/select2/select2.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
@@ -32,8 +35,77 @@
 
 </head>
 <body class="has-background-white-ter">
-        @include('incfile.navibar')
-
+        {{-- @include('incfile.navibar') --}}
+    <div class="data-spy="scroll" data-target=".site-navbar-target" data-offset="300"">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target shadow p-1 mb-5 bg-white rounded navbar-fixed" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand nav-link" href="index.html">Bo<span>dima</span></a>
+                <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span>Menu
+                </button>
+    
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="/" class="nav-link"><span>Home</span></a></li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Boarding
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/show/house">House</a>
+                        <a class="dropdown-item" href="/show/Annex">Annex</a>
+                        <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
+                    </div>
+                    </li>
+                    <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
+                    <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
+                    <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
+                    <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
+                    <li class="nav-item">
+                        <ul class="navbar-nav nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item float-right">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item float-right">
+                                    <a class="nav-link is-pilled-right" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                        <li class="nav-item dropdown is-pulled-right">
+                            <div class="btn-group is-pulled-right">
+                            <a class="btn  dropdown-toggle is-pulled-right" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false class=" href="#" role="button">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                                {{-- <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                                </button> --}}
+                                <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/user/profile">Profile</a>
+                                <a class="dropdown-item" href="/user/boarding">Account Setting</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                </div>
+                            </div>
+                            </li>
+                        @endguest
+                    </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div class="section is-medium">
         <div class="columns is-mobile is-centered">
             <div class="column is-8">
@@ -272,7 +344,13 @@
                                     </div>
                                     <div class="column is-6">
                                         <div class="control has-icons-left has-icons-right">
-                                            <input class="input" type="text" placeholder="Text input" name="KeyMoney">                                           
+                                            <input class="input" type="text" placeholder="Text input" name="KeyMoney">
+                                            
+                                            @if ($errors->has('KeyMoney'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong class="text-danger">{{ $errors->first('KeyMoney') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>                                                              
@@ -325,13 +403,37 @@
                                         <div class="field">
                                             <label class="label">District</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="District">
-                                                <span class="icon is-small is-left">
-                                                    <i class="fas fa-user"></i>
-                                                </span>
-                                                <span class="icon is-small is-right">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
+                                                <div class="form-group">
+                                                    <select name="District" class="form-control form-control-lg" id="distric">
+                                                        <option value="Ampara">Ampara</option>
+                                                        <option  value="Anuradhapura">Anuradhapura</option>
+                                                        <option  value="Badulla">Badulla</option>
+                                                        <option  value="Batticaloa">Batticaloa</option>
+                                                        <option  value="Colombo">Colombo</option>
+                                                        <option  value="Galle">Galle</option>
+                                                        <option  value="Gampaha">Gampaha</option>
+                                                        <option  value="Hambantota">Hambantota</option>
+                                                        <option  value="Kalutara">Kalutara</option>
+                                                        <option  value="Kandy">Kandy</option>
+                                                        <option  value="Kegalle">Kegalle</option>
+                                                        <option  value="Kilinochchi">Kilinochchi</option>
+                                                        <option  value="Kurunegala">Kurunegala</option>
+                                                        <option  value="Mannar">Mannar</option>
+                                                        <option  value="Matale">Matale</option>
+                                                        <option  value="Matara">Matara</option>
+                                                        <option  value="Monaragala">Monaragala</option>
+                                                        <option  value="Mullaitivu">Mullaitivu</option>
+                                                        <option  value="Nuwara Eliya">Nuwara Eliya</option>
+                                                        <option  value="Polonnaruwa">Polonnaruwa</option>
+                                                        <option  value="Puttalam">Puttalam</option>
+                                                        <option  value="Ratnapura">Ratnapura</option>
+                                                        <option  value="Trincomalee">Trincomalee</option>
+                                                        <option  value="Vavuniya">Vavuniya</option>                                   
+                                                    </select>
+                                                    <script>
+                                                        $("#distric").select2(); 
+                                                    </script>             
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -341,56 +443,24 @@
                                         <div class="field">
                                             <label class="label">City</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="City">
-                                                <span class="icon is-small is-left">
-                                                    <i class="fas fa-user"></i>
-                                                </span>
-                                                <span class="icon is-small is-right">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
+                                                <input class="form-control form-control-alternative" {{ $errors->has('City') ? ' is-invalid' : ''}} type="text" placeholder="Text input" name="City">
+                                                @if ($errors->has('City'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong class="text-danger">{{ $errors->first('City') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="columns">
+                            <div class="columns">
                                 <div class="column is-12">
-                                <div class="box has-background-white-bis">
-                                    <div class="my-4"></div>
-                                    <div class="columns is mobile is-centered">
-                                        <div class="container">
-                                            <label class="label has-text-centered">Map</label>
-                                            <div>
-                                                <img src="images/map.png" alt="">
-                                            </div>
+                                    <div class="box has-background-white-bis">
+                                        <div class="my-4"></div>
+                                        <div class="columns is mobile is-centered">
+                                            <label class="label has-text-centered">Personal Details</label>
                                         </div>
-                                    </div>
-                                    <div class="columns">
-                                        <div class="column is-12">
-                                            <div class="field">
-                                                <label class="label">Codination</label>
-                                                <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
-                                                    </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <div class="columns">
-                            <div class="column is-12">
-                                <div class="box has-background-white-bis">
-                                    <div class="my-4"></div>
-                                    <div class="columns is mobile is-centered">
-                                        <label class="label has-text-centered">Personal Details</label>
-                                    </div>
                                     <div class="columns">
                                         <div class="column is-12">
                                             <div class="field">
@@ -451,96 +521,11 @@
                     </div> 
                 </div>
             </form>
-            {{-- <div class="columns">
-                    <div class="column is-6">
-                        <div class="field">
-                            <label class="label">Name</label>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="Text input">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column is-6">
-                        <div class="field">
-                            <label class="label">Username</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input class="input" type="text" placeholder="Text input">
-                                <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                                </span>
-                                <span class="icon is-small is-right">
-                                <i class="fas fa-check"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>     
-                </div>
-            
-            <div class="field">
-                <label class="label">Email</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input is-danger" type="email" placeholder="Email input">
-                    <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                    </span>
-                    <span class="icon is-small is-right">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    </span>
-                </div>
-                <p class="help is-danger">This email is invalid</p>
-            </div>
-            
-            <div class="field">
-                <label class="label">Subject</label>
-                <div class="control">
-                    <div class="select">
-                    <select>
-                        <option>Select dropdown</option>
-                        <option>With options</option>
-                    </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">Message</label>
-                <div class="control">
-                    <textarea class="textarea" placeholder="Textarea"></textarea>
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <label class="checkbox">
-                    <input type="checkbox">
-                    I agree to the <a href="#">terms and conditions</a>
-                    </label>
-                </div>
-            </div> 
-            <div class="field">
-                <div class="control">
-                    <label class="radio">
-                    <input type="radio" name="question">
-                    Yes
-                    </label>
-                    <label class="radio">
-                    <input type="radio" name="question">
-                    No
-                    </label>
-                </div>
-            </div>
-            
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link">Submit</button>
-                </div>
-                <div class="control">
-                    <button class="button is-link is-light">Cancel</button>
-                </div>
-            </div> --}}
         </div>
     </div>
     {{-- <script src="{{asset('css/bulma/bulmaCheckradio/gulpfile.js')}}"></script> --}}
 
-    <div class="footsec">
+    {{-- <div class="footsec">
             <div class="container">
                 <div class="block">
                     <div class="columns">
@@ -594,9 +579,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <script>
+        {{-- <script>
             document.addEventListener('DOMContentLoaded', () => {
                 (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
                     $notification = $delete.parentNode;
@@ -605,7 +590,7 @@
                     });
                 });
             });
-        </script>
+        </script> --}}
         {{-- <script>
             $(document).on('click', '[#addSucc]', function (e) {
                 e.preventDefault();
@@ -644,4 +629,5 @@
             });
         </script> --}}
 </body>
+@toastr_render
 </html>

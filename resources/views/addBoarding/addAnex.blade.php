@@ -49,9 +49,9 @@
                       Boarding
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="/bodim">House</a>
-                      <a class="dropdown-item" href="/bodim">Annex</a>
-                      <a class="dropdown-item" href="/bodim">Single Room</a>                 
+                      <a class="dropdown-item" href="/show/house">House</a>
+                      <a class="dropdown-item" href="/show/Annex">Annex</a>
+                      <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
                     </div>
                   </li>
                   <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>

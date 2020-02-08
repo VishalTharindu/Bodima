@@ -7,12 +7,13 @@
     <title>Add single room request</title>
 
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/bulma/bulma-checkradio.min.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bulma/argon-dashboard.css')}}">
-    <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    {{-- <link href={{asset('css/css/material-kit.css')}} rel="stylesheet"> --}}
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
-    <link href={{asset('css/sweetalert2.min.css')}} rel="stylesheet">
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
+    <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src={{asset('js/select2/select2.min.js')}}></script>
@@ -22,6 +23,7 @@
     <script type="text/javascript" src={{asset('js/datatables.net/js/jquery.dataTables.min.js')}}></script>
     <script type="text/javascript" src={{asset('datatables.net-select-bs4/js/select.bootstrap4.min.js')}}></script>
     <script src="{{asset('js/jquery-confirm.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
 
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <style>
@@ -29,19 +31,90 @@
             width: 100%;
         }
     </style>
+
 </head>
-<body>
-    @include('incfile.innernav')
+<body class="has-background-white-ter">
+        {{-- @include('incfile.navibar') --}}
+    <div class="data-spy="scroll" data-target=".site-navbar-target" data-offset="300"">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target shadow p-1 mb-5 bg-white rounded navbar-fixed" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand nav-link" href="index.html">Bo<span>dima</span></a>
+                <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span>Menu
+                </button>
+    
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="/" class="nav-link"><span>Home</span></a></li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Boarding
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/show/house">House</a>
+                        <a class="dropdown-item" href="/show/Annex">Annex</a>
+                        <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
+                    </div>
+                    </li>
+                    <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
+                    <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
+                    <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
+                    <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
+                    <li class="nav-item">
+                        <ul class="navbar-nav nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item float-right">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item float-right">
+                                    <a class="nav-link is-pilled-right" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                        <li class="nav-item dropdown is-pulled-right">
+                            <div class="btn-group is-pulled-right">
+                            <a class="btn  dropdown-toggle is-pulled-right" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false class=" href="#" role="button">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                                {{-- <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                                </button> --}}
+                                <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/user/profile">Profile</a>
+                                <a class="dropdown-item" href="/user/boarding">Account Setting</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                </div>
+                            </div>
+                            </li>
+                        @endguest
+                    </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div class="section is-medium">       
         <div class="columns is-mobile is-centered">
-            <div class="column is-8">                
+            {{-- <div class="column is-8">                
                 @if(session()->has('message'))
                 <div class="notification is-success">
                     <button class="delete"></button>
                     <h1 class="is-size-4"><b> {{ session()->get('message') }}</b></h1>
                 </div>
                 @endif
-            </div>
+            </div> --}}
         </div>
         <div class="">
             <form action="/add/singelroomrequest" method="POST" enctype="multipart/form-data">

@@ -147,7 +147,7 @@ class AnexController extends Controller
     {
         DB::table('anexes')->where('id', '=', $anex->id)->delete();
         DB::table('boardings')->where('id', '=', $anex->boarding->id)->delete();
-        Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
+        toastr()->success('User Boarding has been deleted successfully!');
         return view('home');
     }
 }

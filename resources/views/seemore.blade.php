@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/flickity.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
 
@@ -42,24 +43,6 @@
         <div class="container">
             <div class="my-5"></div>           
             <div class="viewsection">
-                <div class="col-md-12">
-                    @if(session()->has('message'))
-                    <div class="notification is-success">
-                        <button class="delete"></button>
-                        <h1 class="is-size-4"><b> {{ session()->get('message') }}</b></h1>
-                    </div>
-                    @endif
-                    <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-                                $notification = $delete.parentNode;
-                                $delete.addEventListener('click', () => {
-                                    $notification.parentNode.removeChild($notification);
-                                });
-                            });
-                        });
-                    </script>
-                </div>
                 <div class="column profileback">
                     <div class="container">
                         <div class="carousel carousel-main" data-flickity='{"pageDots": false }'>
@@ -72,7 +55,7 @@
                     <div class="columns is-flex-mobile">
                         <div class="column is-two-thirds is-flex-mobile">
                             <div class="containerx">
-                                <a href="/house/favorite/{{$boardingData->id}}" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
+                                <a href="/add/favorite/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" class="button is-danger is-pulled-right"><span><i class="far fa-heart"></i></span></a>
                                 <div class="is-pulled-left">
                                     <div class="title">
                                         {{$boardingData->boarding->boardingType}}, {{$boardingData->boarding->City}}
@@ -409,15 +392,15 @@
                     <hr>
                     <div class="subtitle has-text-weight-semibold" id="contactbox">Contact Owner</div>
                     <div class="column is-flex-mobile">
-                        <form action="" method="post">
+                        <form action="/house/contactowner/{{getBoardingTypeIdById($boardingData->boarding->id)}}" method="post">
                             @csrf
                             <div class="field">
                                 <div class="control">
-                                <input class="input" type="hidden" name="owner" value="">
-                                <input class="input" type="hidden" name="path" value="">
+                                <input class="input" type="hidden" name="owner" value="{{$boardingData->boarding->user->id}}">
+                                <input class="input" type="hidden" name="path" value="{{Request::path()}}">
                                 
                                 @if(Auth::check())
-                                    <input class="input" type="hidden" name="sender" value="">
+                                    <input class="input" type="hidden" name="sender" value="{{auth()->user()->id}}">
                                 @else
                                     <input class="input" type="hidden" name="sender" value="0" hidden>
                                 @endif
@@ -528,7 +511,7 @@
                     </div>
                     {{-- Contact Owner Emaik --}}
                     <div class="notification is-warning">
-                        <button class="deletenotify"></button>
+                        <button class="delete"></button>
                         <strong>Important information:</strong> This ad has been posted on Bodima.lk by the above mentioned
                         advertiser. Bodima.lk does not have any connection with this advertiser, nor do we vet the advertisers,
                         guarantee their services, responsible for the accuracy of the ad's content or are responsible for services
@@ -563,9 +546,11 @@
 
      {{-- JavaScript Files --}}
     <script type="text/javascript" src={{asset('js/jquery-3.3.1.min.js')}}></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
     {{-- <script type="text/javascript" src={{asset('js/SweetAlert.js')}}></script> --}}
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/flickity.pkgd.min.js')}}></script>
+    @toastr_render
     @include('sweet::alert')
     
     <!-- MDB core JavaScript -->

@@ -142,10 +142,12 @@ class BoardingRequestController extends Controller
             ]);
     
             // Session::flash('success', 'Message sent');
-            return back()->with('message', 'Your Request has been successfully added!');
+            toastr()->success('Your Favourite has been successfully added!');
+            return back();;
         }
 
-        return back()->with('message', 'Your Request has been successfully added!');
+        toastr()->success('Your Favourite has been successfully added!');
+        return back();
     }
 
     public function storeAnnexRequest(Request $request)
@@ -317,7 +319,11 @@ class BoardingRequestController extends Controller
 
         $singelroom->save();
 
-        return back()->with('message', 'Your Request has been successfully added!');
+        toastr()->success('Boarding request has been successfully added!');
+
+        // return view('requestBoarding/addboardingrequest');
+        return back();
+        // return back()->with('message', 'Your Request has been successfully added!');
     }
 
     /**
@@ -364,7 +370,8 @@ class BoardingRequestController extends Controller
     {
         // dd($boarding_requestsRequest);
         DB::table('boarding_requests')->where('id', '=', $boarding_requestsRequest->id)->delete();
-        Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
+        toastr()->success('Boarding request has been successfully deleted!');
+        // Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
         return back();
     }
 }

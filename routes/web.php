@@ -16,12 +16,6 @@ Route::get('/dashboard','PageController@dashboard');
 Route::get('/user/delete/boarding','BoardingController@show');
 Route::get('/membertype','PrimiumMemberPaymentController@index');
 
-
-
-
-
-
-
 // -----------------Favourite Routies--------------------------
 Route::post('/view/house/add/favourite','MyFavouritController@store')->middleware('auth');
 
@@ -41,7 +35,8 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::post('/delete/house/{house}','HouseController@destroy')->middleware('auth');
    Route::post('/searchresult/house/','HouseController@searchHouse')->middleware('auth');
    Route::get('/searchresult/house/','HouseController@searcresultview')->middleware('auth');
-   Route::get('/house/favorite/{house}','MyFavouritController@favoriteHouse')->middleware('auth');
+   Route::get('/add/favorite/house/{house}','MyFavouritController@favoriteHouse')->middleware('auth');
+   Route::post('/house/contactowner/{house}','UserEmailController@houseContact');
 
 
    /****************Single room routes********************/
@@ -52,6 +47,7 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::post('/delete/singleroom/{singleRoom}','SingleRoomController@destroy')->middleware('auth');
    Route::post('/searchresult/singleroom/','SingleRoomController@searchsingleroom')->middleware('auth');
    Route::get('/searchresult/singleroom/','SingleRoomController@searcresultview')->middleware('auth');
+   Route::get('/add/favorite/singleroom/{singleroom}','MyFavouritController@favoriteHouse')->middleware('auth');
 
 
    /****************Annex routes********************/
@@ -59,9 +55,10 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::get('/view/anex/{anex}','VisitBoarding@viewAnex')->middleware('auth');
    Route::get('/add/anex','BoardingController@anex')->middleware('auth');
    Route::post('/add/anexs','BoardingController@anexstore')->middleware('auth');
-   Route::post('/delete/anex/{anex}','SingleRoomController@destroy')->middleware('auth');
+   Route::post('/delete/anex/{anex}','AnexController@destroy')->middleware('auth');
    Route::post('/searchresult/annex/','AnexController@searchannex')->middleware('auth');
    Route::get('/searchresult/annex/','AnexController@searcresultview')->middleware('auth');
+   Route::get('/add/favorite/anex/{annex}','MyFavouritController@favoriteannex')->middleware('auth');
    
 
 // ++++++++loadig views+++++++++++++++++
@@ -107,8 +104,28 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
 Route::get('/user/profile','PageController@userprofile')->middleware('auth');
 Route::get('/user/boarding','BoardingController@show')->middleware('auth');
 Route::post('profile/UpdateAccount','ProfileController@updateAccount')->middleware('auth');
-Route::get('/house/favorite','MyFavouritController@showfavorite')->middleware('auth');
-Route::get('/remove/favorite/{favoriteid}','MyFavouritController@destroyfavorite')->middleware('auth');
+Route::get('/my/favorite','MyFavouritController@showfavorite')->middleware('auth');
+Route::post('/remove/favorite/{favoriteid}','MyFavouritController@destroyfavorite')->middleware('auth');
+Route::get('/user/message','ProfileController@myMessage')->middleware('auth');
+Route::get('/user/message/all','ProfileController@viewAllMessage')->middleware('auth');
+Route::get('/user/message/{message}/view','ProfileController@viewMessage')->middleware('auth');
+Route::post('/profile/message/reply','UserEmailController@replyMessage')->middleware('auth');
+Route::post('/user/message/{message}/delete','ProfileController@deleteMessage')->middleware('auth');
+
+
+/* ++++++++++++++++++Admin Routes+++++++++++++++++++++++++ */
+Route::get('/admin','AdminController@index');
+Route::get('/all/users','AdminController@allusers');
+
+    /* --------Boarding Routes-------- */
+    Route::get('all/house','AdminController@allhouse');
+    Route::get('all/annex','AdminController@allannex');
+    Route::get('all/singleroom','AdminController@allsingleroom');
+
+    /* ----Boarding Request Routes----- */
+    Route::get('all/house/requests','AdminController@allhouserequest');
+    Route::get('all/annex/requests','AdminController@allannexrequest');
+    Route::get('all/singleroom/requests','AdminController@allsingleroomrequest');
 
 
 // Route::get('/lg', function () {
@@ -153,6 +170,10 @@ Route::get('/testselect', function () {
 Route::get('/masterdash', function () {
     return view('profileManage.masterdashboard');
 });
+
+// Route::get('/admin', function () {
+//     return view('admin.index');
+// });
 
 
 Auth::routes(['verify' => true]);
