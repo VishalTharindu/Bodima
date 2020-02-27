@@ -33,6 +33,7 @@ class CreateBoardingsTable extends Migration
             $table->string('filename');
             $table->string('Email');
             $table->string('Telephone');
+            $table->string('Availability');
             $table->timestamps();
 
             $table->foreign('user_id')

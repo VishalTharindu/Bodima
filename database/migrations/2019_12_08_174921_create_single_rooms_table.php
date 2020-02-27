@@ -19,7 +19,6 @@ class CreateSingleRoomsTable extends Migration
             $table->string('NoOfBed');
             $table->boolean('Acavalability');
             $table->boolean('Withfurniture');
-            $table->string('numberofbthroom');
             $table->timestamps();
 
             $table->foreign('boarding_id')

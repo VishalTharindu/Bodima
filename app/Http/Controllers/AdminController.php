@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\User;
+use App\Boarding;
 
 use App\House;
 use App\Anex;
@@ -21,7 +22,17 @@ class AdminController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+
+    public function __construct()
+
+    {
+
+        $this->middleware('auth:admin');
+
+    }
+
     public function index()
     {
         return view('admin.index');
@@ -67,6 +78,25 @@ class AdminController extends Controller
     {
         $SingleRoomRequests = SingleRoomRequest::orderBy('created_at','desc')->paginate(10);
         return view('admin.index', compact('SingleRoomRequests'));
+    }
+
+    public function lockboarding(Boarding $boardingid)
+    {
+        $boarding = Boarding::find($boardingid->id);
+        $boarding->Availability = 'LOCKED';
+        $boarding->save();
+
+        toastr()->success('User Boarding successfully locked!');
+        return back();
+    }
+    public function unlockboarding(Boarding $boardingid)
+    {
+        $boarding = Boarding::find($boardingid->id);
+        $boarding->Availability = 'YES';
+        $boarding->save();
+
+        toastr()->success('User Boarding successfully Unlocked!');
+        return back();
     }
 
     /**

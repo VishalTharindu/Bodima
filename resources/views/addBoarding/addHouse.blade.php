@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">    
     <link rel="stylesheet" href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    <script src="{{asset('js/toastr.min.js')}}"></script>
     <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/jquery-confirm.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/open-iconic-bootstrap.min.css')}}">
@@ -327,7 +328,7 @@
                                 <hr>
                                 <div class="my-5"></div>
                                 <div class="columns is mobile is-centered">
-                                    <label class="label has-text-centered">Payment and Other</label>
+                                    <label class="label has-text-centered">Payment Details</label>
                                 </div>
                                 <div class="my-5"></div>
                                 <div class="columns">
@@ -368,44 +369,55 @@
                                     </div>
                                 </div>
                                 <div class="my-4"></div>                                
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <div class="field">
-                                            <label class="label">Address</label>
-                                            <div class="field">
-                                                <div class="control">
-                                                    <textarea class="textarea" placeholder="Textarea" name="Address"></textarea>
+                                <div class="my-4"></div>                              
+                            </div>
+                            <div class="columns">
+                                <div class="column is-12">
+                                    <div class="box has-background-white-bis">
+                                        <div class="my-4"></div>
+                                        <div class="columns is mobile is-centered">
+                                            <label class="label has-text-centered">Other Details</label>
+                                        </div>                                   
+                                        <div class="columns">
+                                            <div class="column is-12">
+                                                <div class="field">
+                                                    <label class="label">Address</label>
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <textarea class="textarea" placeholder="Textarea" name="Address"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    @if ($errors->has('Address'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('Address') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
-                                            @if ($errors->has('Address'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('Address') }}</strong>
-                                                </span>
-                                            @endif
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <div class="field">
-                                            <label class="label">Description</label>
-                                            <div class="field">
-                                                <div class="control">
-                                                    <textarea class="textarea" placeholder="Textarea" name="Description" required></textarea>
+                                        <div class="my-4"></div>
+                                        <div class="columns">
+                                            <div class="column is-12">
+                                                <div class="field">
+                                                    <label class="label">Description</label>
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <textarea class="textarea" placeholder="Textarea" name="Description" required></textarea>
+                                                        </div>
+                                                        @if ($errors->has('Description'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('Description') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                                @if ($errors->has('Description'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('Description') }}</strong>
-                                                    </span>
-                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="column is-6">
                             <div class="box has-background-white-bis">
                                 <div class="my-4"></div>
@@ -533,14 +545,11 @@
                         <div class="columns">
                             <div class="column is-12">
                                 <div class="box has-background-white-bis">
-                                    <div class="my-4"></div>
-                                    <div class="columns is mobile is-centered">
-                                        <label class="label has-text-centered">Personal Details</label>
-                                    </div>
+                                    <div class="my-4"></div>                                   
                                     <div class="columns">
                                         <div class="column is-12">
                                             <div class="field">
-                                                <label class="label">Your Name</label>
+                                                <label class="label">Upload Image</label>
                                                 <div class="input-group control-group increment">
                                                     <input type="file" name="filename[]" class="form-control">
                                                     <div class="input-group-btn">
@@ -558,6 +567,16 @@
                                                   </div>
                                             </div>
                                         </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-12">
+                                <div class="box has-background-white-bis">
+                                    <div class="my-4"></div>                                   
+                                    <div class="columns is mobile is-centered">
+                                        <label class="label has-text-centered">Personal Details</label>
                                     </div>
                                     <div class="columns">
                                         <div class="column is-12">
@@ -692,6 +711,7 @@
     {{-- <script src="{{asset('css/bulma/bulmaCheckradio/gulpfile.js')}}"></script> --}}
 
     {{-- @include('incfile.footer') --}}
+    @toastr_render
         <script type="text/javascript">
             $(document).ready(function() {
         

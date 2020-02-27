@@ -17,6 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="/adminstyle/css/sb-admin-2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+  <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
 
 </head>
 
@@ -281,7 +283,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->email}}</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -442,7 +444,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="{{ route('admin.logout') }}">Logout</a>
         </div>
       </div>
     </div>
@@ -465,6 +467,42 @@
   <script src="/adminstyle/js/demo/chart-area-demo.js"></script>
   <script src="/adminstyle/js/demo/chart-pie-demo.js"></script>
 
+  <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+  <script src="{{asset('js/toastr.min.js')}}"></script>
+  @toastr_render
 </body>
+
+<script>
+  function deleteMe() {
+  event.preventDefault();
+  var form = event.target.form;
+  Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: "hsl(141, 71%, 48%)",
+      cancelButtonColor: "hsl(348, 100%, 61%)",
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+  }).then((result) => {
+      if (result.value) {
+          
+          form.submit();
+
+      } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+      ) {
+          Swal.fire(
+              'Cancelled',
+              'Boarding is safe :)',
+              'info'
+          )
+      }
+  });
+}
+</script> 
 
 </html>

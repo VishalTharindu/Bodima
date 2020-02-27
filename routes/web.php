@@ -31,7 +31,8 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::get('/view/house/{house}','VisitBoarding@viewHouse')->middleware('auth');
    Route::get('/add/house','BoardingController@house')->middleware('auth');
    Route::post('/add/houses','BoardingController@housestore')->middleware('auth');
-   Route::get('/edit/houses/{house}','HouseController@edit')->middleware('auth');
+   Route::get('edit/house/{house}','HouseController@edit')->middleware('auth');
+   Route::post('/update/houses','HouseController@update');
    Route::post('/delete/house/{house}','HouseController@destroy')->middleware('auth');
    Route::post('/searchresult/house/','HouseController@searchHouse')->middleware('auth');
    Route::get('/searchresult/house/','HouseController@searcresultview')->middleware('auth');
@@ -43,6 +44,8 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::get('/show/singleroom','SingleRoomController@show');  
    Route::get('/view/singleroom/{singleroom}','VisitBoarding@viewSingleRoom')->middleware('auth');
    Route::get('/add/singalroom','BoardingController@singalroom')->middleware('auth');
+   Route::get('/edit/singleroom/{singleRoom}','SingleRoomController@edit')->middleware('auth');
+   Route::post('/update/singleroom','SingleRoomController@update');
    Route::post('/add/singalrooms','BoardingController@singleroomstore')->middleware('auth');
    Route::post('/delete/singleroom/{singleRoom}','SingleRoomController@destroy')->middleware('auth');
    Route::post('/searchresult/singleroom/','SingleRoomController@searchsingleroom')->middleware('auth');
@@ -54,6 +57,8 @@ Route::get('/addboarding','BoardingController@create')->middleware('auth');
    Route::get('/show/Annex','AnexController@show');
    Route::get('/view/anex/{anex}','VisitBoarding@viewAnex')->middleware('auth');
    Route::get('/add/anex','BoardingController@anex')->middleware('auth');
+   Route::get('/edit/anex/{anex}','AnexController@edit')->middleware('auth');
+   Route::post('/update/anexs','AnexController@update')->middleware('auth');
    Route::post('/add/anexs','BoardingController@anexstore')->middleware('auth');
    Route::post('/delete/anex/{anex}','AnexController@destroy')->middleware('auth');
    Route::post('/searchresult/annex/','AnexController@searchannex')->middleware('auth');
@@ -114,13 +119,44 @@ Route::post('/user/message/{message}/delete','ProfileController@deleteMessage')-
 
 
 /* ++++++++++++++++++Admin Routes+++++++++++++++++++++++++ */
+
+Route::prefix('admin')->group(function() {
+
+    Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
+
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+
+    Route::get('logout/', 'Auth\AdminLoginController@logout')->name('admin.logout');
+
+    Route::get('/adminhome', 'AdminController@index')->name('admin.dashboard');
+
+
+});
+
+
 Route::get('/admin','AdminController@index');
 Route::get('/all/users','AdminController@allusers');
 
     /* --------Boarding Routes-------- */
-    Route::get('all/house','AdminController@allhouse');
-    Route::get('all/annex','AdminController@allannex');
-    Route::get('all/singleroom','AdminController@allsingleroom');
+    Route::get('all/house','AdminController@allhouse')->middleware('auth:admin');
+    Route::get('all/annex','AdminController@allannex')->middleware('auth:admin');
+    Route::get('all/singleroom','AdminController@allsingleroom')->middleware('auth:admin');
+    Route::get('/lock/house/{boardingid}','AdminController@lockboarding')->middleware('auth:admin');
+    Route::get('/lock/anex/{boardingid}','AdminController@lockboarding')->middleware('auth:admin');
+    Route::get('/lock/singleroom/{boardingid}','AdminController@lockboarding')->middleware('auth:admin');
+    Route::get('/unlock/house/{boardingid}','AdminController@unlockboarding')->middleware('auth:admin');
+    Route::get('/unlock/anxe/{boardingid}','AdminController@unlockboarding')->middleware('auth:admin');
+    Route::get('/unlock/singleroom/{boardingid}','AdminController@unlockboarding')->middleware('auth:admin');
+    Route::get('/admin/edit/houses/{house}','HouseController@edit');
+    Route::post('/admin/update/houses','HouseController@update')->middleware('auth');
+    Route::get('/admin/view/house/{house}','VisitBoarding@viewHouse')->middleware('auth:admin');
+    Route::get('/admin/view/singleroom/{singleroom}','VisitBoarding@viewSingleRoom')->middleware('auth:admin');
+    Route::get('/admin/view/anex/{anex}','VisitBoarding@viewAnex')->middleware('auth:admin');
+    Route::post('/admin/delete/house/{house}','HouseController@destroy')->middleware('auth:admin');
+    Route::post('/admin/delete/anex/{anex}','AnexController@destroy')->middleware('auth:admin');
+    Route::get('/admin/edit/house/{house}','HouseController@edit')->middleware('auth:admin');
+    Route::get('/admin/edit/anex/{anex}','AnexController@edit')->middleware('auth:admin');
+    Route::get('/admin/edit/singleroom/{singleRoom}','SingleRoomController@edit')->middleware('auth:admin');
 
     /* ----Boarding Request Routes----- */
     Route::get('all/house/requests','AdminController@allhouserequest');

@@ -24,8 +24,17 @@
                 <td>61</td>
                 <td>2011/04/25</td>
                 <td>
-                    <a href="/view/{{getBoardingTypeIdById($singleroom->boarding->id)}}/{{getPropertyTypeIdById($singleroom->boarding->id)}}" class="btn btn-success">More</a>
-                    <a href="#" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a>
+                  <form action="/admin/delete/{{getBoardingTypeIdById($singleroom->boarding->id)}}/{{$singleroom->id}}" method="post">
+                    @csrf
+                      <button class="btn btn-danger btn-circle float-right" onclick="deleteMe();"><i class="far fa-trash-alt"></i></button>
+                  </form>
+                  <a href="/admin/view/{{getBoardingTypeIdById($singleroom->boarding->id)}}/{{getPropertyTypeIdById($singleroom->boarding->id)}}" class="btn btn-success">More</a>
+                  <a href="/admin/edit/singleroom/{{$singleroom->id}}" class="btn btn-primary">Update</a>
+                  @if (($singleroom->boarding->Availability)!= 'LOCKED')
+                  <a href="/lock/singleroom/{{$singleroom->boarding->id}}" class="btn btn-warning float-right"><i class="fas fa-lock"></i></a>
+                  @else
+                  <a href="/unlock/singleroom/{{$singleroom->boarding->id}}" class="btn btn-warning float-right"><i class="fas fa-unlock"></i></a>
+                  @endif
                 </td>
               </tr>  
               @endforeach
