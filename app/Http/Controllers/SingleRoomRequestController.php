@@ -46,7 +46,8 @@ class SingleRoomRequestController extends Controller
      */
     public function show(SingleRoomRequest $singleRoomRequest)
     {
-        //
+        $singleRoomRequest = SingleRoomRequest::orderBy('created_at','desc')->paginate(3);
+        return view('requestBoarding.showSingleRoomRequest', compact('singleRoomRequest'));
     }
 
     /**

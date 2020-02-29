@@ -63,7 +63,7 @@ class HouseController extends Controller
      */
     public function edit(House $house)
     {
-        if ($house->boarding->user_id == auth()->id()) {
+        if ($house->boarding->user_id == auth()->id() || Auth::guard('admin')->check()) {
 
             return view('addBoarding.editHouse',compact('house'), array('user' => Auth::user()));
         } else {

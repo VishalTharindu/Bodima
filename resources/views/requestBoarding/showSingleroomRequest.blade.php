@@ -94,46 +94,86 @@
         </div>
       </div>
       <div class="my-5"></div>
-        <div class="columns">
-            @foreach ($Houses as $post)
-              <div class="column is-4 center-responsive">
-                <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-4by3">
-                        <img src="/images/uploads/boardingimg/{{json_decode($post->boarding->filename)[0]}}" alt="Placeholder image">
-                      </figure>
-                    </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="/images/prof.jpg" alt="Placeholder image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-5"><span>{{$post->boarding->boardingType}}</span> For Rent</p>
-                          <hr>
-                          <h4 class="title is-6 has-text-dark">Rs: <span>{{$post->boarding->MonthlyRent}} Per Month</span></h4>
-                          <p class="subtitle is-6">@<span>{{$post->boarding->user->name}}</span></p>
-                        </div>
-                      </div>
+      <div class="section">
+        <div class="container">
+
+          @foreach ($singleRoomRequest as $request)
+          <div class="my-5"></div>        
+            <div class="row">
+              <div class="col-md-12">
+  
+                <div class="card card-cascade wider reverse">
+                
                   
-                      <div class="content">
-                        {{str_limit(str_replace("&nbsp;",'',strip_tags($post->boarding->Description)),100)}}
-                        <br>
-                        <div class="my-3"></div>
-                        <time datetime="2016-1-1">{{$post->created_at->isoFormat('LLLL')}}</time>
-                        <div class="my-2"></div>
-                        <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
+                    <!-- Card content -->
+                    <div class="card-body card-body-cascade">                  
+                      <div class="row">
+                        <div class="col-md-2">
+                            <figure class="image is-128x128">
+                                <img src="/images/prof.jpg" alt="Placeholder image">
+                            </figure>
+                            <p>Postedby:vishal</p>                       
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h6 class="card-title"><strong>Request:</strong><span>{{$request->boardingrequest->boardingType}}</span></h6>                     
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="card-title"><strong>Location:</strong><span>{{$request->boardingrequest->Province}}</span><span>>></span><span>{{$request->boardingrequest->District}}</span><span>>></span><span>{{$request->boardingrequest->City }}</span></h6>                     
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="card-title"><strong>Posted:</strong><span>10 Minutes ago</span></h6>                     
+                                </div>
+                            </div>
+                            <div class="my-4"></div>
+                            <div class="row">
+                                <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!
+                                    All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+                            </div>
+                            <div class="row float-right">
+                                <a href="/view/{{getBoardingrequestTypeIdById($request->boardingrequest->id)}}/{{getPropertyrequestTypeIdById($request->boardingrequest->id)}}" class="button is-success is-pulled-right">More Details</a>
+                            </div>
+                        </div>                                                
                       </div>
-                    </div>
+                    </div>                
                   </div>
+              </div>
             </div>
-            @endforeach
+            @endforeach         
         </div>
-        <div class="columns d-flex justify-content-center">
-          {{ $Houses->links() }}
-        </div>        
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Room:1</p>
+                            <p>bed:4</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Room:1</p>
+                            <p>bed:4</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p>Select "Logout" below if you are ready to end your current session.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-primary" href="{{ route('admin.logout') }}">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>

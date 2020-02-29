@@ -45,6 +45,16 @@
                       <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
                     </div>
                   </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Finders
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/show/houserequest">House Request</a>
+                      <a class="dropdown-item" href="/show/annexrequst">Annex Request</a>
+                      <a class="dropdown-item" href="/show/singelroomrequest">Single Room Request</a>                 
+                    </div>
+                  </li>
                   <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
                   <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
                   <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>

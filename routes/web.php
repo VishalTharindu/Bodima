@@ -87,16 +87,21 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
 
     /****************House request routes********************/
     Route::get('/show/houserequest','HouseRequestController@show');
+    Route::get('/view/houserequest/{houserequest}','BoardingRequestController@viewHouseRequest')->middleware('auth');
     Route::get('/add/houserequst','HouseRequestController@create')->middleware('auth');
     Route::post('/add/houserequst','BoardingRequestController@storeHouserRequest')->middleware('auth');
     Route::post('/delete/boarding_requestsRequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
 
     /****************Annex request routes********************/
+    Route::get('/show/annexrequst','AnexRequstController@show');
     Route::get('/add/annexrequst','AnexRequstController@create')->middleware('auth');
+    Route::get('/view/anexrequest/{anexrequest}','BoardingRequestController@viewAnexRequest')->middleware('auth');
     Route::post('/add/annexrequst','BoardingRequestController@storeAnnexRequest')->middleware('auth');
 
     /****************Annex request routes********************/
+    Route::get('/show/singelroomrequest','SingleRoomRequestController@show');
     Route::get('/add/singelroomrequest','SingleRoomRequestController@create')->middleware('auth');
+    Route::get('/view/singleroomrequest/{singleroomrequest}','BoardingRequestController@viewSingleRoomRequest')->middleware('auth');
     Route::post('/add/singelroomrequest','BoardingRequestController@storeSingelRoomRequest')->middleware('auth');
 
 // ++++++++fonction related routies++++++++
@@ -205,6 +210,10 @@ Route::get('/testselect', function () {
 
 Route::get('/masterdash', function () {
     return view('profileManage.masterdashboard');
+});
+
+Route::get('/request', function () {
+    return view('requestBoarding.showAnnexRequest');
 });
 
 // Route::get('/admin', function () {

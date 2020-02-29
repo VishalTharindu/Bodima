@@ -36,5 +36,7 @@
     </div>
   </div> 
   @endforeach
+</div>
+<div class="columns d-flex justify-content-center">
+  {{ $Boadrings->links() }}
 </div>   
-  
