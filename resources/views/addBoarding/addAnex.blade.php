@@ -341,50 +341,48 @@
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-12">
+                                </div>                             
+                                <div class="my-4"></div>                             
+                            </div>
+                            <div class="columns">
+                                <div class="column is-12">
+                                    <div class="box has-background-white-bis">
+                                        <div class="my-4"></div>
+                                        <div class="columns is mobile is-centered">
+                                            <label class="label has-text-centered">Other Details</label>
+                                        </div>                                   
                                         <div class="columns">
-                                        <div class="column is-6">
-                                            <label class="label">Number of bath rooms</label>
-                                        </div>
-                                        <div class="column is-6">
-                                            <div class="control is-6">
-                                                <div class="select is-primary">
-                                                    <select name="NumberOfBthroom">
-                                                        <option >Select No of bath rooms</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="More">More</option>
-                                                    </select>
+                                            <div class="column is-12">
+                                                <div class="field">
+                                                    <label class="label">Address</label>
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <textarea class="textarea" placeholder="Textarea" name="Address"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    @if ($errors->has('Address'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('Address') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <div class="field">
-                                            <label class="label">Address</label>
-                                            <div class="field">
-                                                <div class="control">
-                                                    <textarea class="textarea" placeholder="Textarea" name="Address"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <div class="field">
-                                            <label class="label">Description</label>
-                                            <div class="field">
-                                                <div class="control">
-                                                    <textarea class="textarea" placeholder="Textarea" name="Description"></textarea>
+                                        <div class="my-4"></div>
+                                        <div class="columns">
+                                            <div class="column is-12">
+                                                <div class="field">
+                                                    <label class="label">Description</label>
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <textarea class="textarea" placeholder="Textarea" name="Description" required></textarea>
+                                                        </div>
+                                                        @if ($errors->has('Description'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('Description') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -514,14 +512,11 @@
                         <div class="columns">
                             <div class="column is-12">
                                 <div class="box has-background-white-bis">
-                                    <div class="my-4"></div>
-                                    <div class="columns is mobile is-centered">
-                                        <label class="label has-text-centered">Personal Details</label>
-                                    </div>
+                                    <div class="my-4"></div>                                   
                                     <div class="columns">
                                         <div class="column is-12">
                                             <div class="field">
-                                                <label class="label">Your Name</label>
+                                                <label class="label">Upload Image</label>
                                                 <div class="input-group control-group increment">
                                                     <input type="file" name="filename[]" class="form-control">
                                                     <div class="input-group-btn">
@@ -539,6 +534,16 @@
                                                   </div>
                                             </div>
                                         </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-12">
+                                <div class="box has-background-white-bis">
+                                    <div class="my-4"></div>                                   
+                                    <div class="columns is mobile is-centered">
+                                        <label class="label has-text-centered">Personal Details</label>
                                     </div>
                                     <div class="columns">
                                         <div class="column is-12">
@@ -546,13 +551,13 @@
                                                 <label class="label">Your Email Address</label>
                                                 <div class="control has-icons-left has-icons-right">
                                                     <input class="input" type="text" placeholder="Text input" name="Email">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
-                                                    </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                    <span class="icon is-small is-left">                                        
                                                 </div>
+                                                @if ($errors->has('Email'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('Email') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -561,14 +566,13 @@
                                             <div class="field">
                                                 <label class="label">Your Telephone No</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input" name="Telephone">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
-                                                    </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                    <input class="input {{ $errors->has('Telephone') ? ' is-invalid' : '' }}" type="text" placeholder="Text input" name="Telephone" required>
                                                 </div>
+                                                @if ($errors->has('Telephone'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong class="has-text-danger">{{ $errors->first('Telephone') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

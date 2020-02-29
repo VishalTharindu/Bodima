@@ -95,111 +95,84 @@
       </div>
       <div class="my-5"></div>
       <div class="section">
+        <div class="container">
 
-        @foreach ($HouseRequest as $requestdetails)
-          <div class="row">
-            <div class="col-md-12">
-
-              <div class="card card-cascade wider reverse">
-              
-                
-                  <!-- Card content -->
-                  <div class="card-body card-body-cascade">
-                
-                    <!-- Title -->
-                    <h4 class="card-title"><strong>Request Type : {{$requestdetails->boardingrequest->boardingType}}</strong></h4>
-                    <div class="my-3"></div>
-                    <div class="row">
-                      <div class="col-md-3">
-                        <div class="has-background-success text-center rounded mb-0">
-                          <h5 class="">Location Details</h5>
-                        </div>
-                        <div class="my-3"></div>
-                        <p>Province :{{$requestdetails->boardingrequest->Province}}</p>
-                        <p>District :{{$requestdetails->boardingrequest->District}}</p>
-                        <p>City  : {{$requestdetails->boardingrequest->City }}</p>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="has-background-success text-center rounded mb-0">
-                          <h5 class="">Payment</h5>
-                        </div>
-                        <div class="my-3"></div>
-                        <p>Monthly Rent : Rs {{$requestdetails->boardingrequest->MonthlyRent}}</p>
-                        <p>Key Money : Rs {{$requestdetails->boardingrequest->KeyMoney}}</p>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="has-background-danger text-center rounded mb-0">
-                          <h5 class="text-white">Finding by: </h5>
-                        </div>
-                        <div class="my-3"></div>
-                        <p class="text-center">
-                          @if(($requestdetails->boardingrequest->School_boys)==1)
-                              School Boys/
-                          @else
-                          @endif
-
-                          @if(($requestdetails->boardingrequest->School_girls)==1)
-                              School girls/
-                          @else
-                          @endif
-
-                          @if(($requestdetails->boardingrequest->Uni_boys)==1)
-                              Uni Boys/
-                          @else
-                          @endif
-
-                          @if(($requestdetails->boardingrequest->Uni_girls)==1)
-                              School girls/
-                          @else
-                          @endif
-
-                          @if(($requestdetails->boardingrequest->Office_boys)==1)
-                              Office Boys/
-                          @else
-                          @endif
-
-                          @if(($requestdetails->boardingrequest->Office_girls)==1)
-                              Office girls
-                          @else
-                          @endif
-                        </p>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="has-background-danger text-center rounded mb-0">
-                          <h5 class="text-white">Contact Details</h5>
-                        </div>
-                        <div class="my-3"></div>
-                        <p><i class="fa fa-user" aria-hidden="true"></i>        Posted By: Tharindu</p>
-                        <button onclick="showPnox()" class="button is-text"><i class="fas fa-envelope" aria-hidden="true"></i>   Email : trs@gmail.com</button>
-                        <p id="pnox" class="has-text-dark customerpno">15246</p>
-                        <p><i class="fa fa-mobile" aria-hidden="true"></i>      Phone Number : 0715486956</p>
-                      </div>
-                    </div>
-                    <div class="my-3"></div>
-                    <div class="columns">
-                      <div class="column">
+          @foreach ($HouseRequest as $request)
+          <div class="my-5"></div>        
+            <div class="row">
+              <div class="col-md-12">
   
-                      </div>
-                      {{-- <div class="column text-center">
-                        <!-- Linkedin -->
-                        <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
-                        <!-- Twitter -->
-                        <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
-                        <!-- Dribbble -->
-                        <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
-                      </div> --}}
-                      <div class="column is-pulled-right">
-                        <a href="http://" class="button is-success is-pulled-right">More Details</a>
-                      </div>
-                    </div>
+                <div class="card card-cascade wider reverse">
                 
+                  
+                    <!-- Card content -->
+                    <div class="card-body card-body-cascade">                  
+                      <div class="row">
+                        <div class="col-md-2">
+                            <figure class="image is-128x128">
+                                <img src="/images/prof.jpg" alt="Placeholder image">
+                            </figure>
+                            <p>Postedby:vishal</p>                       
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h6 class="card-title"><strong>Request:</strong><span>{{$request->boardingrequest->boardingType}}</span></h6>                     
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="card-title"><strong>Location:</strong><span>{{$request->boardingrequest->Province}}</span><span>>></span><span>{{$request->boardingrequest->District}}</span><span>>></span><span>{{$request->boardingrequest->City }}</span></h6>                     
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="card-title"><strong>Posted:</strong><span>10 Minutes ago</span></h6>                     
+                                </div>
+                            </div>
+                            <div class="my-4"></div>
+                            <div class="row">
+                                <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!
+                                    All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+                            </div>
+                            <div class="row float-right">
+                                <a href="/view/{{getBoardingrequestTypeIdById($request->boardingrequest->id)}}/{{getPropertyrequestTypeIdById($request->boardingrequest->id)}}" class="button is-success is-pulled-right">More Details</a>
+                            </div>
+                        </div>                                                
+                      </div>
+                    </div>                
                   </div>
-                
+              </div>
+            </div>
+            @endforeach         
+        </div>
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
                 </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Room:1</p>
+                            <p>bed:4</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Room:1</p>
+                            <p>bed:4</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p>Select "Logout" below if you are ready to end your current session.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-primary" href="{{ route('admin.logout') }}">Logout</a>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="my-5"></div>             
-        @endforeach
       </div>
     </div>
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>

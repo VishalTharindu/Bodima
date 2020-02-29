@@ -257,11 +257,11 @@ class BoardingController extends Controller
             $adanex->Withfurniture = 0;
         }
 
-        $adanex ->NumberOfBthroom = request('NumberOfBthroom');
-
         $adanex->save();
 
-        return back()->with('message', 'Your Boarding has been successfully added!');
+        toastr()->success('Your Favourite has been successfully added!');
+
+        return back();
     }
 
 
@@ -365,8 +365,6 @@ class BoardingController extends Controller
         }else{
             $adsingleroom->Withfurniture = 0;
         }
-
-        $adsingleroom ->NumberOfBthroom = request('NumberOfBthroom');
 
         $adsingleroom->save();
 

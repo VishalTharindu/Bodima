@@ -143,7 +143,7 @@ class BoardingRequestController extends Controller
     
             // Session::flash('success', 'Message sent');
             toastr()->success('Your Favourite has been successfully added!');
-            return back();;
+            return back();
         }
 
         toastr()->success('Your Favourite has been successfully added!');
@@ -234,7 +234,23 @@ class BoardingRequestController extends Controller
 
         $annex->save();
 
-        return back()->with('message', 'Your Request has been successfully added!');
+        $Boadrings = Boarding::where('boardingType','LIKE', request('boardingType'))
+                        ->where('Province','LIKE',request('Province'))
+                        ->latest('created_at')->first();
+
+        if($Boadrings){
+            $test = $request->Telephone;
+            Nexmo::message()->send([
+                'to' => '94' .$test,
+                'from' => 'Nexmo',
+                'text' => 'We Found Boarding Place Matching With Your Requirement.'
+            ]);
+
+            toastr()->success('Boarding request has been successfully added!');
+            return back();
+        }
+
+        toastr()->success('Boarding request has been successfully added!');
     }
 
     public function storeSingelRoomRequest(Request $request)
@@ -319,11 +335,47 @@ class BoardingRequestController extends Controller
 
         $singelroom->save();
 
+        $Boadrings = Boarding::where('boardingType','LIKE', request('boardingType'))
+                        ->where('Province','LIKE',request('Province'))
+                        ->latest('created_at')->first();
+
+        if($Boadrings){
+            $test = $request->Telephone;
+            Nexmo::message()->send([
+                'to' => '94' .$test,
+                'from' => 'Nexmo',
+                'text' => 'We Found Boarding Place Matching With Your Requirement.'
+            ]);
+
+            toastr()->success('Boarding request has been successfully added!');
+            return back();
+        }
+
         toastr()->success('Boarding request has been successfully added!');
 
         // return view('requestBoarding/addboardingrequest');
         return back();
         // return back()->with('message', 'Your Request has been successfully added!');
+    }
+
+    public function viewHouseRequest(HouseRequest $houserequest){
+        
+        // $fevouriteid = MyFavourit::select('id')->where('house_id','$house->id')->get()->first();
+        // dd($house->id);
+        $boardingrequestData = $houserequest;
+        return view('requestBoarding.visiteMore', compact('boardingrequestData'));
+    }
+
+    public function viewAnexRequest(AnexRequst $anexrequest){
+
+        $boardingrequestData = $anexrequest;
+        return view('requestBoarding.visiteMore', compact('boardingrequestData'));
+    }
+
+    public function viewSingleRoomRequest(SingleRoomRequest $singleroomrequest){
+
+        $boardingrequestData = $singleroomrequest;
+        return view('requestBoarding.visiteMore', compact('boardingrequestData'));
     }
 
     /**

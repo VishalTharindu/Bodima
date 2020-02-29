@@ -21,7 +21,6 @@ class CreateAnexesTable extends Migration
             $table->string('Acavalability');
             $table->string('kitchenavalability');
             $table->boolean('Withfurniture');
-            $table->string('numberofbthroom');
             $table->timestamps();
 
             $table->foreign('boarding_id')

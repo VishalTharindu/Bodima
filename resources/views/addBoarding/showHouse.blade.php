@@ -131,11 +131,9 @@
             </div>
             @endforeach
         </div>
-        <div class="columns">
-          <div class="column is-5"></div>
-          <div class="column is-2">{{$Houses->links()}}</div>
-          <div class="column is-5"></div>
-        </div>       
+        <div class="columns d-flex justify-content-center">
+          {{ $Houses->links() }}
+        </div>        
     </div>
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>

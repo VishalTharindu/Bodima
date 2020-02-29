@@ -7,14 +7,24 @@
     <title>AddBoarding</title>
 
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}">
-    <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
-    {{-- <link href={{asset('css/css/material-kit.css')}} rel="stylesheet"> --}}
-    <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}"> --}}
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">    
+    <link rel="stylesheet" href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <link rel="stylesheet" href={{asset('datatables.net-select-bs4/css/select2.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/jquery-confirm.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/open-iconic-bootstrap.min.css')}}">
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/select2/select2.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
+    <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+    
+    <script type="text/javascript" src={{asset('js/datatables.net/js/jquery.dataTables.min.js')}}></script>
+    <script type="text/javascript" src={{asset('datatables.net-select-bs4/js/select.bootstrap4.min.js')}}></script>
     <script src="{{asset('js/jquery-confirm.js')}}"></script>
+    <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
 
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <style>
@@ -25,11 +35,79 @@
 
 </head>
 <body class="has-background-white-ter">
-        @include('incfile.navibar')
-
+    <div class="data-spy="scroll" data-target=".site-navbar-target" data-offset="300"">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target shadow p-1 mb-5 bg-white rounded navbar-fixed" id="ftco-navbar">
+            <div class="container">
+              <a class="navbar-brand nav-link" href="index.html">Bo<span>dima</span></a>
+              <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="fa fa-bars"></span>Menu
+              </button>
+    
+              <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                  <li class="nav-item"><a href="/" class="nav-link"><span>Home</span></a></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Boarding
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/show/house">House</a>
+                      <a class="dropdown-item" href="/show/Annex">Annex</a>
+                      <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
+                    </div>
+                  </li>
+                  <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
+                  <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
+                  <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
+                  <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
+                  <li class="nav-item">
+                      <ul class="navbar-nav nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item float-right">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item float-right">
+                                    <a class="nav-link is-pilled-right" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                        <li class="nav-item dropdown is-pulled-right">
+                          <div class="btn-group is-pulled-right">
+                            <a class="btn  dropdown-toggle is-pulled-right" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false class=" href="#" role="button">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                              {{-- <button type="button" class="btn  dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button> --}}
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/user/profile">Profile</a>
+                                <a class="dropdown-item" href="/user/boarding">Account Setting</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                  {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                  @csrf
+                              </form>
+                              </div>
+                            </div>
+                          </li>
+                        @endguest
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+    </div>
     <div class="section is-medium">
         <div class="">
-            <form action="/add/houses" method="POST" enctype="multipart/form-data">
+            <form action="/update/houses" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="columns is-centered">
                         <div class="column is-6">
@@ -37,6 +115,8 @@
                                 <div class="my-5"></div>
                                 <div class="columns is mobile is-centered">
                                     <label class="label has-text-centered">Boarding Type</label>
+                                    <input type="text" name="boardingid" value="{{$house->boarding->id}}" hidden>
+                                    <input type="text" name="houseid" value="{{$house->id}}" hidden>
                                 </div>
                                 <div class="my-4"></div>
                                 <div class="columns">
@@ -151,13 +231,21 @@
                                                     <div class="field">
                                                         <div class="columns is-centered">
                                                             <div class="column is-6 is-centered">
-                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="Acavalability">
+                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="Acavalability" 
+                                                                @if ($house->Acavalability  == 'Yes')
+                                                                    checked
+                                                                @endif>
+                                                                
                                                                 <label for="exampleRtlRadioInline1">Yes</label>
                                                             </div>
                                                             <div class="column is-6">
-                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Acavalability">
+                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Acavalability"
+                                                                 @if ($house->Acavalability  == 'No')
+                                                                checked
+                                                            @endif>
                                                                 <label for="exampleRtlRadioInline2">No</label>
                                                             </div>
+                                                          
                                                         </div>
                                                     </div>
                                                 </div>
@@ -173,11 +261,17 @@
                                                     <div class="field">
                                                         <div class="columns is-centered">
                                                             <div class="column is-6 is-centered">
-                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="$house->kitchenavalability" name="kitchenavalability">
+                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="kitchenavalability"
+                                                                @if ($house->kitchenavalability  == 'Yes')
+                                                                    checked
+                                                                @endif>
                                                                 <label for="exampleRtlRadioInline1">Yes</label>
                                                             </div>
                                                             <div class="column is-6">
-                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="kitchenavalability">
+                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="kitchenavalability"
+                                                                @if ($house->kitchenavalability  == 'No')
+                                                                    checked
+                                                                @endif>
                                                                 <label for="exampleRtlRadioInline2">No</label>
                                                             </div>
                                                         </div>
@@ -190,6 +284,7 @@
                                 <div class="columns">
                                     <div class="column is-6">
                                         <hr>
+                                        <div class="my-5"></div>
                                         <label class="label has-text-centered">With Furniture</label>
                                         <div class="my-3"></div>
                                         <div class="column">
@@ -199,33 +294,17 @@
                                                         <div class="field">
                                                             <div class="columns is-centered">
                                                                 <div class="column is-6 is-centered">
-                                                                    <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="Withfurniture">
+                                                                    <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="Withfurniture"
+                                                                    @if ($house->Withfurniture   == '1')
+                                                                        checked
+                                                                    @endif>
                                                                     <label for="exampleRtlRadioInline1">Yes</label>
                                                                 </div>
                                                                 <div class="column is-6">
-                                                                    <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Withfurniture">
-                                                                    <label for="exampleRtlRadioInline2">No</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <label class="label has-text-centered">Garden Need</label>
-                                        <div class="column">
-                                            <div class="columns">
-                                                <div class="column">
-                                                    <div class="control">
-                                                        <div class="field">
-                                                            <div class="columns is-centered">
-                                                                <div class="column is-6 is-centered">
-                                                                    <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="radio" value="Yes" name="Garden">
-                                                                    <label for="exampleRtlRadioInline1">Yes</label>
-                                                                </div>
-                                                                <div class="column is-6">
-                                                                    <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Garden">
+                                                                    <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="radio" value="No" name="Withfurniture"
+                                                                    @if ($house->Withfurniture   == '0')
+                                                                        checked
+                                                                    @endif>
                                                                     <label for="exampleRtlRadioInline2">No</label>
                                                                 </div>
                                                             </div>
@@ -245,31 +324,49 @@
                                                     <div class="field">
                                                         <div class="columns">
                                                             <div class="column is-6">
-                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="checkbox" name="School_boys">
+                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="checkbox" name="School_boys"
+                                                                @if ($house->boarding->School_boys  == '1')
+                                                                    checked
+                                                                @endif>
                                                                 <label for="exampleRtlRadioInline1">School boys</label>
                                                             </div>
                                                             <div class="column is-6">
-                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="School_girls">
+                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="School_girls"
+                                                                @if ($house->boarding->School_girls  == '1')
+                                                                    checked
+                                                                @endif>
                                                                 <label for="exampleRtlRadioInline2">School girls</label>
                                                             </div>
                                                         </div>
                                                         <div class="columns">
                                                             <div class="column is-6">
-                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="checkbox" name="Uni_boys">
+                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="checkbox" name="Uni_boys"
+                                                                @if ($house->boarding->Uni_boys  == '1')
+                                                                    checked
+                                                                @endif>
                                                                 <label for="exampleRtlRadioInline1">Uni boys</label>
                                                             </div>
                                                             <div class="column is-6">
-                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="Uni_girls">
+                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="Uni_girls"
+                                                                @if ($house->boarding->Uni_girls   == '1')
+                                                                    checked
+                                                                @endif>
                                                                 <label for="exampleRtlRadioInline2">Uni girls</label>
                                                             </div>
                                                         </div>
                                                         <div class="columns">
                                                             <div class="column is-6">
-                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="checkbox" name="Office_boys">
+                                                                <input class="is-checkradio is-success" id="exampleRtlRadioInline1" type="checkbox" name="Office_boys"
+                                                                @if ($house->boarding->Office_boys  == '1')
+                                                                    checked
+                                                                @endif>
                                                                 <label for="exampleRtlRadioInline1">Office boys</label>
                                                             </div>
                                                             <div class="column is-6">
-                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="Office_girls">
+                                                                <input class="is-checkradio is-rtl" id="exampleRtlRadioInline2" type="checkbox" name="Office_girls"
+                                                                @if ($house->boarding->Office_girls  == '1')
+                                                                    checked
+                                                                @endif>
                                                                 <label for="exampleRtlRadioInline2">Office girls</label>
                                                             </div>
                                                         </div>
@@ -282,7 +379,7 @@
                                 <hr>
                                 <div class="my-5"></div>
                                 <div class="columns is mobile is-centered">
-                                    <label class="label has-text-centered">Payment and Other</label>
+                                    <label class="label has-text-centered">Payment Details</label>
                                 </div>
                                 <div class="my-5"></div>
                                 <div class="columns">
@@ -318,27 +415,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="my-4"></div>
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <div class="columns">
-                                        <div class="column is-6">
-                                            <label class="label">Number of bath rooms</label>
-                                        </div>
-                                        <div class="column is-6">
-                                            <div class="control is-6">
-                                                <div class="select is-primary">
-                                                    <select name="NumberOfBthroom">
-                                                        <option >Select No of bath rooms</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="More">More</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                                <hr>
+                                <div class="my-5"></div>
+                                <div class="columns is mobile is-centered">
+                                    <label class="label has-text-centered">Other Details</label>
                                 </div>
                                 <div class="my-4"></div>
                                 <div class="columns">
@@ -347,7 +427,7 @@
                                             <label class="label">Address</label>
                                             <div class="field">
                                                 <div class="control">
-                                                    <textarea class="textarea" placeholder="Textarea" name="Address"></textarea>
+                                                <textarea class="textarea" placeholder="Textarea" name="Address">{{$house->boarding->Address}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -360,7 +440,7 @@
                                             <label class="label">Description</label>
                                             <div class="field">
                                                 <div class="control">
-                                                    <textarea class="textarea" placeholder="Textarea" name="Description"></textarea>
+                                                    <textarea class="textarea" placeholder="Textarea" name="Description">{{$house->boarding->Description}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -379,29 +459,194 @@
                                         <div class="field">
                                             <label class="label">Province</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="Province">
-                                                <span class="icon is-small is-left">
-                                                    <i class="fas fa-user"></i>
-                                                </span>
-                                                <span class="icon is-small is-right">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
+                                                <div class="form-group">
+                                                    <select name="Province" class="form-control form-control-lg" id="province">
+                                                        <option value="Central Province"
+                                                                @if($house->boarding->Province == 'Central Province')
+                                                                selected
+                                                                @endif
+                                                        >Central Province</option>
+                                                        <option  value="Eastern Province"
+                                                            @if($house->boarding->Province == 'Eastern Province')
+                                                            selected
+                                                            @endif
+                                                        >Eastern Province</option>
+                                                        <option  value="Northern Province"
+                                                            @if($house->boarding->Province == 'Northern Province')
+                                                            selected
+                                                            @endif
+                                                        >Northern Province</option>
+                                                            <option  value="Southern Province"
+                                                            @if($house->boarding->Province == 'Southern Province')
+                                                            selected
+                                                            @endif
+                                                        >Southern Province</option>
+                                                        <option  value="Western Province"
+                                                            @if($house->boarding->Province == 'Western Province')
+                                                            selected
+                                                            @endif
+                                                        >Western Province</option>
+                                                        <option  value="North Western Province"
+                                                            @if($house->boarding->Province == 'North Western Province')
+                                                            selected
+                                                            @endif
+                                                        >North Western Province</option>
+                                                        <option  value="North Central Province"
+                                                            @if($house->boarding->Province == 'North Central Province')
+                                                            selected
+                                                            @endif
+                                                        >North Central Province</option>
+                                                        <option  value="Uva Province"
+                                                            @if($house->boarding->Province == 'Uva Province')
+                                                            selected
+                                                            @endif
+                                                        >Uva Province</option>
+                                                        <option  value="Sabaragamuwa Province"
+                                                            @if($house->boarding->Province == 'Sabaragamuwa Province')
+                                                            selected
+                                                            @endif
+                                                        >Sabaragamuwa Province</option>
+                                                    </select>
+                                                    <script>
+                                                        $("#province").select2(); 
+                                                    </script>             
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div>                                    
+                                </div>                              
                                 <div class="columns">
                                     <div class="column is-12">
                                         <div class="field">
                                             <label class="label">District</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="District">
-                                                <span class="icon is-small is-left">
-                                                    <i class="fas fa-user"></i>
-                                                </span>
-                                                <span class="icon is-small is-right">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
+                                                <div class="form-group">
+                                                    <select name="District" class="form-control form-control-lg" id="distric">
+                                                        <option value="Ampara"
+                                                            @if($house->boarding->District == 'Ampara')
+                                                            selected
+                                                            @endif
+                                                        >Ampara</option>
+                                                        <option  value="Anuradhapura"
+                                                            @if($house->boarding->District == 'Anuradhapura')
+                                                            selected
+                                                            @endif
+                                                        >Anuradhapura</option>
+                                                        <option  value="Badulla"
+                                                            @if($house->boarding->District == 'Badulla')
+                                                            selected
+                                                            @endif
+                                                        >Badulla</option>
+                                                        <option  value="Batticaloa"
+                                                            @if($house->boarding->District == 'Batticaloa')
+                                                            selected
+                                                            @endif
+                                                        >Batticaloa</option>
+                                                        <option  value="Colombo"
+                                                            @if($house->boarding->District == 'Colombo')
+                                                            selected
+                                                            @endif
+                                                        >Colombo</option>
+                                                        <option  value="Galle"
+                                                            @if($house->boarding->District == 'Galle')
+                                                            selected
+                                                            @endif
+                                                        >Galle</option>
+                                                        <option  value="Gampaha"
+                                                            @if($house->boarding->District == 'Gampaha')
+                                                            selected
+                                                            @endif
+                                                        >Gampaha</option>
+                                                        <option  value="Hambantota"
+                                                            @if($house->boarding->District == 'Hambantota')
+                                                            selected
+                                                            @endif
+                                                        >Hambantota</option>
+                                                        <option  value="Kalutara"
+                                                            @if($house->boarding->District == 'Kalutara')
+                                                            selected
+                                                            @endif
+                                                        >Kalutara</option>
+                                                        <option  value="Kandy"
+                                                            @if($house->boarding->District == 'Kandy')
+                                                            selected
+                                                            @endif
+                                                        >Kandy</option>
+                                                        <option  value="Kegalle"
+                                                            @if($house->boarding->District == 'Kegalle')
+                                                            selected
+                                                            @endif
+                                                        >Kegalle</option>
+                                                        <option  value="Kilinochchi"
+                                                            @if($house->boarding->Province == 'Kilinochchi')
+                                                            selected
+                                                            @endif
+                                                        >Kilinochchi</option>
+                                                        <option  value="Kurunegala"
+                                                            @if($house->boarding->District == 'Kurunegala')
+                                                            selected
+                                                            @endif
+                                                        >Kurunegala</option>
+                                                        <option  value="Mannar"
+                                                            @if($house->boarding->District == 'Mannar')
+                                                            selected
+                                                            @endif
+                                                        >Mannar</option>
+                                                        <option  value="Matale"
+                                                            @if($house->boarding->District == 'Matale')
+                                                            selected
+                                                            @endif
+                                                        >Matale</option>
+                                                        <option  value="Matara"
+                                                            @if($house->boarding->District == 'Matara')
+                                                            selected
+                                                            @endif
+                                                        >Matara</option>
+                                                        <option  value="Monaragala"
+                                                            @if($house->boarding->District == 'Monaragala')
+                                                            selected
+                                                            @endif
+                                                        >Monaragala</option>
+                                                        <option  value="Mullaitivu"
+                                                            @if($house->boarding->District == 'Mullaitivu')
+                                                            selected
+                                                            @endif
+                                                        >Mullaitivu</option>
+                                                        <option  value="Nuwara Eliya"
+                                                            @if($house->boarding->District == 'Nuwara Eliya')
+                                                            selected
+                                                            @endif
+                                                        >Nuwara Eliya</option>
+                                                        <option  value="Polonnaruwa"
+                                                            @if($house->boarding->District == 'Polonnaruwa')
+                                                            selected
+                                                            @endif
+                                                        >Polonnaruwa</option>
+                                                        <option  value="Puttalam"
+                                                            @if($house->boarding->District == 'Puttalam')
+                                                            selected
+                                                            @endif
+                                                        >Puttalam</option>
+                                                        <option  value="Ratnapura"
+                                                            @if($house->boarding->District == 'Ratnapura')
+                                                            selected
+                                                            @endif
+                                                        >Ratnapura</option>
+                                                        <option  value="Trincomalee"
+                                                            @if($house->boarding->District == 'Trincomalee')
+                                                            selected
+                                                            @endif
+                                                        >Trincomalee</option>
+                                                        <option  value="Vavuniya"
+                                                            @if($house->boarding->District == 'Vavuniya')
+                                                            selected
+                                                            @endif
+                                                        >Vavuniya</option>                                   
+                                                    </select>
+                                                    <script>
+                                                        $("#distric").select2(); 
+                                                    </script>             
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -411,13 +656,18 @@
                                         <div class="field">
                                             <label class="label">City</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="City">
+                                                <input class="input" type="text" placeholder="Text input" name="City" value="{{$house->boarding->City}}" required>
                                                 <span class="icon is-small is-left">
                                                     <i class="fas fa-user"></i>
                                                 </span>
                                                 <span class="icon is-small is-right">
                                                     <i class="fas fa-check"></i>
                                                 </span>
+                                                @if ($errors->has('City'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('City') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -458,13 +708,18 @@
                             <div class="column is-12">
                                 <div class="box has-background-white-bis">
                                     <div class="my-4"></div>
-                                    <div class="columns is mobile is-centered">
-                                        <label class="label has-text-centered">Personal Details</label>
-                                    </div>
                                     <div class="columns">
                                         <div class="column is-12">
                                             <div class="field">
-                                                <label class="label">Your Name</label>
+                                                <label class="label">Upload Image</label>
+                                                <div class="contetnt">
+                                                    <div class="row columns">
+                                                            @foreach (json_decode($house->boarding->filename ) as $image)
+                                                            <div class="column"><img src="/images/uploads/boardingimg/{{$image}}" /></div>
+                                                            @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="my-5"></div>
                                                 <div class="input-group control-group increment">
                                                     <input type="file" name="filename[]" class="form-control">
                                                     <div class="input-group-btn">
@@ -483,12 +738,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="my-5"></div>
+                                    <div class="columns is mobile is-centered">
+                                        <label class="label has-text-centered">Personal Details</label>
+                                    </div>
+                                    <div class="my-3"></div>
                                     <div class="columns">
                                         <div class="column is-12">
                                             <div class="field">
                                                 <label class="label">Your Email Address</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input" name="Email">
+                                                    <input class="input" type="text" placeholder="Text input" name="Email" value="{{$house->boarding->Email}}">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-user"></i>
                                                     </span>
@@ -504,7 +764,7 @@
                                             <div class="field">
                                                 <label class="label">Your Telephone No</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input" name="Telephone">
+                                                    <input class="input" type="text" placeholder="Text input" name="Telephone" value="{{$house->boarding->Telephone}}">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-user"></i>
                                                     </span>

@@ -25,7 +25,8 @@
                 <td>2011/04/25</td>
                 <td>
                     <a href="" class="btn btn-success">More</a>
-                    <a href="#" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a>
+                    <a href="#" class="btn btn-danger btn-circle float-right"><i class="fas fa-trash"></i></a>
+                    <a href="#" class="btn btn-warning float-right"><i class="fas fa-lock"></i></a>
                 </td>
               </tr>  
               @endforeach

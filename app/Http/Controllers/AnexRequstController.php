@@ -46,7 +46,8 @@ class AnexRequstController extends Controller
      */
     public function show(AnexRequst $anexRequst)
     {
-        //
+        $anexRequst = AnexRequst::orderBy('created_at','desc')->paginate(3);
+        return view('requestBoarding.showAnnexRequest', compact('anexRequst'));
     }
 
     /**

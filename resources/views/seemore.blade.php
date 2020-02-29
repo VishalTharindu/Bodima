@@ -526,10 +526,20 @@
                         @csrf
                         <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
                     </form>
-                    <a href="/edit/houses/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
+                    <a href="/edit/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
                     @else
                     <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
                     @endif
+
+                    {{-- @if (Auth::admin())                    
+                    <form action="/admin/delete/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" method="post">
+                        @csrf
+                        <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
+                    </form>
+                    <a href="/admin/edit/houses/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
+                    @else
+                    <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
+                    @endif --}}
                     
                     <br>
         
