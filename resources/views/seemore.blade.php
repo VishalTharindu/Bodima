@@ -14,6 +14,7 @@
     <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/flickity.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery.rateyo.min.css')}}">
 
     
     {{-- <link rel="stylesheet" href="/css/flickity.css"> Google Fonts --}}
@@ -332,7 +333,28 @@
                                 <button class="button is-warning" onclick="location.href='#contactbox'">Send Massage</button>
                                 <button class="button is-success" onclick="showPnox()">Call Owner</button>
                                 <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$boardingData->boarding->user->phone}}" class="nounnounderlinelink">{{$boardingData->boarding->user->phone}}</a></p>
-                                
+                                <div class="my-4"></div>
+                                <div class="d-flex justify-content-center">
+                                    <form action="/make/rating" method="post">
+                                        @csrf
+                                        <div id="rating" class="rateyo" data-rateyo-rating="0"
+                                        data-rateyo-spacing="10px"
+                                        data-rateyo-rated-fill="#FF0000"
+                                        data-rateyo-num-stars="5"
+                                        data-rateyo-score="3"
+                                        ></div>
+                            
+                                        <span class="result"></span>
+                                      <input type="hidden" name="user_id" id="" value="{{Auth::user()->id}}">
+                                        <input type="hidden" name="boarding_id" id="" value="{{$boardingData->boarding->id}}">
+                                        <input type="hidden" name="rating" id="">
+                            
+                                        <div class="my-3"></div>
+                                        <div><input type="submit" class="button is-info" value="submit" name="add"></div>
+                            
+                                        {{-- <a href="/show/rating">show</a> --}}
+                                    </form>
+                                </div>
                                 <hr>
                                 {{-- <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
                                 <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">    --}}
@@ -556,6 +578,7 @@
 
      {{-- JavaScript Files --}}
     <script type="text/javascript" src={{asset('js/jquery-3.3.1.min.js')}}></script>
+    <script src="{{asset('js/jquery.rateyo.min.js')}}"></script>
     <script src="{{asset('js/toastr.min.js')}}"></script>
     {{-- <script type="text/javascript" src={{asset('js/SweetAlert.js')}}></script> --}}
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
@@ -647,6 +670,22 @@
                 }
             });
         }
-        </script>   
+        </script>
+        
+        <script>
+            $(function () {
+     
+                     //returns a jQuery Element
+                    $(".rateyo").rateYo().on("rateyo.change",function (e, data){
+                    
+                        var rating  = data.rating;
+                        $(this).parent().find('score').text('score :' + $(this).attr('data-rateyo-score'));
+                        $(this).parent().find('.result').text('rating :'+ rating);
+                        $(this).parent().find('input[name=rating]').val(rating);
+    
+                    });
+    
+            });
+        </script> 
     </body>
 </html>

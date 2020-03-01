@@ -15,6 +15,8 @@ Route::get('/','PageController@index');
 Route::get('/dashboard','PageController@dashboard');
 Route::get('/user/delete/boarding','BoardingController@show');
 Route::get('/membertype','PrimiumMemberPaymentController@index');
+Route::post('/make/rating','BoardingRatingController@store');
+Route::get('/show/rating','BoardingRatingController@show');
 
 // -----------------Favourite Routies--------------------------
 Route::post('/view/house/add/favourite','MyFavouritController@store')->middleware('auth');
@@ -212,8 +214,8 @@ Route::get('/masterdash', function () {
     return view('profileManage.masterdashboard');
 });
 
-Route::get('/request', function () {
-    return view('requestBoarding.showAnnexRequest');
+Route::get('/rate', function () {
+    return view('starrating');
 });
 
 // Route::get('/admin', function () {

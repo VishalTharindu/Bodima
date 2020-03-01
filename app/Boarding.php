@@ -33,4 +33,9 @@ class Boarding extends Model
     {
         return $this->hasMany(MyFavourit::class);
     }
+
+    public function boardingrating()
+    {
+        return $this->hasMany(BoardingRating::class);
+    }
 }
