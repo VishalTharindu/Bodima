@@ -117,6 +117,13 @@
                           <h4 class="title is-6 has-text-dark">Rs: <span>{{$post->boarding->MonthlyRent}} Per Month</span></h4>
                           <p class="subtitle is-6">@<span>{{$post->boarding->user->name}}</span></p>
                         </div>
+                        @if (($post->boarding->user->usertype)== '1')
+                        <div class="media-right">
+                          <figure class="image is-96x96 is-responsive">
+                            <img src="/images/premium2.png" alt="Placeholder image">
+                          </figure>
+                        </div>                          
+                        @endif
                       </div>
                   
                       <div class="content">

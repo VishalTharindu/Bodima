@@ -45,7 +45,7 @@
             <a class="navbar-item has-text-danger" href="#">
               Free User
             </a>
-            <a class="navbar-item has-text-primary" href="#">
+            <a class="navbar-item has-text-primary" href="/membertype">
               Become Primium
             </a>
           @endif

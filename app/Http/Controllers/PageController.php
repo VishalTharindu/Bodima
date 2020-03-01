@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Boarding;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -13,7 +16,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $Boarding = Boarding::orderBy('overallrating','desc')->paginate(3);
+        $PremiumBoarding = Boarding::orderBy('created_at','desc')->paginate(10);                  
+        return view('welcome', compact('Boarding','PremiumBoarding'));
     }
 
     public function dashboard()

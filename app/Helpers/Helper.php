@@ -1,4 +1,7 @@
 <?php
+
+  use App\Boarding;
+
   if (!function_exists('getBoardingTypeIdById')) {
     function getBoardingTypeIdById($id)
     {
@@ -147,7 +150,12 @@
           $overall += $rating->rating;
           $alltotal = $overall / $boardingrating->count();
         }
-        // dd($overall);
+        
+        $boardings = DB::table('boardings')->where('id', $id)->get();
+        $boarding = Boarding::find($boardings[0]->id);
+        $boarding->overallrating  = $alltotal;
+        $boarding->save();
+
         return $alltotal;
           }
         }

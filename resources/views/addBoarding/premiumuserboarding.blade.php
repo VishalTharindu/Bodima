@@ -35,7 +35,7 @@
           <div class="col-md-12 boardingSearch">
             <div class="card">
               <div class="card-body">
-                <form action="/searchresult/singleroom/" method="post">
+                <form action="/searchresult/house/" method="post">
                   @csrf
                   <div class="row">
                     <div class="col-md-12">
@@ -81,7 +81,7 @@
                       <label for="" class="label">Boarding Type</label>
                         <div class="select is-info">
                             <select name="brtype">
-                                <option value="House">Single Room</option>                            
+                                <option value="House">House</option>                            
                             </select>
                         </div>
                     </div>
@@ -96,52 +96,60 @@
       </div>
       <div class="my-5"></div>
         <div class="columns">
-            @foreach ($SingleRoom as $post)
-              <div class="column is-4 center-responsive">
-                <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-4by3">
-                        <img src="/images/uploads/boardingimg/{{json_decode($post->boarding->filename)[0]}}" alt="Placeholder image">
-                      </figure>
+            @foreach ($Boarding as $post)
+            @if (($post->user->usertype)== '1')
+            <div class="column is-4 center-responsive">
+              <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img src="/images/uploads/boardingimg/{{json_decode($post->filename)[0]}}" alt="Placeholder image">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                        <figure class="image is-48x48">
+                          <img src="/images/prof.jpg" alt="Placeholder image">
+                        </figure>
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-5"><span>{{$post->boardingType}}</span> For Rent</p>
+                        <hr>
+                        <h4 class="title is-6 has-text-dark">Rs: <span>{{$post->MonthlyRent}} Per Month</span></h4>
+                        <p class="subtitle is-6">@<span>{{$post->user->name}}</span></p>
+                      </div>
+                      <div class="media-right">
+                        <figure class="image is-96x96 is-responsive">
+                          <img src="/images/premium2.png" alt="Placeholder image">
+                        </figure>
+                      </div>
                     </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="/images/prof.jpg" alt="Placeholder image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-5"><span>{{$post->boarding->boardingType}}</span> For Rent</p>
-                          <hr>
-                          <h4 class="title is-6 has-text-dark">Rs: <span>{{$post->boarding->MonthlyRent}} Per Month</span></h4>
-                          <p class="subtitle is-6">@<span>{{$post->boarding->user->name}}</span></p>
-                        </div>
-                      </div>
-                  
-                      <div class="content">
-                        {{str_limit(str_replace("&nbsp;",'',strip_tags($post->boarding->Description)),100)}}
-                        <br>
-                        <div class="my-2"></div>                                                                   
-                        <time datetime="2016-1-1">{{$post->created_at->isoFormat('LLLL')}}</time>
-                        <div class="my-2"></div>
-                        <form action="/make/rating" method="post">
-                          @csrf
-                          <div id="rating" class="rateyo" data-rateyo-rating="{{getRatingOverallById($post->boarding->id)}}"
-                          data-rateyo-spacing="10px"
-                          data-rateyo-rated-fill="#FF0000"
-                          data-rateyo-num-stars="5"
-                          data-rateyo-score="3"
-                          ></div>                                              
-                        </form>
-                        <div class="my-3"></div>
-                        <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
-                      </div>
+                    <div class="content">
+                      {{str_limit(str_replace("&nbsp;",'',strip_tags($post->Description)),100)}}
+                      <br>
+                      <div class="my-3"></div>
+                      <time datetime="2016-1-1">{{$post->created_at->isoFormat('LLLL')}}</time>
+                      <div class="my-2"></div>                                              
+                      <form action="/make/rating" method="post">
+                        @csrf
+                        <div id="rating" class="rateyo" data-rateyo-rating="{{getRatingOverallById($post->id)}}"
+                        data-rateyo-spacing="10px"
+                        data-rateyo-rated-fill="#FF0000"
+                        data-rateyo-num-stars="5"
+                        data-rateyo-score="3"
+                        ></div>                                              
+                      </form>
+                      <a href="/view/{{getBoardingTypeIdById($post->id)}}/{{getPropertyTypeIdById($post->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
                     </div>
                   </div>
-            </div>
+                </div>
+          </div>             
+            @endif
             @endforeach
         </div>
+        <div class="columns d-flex justify-content-center">
+          {{ $Boarding->links() }}
+        </div>        
     </div>
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('js/jquery.rateyo.min.js')}}"></script>
@@ -149,22 +157,20 @@
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
     @include('sweet::alert')
-
-
     <script>
       $(function () {
 
-//returns a jQuery Element
-        $(".rateyo").rateYo().on("rateyo.change",function (e, data){
+               //returns a jQuery Element
+              $(".rateyo").rateYo().on("rateyo.change",function (e, data){
+              
+                  var rating  = data.rating;
+                  $(this).parent().find('score').text('score :' + $(this).attr('data-rateyo-score'));
+                  $(this).parent().find('.result').text('rating :'+ rating);
+                  $(this).parent().find('input[name=rating]').val(rating);
 
-          var rating  = data.rating;
-          $(this).parent().find('score').text('score :' + $(this).attr('data-rateyo-score'));
-          $(this).parent().find('.result').text('rating :'+ rating);
-          $(this).parent().find('input[name=rating]').val(rating);
-
-        });
+              });
 
       });
-    </script>
+  </script> 
 </body>
 </html>
