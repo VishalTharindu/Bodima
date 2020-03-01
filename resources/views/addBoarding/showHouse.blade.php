@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery.rateyo.min.css')}}">
     <title>Document</title>
 
     <style>
@@ -116,6 +117,13 @@
                           <h4 class="title is-6 has-text-dark">Rs: <span>{{$post->boarding->MonthlyRent}} Per Month</span></h4>
                           <p class="subtitle is-6">@<span>{{$post->boarding->user->name}}</span></p>
                         </div>
+                        @if (($post->boarding->user->usertype)== '1')
+                        <div class="media-right">
+                          <figure class="image is-96x96 is-responsive">
+                            <img src="/images/premium2.png" alt="Placeholder image">
+                          </figure>
+                        </div>                          
+                        @endif
                       </div>
                   
                       <div class="content">
@@ -123,7 +131,16 @@
                         <br>
                         <div class="my-3"></div>
                         <time datetime="2016-1-1">{{$post->created_at->isoFormat('LLLL')}}</time>
-                        <div class="my-2"></div>
+                        <div class="my-2"></div>                                              
+                        <form action="/make/rating" method="post">
+                          @csrf
+                          <div id="rating" class="rateyo" data-rateyo-rating="{{getRatingOverallById($post->boarding->id)}}"
+                          data-rateyo-spacing="10px"
+                          data-rateyo-rated-fill="#FF0000"
+                          data-rateyo-num-stars="5"
+                          data-rateyo-score="3"
+                          ></div>                                              
+                        </form>
                         <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
                       </div>
                     </div>
@@ -136,9 +153,25 @@
         </div>        
     </div>
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/jquery.rateyo.min.js')}}"></script>
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
     @include('sweet::alert')
+    <script>
+      $(function () {
+
+               //returns a jQuery Element
+              $(".rateyo").rateYo().on("rateyo.change",function (e, data){
+              
+                  var rating  = data.rating;
+                  $(this).parent().find('score').text('score :' + $(this).attr('data-rateyo-score'));
+                  $(this).parent().find('.result').text('rating :'+ rating);
+                  $(this).parent().find('input[name=rating]').val(rating);
+
+              });
+
+      });
+  </script> 
 </body>
 </html>

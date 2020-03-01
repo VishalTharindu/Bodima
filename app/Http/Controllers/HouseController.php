@@ -7,6 +7,7 @@ use App\House;
 use App\Boarding;
 use Image;
 use Alert;
+use App\BoardingRating;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,7 @@ class HouseController extends Controller
      */
     public function show()
     {
-        $Houses = House::orderBy('created_at','desc')->paginate(3);
+        $Houses = House::orderBy('created_at','desc')->paginate(3);     
         return view('addBoarding.showHouse', compact('Houses'));
     }
 

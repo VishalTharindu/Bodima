@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Boarding;
-use App\User;
-use Illuminate\Support\Facades\DB;
-
+use App\BoardingRating;
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class BoardingRatingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,21 +14,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        $Boarding = Boarding::orderBy('overallrating','desc')->paginate(3);
-        $premiumboardings = Boarding::orderBy('overallrating','desc')->get();    
-
-        return view('welcome', compact('Boarding','premiumboardings'));
+        //
     }
 
-    public function dashboard()
-    {
-        return view('profileManage.masterdashboard');
-    }
-
-    public function userprofile()
-    {
-        return view('profileManage.masterdashboard');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -50,27 +35,36 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rating = new BoardingRating;
+        $rating ->user_id = request('user_id');
+        $rating ->boarding_id = request('boarding_id');
+        $rating ->rating = request('rating');       
+        $rating->save();
+
+        return back();
+
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\BoardingRating  $boardingRating
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(BoardingRating $boardingRating)
     {
-        //
+        $boardingRating = BoardingRating::orderBy('created_at','desc')->paginate(3);
+        return view('showrating', compact('boardingRating'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\BoardingRating  $boardingRating
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(BoardingRating $boardingRating)
     {
         //
     }
@@ -79,10 +73,10 @@ class PageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\BoardingRating  $boardingRating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, BoardingRating $boardingRating)
     {
         //
     }
@@ -90,10 +84,10 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\BoardingRating  $boardingRating
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(BoardingRating $boardingRating)
     {
         //
     }

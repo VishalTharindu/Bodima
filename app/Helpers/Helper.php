@@ -1,4 +1,7 @@
 <?php
+
+  use App\Boarding;
+
   if (!function_exists('getBoardingTypeIdById')) {
     function getBoardingTypeIdById($id)
     {
@@ -69,70 +72,90 @@
           }
         }
 
-        if (!function_exists('getBoardingrequestTypeIdById')) {
-          function getBoardingrequestTypeIdById($id)
-          {
-        
-        
-            $houserequest = DB::table('house_requests')->where('boardingrequest_id', $id)->get();
-        
-            if ($houserequest->count() == 1) {
-        
-            return 'houserequest';
+    if (!function_exists('getBoardingrequestTypeIdById')) {
+      function getBoardingrequestTypeIdById($id)
+      {
+    
+    
+        $houserequest = DB::table('house_requests')->where('boardingrequest_id', $id)->get();
+    
+        if ($houserequest->count() == 1) {
+    
+        return 'houserequest';
+  
+        } else {
+    
+          $anexrequest = DB::table('anex_requsts')->where('boardingrequest_id', $id)->get();
+    
+          if ($anexrequest->count() == 1){
+            
+            return 'anexrequest';
+    
+          } else {
+    
+            $singleroomrequest = DB::table('single_room_requests')->where('boardingrequest_id', $id)->get();
+    
+            if ($singleroomrequest->count() == 1) {
+              
+              
+              return 'singleroomrequest';
+    
+            }else{
+              return 0;
+            }
+          }
+        }
+      }
+    }
       
-            } else {
-        
-              $anexrequest = DB::table('anex_requsts')->where('boardingrequest_id', $id)->get();
-        
-              if ($anexrequest->count() == 1){
-                
-                return 'anexrequest';
-        
-              } else {
-        
-                $singleroomrequest = DB::table('single_room_requests')->where('boardingrequest_id', $id)->get();
-        
-                if ($singleroomrequest->count() == 1) {
-                  
-                  
-                  return 'singleroomrequest';
-        
-                }else{
-                  return 0;
-                }
+  if (!function_exists('getPropertyrequestTypeIdById')) {
+    function getPropertyrequestTypeIdById($id)
+    {       
+      $houserequest = DB::table('house_requests')->where('boardingrequest_id', $id)->get();
+  
+      if ($houserequest->count() == 1) {
+  
+        return $houserequest[0]->id;
+      } else {
+  
+        $anexrequest = DB::table('anex_requsts')->where('boardingrequest_id', $id)->get();
+  
+        if ($anexrequest->count() == 1){
+  
+          return $anexrequest[0]->id;
+  
+        } else {
+  
+          $singleroomrequest = DB::table('single_room_requests')->where('boardingrequest_id', $id)->get();
+  
+          if ($singleroomrequest->count() == 1) {
+  
+            return $singleroomrequest[0]->id;
+  
+          }else{
+                return 0;
               }
             }
           }
         }
-      
-        if (!function_exists('getPropertyrequestTypeIdById')) {
-          function getPropertyrequestTypeIdById($id)
-          {       
-            $houserequest = DB::table('house_requests')->where('boardingrequest_id', $id)->get();
+      }
+
+    if (!function_exists('getRatingOverallById')) {
+      function getRatingOverallById($id)
+      {       
+        $boardingrating = DB::table('boarding_ratings')->where('boarding_id', $id)->get();
+        $alltotal = 0;
+        $overall = 0;
+        foreach ($boardingrating as $key => $rating) {
+          $overall += $rating->rating;
+          $alltotal = $overall / $boardingrating->count();
+        }
         
-            if ($houserequest->count() == 1) {
-        
-              return $houserequest[0]->id;
-            } else {
-        
-              $anexrequest = DB::table('anex_requsts')->where('boardingrequest_id', $id)->get();
-        
-              if ($anexrequest->count() == 1){
-        
-                return $anexrequest[0]->id;
-        
-              } else {
-        
-                $singleroomrequest = DB::table('single_room_requests')->where('boardingrequest_id', $id)->get();
-        
-                if ($singleroomrequest->count() == 1) {
-        
-                  return $singleroomrequest[0]->id;
-        
-                }else{
-                      return 0;
-                    }
-                  }
-                }
-                }
-              }
+        $boardings = DB::table('boardings')->where('id', $id)->get();
+        $boarding = Boarding::find($boardings[0]->id);
+        $boarding->overallrating  = $alltotal;
+        $boarding->save();
+
+        return $alltotal;
+          }
+        }

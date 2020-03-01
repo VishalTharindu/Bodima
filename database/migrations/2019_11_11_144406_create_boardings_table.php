@@ -34,6 +34,7 @@ class CreateBoardingsTable extends Migration
             $table->string('Email');
             $table->string('Telephone');
             $table->string('Availability');
+            $table->float('overallrating')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

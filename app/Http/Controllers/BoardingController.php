@@ -49,6 +49,12 @@ class BoardingController extends Controller
         return view('addBoarding.addSingalroom');
     }
 
+    public function premiumuserboarding()
+    {
+        $Boarding = Boarding::orderBy('created_at','desc')->paginate(4);
+        return view('addBoarding.premiumuserboarding', compact('Boarding'));
+    }
+
     public function housestore(Request $request){
 
         $request->validate([

@@ -7,6 +7,7 @@
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
     <link href={{asset('css/css/material-kit.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}"> --}}
     <title>Document</title>
 </head>
 <body>
@@ -23,12 +24,11 @@
                                 <div class="tim-typo">
                                     <h3 class="title"><span class=" category text-success tim-note">Free</span></h3>
                                 </div>
-                                <h1 class="card-title"><small>$</small>0</h1>
+                                <h1 class="card-title"><small>$</small>5</h1>
                                 <ul>
                                     <li><i class="fas fa-check text-success"></i>&nbsp;Add Post</li>
-                                    <li><i class="fas fa-times text-danger"></i>&nbsp;Top Add</li>
-                                    <li><i class="fas fa-times text-danger"></i>&nbsp;Sharing Tools</li>
-                                    <li><i class="fas fa-times text-danger"></i>&nbsp; Design Tools</li>
+                                    <li><i class="fas fa-check text-success"></i>&nbsp;Top Add</li>
+                                    <li><i class="fas fa-times text-danger"></i>&nbsp;SMS Arlet</li>
                                 </ul>
                                 <a href="{{ route('register') }}" class="btn btn-primary btn-round">
                                     Get Started
@@ -46,8 +46,7 @@
                                 <ul>
                                     <li><span><i class="fas fa-check text-success"></span></i>&nbsp;Add Post</li>
                                     <li><i class="fas fa-check text-success"></i>&nbsp;Top Add</li>
-                                    <li><i class="fas fa-check text-success"></i>&nbsp;Sharing Tools</li>
-                                    <li><i class="fas fa-check text-success"></i>&nbsp; Design Tools</li>
+                                    <li><i class="fas fa-check text-success"></i>&nbsp;SMS Arlet</li>
                                 </ul>
                                 <a href="{{ route('register') }}" class="btn btn-primary btn-round">
                                     Get Started
