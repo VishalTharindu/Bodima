@@ -51,7 +51,7 @@ class BoardingController extends Controller
 
     public function premiumuserboarding()
     {
-        $Boarding = Boarding::orderBy('created_at','desc')->paginate(3);
+        $Boarding = Boarding::orderBy('created_at','desc')->paginate(4);
         return view('addBoarding.premiumuserboarding', compact('Boarding'));
     }
 

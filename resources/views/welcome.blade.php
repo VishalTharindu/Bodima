@@ -78,45 +78,54 @@
             <h2 class="font-weight-bold my-3 text-dark">Top Adds</h2>
           </div>
           <div class="my-4"></div>
-          <div class="row text-center">             
-            @foreach ($PremiumBoarding as $post)
-              @if (($post->user->usertype)== '1')           
-                <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
-                  <div class="view overlay rounded z-depth-1">
-                    <img src="/images/uploads/boardingimg/{{json_decode($post->filename)[0]}}" class="img-fluid" alt="Sample project image">
-                    <a>
-                      <div class="mask rgba-white-slight"></div>
-                    </a>
+          <div class="row text-center">
+           @php
+               $count = 0;
+           @endphp         
+            @foreach ($premiumboardings as $post)
+              @if ($count < 3)
+                  @if (($post->user->usertype)== '1')
+                  @php
+                      $count++;
+                  @endphp         
+                  <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+                    <div class="view overlay rounded z-depth-1">
+                      <img src="/images/uploads/boardingimg/{{json_decode($post->filename)[0]}}" class="img-fluid" alt="Sample project image">
+                      <a>
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                    </div>
+                    <div class="card-body">
+                    <h5 class="font-weight-bold my-3">{{$post->boardingType}} For Rent, <span>{{$post->District}}</span> </h5>                         
+                    <hr>
+                      <p class="dis">{{str_limit(str_replace("&nbsp;",'',strip_tags($post->Description)),100)}}
+                      </p>             
+                      <div class="d-flex justify-content-center">
+                        <form action="/make/rating" method="post">
+                          @csrf
+                          <div id="rating" class="rateyo" data-rateyo-rating="{{getRatingOverallById($post->id)}}"
+                          data-rateyo-spacing="10px"
+                          data-rateyo-rated-fill="#FF0000"
+                          data-rateyo-num-stars="5"
+                          data-rateyo-score="3"
+                          ></div>                                              
+                        </form>
+                      </div>                
+                      <div class="my-4"></div>
+                      <a href="/view/{{getBoardingTypeIdById($post->id)}}/{{getPropertyTypeIdById($post->id)}}" class="btn btn-indigo btn-sm seemorebtn"><i class="fas fa-clone left"></i> see more</a>
+                      <div class="my-4"></div>
+                      <div class="d-flex justify-content-center">
+                        <figure class="image is-96x96 is-responsive">
+                          <img src="/images/premium2.png" alt="Placeholder image">
+                        </figure>
+                      </div>                          
                   </div>
-                  <div class="card-body">
-                  <h5 class="font-weight-bold my-3">{{$post->boardingType}} For Rent, <span>{{$post->District}}</span> </h5>                         
-                  <hr>
-                    <p class="dis">{{str_limit(str_replace("&nbsp;",'',strip_tags($post->Description)),100)}}
-                    </p>             
-                    <div class="d-flex justify-content-center">
-                      <form action="/make/rating" method="post">
-                        @csrf
-                        <div id="rating" class="rateyo" data-rateyo-rating="{{getRatingOverallById($post->id)}}"
-                        data-rateyo-spacing="10px"
-                        data-rateyo-rated-fill="#FF0000"
-                        data-rateyo-num-stars="5"
-                        data-rateyo-score="3"
-                        ></div>                                              
-                      </form>
-                    </div>                
-                    <div class="my-4"></div>
-                    <a href="/view/{{getBoardingTypeIdById($post->id)}}/{{getPropertyTypeIdById($post->id)}}" class="btn btn-indigo btn-sm seemorebtn"><i class="fas fa-clone left"></i> see more</a>
-                    @if (($item->user->usertype)== '1')
-                    <div class="my-4"></div>
-                    <div class="d-flex justify-content-center">
-                      <figure class="image is-96x96 is-responsive">
-                        <img src="/images/premium2.png" alt="Placeholder image">
-                      </figure>
-                    </div>                          
-                  @endif
-                </div>
-              </div>              
+                </div>              
+                @endif
+              @else
+                  
               @endif
+              
             @endforeach           
           </div>
           <div class="d-flex justify-content-center">
