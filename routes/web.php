@@ -17,6 +17,8 @@ Route::get('/user/delete/boarding','BoardingController@show');
 Route::get('/membertype','PrimiumMemberPaymentController@index');
 Route::post('/make/rating','BoardingRatingController@store');
 Route::get('/show/rating','BoardingRatingController@show');
+Route::get('/payment', 'PaymentController@index');
+Route::post('/charge', 'PaymentController@charge');
 
 
 // -----------------Favourite Routies--------------------------
