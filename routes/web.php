@@ -14,10 +14,11 @@
 Route::get('/','PageController@index');
 Route::get('/dashboard','PageController@dashboard');
 Route::get('/user/delete/boarding','BoardingController@show');
-Route::get('/membertype','PrimiumMemberPaymentController@index');
+Route::get('/membertype','PaymentController@subcriptioncard');
 Route::post('/make/rating','BoardingRatingController@store');
 Route::get('/show/rating','BoardingRatingController@show');
-Route::get('/payment', 'PaymentController@index');
+Route::get('/payment/1','PaymentController@indexpro');
+Route::get('/payment/2','PaymentController@indexpremium');
 Route::post('/charge', 'PaymentController@charge');
 
 

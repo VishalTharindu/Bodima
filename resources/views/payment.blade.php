@@ -4,135 +4,209 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
-
+    <title>Payment</title>
+    {{-- <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
-        .StripeElement {
-            box-sizing: border-box;
-            
-            height: 40px;
-            
-            padding: 10px 12px;
-            
-            border: 1px solid transparent;
-            border-radius: 4px;
-            background-color: white;
-            
-            box-shadow: 0 1px 3px 0 #e6ebf1;
-            -webkit-transition: box-shadow 150ms ease;
-            transition: box-shadow 150ms ease;
-        }
-  
-        .StripeElement--focus {
-            box-shadow: 0 1px 3px 0 #cfd7df;
-        }
-        
-        .StripeElement--invalid {
-            border-color: #fa755a;
-        }
-        
-        .StripeElement--webkit-autofill {
-            background-color: #fefde5 !important;
-        }
+        @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body{
+    background-image: linear-gradient(to right bottom, #ffffff, #f8f8f8, #f1f0f1, #eae8ea, #e4e1e2);
+  margin: 0 10px;
+}
+
+.payment{
+    background-image: linear-gradient(to right bottom, #4aee54, #68e16f, #7fd485, #92c597, #a4b6a6);
+  max-width: 500px;
+  margin: 80px auto;
+  height: auto;
+  padding: 35px;
+  padding-top: 70px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.payment h2{
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  color: #0d3c61;
+}
+
+.form .label{
+  display: block;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.input{
+  padding: 13px 0px 13px 25px;
+  width: 100%;
+  text-align: center;
+  border: 2px solid #dddddd;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  outline: none;
+  font-size: 16px;
+  color: #555555;
+}
+
+.card-grp{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-item{
+  width: 48%;
+}
+
+.space{
+  margin-bottom: 20px;
+}
+
+.icon-relative{
+  position: relative;
+}
+
+.icon-relative .fas,
+.icon-relative .far{
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  font-size: 20px;
+  color: #555555;
+}
+
+.btn{
+  margin-top: 40px;
+  background: #2196F3;
+  padding: 12px;
+  text-align: center;
+  color: #f8f8f8;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.demo {
+  width: 80%;
+  margin: auto;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wrappers {
+  width: 20%;
+  height: 40px;
+  margin: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  margin: auto;
+}
+
+
+@media screen and (max-width: 420px){
+  .card-grp{
+    flex-direction: column;
+  }
+  .card-item{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .btn{
+    margin-top: 20px;
+  }
+}
     </style>
 </head>
 <body>
-    <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
-    <script src="https://js.stripe.com/v3/"></script>
+    <div class="container">
         <form action="{{ url('charge') }}" method="post" id="payment-form">
-            <div class="form-row">
-                <p><input type="text" name="amount" placeholder="Enter Amount" /></p>
-                <p><input type="email" name="email" placeholder="Enter Email" /></p>
-                <label for="card-element">
-                Credit or debit card
-                </label>
-                <div id="card-element">
-                <!-- A Stripe Element will be inserted here. -->
+            <div class="wrapper">
+                <div class="payment">
+                    <div class="demo">
+                        <div class="grid">
+                          
+                            <picture class="wrappers">
+                                <img class="img" src="/images/card/1.jpg">
+                            </picture> 
+                            
+                            <picture class="wrappers">                               
+                                <img class="img" src="/images/card/2.png">
+                            </picture>
+
+                            <picture class="wrappers">
+                                <img class="img" src="/images/card/3.png">
+                            </picture>
+
+                            <picture class="wrappers">
+                                <img class="img" src="/images/card/4.png">
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="form-row">               
+                        <div class="form">
+                            @foreach ($Plan as $plan)
+                            <div class="card space icon-relative">
+                                <label class="label">Name:</label>
+                                <p><input type="text" class="input"name="amount" placeholder="Enter Amount" value="{{auth()->user()->name}}" disabled/></p>
+                                <i class="fas fa-user"></i>
+                              </div>
+                              <div class="card space icon-relative">
+                                <label class="label">Aount:</label>
+                                <p><input type="text" class="input"name="amount" placeholder="Enter Amount" value="{{$plan->cost}}"/></p>
+                                <i class="fas fa-user"></i>
+                              </div>
+                              <div class="card space icon-relative">
+                                <label class="label">Email Address:</label>
+                                <p><input type="email" class="input" name="email" placeholder="Enter Email" value="{{auth()->user()->email}}"/></p> 
+                                <i class="fas fa-user"></i>
+                              </div>                                                                                        
+                            @endforeach
+                            <label for="card-element">
+                            Credit or debit card
+                            </label>
+                            <div id="card-element">
+                            <!-- A Stripe Element will be inserted here. -->
+                            </div>
+                        
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                        <button class="btn">Submit Payment</button>
+                        {{ csrf_field() }}
+        
+                        </div>
                 </div>
-            
-                <!-- Used to display form errors. -->
-                <div id="card-errors" role="alert"></div>
             </div>
-            <button>Submit Payment</button>
-            {{ csrf_field() }}
         </form>
+    </div>
 
     <script>
         var publishable_key = '{{ env('STRIPE_PUBLISHABLE_KEY') }}';
     </script>
-<script src="{{ asset('/js/card.js') }}"></script>
+    <script src="{{ asset('js/card.js') }}"></script>
 <script>
-    // Create a Stripe client.
-var stripe = Stripe(publishable_key);
-  
-  // Create an instance of Elements.
-  var elements = stripe.elements();
-    
-  // Custom styling can be passed to options when creating an Element.
-  // (Note that this demo uses a wider set of styles than the guide below.)
-  var style = {
-      base: {
-          color: '#32325d',
-          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-          fontSmoothing: 'antialiased',
-          fontSize: '16px',
-          '::placeholder': {
-              color: '#aab7c4'
-          }
-      },
-      invalid: {
-          color: '#fa755a',
-          iconColor: '#fa755a'
-      }
-  };
-    
-  // Create an instance of the card Element.
-  var card = elements.create('card', {style: style});
-    
-  // Add an instance of the card Element into the `card-element` <div>.
-  card.mount('#card-element');
-    
-  // Handle real-time validation errors from the card Element.
-  card.addEventListener('change', function(event) {
-      var displayError = document.getElementById('card-errors');
-      if (event.error) {
-          displayError.textContent = event.error.message;
-      } else {
-          displayError.textContent = '';
-      }
-  });
-    
-  // Handle form submission.
-  var form = document.getElementById('payment-form');
-  form.addEventListener('submit', function(event) {
-      event.preventDefault();
-    
-      stripe.createToken(card).then(function(result) {
-          if (result.error) {
-              // Inform the user if there was an error.
-              var errorElement = document.getElementById('card-errors');
-              errorElement.textContent = result.error.message;
-          } else {
-              // Send the token to your server.
-              stripeTokenHandler(result.token);
-          }
-      });
-  });
-    
-  // Submit the form with the token ID.
-  function stripeTokenHandler(token) {
-      // Insert the token ID into the form so it gets submitted to the server
-      var form = document.getElementById('payment-form');
-      var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'stripeToken');
-      hiddenInput.setAttribute('value', token.id);
-      form.appendChild(hiddenInput);
-    
-      // Submit the form
-      form.submit();
-  }
 </script>
 </body>
 </html>

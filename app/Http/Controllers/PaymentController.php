@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Payment;
 use Illuminate\Http\Request;
+use Omnipay\Omnipay;
+use App\Payment;
+use App\User;
+use App\Plan;
 
 class PaymentController extends Controller
 {
@@ -12,9 +15,24 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexpro(Plan $plan)
     {
-        return view('payment');
+        
+        $Plan = Plan::where('id','1')->get();
+        return view('payment', compact('Plan'));
+    }
+
+    public function indexpremium(Plan $plan)
+    {
+        $Plan = Plan::where('id','2')->get();
+        return view('payment', compact('Plan'));
+    }
+
+
+    public function subcriptioncard(){
+
+        $Plans = Plan::get();
+        return view('membershoptype', compact('Plans'));
     }
  
     public function charge(Request $request)
@@ -42,14 +60,25 @@ class PaymentController extends Controller
                 {
                     $payment = new Payment;
                     $payment->payment_id = $arr_payment_data['id'];
+                    $payment->user_id = auth()->id();
                     $payment->payer_email = $request->input('email');
                     $payment->amount = $arr_payment_data['amount']/100;
                     $payment->currency = env('STRIPE_CURRENCY');
                     $payment->payment_status = $arr_payment_data['status'];
                     $payment->save();
+
+
+                    $premiumuser = User::find(auth()->id());
+                    $premiumuser->usertype  = '1';
+                    $premiumuser->save();
+
+
                 }
  
-                return "Payment is successful. Your payment id is: ". $arr_payment_data['id'];
+                toastr()->success('Payment is successful,You have become Premium');
+                return redirect()->route('home'); 
+
+                // return "Payment is successful. Your payment id is: ". $arr_payment_data['id'];
             } else {
                 // payment failed: display message to customer
                 return $response->getMessage();

@@ -159,8 +159,8 @@ class BoardingController extends Controller
         $adhouse->save();
 
         // Alert::success('User Boarding has been added successfully!', 'Successfully Added!')->autoclose(3000);
-        toastr()->success('Your Favourite has been successfully added!');
-        return back();
+        toastr()->success('Your Boarding has been successfully added!');
+        return redirect('addboarding'); 
     }
 
     public function anexstore(Request $request){

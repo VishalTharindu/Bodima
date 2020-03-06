@@ -37,9 +37,12 @@
           <a class="navbar-item" href="/">
             Home
           </a>
-          @if ((auth()->user()->name)==1)
+          @if ((auth()->user()->usertype)==1)
             <a class="navbar-item has-text-success" href="#">
               Primium User
+            </a>
+            <a class="navbar-item has-text-info" href="/membertype">
+              RenewPremium
             </a>
           @else
             <a class="navbar-item has-text-danger" href="#">
