@@ -35,15 +35,25 @@ class UserActivityLogController extends Controller
         ->limit(1)
         ->get();
 
-        dd($Type->Boardingtype);
-        // $Boadrings = Boarding::where(function($query) use ($Type){
-        //     $query->where('boardingType','=',$Type);
-        // })->paginate(4);
+        foreach($Type as $type){
+            $boardingType = $type->Boardingtype;
+        }
+        
+        foreach($Keyword as $keyword){
+            $searchKeyword = $keyword->Keyword;
+        }
 
-        $Boadrings = Boarding::where(function($query) use ($userId){
-            $query->where('user_id','=',$userId);
-        })->paginate(4);
-        dd($Boadrings);
+        $Boardings = Boarding::where(function($query) use ($boardingType){
+            $query->where('boardingType','=',$boardingType);
+        })->where(function ($query) use ($searchKeyword) {
+                $query->where(function ($query) use ($searchKeyword) {
+                    $query->orwhere('District', 'LIKE', $searchKeyword)
+                        ->orWhere('Province', 'LIKE', $searchKeyword)
+                        ->orWhere('City', 'LIKE', $searchKeyword);
+                });
+        })->get();
+
+        return view('SearchResult.usersuggestion', compact('Boardings'));
     }
 
     /**

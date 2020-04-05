@@ -139,7 +139,14 @@
                           data-rateyo-rated-fill="#FF0000"
                           data-rateyo-num-stars="5"
                           data-rateyo-score="3"
-                          ></div>                                              
+                          ></div>
+                             
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <div class="my-3"></div>
+                        
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <div class="addthis_inline_share_toolbox_b5ql"></div>
+                                                             
                         </form>
                         <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
                       </div>
@@ -157,6 +164,11 @@
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e6cabb0119bfabd"></script>
+
+
+
     @include('sweet::alert')
     <script>
       $(function () {

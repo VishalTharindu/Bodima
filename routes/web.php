@@ -20,6 +20,7 @@ Route::get('/show/rating','BoardingRatingController@show');
 Route::get('/payment/1','PaymentController@indexpro');
 Route::get('/payment/2','PaymentController@indexpremium');
 Route::post('/charge', 'PaymentController@charge');
+Route::get('/map','MapsearchController@index')->name('map');
 
 
 // -----------------Favourite Routies--------------------------
@@ -98,18 +99,24 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::get('/add/houserequst','HouseRequestController@create')->middleware('auth');
     Route::post('/add/houserequst','BoardingRequestController@storeHouserRequest')->middleware('auth');
     Route::post('/delete/boarding_requestsRequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
+    Route::get('/edit/houserequest/{houseRequest}','HouseRequestController@edit')->middleware('auth');
+    Route::post('/update/houseRequests','HouseRequestController@update')->middleware('auth');
 
     /****************Annex request routes********************/
     Route::get('/show/annexrequst','AnexRequstController@show');
     Route::get('/add/annexrequst','AnexRequstController@create')->middleware('auth');
     Route::get('/view/anexrequest/{anexrequest}','BoardingRequestController@viewAnexRequest')->middleware('auth');
     Route::post('/add/annexrequst','BoardingRequestController@storeAnnexRequest')->middleware('auth');
+    Route::get('/edit/anexrequest/{anexRequst}','AnexRequstController@edit')->middleware('auth');
+    Route::post('/update/anexRequsts','AnexRequstController@update')->middleware('auth');
 
     /****************Annex request routes********************/
     Route::get('/show/singelroomrequest','SingleRoomRequestController@show');
     Route::get('/add/singelroomrequest','SingleRoomRequestController@create')->middleware('auth');
     Route::get('/view/singleroomrequest/{singleroomrequest}','BoardingRequestController@viewSingleRoomRequest')->middleware('auth');
     Route::post('/add/singelroomrequest','BoardingRequestController@storeSingelRoomRequest')->middleware('auth');
+    Route::get('/edit/singleroomrequest/{singleRoomRequest}','SingleRoomRequestController@edit')->middleware('auth');
+    Route::post('/update/singleRoomRequests','SingleRoomRequestController@update')->middleware('auth');
 
 // ++++++++fonction related routies++++++++
 
@@ -128,6 +135,8 @@ Route::get('/user/message/all','ProfileController@viewAllMessage')->middleware('
 Route::get('/user/message/{message}/view','ProfileController@viewMessage')->middleware('auth');
 Route::post('/profile/message/reply','UserEmailController@replyMessage')->middleware('auth');
 Route::post('/user/message/{message}/delete','ProfileController@deleteMessage')->middleware('auth');
+Route::post('/user/complain','UserComplainController@store')->middleware('auth');
+Route::get('/user/mostlyseaarch/result','UserActivityLogController@index');
 
 
 /* ++++++++++++++++++Admin Routes+++++++++++++++++++++++++ */
@@ -148,6 +157,8 @@ Route::prefix('admin')->group(function() {
 
 Route::get('/admin','AdminController@index');
 Route::get('/all/users','AdminController@allusers');
+Route::get('/admin/show/complain','UserComplainController@show');
+
 
     /* --------Boarding Routes-------- */
     Route::get('all/house','AdminController@allhouse')->middleware('auth:admin');

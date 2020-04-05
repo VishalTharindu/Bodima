@@ -80,7 +80,7 @@
                       <label for="" class="label">Boarding Type</label>
                         <div class="select is-info">
                             <select name="brtype">
-                                <option value="House">House</option>                            
+                                <option value="House">Annex</option>                            
                             </select>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                             <figure class="image is-128x128">
                                 <img src="/images/prof.jpg" alt="Placeholder image">
                             </figure>
-                            <p>Postedby:vishal</p>                       
+                            <p>Postedby:{{$request->boardingrequest->user->name}}</p>                       
                         </div>
                         <div class="col-md-10">
                             <div class="row">
@@ -121,7 +121,7 @@
                                     <h6 class="card-title"><strong>Location:</strong><span>{{$request->boardingrequest->Province}}</span><span>>></span><span>{{$request->boardingrequest->District}}</span><span>>></span><span>{{$request->boardingrequest->City }}</span></h6>                     
                                 </div>
                                 <div class="col-md-3">
-                                    <h6 class="card-title"><strong>Posted:</strong><span>10 Minutes ago</span></h6>                     
+                                    <h6 class="card-title"><strong>Posted:</strong><span>{{$request->created_at->diffForHumans()}}</span></h6>                     
                                 </div>
                             </div>
                             <div class="my-4"></div>

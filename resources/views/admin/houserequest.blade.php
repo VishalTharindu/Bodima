@@ -10,7 +10,7 @@
               <th>User Name</th>
               <th>District</th>
               <th>Monthly Rent</th>
-              <th>Age</th>
+              <th>Furniture AB</th>
               <th>Start date</th>
               <th>Action</th>
             </tr>

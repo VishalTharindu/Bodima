@@ -25,6 +25,7 @@ class CreateBoardingRequestsTable extends Migration
             $table->boolean('Office_girls');
             $table->string('MonthlyRent');
             $table->string('KeyMoney');
+            $table->text('Description');
             $table->string('Province');
             $table->string('District');
             $table->string('City');

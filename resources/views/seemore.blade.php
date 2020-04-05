@@ -149,14 +149,14 @@
                                             <p>City: <span class="has-text-weight-semibold">{{$boardingData->boarding->City}}</span></p>
                                             <p>City:</p>
                                             
-                                            {{--<p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
+                                            <p>Availability: @if(($boardingData->boarding->Availability) == 1)
                                                 <span class="has-text-weight-semibold has-text-success">
-                                                    {{$house->property->availability}}
+                                                    Yes
                                                 </span> @else
                                                 <span class="has-text-weight-semibold has-text-danger">
-                                                        {{$house->property->availability}}
+                                                    No
                                                 </span> @endif
-                                            </p> --}}
+                                            </p>
                                         </div>
                                     </div>
                                     @elseif(($boardingData->boarding->boardingType)=='Anex'))
@@ -232,14 +232,14 @@
                                                 <p>District: <span class="has-text-weight-semibold">{{$boardingData->boarding->District}}</span></p>
                                                 <p>City: <span class="has-text-weight-semibold">{{$boardingData->boarding->City}}</span></p>                                                
                                                 
-                                                {{--<p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
+                                                <p>Availability: @if(($boardingData->boarding->Availability) == 1)
                                                     <span class="has-text-weight-semibold has-text-success">
-                                                        {{$house->property->availability}}
+                                                        Yes
                                                     </span> @else
                                                     <span class="has-text-weight-semibold has-text-danger">
-                                                            {{$house->property->availability}}
+                                                        No
                                                     </span> @endif
-                                                </p> --}}
+                                                </p>
                                             </div>
                                         </div>
                                     @elseif(($boardingData->boarding->boardingType)=='Singal_Room'))
@@ -306,14 +306,14 @@
                                                 <p>District: <span class="has-text-weight-semibold">{{$boardingData->boarding->District}}</span></p>
                                                 <p>City: <span class="has-text-weight-semibold">{{$boardingData->boarding->City}}</span></p>                                                
                                                 
-                                                {{--<p>Availability: @if(strcmp($house->property->availability,"YES") == 0)
+                                                <p>Availability: @if(($boardingData->boarding->Availability) == 1)
                                                     <span class="has-text-weight-semibold has-text-success">
-                                                        {{$house->property->availability}}
+                                                        Yes
                                                     </span> @else
                                                     <span class="has-text-weight-semibold has-text-danger">
-                                                            {{$house->property->availability}}
+                                                        No
                                                     </span> @endif
-                                                </p> --}}
+                                                </p>
                                             </div>
                                         </div>
                                     @endif
@@ -321,9 +321,9 @@
                             </div>
                         </div>
                         <div class="column is-hidden-touch">
-                            <div class='is-flex is-horizontal-center'>
+                            <div class='is-flex d-flex justify-content-center'>
                                 <figure class="image is-128x128">
-                                    <img class="is-rounded is-horizontal-center" src="images/prof.jpg">
+                                    <img class="is-rounded is-horizontal-center" src="/images/prof.jpg">
                                 </figure>
                             </div>
                             <div class="subtitle has-text-centered"><span>@</span>{{$boardingData->boarding->user->name}}</div>
@@ -334,6 +334,8 @@
                                 <button class="button is-success" onclick="showPnox()">Call Owner</button>
                                 <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{$boardingData->boarding->user->phone}}" class="nounnounderlinelink">{{$boardingData->boarding->user->phone}}</a></p>
                                 <div class="my-4"></div>
+                                @if (($boardingData->boarding->user->id) != (Auth::user()->id))
+                                <div class="addthis_inline_share_toolbox_b5ql"></div>
                                 <div class="d-flex justify-content-center">
                                     <form action="/make/rating" method="post">
                                         @csrf
@@ -351,22 +353,10 @@
                             
                                         <div class="my-3"></div>
                                         <div><input type="submit" class="button is-info" value="submit" name="add"></div>
-                            
-                                        {{-- <a href="/show/rating">show</a> --}}
                                     </form>
-                                </div>
+                                </div>                                   
+                                @endif
                                 <hr>
-                                {{-- <p class="owneramount">Owner Estimated: <span class="has-text-success has-text-weight-bold"></span>                            LKR</p>
-                                <p class="bidamount">Current Highest Offer: <span class="has-text-danger has-text-weight-bold">    --}}
-                                    {{-- @if ($house->offers->count() > 0)
-                                        {{number_format($house->offers->sortBy('offerAmount')->last()->offerAmount,2)}}
-                                    @else
-                                        0.00
-                                    @endif --}}
-                                {{-- </span> LKR</p>
-                                <div id="myBtn"><button class="button is-link">Make an offer</button></div>
-                                <br> --}}
-            {{-- @include('results.offeralerts') --}}
                             </div>
                         </div>
                     </div>
@@ -375,7 +365,7 @@
                         Google Map
                     </div> {{-- Google Map Here --}} {{--
                     <div class=" is-flex-mobile"> --}}
-                        {{-- <div class="column maps is-flex-mobile">
+                        <div class="column maps is-flex-mobile">
         
                             <div class="mapouter">
                                 <div class="gmap_canvas">
@@ -400,13 +390,13 @@
         
                             </div>
                         </div>
-                        <a class="button is-info nounnounderlinebtn" href="http://www.google.com/maps/place/{{$house->property->latitude}},{{$house->property->longitude}}"
-                            target="_blank">Set Direction</a> </div> --}}
+                        <a class="button is-info nounnounderlinebtn" href="http://www.google.com/maps/place/{{$boardingData->boarding->latitude}},{{$boardingData->boarding->longitude}}"
+                            target="_blank">Set Direction</a> </div>
                     <hr>
                     <div class="subtitle has-text-weight-semibold">Description</div>
                     <div class="column is-flex-mobile">
                         <p class="content">
-                            {{-- {{$House->boarding->Description}} --}}
+                            {{$boardingData->boarding->Description}}
                         </p>
                     </div>
                     
@@ -550,27 +540,49 @@
                     </form>
                     <a href="/edit/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
                     @else
-                    <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
-                    @endif
-
-                    {{-- @if (Auth::admin())                    
-                    <form action="/admin/delete/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" method="post">
-                        @csrf
-                        <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
-                    </form>
-                    <a href="/admin/edit/houses/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
-                    @else
-                    <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
-                    @endif --}}
-                    
+                    <button type="button" class="is-pulled-right reportad btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"> <span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span> </button>          
+                    @endif                                   
                     <br>
-        
                 </div>
         
             </div>
             </div>            
         </div>
 
+        <!-- Modal --> 
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> 
+                    </div>
+                    <form action="/user/complain" method="post">
+                        @csrf 
+                        <div class="modal-body">                        
+                            <label for="">User Name</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" value="{{Auth::user()->name}}">
+                            </div>
+                            <label for="">User Email</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="email" value="{{Auth::user()->email}}">
+                            </div>
+                            <label for="">Complaint</label>
+                            <div class="form-group">
+                               <textarea class="form-control" name="complain" id="" cols="30" rows="5"></textarea>
+                            </div>
+                            <input type="text" name="userid" value="{{$boardingData->boarding->user->id}}" hidden>
+                            <input type="text" name="boardingtypeid" value="{{$boardingData->boarding->id}}" hidden>                       
+                        </div> 
+                        <div class="modal-footer"> 
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Submit Complain">
+                        </div>
+                </form>
+                </div> 
+            </div>
+        </div>
 
     {{-- @include('layouts.offer')
     @include('layouts.reporthouse') --}}
@@ -585,14 +597,18 @@
     <script type="text/javascript" src={{asset('js/flickity.pkgd.min.js')}}></script>
     @toastr_render
     @include('sweet::alert')
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e6cabb0119bfabd"></script>
+
+
+
     
     <!-- MDB core JavaScript -->
     {{-- <script type="text/javascript" src={{asset('js/mdb.min.js')}}></script> --}}
     {{-- @include('sweet::alert') --}}
-    {{-- <script>
+    <script>
         var map;
-        var lat = {{$house->property->latitude}}
-        var lng = {{$house->property->longitude}}
+        var lat = {{$boardingData->boarding->latitude}}
+        var lng = {{$boardingData->boarding->longitude}}
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: lat, lng: lng},
@@ -604,10 +620,10 @@
           map: map,
         });
       }
-    </script> --}}
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKNG_uMsCgUvpLc_Adr2n9nwo6BWOImoM&libraries=places&callback=initMap"
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"
         async defer></script>
---}}
+
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 (document.querySelectorAll('.notification .deletenotify') || []).forEach(($delete) => {
@@ -639,7 +655,7 @@
             }
         </script>
 
-        <script>
+        {{-- <script>
             function deleteMe() {
             event.preventDefault();
             var form = event.target.form;
@@ -670,7 +686,7 @@
                 }
             });
         }
-        </script>
+        </script> --}}
         
         <script>
             $(function () {

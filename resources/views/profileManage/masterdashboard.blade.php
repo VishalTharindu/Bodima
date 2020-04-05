@@ -175,7 +175,7 @@
             @include('profileManage.allmessage')
             @elseif(Request::is('user/message'))
             @include('profileManage.message')
-            @elseif(Request::is('profile/message/*/view'))
+            @elseif(Request::is('user/message/*/view'))
             @include('profileManage.viewmassage')
             @else
             @include('profileManage.dashboard')
