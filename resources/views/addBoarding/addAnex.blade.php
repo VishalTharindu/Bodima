@@ -29,6 +29,9 @@
         .select, .select select{
             width: 100%;
         }
+        #map {
+            height: 300px;
+        }
     </style>
 
 </head>
@@ -54,7 +57,16 @@
                       <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
                     </div>
                   </li>
-                  <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Finders
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/show/houserequest">House Request</a>
+                      <a class="dropdown-item" href="/show/annexrequst">Annex Request</a>
+                      <a class="dropdown-item" href="/show/singelroomrequest">Single Room Request</a>                 
+                    </div>
+                  </li> 
                   <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
                   <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
                   <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
@@ -484,28 +496,37 @@
                                     <div class="my-4"></div>
                                     <div class="columns is mobile is-centered">
                                         <div class="container">
-                                            <label class="label has-text-centered">Map</label>
-                                            <div>
-                                                <img src="images/map.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="columns">
-                                        <div class="column is-12">
                                             <div class="field">
-                                                <label class="label">Codination</label>
-                                                <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
-                                                    </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                <div class="control maphere">
+                                                    <label for="name">Set Location: Google Maps</label>
+                                                    <input class="input is-primary" type="text" id="searchmap">
+                                                    <div id="map" class="column"></div>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="control">
+                                                    <label for="name">Latitude</label>
+                                                    <input class="input is-primary {{ $errors->has('name') ? ' is-danger' : '' }}" type="text"
+                                                        name="lat" id="lat" value="{{ old('lat') }}">
+                                                    @if ($errors->has('lat'))
+                                                    <span>
+                                                        <strong class="has-text-danger">{{ $errors->first('lat') }}</strong>
+                                                    </span> @endif
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="control">
+                                                    <label for="name">Longitude</label>
+                                                    <input class="input is-primary {{ $errors->has('name') ? ' is-danger' : '' }}" type="text"
+                                                        name="lng" id="lng" value="{{ old('lng') }}">
+                                                    @if ($errors->has('lng'))
+                                                    <span>
+                                                        <strong class="has-text-danger">{{ $errors->first('lng') }}</strong>
+                                                    </span> @endif
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
@@ -748,6 +769,52 @@
         
             });
         </script>
+
+<script>
+    var map;
+        function initAutocomplete() {
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 6.9814435, lng: 81.0741583},
+            zoom: 15
+            });
+
+            var marker = new google.maps.Marker({
+            position: {lat: 6.9814435, lng: 81.0741583},
+            map: map,
+            draggable: true,
+            });
+
+            var input = document.getElementById('searchmap');
+            var searchBox = new google.maps.places.SearchBox(input);
+            //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            google.maps.event.addListener(searchBox,'places_changed',function(){
+                var places = searchBox.getPlaces();
+                var bounds = new google.maps.LatLngBounds();
+                var i, place;
+                for (i = 0; place=places[i]; i++) {
+                    bounds.extend(place.geometry.location);
+                    marker.setPosition(place.geometry.location);
+                    
+                }
+
+                map.fitBounds(bounds);
+                map.setZoom(15);
+            });
+
+            google.maps.event.addListener(marker,'position_changed',function(){
+                var lat = marker.getPosition().lat();
+                var lng = marker.getPosition().lng();
+
+                $('#lat').val(lat);
+                $('#lng').val(lng);
+            });
+        }
+</script>
+<script type='text/javascript' src='https://maps.google.com/maps/api/js?language=en&key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&region=GB'></script>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initAutocomplete"
+        async defer></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {

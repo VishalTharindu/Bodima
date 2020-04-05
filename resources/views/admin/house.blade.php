@@ -10,7 +10,7 @@
               <th>Owner Name</th>
               <th>District</th>
               <th>Monthly Rent</th>
-              <th>Age</th>
+              <th>Furniture AB</th>
               <th>Start date</th>
               <th>Action</th>
             </tr>
@@ -21,7 +21,7 @@
               <td>{{$house->boarding->user->name}}</td>
                 <td>{{$house->boarding->District}}</td>
                 <td><span>Rs : </span>{{$house->boarding->MonthlyRent}}</td>
-                <td>61</td>
+                <td>{{$house->boarding->Availability }}</td>
                 <td>2011/04/25</td>
                 <td>
                     <form action="/admin/delete/{{getBoardingTypeIdById($house->boarding->id)}}/{{$house->id}}" method="post">

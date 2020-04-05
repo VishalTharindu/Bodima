@@ -38,4 +38,9 @@ class Boarding extends Model
     {
         return $this->hasMany(BoardingRating::class);
     }
+
+    public function usercomplain()
+    {
+        return $this->hasMany(UserComplain::class);
+    }
 }

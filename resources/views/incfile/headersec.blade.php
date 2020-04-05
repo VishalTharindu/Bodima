@@ -54,8 +54,7 @@
                       <a class="dropdown-item" href="/show/annexrequst">Annex Request</a>
                       <a class="dropdown-item" href="/show/singelroomrequest">Single Room Request</a>                 
                     </div>
-                  </li>
-                  <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
+                  </li>            
                   <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
                   <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
                   <li class="nav-item">
@@ -116,7 +115,7 @@
                           <div class="text">
                               <span class="subheading">Welcome to the Bodima</span>
                             <h1 class="mb-4 mt-3">Find your dreamed <span>Bodima</span></h1>
-                            <p>Find your bodim place anywhere in the sri lnka with in a minits</p>                      
+                            <p>Find your bodim place anywhere in the sri Lanka with in a minits</p>                      
                         </div>
                       </div>
                     </div>
@@ -134,7 +133,7 @@
                           <div class="text">
                               <span class="subheading">Welcome to the bodima</span>
                               <h1 class="mb-4 mt-3">Find your dreamed <span>Bodima</span></h1>
-                              <p>Find your bodim place anywhere in the sri lnka with in a minits</p>
+                              <p>Find your bodim place anywhere in the sri Lanka with in a minits</p>
                         </div>
                       </div>
                     </div>

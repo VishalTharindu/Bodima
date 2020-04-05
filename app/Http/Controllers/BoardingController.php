@@ -74,6 +74,19 @@ class BoardingController extends Controller
 
        if($request->hasfile('filename'))
              {
+            
+            $imgcount =0;
+
+            foreach($request->file('filename') as $image)
+            {
+                if ($imgcount < 1) {
+                    $covname= uniqid('real_') . '.' . $image->getClientOriginalExtension();
+                    //$image->move(public_path().'/uploads/property/house', $name);
+                    Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $covname));  
+                    // $covedata[] = $covname;
+                    break;
+                }              
+            }
 
             foreach($request->file('filename') as $image)
             {
@@ -134,9 +147,12 @@ class BoardingController extends Controller
         $boarding ->Province = request('Province');
         $boarding ->District = request('District');
         $boarding ->City = request('City');
-
+        $boarding ->City = request('City');
+        $boarding ->latitude  = request('lat');
+        $boarding ->longitude = request('lng');
         // $boarding ->Name = request('images');
         $boarding->filename  = json_encode($data);
+        $boarding->coverimg  = $covname;
         $boarding ->Email = request('Email');
         $boarding ->Telephone = request('Telephone');
         $boarding->save();
@@ -159,8 +175,8 @@ class BoardingController extends Controller
         $adhouse->save();
 
         // Alert::success('User Boarding has been added successfully!', 'Successfully Added!')->autoclose(3000);
-        toastr()->success('Your Favourite has been successfully added!');
-        return back();
+        toastr()->success('Your Boarding has been successfully added!');
+        return redirect('addboarding'); 
     }
 
     public function anexstore(Request $request){
@@ -181,18 +197,32 @@ class BoardingController extends Controller
             'Telephone' => 'required',
         ]);
 
-       if($request->hasfile('filename'))
-             {
+        if($request->hasfile('filename'))
+        {
+       
+       $imgcount =0;
 
-            foreach($request->file('filename') as $image)
-            {
-                $name= uniqid('real_') . '.' . $image->getClientOriginalExtension();
-                Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $name));  
-                $data[] = $name;
-            }
+       foreach($request->file('filename') as $image)
+       {
+           if ($imgcount < 1) {
+               $covname= uniqid('real_') . '.' . $image->getClientOriginalExtension();
+               //$image->move(public_path().'/uploads/property/house', $name);
+               Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $covname));  
+               // $covedata[] = $covname;
+               break;
+           }              
+       }
 
-            
-         }
+       foreach($request->file('filename') as $image)
+       {
+           $name= uniqid('real_') . '.' . $image->getClientOriginalExtension();
+           //$image->move(public_path().'/uploads/property/house', $name);
+           Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $name));  
+           $data[] = $name;
+       }
+
+       
+    }
 
         
         $boarding = new Boarding;
@@ -244,6 +274,7 @@ class BoardingController extends Controller
         $boarding ->City = request('City');
 
         $boarding->filename  = json_encode($data);
+        $boarding->coverimg  = $covname;
         $boarding ->Email = request('Email');
         $boarding ->Telephone = request('Telephone');
         $boarding->save();
@@ -288,18 +319,32 @@ class BoardingController extends Controller
             'Telephone' => 'required',
         ]);
 
-       if($request->hasfile('filename'))
-             {
+        if($request->hasfile('filename'))
+        {
+       
+            $imgcount =0;
+
+            foreach($request->file('filename') as $image)
+            {
+                if ($imgcount < 1) {
+                    $covname= uniqid('real_') . '.' . $image->getClientOriginalExtension();
+                    //$image->move(public_path().'/uploads/property/house', $name);
+                    Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $covname));  
+                    // $covedata[] = $covname;
+                    break;
+                }              
+            }
 
             foreach($request->file('filename') as $image)
             {
                 $name= uniqid('real_') . '.' . $image->getClientOriginalExtension();
+                //$image->move(public_path().'/uploads/property/house', $name);
                 Image::make($image)->resize(1280,876)->save(\public_path('/images/uploads/boardingimg/' . $name));  
                 $data[] = $name;
             }
 
-            
-         }
+       
+        }
 
 
         $boarding = new Boarding;
@@ -351,6 +396,7 @@ class BoardingController extends Controller
         $boarding ->City = request('City');
 
         $boarding->filename  = json_encode($data);
+        $boarding->coverimg  = $covname;
         $boarding ->Email = request('Email');
         $boarding ->Telephone = request('Telephone');
         $boarding->save();

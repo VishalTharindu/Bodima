@@ -232,7 +232,7 @@
                                                 </p> --}}
                                             </div>
                                         </div>
-                                    @elseif(( $boardingrequestData->boardingrequest->boardingType)=='Singal_Room'))
+                                    @elseif(( $boardingrequestData->boardingrequest->boardingType)=='Singel_Room'))
                                         <div class="columns">
                                             <div class="column detailscolumn has-text-dark">
                                                 <p>Boarding  Type: <span class="has-text-weight-semibold">{{ $boardingrequestData->boardingrequest->boardingType}}</span></p>               
@@ -322,7 +322,7 @@
                                 
                                 <button class="button is-warning" onclick="location.href='#contactbox'">Send Massage</button>
                                 <button class="button is-success" onclick="showPnox()">Call Owner</button>
-                                {{-- <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{ $boardingrequestData->boardingrequest->user->phone}}" class="nounnounderlinelink">{{ $boardingrequestData->boarding->user->phone}}</a></p> --}}
+                                <p class="has-text-dark customerpno" id="pnox"><a href="tel:{{ $boardingrequestData->boardingrequest->user->phone}}" class="nounnounderlinelink">{{ $boardingrequestData->boardingrequest->user->phone}}</a></p>
                             </div>
                         </div>
                     </div>
@@ -467,15 +467,15 @@
                         scams. If making any payments we recommend that you have two permanent & verified methods of contact of the
                         payment receiver such as their landline number and home/business address.
                     </div>
-                    {{-- @if (Auth::user()== $boardingrequestData->boarding->user)                    
-                    <form action="/delete/{{getBoardingTypeIdById( $boardingrequestData->boarding->id)}}/{{ $boardingrequestData->id}}" method="post">
+                    @if (Auth::user()== $boardingrequestData->boardingrequest->user)                    
+                    <form action="/delete/{{getBoardingrequestTypeIdById( $boardingrequestData->boardingrequest->id)}}/{{ $boardingrequestData->id}}" method="post">
                         @csrf
                         <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
                     </form>
-                    <a href="/edit/{{getBoardingTypeIdById( $boardingrequestData->boarding->id)}}/{{ $boardingrequestData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
+                    <a href="/edit/{{getBoardingrequestTypeIdById( $boardingrequestData->boardingrequest->id)}}/{{ $boardingrequestData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
                     @else
                     <a class="is-pulled-right reportad" id="report"><span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span></a>
-                    @endif                    --}}
+                    @endif                   
                     <br>
         
                 </div>

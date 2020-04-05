@@ -18,42 +18,47 @@
                 <div class="row">
                     <div class="col-md-2">
                     </div>
-                    <div class="col-md-4">
-                        <div class="card card-pricing">
-                            <div class="card-content">
-                                <div class="tim-typo">
-                                    <h3 class="title"><span class=" category text-success tim-note">Free</span></h3>
+                    @foreach ($Plans as $plan)
+                    @if (($plan->cost) <= 5.00)
+                        <div class="col-md-4">
+                            <div class="card card-pricing">
+                                <div class="card-content">
+                                    <div class="tim-typo">
+                                        <h3 class="title"><span class=" category text-success tim-note">{{$plan->name}}</span></h3>
+                                    </div>
+                                <h1 class="card-title"><small>$</small>{{$plan->cost}}</h1>
+                                    <ul>
+                                        <li><i class="fas fa-check text-success"></i>&nbsp;Add Post</li>
+                                        <li><i class="fas fa-check text-success"></i>&nbsp;Top Add</li>
+                                        <li><i class="fas fa-times text-danger"></i>&nbsp;SMS Arlet</li>
+                                    </ul>
+                                    <a href="payment/{{$plan->id}}" class="btn btn-primary btn-round">
+                                        Get Started
+                                    </a>
                                 </div>
-                                <h1 class="card-title"><small>$</small>5</h1>
-                                <ul>
-                                    <li><i class="fas fa-check text-success"></i>&nbsp;Add Post</li>
-                                    <li><i class="fas fa-check text-success"></i>&nbsp;Top Add</li>
-                                    <li><i class="fas fa-times text-danger"></i>&nbsp;SMS Arlet</li>
-                                </ul>
-                                <a href="{{ route('register') }}" class="btn btn-primary btn-round">
-                                    Get Started
-                                </a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-pricing">
-                            <div class="card-content">
-                                <div class="tim-typo">
-                                    <h3 class="title"><span class=" category text-success tim-note">Premium</span></h3>
+                        </div>                      
+                    @else
+                        <div class="col-md-4">
+                            <div class="card card-pricing">
+                                <div class="card-content">
+                                    <div class="tim-typo">
+                                        <h3 class="title"><span class=" category text-success tim-note">{{$plan->name}}</span></h3>
+                                    </div>
+                                    <h1 class="card-title"><small>$</small>{{$plan->cost}}</h1>
+                                    <ul>
+                                        <li><span><i class="fas fa-check text-success"></span></i>&nbsp;Add Post</li>
+                                        <li><i class="fas fa-check text-success"></i>&nbsp;Top Add</li>
+                                        <li><i class="fas fa-check text-success"></i>&nbsp;SMS Arlet</li>
+                                    </ul>
+                                    <a href="/payment/{{$plan->id}}" class="btn btn-primary btn-round">
+                                        Get Started
+                                    </a>
                                 </div>
-                                <h1 class="card-title"><small>$</small>10</h1>
-                                <ul>
-                                    <li><span><i class="fas fa-check text-success"></span></i>&nbsp;Add Post</li>
-                                    <li><i class="fas fa-check text-success"></i>&nbsp;Top Add</li>
-                                    <li><i class="fas fa-check text-success"></i>&nbsp;SMS Arlet</li>
-                                </ul>
-                                <a href="{{ route('register') }}" class="btn btn-primary btn-round">
-                                    Get Started
-                                </a>
                             </div>
-                        </div>
-                    </div>
+                        </div>                       
+                    @endif
+                    @endforeach
                     <div class="col-md-2">
                     </div>
                 </div>

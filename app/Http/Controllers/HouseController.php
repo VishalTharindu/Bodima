@@ -8,6 +8,7 @@ use App\Boarding;
 use Image;
 use Alert;
 use App\BoardingRating;
+use App\UserActivityLog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -194,7 +195,7 @@ class HouseController extends Controller
                 toastr()->success('User Boarding has been successfully Updated!');
                 return redirect('admin');
             } else {
-                return redirect()->route('home');   
+                return $this->show();  
             }
             // return redirect()->route('home');   
         }
@@ -219,7 +220,8 @@ class HouseController extends Controller
                 return view('admin.index');
             } else {
                 toastr()->success('Your Boarding  successfully Deleted!');
-                return redirect()->route('home');   
+                // return redirect()->route('home');   
+                return $this->show();
             }
         }
     }
@@ -249,14 +251,6 @@ class HouseController extends Controller
             $withfetu = "%%";
         }
 
-        // if ($outdoor = $request->has('outdoor')) {
-
-        //     $outdoor = "Available";
-        // } else {
-
-        //     $outdoor = "%%";
-        // }
-
         $House = House::where(function ($query) use ($room) {
             $query->where('NoOfRooms', '>=', $room);
         })->whereHas('boarding', function ($query) use ($keyword) {
@@ -280,6 +274,16 @@ class HouseController extends Controller
 
             $query->where('Withfurniture', 'LIKE', $withfetu);
         })->get();
+
+        $useract = new UserActivityLog;
+        $useract->user_id = auth()->id();
+        $useract->Keyword = $keyword;
+        $useract->Boardingtype = $type;
+        $useract->NoOfRoom = $room;
+        $useract->Acavailability =  $acavb;
+        $useract->furnitureav =  $withfetu;
+
+        $useract->save();
 
         return view('SearchResult.houseresult', compact('House'));
     }

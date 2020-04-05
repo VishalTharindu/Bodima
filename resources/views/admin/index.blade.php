@@ -89,7 +89,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="/admin/show/complain">
           <i class="far fa-flag"></i>
           <span>Complaint</span></a>
       </li>
@@ -283,7 +283,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->email}}</span>
+              {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->email}}</span> --}}
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -330,10 +330,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">All Boardings</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
                     </div>
                   </div>
                 </div>
@@ -346,10 +346,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">All Boarding Request</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      {{-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> --}}
                     </div>
                   </div>
                 </div>
@@ -363,7 +363,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Currently Available Boarding</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">4</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -373,7 +373,7 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      {{-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> --}}
                     </div>
                   </div>
                 </div>
@@ -385,10 +385,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Currently Available Boarding Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      {{-- <i class="fas fa-comments fa-2x text-gray-300"></i> --}}
                     </div>
                   </div>
                 </div>
@@ -417,6 +417,8 @@
             @include('profileManage.message')
             @elseif(Request::is('profile/message/*/view'))
             @include('profileManage.viewmassage')
+            @elseif(Request::is('admin/show/complain'))
+            @include('admin.viewcomplain')
             @else
             @include('profileManage.dashboard')
             @endif

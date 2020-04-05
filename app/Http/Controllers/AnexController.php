@@ -283,7 +283,8 @@ class AnexController extends Controller
                 return view('admin.index');
             } else {
                 toastr()->success('Your Boarding  successfully Deleted!');
-                return view('home');
+                // return redirect()->route('home');   
+                return $this->show();
             }
         }
     }

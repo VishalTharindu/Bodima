@@ -103,7 +103,7 @@ class BoardingRequestController extends Controller
 
         $boarding_requests ->MonthlyRent = request('MonthlyRent');
         $boarding_requests ->KeyMoney = request('KeyMoney');
-        // $boarding_requests ->Description = request('Description');
+        $boarding_requests ->Description = request('Description');
         $boarding_requests ->Province = request('Province');
         $boarding_requests ->District = request('District');
         $boarding_requests ->City = request('City');
@@ -142,11 +142,11 @@ class BoardingRequestController extends Controller
             ]);
     
             // Session::flash('success', 'Message sent');
-            toastr()->success('Your Favourite has been successfully added!');
+            toastr()->success('Your Request has been successfully added!');
             return back();
         }
 
-        toastr()->success('Your Favourite has been successfully added!');
+        toastr()->success('Your Request has been successfully added!');
         return back();
     }
 
@@ -208,7 +208,7 @@ class BoardingRequestController extends Controller
 
         $boarding_requests ->MonthlyRent = request('MonthlyRent');
         $boarding_requests ->KeyMoney = request('KeyMoney');
-        // $boarding_requests ->Description = request('Description');
+        $boarding_requests ->Description = request('Description');
         $boarding_requests ->Province = request('Province');
         $boarding_requests ->District = request('District');
         $boarding_requests ->City = request('City');
@@ -235,8 +235,8 @@ class BoardingRequestController extends Controller
         $annex->save();
 
         $Boadrings = Boarding::where('boardingType','LIKE', request('boardingType'))
-                        ->where('Province','LIKE',request('Province'))
-                        ->latest('created_at')->first();
+                    ->where('Province','LIKE',request('Province'))
+                    ->latest('created_at')->first();
 
         if($Boadrings){
             $test = $request->Telephone;
@@ -251,6 +251,7 @@ class BoardingRequestController extends Controller
         }
 
         toastr()->success('Boarding request has been successfully added!');
+        return back();
     }
 
     public function storeSingelRoomRequest(Request $request)
@@ -311,7 +312,7 @@ class BoardingRequestController extends Controller
 
         $boarding_requests ->MonthlyRent = request('MonthlyRent');
         $boarding_requests ->KeyMoney = request('KeyMoney');
-        // $boarding_requests ->Description = request('Description');
+        $boarding_requests ->Description = request('Description');
         $boarding_requests ->Province = request('Province');
         $boarding_requests ->District = request('District');
         $boarding_requests ->City = request('City');

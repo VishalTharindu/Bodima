@@ -30,11 +30,14 @@ class CreateBoardingsTable extends Migration
             $table->string('Province');
             $table->string('District');
             $table->string('City');
-            $table->string('filename');
+            $table->string('filename')->nullable();
+            $table->string('coverimg')->nullable();
             $table->string('Email');
             $table->string('Telephone');
             $table->string('Availability');
             $table->float('overallrating')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

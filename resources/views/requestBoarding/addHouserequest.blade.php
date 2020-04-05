@@ -7,7 +7,7 @@
     <title>AddBoarding</title>
 
     <link rel="stylesheet" href="{{asset('css/bulma/bulma/css/bulma.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/bulma/bulmaCheckradio/dist/css/bulma-checkradio.min')}}"> --}}
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     {{-- <link href={{asset('css/css/material-kit.css')}} rel="stylesheet"> --}}
@@ -17,6 +17,7 @@
 
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('js/toastr.min.js')}}"></script>
+    @toastr_render
     <script type="text/javascript" src={{asset('js/select2/select2.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
@@ -332,8 +333,14 @@
                                         <label class="label">Approximate monthly rent</label>
                                     </div>
                                     <div class="column is-6">
-                                        <div class="control has-icons-left has-icons-right">
-                                            <input class="input" type="text" placeholder="Text input" name="MonthlyRent">
+                                        <div class="">
+                                            <input class="form-control {{ $errors->has('MonthlyRent') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" name="MonthlyRent">
+
+                                            @if ($errors->has('MonthlyRent'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong class="text-danger">{{ $errors->first('MonthlyRent') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -344,7 +351,7 @@
                                     </div>
                                     <div class="column is-6">
                                         <div class="control has-icons-left has-icons-right">
-                                            <input class="input" type="text" placeholder="Text input" name="KeyMoney">
+                                            <input class="form-control {{ $errors->has('MonthlyRent') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" name="KeyMoney">
                                             
                                             @if ($errors->has('KeyMoney'))
                                             <span class="invalid-feedback" role="alert">
@@ -360,7 +367,9 @@
                                         <div class="field">
                                             <label class="label">Description</label>
                                             <div class="field">
-                                                
+                                                <div class="control">
+                                                    <textarea class="textarea" placeholder="Textarea" name="Description"></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -440,10 +449,10 @@
                                 </div>
                                 <div class="columns">
                                     <div class="column is-12">
-                                        <div class="field">
+                                        <div class="">
                                             <label class="label">City</label>
-                                            <div class="control has-icons-left has-icons-right">
-                                                <input class="form-control form-control-alternative" {{ $errors->has('City') ? ' is-invalid' : ''}} type="text" placeholder="Text input" name="City">
+                                            <div class="form-group">
+                                                <input class="form-control {{ $errors->has('City') ? ' is-invalid' : ''}} type="text" placeholder="Text input" name="City">
                                                 @if ($errors->has('City'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong class="text-danger">{{ $errors->first('City') }}</strong>
@@ -466,13 +475,12 @@
                                             <div class="field">
                                                 <label class="label">Your Name</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input" name="Name">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
+                                                    <input class="form-control {{ $errors->has('Name') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" name="Name">
+                                                    @if ($errors->has('Name'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong class="text-danger">{{ $errors->first('Name') }}</strong>
                                                     </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -482,13 +490,12 @@
                                             <div class="field">
                                                 <label class="label">Your Email Address</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input" name="Email">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
+                                                    <input class="form-control {{ $errors->has('Email') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" name="Email">
+                                                    @if ($errors->has('Email'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong class="text-danger">{{ $errors->first('Email') }}</strong>
                                                     </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -498,13 +505,12 @@
                                             <div class="field">
                                                 <label class="label">Your Telephone No</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input" name="Telephone">
-                                                    <span class="icon is-small is-left">
-                                                        <i class="fas fa-user"></i>
+                                                    <input class="form-control {{ $errors->has('Telephone') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" name="Telephone">
+                                                    @if ($errors->has('Telephone'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong class="text-danger">{{ $errors->first('Telephone') }}</strong>
                                                     </span>
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fas fa-check"></i>
-                                                    </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -629,5 +635,4 @@
             });
         </script> --}}
 </body>
-@toastr_render
 </html>

@@ -17,9 +17,6 @@ class CreateMyFavouritsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('boarding_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('house_id')->nullable();
-            $table->unsignedBigInteger('anex_id')->nullable();
-            $table->unsignedBigInteger('singleroom_id')->nullable();
             $table->timestamps();
 
             
@@ -33,20 +30,6 @@ class CreateMyFavouritsTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->foreign('house_id')
-                ->references('id')
-                ->on('houses')
-                ->onDelete('cascade');
-
-            $table->foreign('anex_id')
-                ->references('id')
-                ->on('anexes')
-                ->onDelete('cascade');
-
-            $table->foreign('singleroom_id')
-                ->references('id')
-                ->on('single_rooms')
-                ->onDelete('cascade');
         
         });
     }

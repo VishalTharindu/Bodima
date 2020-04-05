@@ -48,6 +48,7 @@ class MyFavouritController extends Controller
     {
 
 
+
         $isExits = MyFavourit::where('boarding_id', '=', $house->boarding->id)
             ->where('user_id', '=', auth()->id())
             ->get();
@@ -55,29 +56,25 @@ class MyFavouritController extends Controller
             $favorite = new MyFavourit;
             $favorite->boarding_id = $house->boarding->id;
             $favorite->user_id = auth()->id();
-            $favorite->house_id = $house->id;
 
 
             try {
                 $favorite->save();
                 toastr()->success('Your Favourite has been successfully added!');
-                // Alert::success('Favorite has been added successfully!', 'Favorite Added')->autoclose(3000);
                 return back();
             } catch (\Illuminate\Database\QueryException $e) {
 
                 $errorCode = $e->errorInfo[1];
                 if ($errorCode == '1062') {
                     toastr()->warning('Your Favourite has been successfully added!');
-                    // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
                     return back();
                 }
             }
 
-            Alert::error('Something went wrong!', 'Oops!')->autoclose(3000);
+            toastr()->warning('Something went wrong!');
             return back();
         } else {
             toastr()->warning('Favorite has been already added!');
-            // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
             return back();
         }
     }
@@ -85,38 +82,30 @@ class MyFavouritController extends Controller
     public function favoriteannex(Anex $annex)
     {
 
-
         $isExits = MyFavourit::where('boarding_id', '=', $annex->boarding->id)
             ->where('user_id', '=', auth()->id())
-            ->get();
-            
+            ->get(); 
         if ($isExits->count() <= 0) {
             $favorite = new MyFavourit;
             $favorite->boarding_id = $annex->boarding->id;
             $favorite->user_id = auth()->id();
-            $favorite->anex_id = $annex->id;
-
-
+            
             try {
                 $favorite->save();
                 toastr()->success('Your Favourite has been successfully added!');
-                // Alert::success('Favorite has been added successfully!', 'Favorite Added')->autoclose(3000);
                 return back();
             } catch (\Illuminate\Database\QueryException $e) {
 
                 $errorCode = $e->errorInfo[1];
                 if ($errorCode == '1062') {
                     toastr()->warning('Your Favourite has been successfully added!');
-                    // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
                     return back();
                 }
             }
-
-            Alert::error('Something went wrong!', 'Oops!')->autoclose(3000);
+            toastr()->warning('Something went wrong!');
             return back();
         } else {
             toastr()->warning('Favorite has been already added!');
-            // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
             return back();
         }
     }
@@ -132,20 +121,17 @@ class MyFavouritController extends Controller
             $favorite = new MyFavourit;
             $favorite->boarding_id = $singleroom->boarding->id;
             $favorite->user_id = auth()->id();
-            $favorite->singleroom_id = $singleroom->id;
 
 
             try {
                 $favorite->save();
                 toastr()->success('Your Favourite has been successfully added!');
-                // Alert::success('Favorite has been added successfully!', 'Favorite Added')->autoclose(3000);
                 return back();
             } catch (\Illuminate\Database\QueryException $e) {
 
                 $errorCode = $e->errorInfo[1];
                 if ($errorCode == '1062') {
                     toastr()->warning('Your Favourite has been successfully added!');
-                    // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
                     return back();
                 }
             }
@@ -154,7 +140,6 @@ class MyFavouritController extends Controller
             return back();
         } else {
             toastr()->warning('Favorite has been already added!');
-            // Alert::warning('Favorite has been already added!', 'Already Added')->autoclose(3000);
             return back();
         }
     }
@@ -163,7 +148,6 @@ class MyFavouritController extends Controller
     {
         DB::table('my_favourits')->where('id', '=', $favoriteid->id)->delete();
         toastr()->success('Your Favourite has been successfully removed!');
-        // Alert::success('User Boarding has been deleted successfully!', 'Successfully Deleted!')->autoclose(3000);
         return back();
     }
 
