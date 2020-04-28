@@ -99,6 +99,12 @@ class AdminController extends Controller
         return back();
     }
 
+    public function complainboarding(Boarding $boarding)
+    {
+        $boarding = Boarding::find($boarding->id);
+        return view('admin.adminsearchresult', compact('boarding'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

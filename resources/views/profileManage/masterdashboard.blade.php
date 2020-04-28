@@ -127,6 +127,7 @@
               <li><a href="/user/profile" class="text-dark heading-medium">Profile</a></li>
               <li><a class="text-dark heading-medium" href="/my/favorite">My Favorit</a></li>
               <li><a class="text-dark heading-medium" href="/user/message">My Inbox</a></li>
+              <li><a class="text-dark heading-medium" href="/user/mostlyseaarch/result">Mostly search</a></li>
             </ul>
             <p class="menu-label has-text-black heading is-size-6">
               Administration

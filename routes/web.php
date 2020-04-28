@@ -158,6 +158,7 @@ Route::prefix('admin')->group(function() {
 Route::get('/admin','AdminController@index');
 Route::get('/all/users','AdminController@allusers');
 Route::get('/admin/show/complain','UserComplainController@show');
+Route::get('check/complaint/boarding/{boarding}','AdminController@complainboarding');
 
 
     /* --------Boarding Routes-------- */

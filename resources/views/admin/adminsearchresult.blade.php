@@ -16,30 +16,28 @@
             </tr>
           </thead>
           <tbody>
-              @foreach ($Houses as $house)
+              @foreach ($boarding as $item)
               <tr>
-              <td>{{$house->boarding->user->name}}</td>
-                <td>{{$house->boarding->District}}</td>
-                <td><span>Rs : </span>{{$house->boarding->MonthlyRent}}</td>
-                <td> @if (($house->boarding->Availability) == 1)
+                <td><span>Rs : </span>{{$item->MonthlyRent}}</td>
+                <td> @if (($item->Availability) == 1)
                       YES
-                    @elseif (($house->boarding->Availability) == 'No')
+                    @elseif (($item->Availability) == 'No')
                       NO
                     @else
-                      {{$house->boarding->Availability }}
+                      {{$item->Availability }}
                     @endif</td>
                 <td>2011/04/25</td>
                 <td>
-                    <form action="/admin/delete/{{getBoardingTypeIdById($house->boarding->id)}}/{{$house->id}}" method="post">
+                    <form action="/admin/delete/{{getBoardingTypeIdById($item->id)}}/{{$item->id}}" method="post">
                       @csrf
                         <button class="btn btn-danger btn-circle float-right" onclick="deleteMe();"><i class="far fa-trash-alt"></i></button>
                     </form>
-                    <a href="/admin/view/{{getBoardingTypeIdById($house->boarding->id)}}/{{getPropertyTypeIdById($house->boarding->id)}}" class="btn btn-success">More</a>
+                    <a href="/admin/view/{{getBoardingTypeIdById($item->id)}}/{{$item->id}}" class="btn btn-success">More</a>
                     <a href="/admin/edit/house/{{$house->id}}" class="btn btn-primary">Update</a>
-                    @if (($house->boarding->Availability)!= 'LOCKED')
-                      <a href="/lock/house/{{$house->boarding->id}}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
+                    @if (($item->Availability)!= 'LOCKED')
+                      <a href="/lock/{{getBoardingTypeIdById($item->id)}}/{{$item->id}}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
                     @else
-                    <a href="/unlock/house/{{$house->boarding->id}}" class="btn btn-warning float-right"><i class="fas fa-unlock"></i></a>
+                    <a href="/unlock/{{getBoardingTypeIdById($item->id)}}/{{$item->id}}}" class="btn btn-warning float-right"><i class="fas fa-unlock"></i></a>
                     @endif
                 </td>
               </tr>  

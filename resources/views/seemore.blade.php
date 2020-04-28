@@ -576,7 +576,7 @@
                             <input type="text" name="boardingtypeid" value="{{$boardingData->boarding->id}}" hidden>                       
                         </div> 
                         <div class="modal-footer"> 
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-primary" value="Submit Complain">
                         </div>
                 </form>
