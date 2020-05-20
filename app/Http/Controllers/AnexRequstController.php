@@ -169,8 +169,7 @@ class AnexRequstController extends Controller
                 return redirect('admin');
             } else {
                 return $this->show();   
-            }
-            // return redirect()->route('home');   
+            }   
         }
     }
 
@@ -182,6 +181,9 @@ class AnexRequstController extends Controller
      */
     public function destroy(AnexRequst $anexRequst)
     {
-        //
+        DB::table('anex_requsts')->where('id', '=', $anexRequst->id)->delete();
+        DB::table('boarding_requests')->where('id', '=', $anexRequst->boardingrequest->id)->delete();
+        toastr()->success('User Boarding has been deleted successfully!');
+        return $this->show();
     }
 }

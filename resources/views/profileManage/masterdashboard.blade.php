@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
   <link rel="stylesheet" href="{{asset('css/bulma/argon-dashboard.css')}}">
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/x.y.z/css/bulma.css" /> --}}
+  <link href="/adminstyle/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
 
   {{-- <script type="text/javascript" src={{asset('js/jquery-3.4.1.min.js')}}></script> --}}
@@ -85,6 +86,56 @@
         </div>
     
         <div class="navbar-end">
+          <div class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">{{Auth::user()->unreadNotifications->count()}}</span>
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                @foreach (Auth::user()->unreadNotifications as $notification)
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">{{$notification->created_at->diffForHumans()}}</div>
+                      <span class="font-weight-bold">{{$notification->data["data"]}}</span>                    
+                    </div>
+                    <a href="" class="btn btn-primary">{{$notification->markAsRead()}}Mark As Read</a>
+                  </a>
+                @endforeach
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for your account.
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>             
+          </div>
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
@@ -198,6 +249,7 @@
   <script type="text/javascript" src={{asset('js/jquery-3.3.1.min.js')}}></script>
   <script src="{{asset('js/toastr.min.js')}}"></script>
   <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+  <script src="/adminstyle/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 

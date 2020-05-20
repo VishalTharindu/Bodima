@@ -12,6 +12,7 @@
 */
 
 Route::get('/','PageController@index');
+Route::get('/home','PageController@index');
 Route::get('/dashboard','PageController@dashboard');
 Route::get('/user/delete/boarding','BoardingController@show');
 Route::get('/membertype','PaymentController@subcriptioncard');
@@ -21,6 +22,7 @@ Route::get('/payment/1','PaymentController@indexpro');
 Route::get('/payment/2','PaymentController@indexpremium');
 Route::post('/charge', 'PaymentController@charge');
 Route::get('/map','MapsearchController@index')->name('map');
+Route::get('send', 'HomeController@sendNotification');
 
 
 // -----------------Favourite Routies--------------------------
@@ -98,7 +100,7 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::get('/view/houserequest/{houserequest}','BoardingRequestController@viewHouseRequest')->middleware('auth');
     Route::get('/add/houserequst','HouseRequestController@create')->middleware('auth');
     Route::post('/add/houserequst','BoardingRequestController@storeHouserRequest')->middleware('auth');
-    Route::post('/delete/boarding_requestsRequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
+    Route::post('/delete/houserequest/{houseRequest}','HouseRequestController@destroy')->middleware('auth');
     Route::get('/edit/houserequest/{houseRequest}','HouseRequestController@edit')->middleware('auth');
     Route::post('/update/houseRequests','HouseRequestController@update')->middleware('auth');
 
@@ -109,7 +111,7 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::post('/add/annexrequst','BoardingRequestController@storeAnnexRequest')->middleware('auth');
     Route::get('/edit/anexrequest/{anexRequst}','AnexRequstController@edit')->middleware('auth');
     Route::post('/update/anexRequsts','AnexRequstController@update')->middleware('auth');
-
+    Route::post('/delete/anexrequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
     /****************Annex request routes********************/
     Route::get('/show/singelroomrequest','SingleRoomRequestController@show');
     Route::get('/add/singelroomrequest','SingleRoomRequestController@create')->middleware('auth');
@@ -117,6 +119,7 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::post('/add/singelroomrequest','BoardingRequestController@storeSingelRoomRequest')->middleware('auth');
     Route::get('/edit/singleroomrequest/{singleRoomRequest}','SingleRoomRequestController@edit')->middleware('auth');
     Route::post('/update/singleRoomRequests','SingleRoomRequestController@update')->middleware('auth');
+    Route::post('/delete/singleroomrequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
 
 // ++++++++fonction related routies++++++++
 
@@ -137,6 +140,8 @@ Route::post('/profile/message/reply','UserEmailController@replyMessage')->middle
 Route::post('/user/message/{message}/delete','ProfileController@deleteMessage')->middleware('auth');
 Route::post('/user/complain','UserComplainController@store')->middleware('auth');
 Route::get('/user/mostlyseaarch/result','UserActivityLogController@index');
+Route::post('/lock/boarding/{boardingid}','BoardingController@markrented')->middleware('auth');
+Route::post('/unlock/boarding/{boardingid}', ['as' => 'boarding.rent', 'uses' => 'BoardingController@rentboarding']);
 
 
 /* ++++++++++++++++++Admin Routes+++++++++++++++++++++++++ */

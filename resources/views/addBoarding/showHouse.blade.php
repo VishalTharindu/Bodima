@@ -148,7 +148,19 @@
                         <div class="addthis_inline_share_toolbox_b5ql"></div>
                                                              
                         </form>
-                        <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
+                        <div class="my-5"></div>
+                        <div class="float-left">
+                          <h6><span>Posted:</span><span>{{$post->created_at->diffForHumans()}}</span></h6>
+                        </div>
+                        @if(($post->boarding->Availability) == "LOCKED")
+                          @if (Auth::user()==$post->boarding->user)
+                            <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
+                          @else
+                            <h6 class="text-danger">This boarding has already rented</h6>
+                            @endif
+                        @else
+                          <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>                
+                        @endif
                       </div>
                     </div>
                   </div>
