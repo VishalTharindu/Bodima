@@ -533,14 +533,25 @@
                         scams. If making any payments we recommend that you have two permanent & verified methods of contact of the
                         payment receiver such as their landline number and home/business address.
                     </div>
-                    @if (Auth::user()==$boardingData->boarding->user)                    
-                    <form action="/delete/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" method="post">
-                        @csrf
-                        <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
-                    </form>
-                    <a href="/edit/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
+                    @if (Auth::user()==$boardingData->boarding->user)
+                        @if (($boardingData->boarding->Availability) == 'LOCKED')
+                            <form action="{{ route('boarding.rent', ['id' => $boardingData->boarding->id]) }}" method="post">
+                                @csrf
+                                <button class="button is-info is-pulled-right btnajestment" onclick="deleteMe();">Rente</i></button>
+                            </form>
+                        @else
+                            <form action="/lock/boarding/{{$boardingData->boarding->id}}" method="post">
+                                @csrf
+                            <button class="button is-info is-pulled-right btnajestment" onclick="deleteMe();">Mark Rented</i></button>
+                            </form>
+                        @endif                    
+                        <form action="/delete/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" method="post">
+                            @csrf
+                            <button class="button is-danger is-pulled-right btnajestment" onclick="deleteMe();">Delete<i class="far fa-trash-alt"></i></button>
+                        </form>
+                        <a href="/edit/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
                     @else
-                    <button type="button" class="is-pulled-right reportad btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"> <span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span> </button>          
+                        <button type="button" class="is-pulled-right reportad btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"> <span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span> </button>          
                     @endif                                   
                     <br>
                 </div>
@@ -576,7 +587,7 @@
                             <input type="text" name="boardingtypeid" value="{{$boardingData->boarding->id}}" hidden>                       
                         </div> 
                         <div class="modal-footer"> 
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-primary" value="Submit Complain">
                         </div>
                 </form>
@@ -621,7 +632,7 @@
         });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"
+    <script src='https://maps.google.com/maps/api/js?language=en&key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&region=GB'
         async defer></script>
 
         <script>
@@ -655,7 +666,7 @@
             }
         </script>
 
-        {{-- <script>
+         <script>
             function deleteMe() {
             event.preventDefault();
             var form = event.target.form;
@@ -686,7 +697,7 @@
                 }
             });
         }
-        </script> --}}
+        </script>
         
         <script>
             $(function () {

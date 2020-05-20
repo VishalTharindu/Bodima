@@ -13,6 +13,8 @@ use App\SingleRoom;
 use App\HouseRequest;
 use App\AnexRequst;
 use App\SingleRoomRequest;
+use App\Notifications\AdminAction;
+
 
 use Illuminate\Http\Request;
 
@@ -85,6 +87,18 @@ class AdminController extends Controller
         $boarding = Boarding::find($boardingid->id);
         $boarding->Availability = 'LOCKED';
         $boarding->save();
+        $users = User::where('id',$boarding->user->id)->get();
+
+        $details = [
+            'greeting' => 'Hi user',
+            'body' => 'Sorry to inform that the admin has lock your advertisment.contact admin to unlock it',
+            'thanks' => 'Thank you for using Bodimalk',
+        ];
+
+        foreach ($users as $user) {
+            $user->notify(new AdminAction($details));
+        }
+        
 
         toastr()->success('User Boarding successfully locked!');
         return back();

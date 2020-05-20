@@ -73,33 +73,21 @@
                                                         <div class="geodir-image-wrapper">
                                                             <ul class="geodir-post-image geodir-images clearfix">
                                                                 <li>
-                                                                    <a href=''>
+                                                                    <a href='/view/{{getBoardingTypeIdById($shop->id)}}/{{getPropertyTypeIdById($shop->id)}}'>
                                                                         <img src="/images/uploads/boardingimg/{{json_decode($shop->filename)[0]}}" width="1440" height="960" class="geodir-lazy-load align size-medium_large" />
                                                                     </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                </div>
                                             </div>
                                             
                                             <div class="gd-list-item-right ">
                                                 <div class="geodir-post-title">
                                                     <h2 class="geodir-entry-title"> <a href="" title="View: {{ $shop->boardingType }}">{{ $shop->boardingType }},{{$shop->District }}</a></h2></div>
-                                                {{-- @foreach($shop->categories as $category)
-                                                    <div class="gd-badge-meta gd-badge-alignleft" title="{{ $category->name }}">
-                                                        <div class="gd-badge" style="background-color:#ffb100;color:#ffffff;"><i class="fas fa-certificate"></i> <span class='gd-secondary'>{{ $category->name }}</span></div>
-                                                    </div>
-                                                @endforeach --}}
-                                                @if($shop->days)
+                                                    <div class="gd-bad">
                                                     <div class="geodir-post-meta-container">
-                                                        <div class="geodir_post_meta gd-bh-show-field gd-lv-s-2 geodir-field-business_hours gd-bh-toggled gd-bh-{{ $shop->working_hours->isOpen() ? 'open' : 'close' }}" style="clear:both;">
-                                                            <span class="geodir-i-business_hours geodir-i-biz-hours">
-                                                                <i class="fas fa-clock" aria-hidden="true"></i><font>{{ $shop->working_hours->isOpen() ? 'Opened' : 'Closed' }} now</font>
-                                                            </span>
-                                                        </div>
                                                     </div>
-                                                @endif
                                                 <div class="geodir-post-content-container">
                                                     <div class="geodir_post_meta  geodir-field-post_content" style='max-height:120px;overflow:hidden;'>{{ $shop->Description }} <a href='' class='gd-read-more  gd-read-more-fade'>Read more...</a></div>
                                                 </div>
@@ -181,10 +169,10 @@
                                             <li>
                                                 <div class="geodir-post-title">
                                                     <h4 class="geodir-entry-title">
-                                                        <a href="/`+place.id+`" title="View: `+place.boardingType+`">`+place.boardingType+`</a>
-                                                    </h4>
+                                                        <a href="`+place.id+`" title="View: `+place.boardingType+`">`+place.boardingType+`</a>
+                                                    </h4> 
                                                 </div>
-                                                <a href="/`+place.id+`"><img src="/images/uploads/boardingimg/`+place.coverimg+`" alt="`+place.name+`" class="align size-medium_large" width="1400" height="930"></a>
+                                                <a href="`+place.id+`"><img src="/images/uploads/boardingimg/`+place.coverimg+`" alt="`+place.name+`" class="align size-medium_large" width="1400" height="930"></a>
                                             </li>
                                         </ul>
                                     </div>

@@ -1,6 +1,4 @@
 @foreach ($complain as $item)
-    
-@endforeach
 <div class="container">
     <div class="col-md-12">
         <div class="card">
@@ -21,7 +19,7 @@
             </div>
             <div class="card-footer">
                 <div class="float-left">
-                    <P> Visite relevent boarding place : </P>
+                    <P> Visit relevent boarding place : <a href="/check/complaint/boarding/{{$item->boarding_id}}">Check</a> </P>
                 </div>  
                 <div class="float-right">
                     <P> Check user: </P>
@@ -29,4 +27,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
+@endforeach

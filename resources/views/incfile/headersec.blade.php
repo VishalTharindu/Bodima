@@ -42,7 +42,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="/show/house">House</a>
                       <a class="dropdown-item" href="/show/Annex">Annex</a>
-                      <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
+                      <a class="dropdown-item" href="/show/singleroom">Single Room</a>
+                      <a class="dropdown-item" href="/map">Map</a>                 
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -66,7 +67,7 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item float-right">
-                                    <a class="nav-link" href="/membertype">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else

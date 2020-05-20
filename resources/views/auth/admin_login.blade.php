@@ -3,42 +3,37 @@
 @section('content')
  <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"></div>
+        <div class="col-lg-5">
+            <div class="card bg-secondary shadow border-0">
+                <div class="card-header bg-white pb-2 d-flex justify-content-center">Admin Login</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('admin.login.submit') }}">
                     @csrf
 
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-4 col-form-label text-md-right"></label>
-
-                        <div class="col-md-6">
-                            <input class="input is-medium" id="email" type="email"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                        <span class="icon is-medium is-left">
-                                        <i class="fa fa-envelope"></i>
-                                        </span>
-                                        {{-- <span class="icon is-small is-right">
-                                        <i class="fa fa-check"></i>
-                
-                                        </span> --}}
-                                        @error('email')
-                                            <span class="" role="alert">
-                                                <strong class="has-text-danger">{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                    <div class="form-group mb-3">
+                        <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text">Email<i class="ni ni-lock-circle-open"></i></span>
+                            </div>                           
+                            <input class="form-control" id="email" type="email"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                {{-- <span class="icon is-small is-right">
+                                <i class="fa fa-check"></i>
+        
+                                </span> --}}
+                                @error('email')
+                                    <span class="" role="alert">
+                                        <strong class="has-text-danger">{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right"></label>
-
-                        <div class="col-md-6">
-                            <input class="input is-medium" id="password" type="password"  name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
-                            <span class="icon is-medium is-left">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                            </span>
+                    <div class="form-group focused">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Password<i class="ni ni-lock-circle-open"></i></span>
+                            </div>
+                            <input class="form-control" id="password" type="password"  name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
                             {{-- <span class="icon is-small is-right">
                             <i class="fa fa-check"></i>
     
@@ -50,15 +45,9 @@
                             @enderror
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-6 offset-md-4">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember" > 
-                                </label>
-                            </div>
-                        </div>
+                    <div class="custom-control custom-control-alternative custom-checkbox">
+                        <input class="custom-control-input" id=" customCheckLogin" type="checkbox" name="remember">
+                        <label class="custom-control-label" for=" customCheckLogin"><span>Remember me</span></label>
                     </div>
 
                     <div class="form-group row mb-0">

@@ -179,6 +179,9 @@ class SingleRoomRequestController extends Controller
      */
     public function destroy(SingleRoomRequest $singleRoomRequest)
     {
-        //
+        DB::table('single_room_requests')->where('id', '=', $singleRoomRequest->id)->delete();
+        DB::table('boarding_requests')->where('id', '=', $singleRoomRequest->boardingrequest->id)->delete();
+        toastr()->success('User Boarding has been deleted successfully!');
+        return $this->show();
     }
 }

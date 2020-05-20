@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\House;
 use App\Anex;
 use App\SingleRoom;
+use Nexmo\Laravel\Facade\Nexmo;
+use App\BoardingRequest;
 
 class BoardingController extends Controller
 {
@@ -174,6 +176,26 @@ class BoardingController extends Controller
 
         $adhouse->save();
 
+        $Boadrings = BoardingRequest::where('boardingType','LIKE', request('boardingType'))
+                        ->where('Province','LIKE',request('Province'))
+                        ->latest('created_at')->get();
+        
+        foreach($Boadrings as $boarding){
+            if($boarding->user->usertype == 1){
+                $test = $boarding->user->phone;
+                Nexmo::message()->send([
+                    'to' => '94' .$test,
+                    'from' => 'Nexmo',
+                    'text' => 'We Found Boarding Place Matching With Your Requirement.'
+                ]);
+
+            toastr()->success('Your Boarding has been successfully added!');
+            return back();
+        }
+
+
+        }
+
         // Alert::success('User Boarding has been added successfully!', 'Successfully Added!')->autoclose(3000);
         toastr()->success('Your Boarding has been successfully added!');
         return redirect('addboarding'); 
@@ -295,6 +317,26 @@ class BoardingController extends Controller
         }
 
         $adanex->save();
+
+        $Boadrings = BoardingRequest::where('boardingType','LIKE', request('boardingType'))
+                        ->where('Province','LIKE',request('Province'))
+                        ->latest('created_at')->get();
+
+        foreach($Boadrings as $boarding){
+            if($boarding->user->usertype == 1){
+                $test = $boarding->user->phone;
+                Nexmo::message()->send([
+                    'to' => '94' .$test,
+                    'from' => 'Nexmo',
+                    'text' => 'We Found Boarding Place Matching With Your Requirement.'
+                ]);
+
+            toastr()->success('Your Boarding has been successfully added!');
+            return back();
+        }
+
+
+        }
 
         toastr()->success('Your Favourite has been successfully added!');
 
@@ -419,6 +461,26 @@ class BoardingController extends Controller
         }
 
         $adsingleroom->save();
+
+        $Boadrings = BoardingRequest::where('boardingType','LIKE', request('boardingType'))
+                        ->where('Province','LIKE',request('Province'))
+                        ->latest('created_at')->get();
+
+        foreach($Boadrings as $boarding){
+            if($boarding->user->usertype == 1){
+                $test = $boarding->user->phone;
+                Nexmo::message()->send([
+                    'to' => '94' .$test,
+                    'from' => 'Nexmo',
+                    'text' => 'We Found Boarding Place Matching With Your Requirement.'
+                ]);
+
+            toastr()->success('Your Boarding has been successfully added!');
+            return back();
+        }
+
+
+        }
 
         return back()->with('message', 'Your Boarding has been successfully added!');
     }
