@@ -70,4 +70,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function useractivitylog(){
         return $this->hasMany(UserActivityLog::class);
     }
+
+    public function routeNotificationForNexmo($notification)
+    {
+        return "94712120042";
+    }
 }

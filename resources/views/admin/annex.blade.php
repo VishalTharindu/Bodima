@@ -24,17 +24,27 @@
                 <td>{{$anex->boarding->Availability }}</td>
                 <td>2011/04/25</td>
                 <td>
-                  <form action="/admin/delete/{{getBoardingTypeIdById($anex->boarding->id)}}/{{$anex->id}}" method="post">
-                    @csrf
-                      <button class="btn btn-danger btn-circle float-right" onclick="deleteMe();"><i class="far fa-trash-alt"></i></button>
-                  </form>
-                  <a href="/admin/view/{{getBoardingTypeIdById($anex->boarding->id)}}/{{getPropertyTypeIdById($anex->boarding->id)}}" class="btn btn-success">More</a>
-                  <a href="/admin/edit/anex/{{$anex->id}}" class="btn btn-primary">Update</a>
-                  @if (($anex->boarding->Availability)!= 'LOCKED')
-                  <a href="/lock/anex/{{$anex->boarding->id}}" class="btn btn-warning float-right"><i class="fas fa-lock"></i></a>
-                  @else
-                  <a href="/unlock/anex/{{$anex->boarding->id}}" class="btn btn-warning float-right"><i class="fas fa-unlock"></i></a>
-                  @endif
+                  <div class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-bars"></i>
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                      <a href="/admin/view/{{getBoardingTypeIdById($anex->boarding->id)}}/{{getPropertyTypeIdById($anex->boarding->id)}}" class="dropdown-item"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;</i>More</a>
+                      <a href="/admin/edit/anex/{{$anex->id}}" class="dropdown-item"><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</a>
+                      @if (($anex->boarding->Availability)!= 'LOCKED')
+                        <a href="/lock/anex/{{$anex->boarding->id}}" class="dropdown-item">
+                        <i class="fas fa-lock"></i>&nbsp;&nbsp;<span>Lock</span></a>
+                      @else
+                        <a href="/unlock/anex/{{$anex->boarding->id}}" class="dropdown-item"><i class="fas fa-unlock"></i>&nbsp;&nbsp;Unlock</a>
+                      @endif
+                      <form action="/admin/delete/{{getBoardingTypeIdById($anex->boarding->id)}}/{{$anex->id}}" method="post">
+                        @csrf
+                        <a class="dropdown-item" onclick="deleteMe();"><i class="far fa-trash-alt"> Delete</i></a>
+                      </form>
+                      <a href="/admin/warning/{{$anex->boarding->id}}" class="dropdown-item"><i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;Warning</a>  
+                    </div>
+                  </div>
                 </td>
               </tr>  
               @endforeach

@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 use App\House;
 use App\Anex;
 use App\SingleRoom;
+use App\User;
 use Nexmo\Laravel\Facade\Nexmo;
 use App\BoardingRequest;
+use App\Notifications\UserSmsinfo;
 
 class BoardingController extends Controller
 {
@@ -179,26 +181,24 @@ class BoardingController extends Controller
         $Boadrings = BoardingRequest::where('boardingType','LIKE', request('boardingType'))
                         ->where('Province','LIKE',request('Province'))
                         ->latest('created_at')->get();
-        
-        foreach($Boadrings as $boarding){
-            if($boarding->user->usertype == 1){
-                $test = $boarding->user->phone;
-                Nexmo::message()->send([
-                    'to' => '94' .$test,
-                    'from' => 'Nexmo',
-                    'text' => 'We Found Boarding Place Matching With Your Requirement.'
-                ]);
+        if (count($Boadrings) > 0) {
+            foreach($Boadrings as $boarding){
+                if($boarding->user->usertype == 1){
+                    $users = User::where('id', $boarding->user->id)->get();                   
+                    foreach ($users as $user) {
+                        $user->notify(new \App\Notifications\UserSmsinfo());
+                    }
 
-            toastr()->success('Your Boarding has been successfully added!');
-            return back();
+                    return back()->with('Your Boarding has been successfully added!');
+    
+                }    
+            }
         }
 
-
-        }
 
         // Alert::success('User Boarding has been added successfully!', 'Successfully Added!')->autoclose(3000);
         toastr()->success('Your Boarding has been successfully added!');
-        return redirect('addboarding'); 
+        return view('welcome'); 
     }
 
     public function anexstore(Request $request){

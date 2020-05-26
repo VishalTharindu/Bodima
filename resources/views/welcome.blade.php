@@ -35,6 +35,7 @@
           <h2 class="font-weight-bold my-3">Highest Rating Boardings</h2>
           <p class="dis w-responsive mx-auto mb-5">Those are the Highest rating bording for you to check.those would be good offers for you</p>        
           <div class="row text-center">
+          @isset($Boarding)
             @foreach ($Boarding as $item)
             <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
               <div class="view overlay rounded z-depth-1">
@@ -72,6 +73,7 @@
               </div>
             </div>
             @endforeach
+            @endisset
           </div>
           <hr class="hrline">
           <div class="">
@@ -81,7 +83,8 @@
           <div class="row text-center">
            @php
                $count = 0;
-           @endphp         
+           @endphp
+           @isset($premiumboardings)         
             @foreach ($premiumboardings as $post)
               @if ($count < 3)
                   @if (($post->user->usertype)== '1')
@@ -126,7 +129,8 @@
                   
               @endif
               
-            @endforeach           
+            @endforeach 
+            @endisset          
           </div>
           <div class="d-flex justify-content-center">
             <a href="/show/premiumuser/boarding" class=" btn btn-primary text-dark">More Post <i class="fas fa-arrow"></i> </a>

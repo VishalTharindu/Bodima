@@ -29,4 +29,14 @@ class BoardingRequest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function allBoardingRequest(){
+        $boarding = BoardingRequest::get();
+        return count($boarding);
+    }
+
+    public static function avilableBoardingRequest(){
+        $boarding = BoardingRequest::get();
+        return count($boarding);
+    }
 }

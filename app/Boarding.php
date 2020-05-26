@@ -43,4 +43,14 @@ class Boarding extends Model
     {
         return $this->hasMany(UserComplain::class);
     }
+
+    public static function allBoarding(){
+        $boarding = Boarding::get();
+        return count($boarding);
+    }
+
+    public static function availabaleBoarding(){
+        $boarding = Boarding::where('Availability', '=', 'YES')->get();
+        return count($boarding);
+    }
 }

@@ -24,6 +24,13 @@
 
 <body id="page-top">
 
+  @php
+  $allboarding = App\Boarding::allBoarding();
+  $available = App\Boarding::availabaleBoarding();
+  $allboardingrequest = App\BoardingRequest::allBoardingRequest();
+  $availableboardingrequest = App\BoardingRequest::avilableBoardingRequest();
+  @endphp
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -174,13 +181,13 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+               
+                <span class="badge badge-danger badge-counter"></span>
               </a>
-              <!-- Dropdown - Alerts -->
+              
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
@@ -220,16 +227,16 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
+              
                 <span class="badge badge-danger badge-counter">7</span>
               </a>
-              <!-- Dropdown - Messages -->
+          
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
@@ -276,16 +283,19 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
-            </li>
+            </li> -->
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->email}}</span> --}}
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
+              
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+ 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -330,7 +340,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">All Boardings</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$allboarding}}</div>
                     </div>
                     <div class="col-auto">
                       {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
@@ -346,7 +356,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">All Boarding Request</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$allboardingrequest}}</div>
                     </div>
                     <div class="col-auto">
                       {{-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> --}}
@@ -363,12 +373,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Currently Available Boarding</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">4</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$available}}</div>
                         </div>
                       </div>
                     </div>
@@ -385,7 +390,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Currently Available Boarding Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$availableboardingrequest}}</div>
                     </div>
                     <div class="col-auto">
                       {{-- <i class="fas fa-comments fa-2x text-gray-300"></i> --}}

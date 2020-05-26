@@ -416,7 +416,7 @@
                                                     <label class="label">Description</label>
                                                     <div class="field">
                                                         <div class="control">
-                                                            <textarea class="textarea" placeholder="Textarea" name="Description" required></textarea>
+                                                            <textarea class="textarea" placeholder="Textarea" name="Description"></textarea>
                                                         </div>
                                                         @if ($errors->has('Description'))
                                                             <span class="invalid-feedback" role="alert">
@@ -450,10 +450,10 @@
                                                         <option  value="Northern Province">Northern Province</option>
                                                         <option  value="Southern Province">Southern Province</option>
                                                         <option  value="Western Province">Western Province</option>
-                                                        <option  value="Western Province">North Western Province</option>
-                                                        <option  value="Western Province">North Central Province</option>
-                                                        <option  value="Western Province">Uva Province</option>
-                                                        <option  value="Western Province">Sabaragamuwa Province</option>
+                                                        <option  value="North Western Province">North Western Province</option>
+                                                        <option  value="North Central Province">North Central Province</option>
+                                                        <option  value="Uva Province">Uva Province</option>
+                                                        <option  value="Sabaragamuwa Province">Sabaragamuwa Province</option>
                                                     </select>
                                                     <script>
                                                         $("#province").select2(); 
@@ -508,7 +508,7 @@
                                         <div class="field">
                                             <label class="label">City</label>
                                             <div class="control has-icons-left has-icons-right">
-                                                <input class="input" type="text" placeholder="Text input" name="City" required>
+                                                <input class="input" type="text" placeholder="Text input" name="City">
                                                 <span class="icon is-small is-left">
                                                     <i class="fas fa-user"></i>
                                                 </span>
@@ -622,7 +622,7 @@
                                             <div class="field">
                                                 <label class="label">Your Telephone No</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input {{ $errors->has('Telephone') ? ' is-invalid' : '' }}" type="text" placeholder="Text input" name="Telephone" required>
+                                                    <input class="input {{ $errors->has('Telephone') ? ' is-invalid' : '' }}" type="text" placeholder="Text input" name="Telephone">
                                                 </div>
                                                 @if ($errors->has('Telephone'))
                                                     <span class="invalid-feedback" role="alert">
