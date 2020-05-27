@@ -194,8 +194,7 @@
                   <label class="form-control-label" for="input-country">Country</label>
 
                   <input type="text" name="country" id="input-country" class="form-control form-control-alternative" {{ $errors->has('country') ? ' is-invalid' : '' }}"
-                  placeholder="{{ __('Country') }}" value="{{Auth::user()->city}}"
-                  required autofocus>
+                  placeholder="{{ __('Country') }}" value="{{Auth::user()->city}}">
 
                   @if ($errors->has('country'))
                   <span class="invalid-feedback" role="alert">

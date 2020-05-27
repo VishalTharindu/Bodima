@@ -174,7 +174,7 @@ Route::get('check/complaint/boarding/{boarding}','AdminController@complainboardi
     Route::get('/lock/anex/{boardingid}','AdminController@lockboarding')->middleware('auth:admin');
     Route::get('/lock/singleroom/{boardingid}','AdminController@lockboarding')->middleware('auth:admin');
     Route::get('/unlock/house/{boardingid}','AdminController@unlockboarding')->middleware('auth:admin');
-    Route::get('/unlock/anxe/{boardingid}','AdminController@unlockboarding')->middleware('auth:admin');
+    Route::get('unlock/anex/{boardingid}','AdminController@unlockboarding')->middleware('auth:admin');
     Route::get('/unlock/singleroom/{boardingid}','AdminController@unlockboarding')->middleware('auth:admin');
     Route::get('/admin/edit/houses/{house}','HouseController@edit');
     Route::post('/admin/update/houses','HouseController@update')->middleware('auth');
@@ -186,6 +186,7 @@ Route::get('check/complaint/boarding/{boarding}','AdminController@complainboardi
     Route::get('/admin/edit/house/{house}','HouseController@edit')->middleware('auth:admin');
     Route::get('/admin/edit/anex/{anex}','AnexController@edit')->middleware('auth:admin');
     Route::get('/admin/edit/singleroom/{singleRoom}','SingleRoomController@edit')->middleware('auth:admin');
+    Route::get('admin/warning/{boardingid}','AdminController@warningaUser')->middleware('auth:admin');
 
     /* ----Boarding Request Routes----- */
     Route::get('all/house/requests','AdminController@allhouserequest');

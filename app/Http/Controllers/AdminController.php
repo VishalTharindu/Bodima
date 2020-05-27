@@ -113,6 +113,23 @@ class AdminController extends Controller
         return back();
     }
 
+    public function warningaUser(Boarding $boardingid)
+    {
+        $users = User::where('id',$boardingid->user->id)->get();
+        $details = [
+            'greeting' => 'Hi user',
+            'body' => 'your property has many user complain.it would lock soon',
+            'thanks' => 'Thank you for using Bodimalk',
+        ];
+
+        foreach ($users as $user) {
+            $user->notify(new AdminAction($details));
+        }
+
+        toastr()->success('Warning has successfully send!');
+        return back();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

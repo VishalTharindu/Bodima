@@ -220,8 +220,8 @@ class HouseController extends Controller
                 return view('admin.index');
             } else {
                 toastr()->success('Your Boarding  successfully Deleted!');
-                // return redirect()->route('home');   
-                return $this->show();
+                return redirect()->action('HouseController@show');
+                // return $this->show();
             }
         }
     }

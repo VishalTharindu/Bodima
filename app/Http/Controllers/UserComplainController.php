@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\UserComplain;
 use Illuminate\Http\Request;
+use App\Admin;
+use App\Notifications\UserAcion;
 
 class UserComplainController extends Controller
 {
@@ -41,8 +43,18 @@ class UserComplainController extends Controller
         $complain ->name = request('name');
         $complain ->email = request('email');
         $complain ->complain = request('complain');
-
+       
+        $admins = Admin::get();
         $complain->save();
+
+        $details = [
+            'cmlink' => '/admin/show/complain',
+            'body' => 'New complain recived',
+        ];
+
+        foreach ($admins as $admin) {
+            $admin->notify(new UserAcion($details));
+        }
 
         toastr()->success('Your complain has been successfuly added!');
         return back();

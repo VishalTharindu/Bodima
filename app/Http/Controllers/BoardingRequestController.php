@@ -130,20 +130,28 @@ class BoardingRequestController extends Controller
         $houses->save();
 
         $Boadrings = Boarding::where('boardingType','LIKE', request('boardingType'))
-                        ->where('Province','LIKE',request('Province'))
-                        ->latest('created_at')->first();
+                ->where('Province','LIKE',request('Province'))
+                ->latest('created_at')->first();
 
-        if($Boadrings){
-            $test = $request->Telephone;
-            Nexmo::message()->send([
-                'to' => '94' .$test,
-                'from' => 'Nexmo',
-                'text' => 'We Found Boarding Place Matching With Your Requirement.'
-            ]);
-    
-            // Session::flash('success', 'Message sent');
-            toastr()->success('Your Request has been successfully added!');
-            return back();
+        if (count($Boadrings) > 0) {           
+            foreach($Boadrings as $boardings){              
+                if($boardings->user->usertype == 1){
+                    $users = User::where('id', $boardings->user->id)->get();
+                    
+                    $details = [
+                        'greeting' => 'Hi user',
+                        'body' => 'we found a boarding place which is matched with your requirement',
+                        'thanks' => 'Thank you for using Bodimalk',
+                    ];
+
+                    foreach ($users as $user) {
+                        $user->notify(new \App\Notifications\UserSmsinfo($details));
+                    }
+
+                    return back()->with('Your Boarding has been successfully added!');
+
+                }    
+            }
         }
 
         toastr()->success('Your Request has been successfully added!');
@@ -235,19 +243,28 @@ class BoardingRequestController extends Controller
         $annex->save();
 
         $Boadrings = Boarding::where('boardingType','LIKE', request('boardingType'))
-                    ->where('Province','LIKE',request('Province'))
-                    ->latest('created_at')->first();
+                ->where('Province','LIKE',request('Province'))
+                ->latest('created_at')->first();
 
-        if($Boadrings){
-            $test = $request->Telephone;
-            Nexmo::message()->send([
-                'to' => '94' .$test,
-                'from' => 'Nexmo',
-                'text' => 'We Found Boarding Place Matching With Your Requirement.'
-            ]);
+        if (count($Boadrings) > 0) {           
+            foreach($Boadrings as $boardings){              
+                if($boardings->user->usertype == 1){
+                    $users = User::where('id', $boardings->user->id)->get();
+                    
+                    $details = [
+                        'greeting' => 'Hi user',
+                        'body' => 'we found a boarding place which is matched with your requirement',
+                        'thanks' => 'Thank you for using Bodimalk',
+                    ];
 
-            toastr()->success('Boarding request has been successfully added!');
-            return back();
+                    foreach ($users as $user) {
+                        $user->notify(new \App\Notifications\UserSmsinfo($details));
+                    }
+
+                    return back()->with('Your Boarding has been successfully added!');
+
+                }    
+            }
         }
 
         toastr()->success('Boarding request has been successfully added!');
@@ -337,19 +354,28 @@ class BoardingRequestController extends Controller
         $singelroom->save();
 
         $Boadrings = Boarding::where('boardingType','LIKE', request('boardingType'))
-                        ->where('Province','LIKE',request('Province'))
-                        ->latest('created_at')->first();
+                ->where('Province','LIKE',request('Province'))
+                ->latest('created_at')->first();
 
-        if($Boadrings){
-            $test = $request->Telephone;
-            Nexmo::message()->send([
-                'to' => '94' .$test,
-                'from' => 'Nexmo',
-                'text' => 'We Found Boarding Place Matching With Your Requirement.'
-            ]);
+        if (count($Boadrings) > 0) {           
+            foreach($Boadrings as $boardings){              
+                if($boardings->user->usertype == 1){
+                    $users = User::where('id', $boardings->user->id)->get();
+                    
+                    $details = [
+                        'greeting' => 'Hi user',
+                        'body' => 'we found a boarding place which is matched with your requirement',
+                        'thanks' => 'Thank you for using Bodimalk',
+                    ];
 
-            toastr()->success('Boarding request has been successfully added!');
-            return back();
+                    foreach ($users as $user) {
+                        $user->notify(new \App\Notifications\UserSmsinfo($details));
+                    }
+
+                    return back()->with('Your Boarding has been successfully added!');
+
+                }    
+            }
         }
 
         toastr()->success('Boarding request has been successfully added!');

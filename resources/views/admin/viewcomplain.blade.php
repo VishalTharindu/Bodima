@@ -1,5 +1,6 @@
-@foreach ($complain as $item)
 <div class="container">
+@foreach ($complain as $item)
+    <div class="my-4"></div>
     <div class="col-md-12">
         <div class="card">
             <div class="card-heard">               
@@ -27,5 +28,5 @@
             </div>
         </div>
     </div>
-</div> 
 @endforeach
+</div> 
