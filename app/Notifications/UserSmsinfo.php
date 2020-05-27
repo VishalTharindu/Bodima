@@ -6,19 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
 
 class UserSmsinfo extends Notification
 {
     use Queueable;
 
+    private $details;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -29,7 +31,7 @@ class UserSmsinfo extends Notification
      */
     public function via($notifiable)
     {
-        return ['nexmo'];
+        return ['mail', 'nexmo'];
     }
 
     /**
@@ -41,9 +43,10 @@ class UserSmsinfo extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->greeting($this->details['greeting'])
+            ->line($this->details['body'])
+            ->action('Notification Action', url('/'))
+            ->line($this->details['thanks']);
     }
 
     /**
@@ -61,7 +64,7 @@ class UserSmsinfo extends Notification
 
     public function toNexmo($notifiable)
     {
-        return (new NexmoMessage)
+        return (new NexmoMessage())
             ->content('We Found Boarding Place Matching With Your Requirement.');
     }
 }

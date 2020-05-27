@@ -73,6 +73,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function routeNotificationForNexmo($notification)
     {
-        return "94712120042";
+        return "94768620042";
     }
 }
