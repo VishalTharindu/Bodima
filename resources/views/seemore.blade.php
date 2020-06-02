@@ -159,6 +159,17 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <button type="button" onclick="showFeedback()" class="reportad btn btn-default"><span><i class="far fa-flag"></i></span><span class="has-text-balck">View Feedback</span> </button>
+                                    <div class="column has-text-dark " style="display:none;" id="feedback">
+                                        <h2>Feedbacks</h2>
+                                        <hr>
+                                        @php
+                                        $feedbacks = App\UserFeedback::userFeedback($boardingData->boarding->id);
+                                        @endphp
+                                        @foreach($feedbacks as $feedback )
+                                        <p>Feedback : <span class="has-text-weight-semibold">{{$feedback->feedback }}</span></p>
+                                        @endforeach
+                                    </div>
                                     @elseif(($boardingData->boarding->boardingType)=='Anex'))
                                         <div class="columns">
                                             <div class="column detailscolumn has-text-dark">
@@ -314,7 +325,7 @@
                                                         No
                                                     </span> @endif
                                                 </p>
-                                            </div>
+                                            </div>                                          
                                         </div>
                                     @endif
                                 </div>
@@ -551,10 +562,12 @@
                         </form>
                         <a href="/edit/{{getBoardingTypeIdById($boardingData->boarding->id)}}/{{$boardingData->id}}" class="btnajestment"><button class="button is-success is-pulled-right">Update Post</button></a>
                     @else
-                        <button type="button" class="is-pulled-right reportad btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"> <span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span> </button>          
+                        <button type="button" class="is-pulled-right reportad btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"> <span><i class="far fa-flag"></i></span><span class="has-text-balck"> Report Advertisement</span> </button>
+                        <button type="button" class="is-pulled-right reportad btn btn-default" data-toggle="modal" data-target="#feedbackmodal"> <span><i class="far fa-flag"></i></span><span class="has-text-balck"> Feedback</span> </button>          
                     @endif                                   
                     <br>
                 </div>
+                <div>test</div>
         
             </div>
             </div>            
@@ -565,7 +578,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add Complain</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> 
                     </div>
                     <form action="/user/complain" method="post">
@@ -582,6 +595,41 @@
                             <label for="">Complaint</label>
                             <div class="form-group">
                                <textarea class="form-control" name="complain" id="" cols="30" rows="5"></textarea>
+                            </div>
+                            <input type="text" name="userid" value="{{$boardingData->boarding->user->id}}" hidden>
+                            <input type="text" name="boardingtypeid" value="{{$boardingData->boarding->id}}" hidden>                       
+                        </div> 
+                        <div class="modal-footer"> 
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Submit Complain">
+                        </div>
+                </form>
+                </div> 
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="feedbackmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add Feedback</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> 
+                    </div>
+                    <form action="/user/feedback" method="post">
+                        @csrf 
+                        <div class="modal-body">                        
+                            <label for="">User Name</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" value="{{Auth::user()->name}}">
+                            </div>
+                            <label for="">User Email</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="email" value="{{Auth::user()->email}}">
+                            </div>
+                            <label for="">Feedback</label>
+                            <div class="form-group">
+                               <textarea class="form-control" name="feedback" id="" cols="30" rows="5"></textarea>
                             </div>
                             <input type="text" name="userid" value="{{$boardingData->boarding->user->id}}" hidden>
                             <input type="text" name="boardingtypeid" value="{{$boardingData->boarding->id}}" hidden>                       
@@ -714,5 +762,16 @@
     
             });
         </script> 
+
+        <script>
+            function showFeedback() {
+                var x = document.getElementById("feedback");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>

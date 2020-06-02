@@ -218,6 +218,8 @@ class SingleRoomController extends Controller
             $boarding ->Province = request('Province');
             $boarding ->District = request('District');
             $boarding ->City = request('City');
+            $boarding ->longitude = request('longitude');
+            $boarding ->latitude = request('latitude');
 
             // $boarding ->Name = request('images');
             if ($request->hasfile('filename')) {

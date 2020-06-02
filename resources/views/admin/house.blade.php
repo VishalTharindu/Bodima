@@ -48,7 +48,7 @@
                         @csrf
                         <a class="dropdown-item" onclick="deleteMe();"><i class="far fa-trash-alt"> Delete</i></a>
                       </form>
-                      <a href="admin/warning/{{$house->boarding->id}}" class="dropdown-item">Warning</a>                    
+                      <a href="/admin/warning/{{$house->boarding->id}}" class="dropdown-item">Warning</a>                    
                     </div>
                   </div>
                 </td>

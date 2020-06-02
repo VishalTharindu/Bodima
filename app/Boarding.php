@@ -44,6 +44,11 @@ class Boarding extends Model
         return $this->hasMany(UserComplain::class);
     }
 
+    public function usefeedback()
+    {
+        return $this->hasMany(UserFeedback::class);
+    }
+
     public static function allBoarding(){
         $boarding = Boarding::get();
         return count($boarding);

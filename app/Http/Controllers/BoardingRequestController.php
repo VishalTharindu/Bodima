@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\DB;
 use Alert;
+use App\User;
 
 use App\HouseRequest;
 use App\SingleRoomRequest;
 use App\AnexRequst;
+use App\Notifications\UserSmsinfo;
 class BoardingRequestController extends Controller
 {
     /**

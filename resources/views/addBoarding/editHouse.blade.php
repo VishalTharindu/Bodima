@@ -699,7 +699,14 @@
                                             <div class="field">
                                                 <label class="label">Codination</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" placeholder="Text input">
+                                                    <input class="input" type="text" placeholder="Text input" name="latitude" value="{{$house->boarding->latitude }}">
+                                                    <span class="icon is-small is-left">
+                                                        <i class="fas fa-user"></i>
+                                                    </span>
+                                                    <span class="icon is-small is-right">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <input class="input" type="text" placeholder="Text input" name="longitude" value="{{$house->boarding->longitude}}">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-user"></i>
                                                     </span>

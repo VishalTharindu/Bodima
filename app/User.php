@@ -67,6 +67,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(UserComplain::class);
     }
 
+    public function usefeedback()
+    {
+        return $this->hasMany(UserFeedback::class);
+    }
+
     public function useractivitylog(){
         return $this->hasMany(UserActivityLog::class);
     }

@@ -139,6 +139,7 @@ Route::get('/user/message/{message}/view','ProfileController@viewMessage')->midd
 Route::post('/profile/message/reply','UserEmailController@replyMessage')->middleware('auth');
 Route::post('/user/message/{message}/delete','ProfileController@deleteMessage')->middleware('auth');
 Route::post('/user/complain','UserComplainController@store')->middleware('auth');
+Route::post('/user/feedback','UserFeedbackController@store')->middleware('auth');
 Route::get('/user/mostlyseaarch/result','UserActivityLogController@index');
 Route::post('/lock/boarding/{boardingid}','BoardingController@markrented')->middleware('auth');
 Route::post('/unlock/boarding/{boardingid}', ['as' => 'boarding.rent', 'uses' => 'BoardingController@rentboarding']);
@@ -186,7 +187,7 @@ Route::get('check/complaint/boarding/{boarding}','AdminController@complainboardi
     Route::get('/admin/edit/house/{house}','HouseController@edit')->middleware('auth:admin');
     Route::get('/admin/edit/anex/{anex}','AnexController@edit')->middleware('auth:admin');
     Route::get('/admin/edit/singleroom/{singleRoom}','SingleRoomController@edit')->middleware('auth:admin');
-    Route::get('admin/warning/{boardingid}','AdminController@warningaUser')->middleware('auth:admin');
+    Route::get('/admin/warning/{boardingid}','AdminController@warningaUser')->middleware('auth:admin');
 
     /* ----Boarding Request Routes----- */
     Route::get('all/house/requests','AdminController@allhouserequest');
