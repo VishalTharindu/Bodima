@@ -9,7 +9,8 @@
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery.rateyo.min.css')}}">
-    <title>Document</title>
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
+    <title>Bodimalk-Annex</title>
 
     <style>
       .is-centered{
@@ -95,52 +96,76 @@
         </div>
       </div>
       <div class="my-5"></div>
-        <div class="columns">
-            @foreach ($Anex as $post)
-              <div class="column is-4 center-responsive">
-                <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-4by3">
-                        <img src="/images/uploads/boardingimg/{{json_decode($post->boarding->filename)[0]}}" alt="Placeholder image">
-                      </figure>
-                    </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="/images/prof.jpg" alt="Placeholder image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-5"><span>{{$post->boarding->boardingType}}</span> For Rent</p>
-                          <hr>
-                          <h4 class="title is-6 has-text-dark">Rs: <span>{{$post->boarding->MonthlyRent}} Per Month</span></h4>
-                          <p class="subtitle is-6">@<span>{{$post->boarding->user->name}}</span></p>
-                        </div>
-                      </div>
-                  
-                      <div class="content">
-                        {{str_limit(str_replace("&nbsp;",'',strip_tags($post->boarding->Description)),100)}}
-                        <br>                      
-                        <time datetime="2016-1-1">{{$post->created_at->isoFormat('LLLL')}}</time>
-                        <div class="my-2"></div>
-                        <div class="my-2"></div>                                              
-                        <form action="/make/rating" method="post">
-                          @csrf
-                          <div id="rating" class="rateyo" data-rateyo-rating="{{getRatingOverallById($post->boarding->id)}}"
-                          data-rateyo-spacing="10px"
-                          data-rateyo-rated-fill="#FF0000"
-                          data-rateyo-num-stars="5"
-                          data-rateyo-score="3"
-                          ></div>                                              
-                        </form>
-                        <div class="my-3"></div>
-                        <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
-                      </div>
-                    </div>
+      <div class="columns">
+        @foreach ($Anex as $post)
+          <div class="column is-4 center-responsive">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="/images/uploads/boardingimg/{{json_decode($post->boarding->filename)[0]}}" alt="Placeholder image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <img src="/images/prof.jpg" alt="Placeholder image">
+                    </figure>
                   </div>
+                  <div class="media-content">
+                    <p class="title is-5"><span>{{$post->boarding->boardingType}}</span> For Rent</p>
+                    <hr>
+                    <h4 class="title is-6 has-text-dark">Rs: <span>{{$post->boarding->MonthlyRent}} Per Month</span></h4>
+                    <p class="subtitle is-6">@<span>{{$post->boarding->user->name}}</span></p>
+                  </div>
+                  @if (($post->boarding->user->usertype)== '1')
+                    <div class="media-right">
+                      <figure class="image is-96x96 is-responsive">
+                        <img src="/images/premium2.png" alt="Placeholder image">
+                      </figure>
+                    </div>                          
+                    @endif
+                </div>
+            
+                <div class="content">
+                  {{str_limit(str_replace("&nbsp;",'',strip_tags($post->boarding->Description)),100)}}
+                  <br>
+                  <div class="my-3"></div>                      
+                  <time datetime="2016-1-1">{{$post->created_at->isoFormat('LLLL')}}</time>
+                  <div class="my-2"></div>
+                  <div class="my-2"></div>                                              
+                  <form action="/make/rating" method="post">
+                    @csrf
+                    <div id="rating" class="rateyo" data-rateyo-rating="{{getRatingOverallById($post->boarding->id)}}"
+                    data-rateyo-spacing="10px"
+                    data-rateyo-rated-fill="#FF0000"
+                    data-rateyo-num-stars="5"
+                    data-rateyo-score="3"
+                    ></div>                                              
+                  </form>
+
+                  <div class="my-3"></div>
+                  
+                  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                  <div class="addthis_inline_share_toolbox_b5ql"></div>
+                  <div class="my-5"></div>
+                  <div class="float-left">
+                    <h6><span>Posted:</span><span>{{$post->created_at->diffForHumans()}}</span></h6>
+                  </div>
+                    @if(($post->boarding->Availability) == "LOCKED")
+                      @if (Auth::user()==$post->boarding->user)
+                        <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
+                      @else
+                        <h6 class="text-danger">This boarding has already rented</h6>
+                        @endif
+                    @else
+                      <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>                
+                    @endif                    
+                </div>
+              </div>
             </div>
-            @endforeach
+          </div>
+        @endforeach
         </div>
     </div>
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
@@ -149,6 +174,10 @@
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    @toastr_render
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e6cabb0119bfabd"></script>
     @toastr_render
     @include('sweet::alert')
 

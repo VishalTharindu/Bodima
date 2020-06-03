@@ -17,4 +17,9 @@ class UserComplain extends Model
         return $this->belongsTo(Boarding::class);
 
     }
+
+    public static function userComplainCount($boardingId){
+        $complain = UserComplain::where('boarding_id', '=', $boardingId)->get();
+        return count($complain);
+    }
 }

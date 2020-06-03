@@ -193,6 +193,7 @@ Route::get('check/complaint/boarding/{boarding}','AdminController@complainboardi
     Route::get('all/house/requests','AdminController@allhouserequest');
     Route::get('all/annex/requests','AdminController@allannexrequest');
     Route::get('all/singleroom/requests','AdminController@allsingleroomrequest');
+    Route::get('admin/view/houserequest/{houserequest}','BoardingRequestController@viewHouseRequest')->middleware('auth:admin');
 
 
 // Route::get('/lg', function () {

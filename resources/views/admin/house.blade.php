@@ -30,6 +30,9 @@
                     @endif</td>
                 <td>2011/04/25</td>
                 <td>
+                  @php
+                    $cmpcount = App\UserComplain::userComplainCount($house->boarding->id);
+                  @endphp
                   <div class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-bars"></i>
@@ -38,17 +41,19 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                       <a href="/admin/view/{{getBoardingTypeIdById($house->boarding->id)}}/{{getPropertyTypeIdById($house->boarding->id)}}" class="dropdown-item"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;</i>More</a>
                       <a href="/admin/edit/house/{{$house->id}}" class="dropdown-item"><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</a>
-                      @if (($house->boarding->Availability)!= 'LOCKED')
-                        <a href="/lock/house/{{$house->boarding->id}}" class="dropdown-item">
-                        <i class="fas fa-lock"></i>&nbsp;&nbsp;<span>Lock</span></a>
-                      @else
-                        <a href="/unlock/house/{{$house->boarding->id}}" class="dropdown-item"><i class="fas fa-unlock"></i>&nbsp;&nbsp;Unlock</a>
+                      @if($cmpcount >= 5)
+                        @if (($house->boarding->Availability)!= 'LOCKED')
+                          <a href="/lock/house/{{$house->boarding->id}}" class="dropdown-item">
+                          <i class="fas fa-lock"></i>&nbsp;&nbsp;<span>Lock</span></a>
+                        @else
+                          <a href="/unlock/house/{{$house->boarding->id}}" class="dropdown-item"><i class="fas fa-unlock"></i>&nbsp;&nbsp;Unlock</a>
+                        @endif
                       @endif
                       <form action="/admin/delete/{{getBoardingTypeIdById($house->boarding->id)}}/{{$house->id}}" method="post">
                         @csrf
-                        <a class="dropdown-item" onclick="deleteMe();"><i class="far fa-trash-alt"> Delete</i></a>
+                        <a class="dropdown-item" onclick="deleteMe();"><i class="far fa-trash-alt">&nbsp;&nbsp;&nbsp;Delete</i></a>
                       </form>
-                      <a href="/admin/warning/{{$house->boarding->id}}" class="dropdown-item">Warning</a>                    
+                      <a href="/admin/warning/{{$house->boarding->id}}" class="dropdown-item"><i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;Warning</a>                    
                     </div>
                   </div>
                 </td>

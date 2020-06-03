@@ -65,15 +65,17 @@ class BoardingController extends Controller
             'boardingType' => 'required',
             'NoOfRooms' => 'required',
             'Acavalability' => 'required',
-            'MonthlyRent' => 'required',
-            'KeyMoney' => 'required',
+            'MonthlyRent' => 'required|numeric',
+            'KeyMoney' => 'required|numeric',
             'Address' => 'required',
             'Description' => '',
+            'lng'=>'required',
+            'lat'=>'required',
             // 'Province' => 'required',
             // 'District' => 'required',
-            // 'City' => 'required',
+            'City' => 'required',
             'Email' => 'required',
-            'Telephone' => 'required',
+            'Telephone' => 'required|numeric',
         ]);
 
        if($request->hasfile('filename'))
@@ -207,7 +209,7 @@ class BoardingController extends Controller
 
         // Alert::success('User Boarding has been added successfully!', 'Successfully Added!')->autoclose(3000);
         toastr()->success('Your Boarding has been successfully added!');
-        return view('welcome'); 
+        return redirect()->action('HouseController@show');
     }
 
     public function anexstore(Request $request){
@@ -223,9 +225,11 @@ class BoardingController extends Controller
             'Province' => 'required',
             'District' => 'required',
             'City' => 'required',
+            'lng'=>'required',
+            'lat'=>'required',
             // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'Email' => 'required',
-            'Telephone' => 'required',
+            'Telephone' => 'required|numeric',
         ]);
 
         if($request->hasfile('filename'))
@@ -303,7 +307,8 @@ class BoardingController extends Controller
         $boarding ->Province = request('Province');
         $boarding ->District = request('District');
         $boarding ->City = request('City');
-
+        $boarding ->latitude  = request('lat');
+        $boarding ->longitude = request('lng');
         $boarding->filename  = json_encode($data);
         $boarding->coverimg  = $covname;
         $boarding ->Email = request('Email');
@@ -345,15 +350,15 @@ class BoardingController extends Controller
                         $user->notify(new \App\Notifications\UserSmsinfo($details));
                     }
 
-                    return back()->with('Your Boarding has been successfully added!');
+                    toastr()->success('Your Boarding has been successfully added!');
+                    return redirect()->action('AnexController@show');
 
                 }       
             }              
         }
 
-        toastr()->success('Your Favourite has been successfully added!');
-
-        return back();
+        toastr()->success('Your Boarding has been successfully added!');
+        return redirect()->action('AnexController@show');
     }
 
 
@@ -369,9 +374,11 @@ class BoardingController extends Controller
             'Province' => 'required',
             'District' => 'required',
             'City' => 'required',
+            'lng'=>'required',
+            'lat'=>'required',
             // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'Email' => 'required',
-            'Telephone' => 'required',
+            'Telephone' => 'required|numeric',
         ]);
 
         if($request->hasfile('filename'))
@@ -449,7 +456,8 @@ class BoardingController extends Controller
         $boarding ->Province = request('Province');
         $boarding ->District = request('District');
         $boarding ->City = request('City');
-
+        $boarding ->latitude  = request('lat');
+        $boarding ->longitude = request('lng');
         $boarding->filename  = json_encode($data);
         $boarding->coverimg  = $covname;
         $boarding ->Email = request('Email');
@@ -493,13 +501,15 @@ class BoardingController extends Controller
                         $user->notify(new \App\Notifications\UserSmsinfo($details));
                     }
 
-                    return back()->with('Your Boarding has been successfully added!');
+                    toastr()->success('Your Boarding has been successfully added!');
+                    return redirect()->action('SingleRoomController@show');
 
                 }    
             }
         }
 
-        return back()->with('message', 'Your Boarding has been successfully added!');
+        toastr()->success('Your Boarding has been successfully added!');
+        return redirect()->action('SingleRoomController@show');
     }
 
     /**
