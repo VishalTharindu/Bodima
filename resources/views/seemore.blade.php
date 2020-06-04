@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/flickity.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery.rateyo.min.css')}}">
+    {!! NoCaptcha::renderJs() !!}
 
     
     {{-- <link rel="stylesheet" href="/css/flickity.css"> Google Fonts --}}
@@ -159,7 +160,9 @@
                                         $feedbacks = App\UserFeedback::userFeedback($boardingData->boarding->id);
                                         @endphp
                                         @foreach($feedbacks as $feedback )
-                                        <p>Feedback : <span class="has-text-weight-semibold">{{$feedback->feedback }}</span></p>
+                                        <div>
+                                            <p>Feedback : <span class="has-text-weight-semibold">{{$feedback->feedback }}</span></p>                                       
+                                        </div>
                                         @endforeach
                                     </div>
                                     @elseif(($boardingData->boarding->boardingType)=='Anex')
@@ -504,6 +507,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+
+                            <label class="col-md-4 control-label">Captcha</label>
+
+                            <div class="col-md-6">
+
+                                {!! app('captcha')->display() !!}
+
+                                @if ($errors->has('g-recaptcha-response'))
+
+                                    <span class="help-block">
+
+                                        <strong class="text-danger">{{ $errors->first('g-recaptcha-response') }}</strong>
+
+                                    </span>
+
+                                @endif
+
+                            </div>
+
+                        </div>
         
                             <div class="field is-horizontal">
                                 <div class="field-label">
@@ -628,7 +652,7 @@
                         </div> 
                         <div class="modal-footer"> 
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="Submit Complain">
+                            <input type="submit" class="btn btn-primary" value="Submit Feedback">
                         </div>
                 </form>
                 </div> 
@@ -645,6 +669,7 @@
     <script src="{{asset('js/toastr.min.js')}}"></script>
     {{-- <script type="text/javascript" src={{asset('js/SweetAlert.js')}}></script> --}}
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src={{asset('js/flickity.pkgd.min.js')}}></script>
     @toastr_render
     @include('sweet::alert')
