@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
     <title>Document</title>
 
     <style>
@@ -179,6 +180,8 @@
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    @toastr_render
     @include('sweet::alert')
 </body>
 </html>

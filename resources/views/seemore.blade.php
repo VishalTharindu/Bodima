@@ -245,7 +245,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    @elseif(($boardingData->boarding->boardingType)=='Singal_Room'))
+                                    @elseif(($boardingData->boarding->boardingType)=='Singal_Room')
                                         <div class="columns">
                                             <div class="column detailscolumn has-text-dark">
                                                 <p>Boarding  Type: <span class="has-text-weight-semibold">{{$boardingData->boarding->boardingType}}</span></p>               

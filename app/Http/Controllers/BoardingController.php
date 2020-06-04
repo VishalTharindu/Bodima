@@ -74,7 +74,7 @@ class BoardingController extends Controller
             // 'Province' => 'required',
             // 'District' => 'required',
             'City' => 'required',
-            'Email' => 'required',
+            'Email' => 'required|email',
             'Telephone' => 'required|numeric',
         ]);
 

@@ -31,7 +31,7 @@
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">About DigiLab</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p>The Rentals Service.Bodimalk is intended for the particular purpose of searching and finding Boarding rooms, Annex and other renting items. We endeavour to provide exact matches, or matches which are similar to the criteria provided. </p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                         <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                         <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>

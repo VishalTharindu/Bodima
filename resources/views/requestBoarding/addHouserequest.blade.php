@@ -58,10 +58,18 @@
                         <a class="dropdown-item" href="/show/singleroom">Single Room</a>                 
                     </div>
                     </li>
-                    <li class="nav-item"><a href="/allboardingrequst" class="nav-link"><span>Finders</span></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Finders
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/show/houserequest">House Request</a>
+                        <a class="dropdown-item" href="/show/annexrequst">Annex Request</a>
+                        <a class="dropdown-item" href="/show/singelroomrequest">Single Room Request</a>                 
+                        </div>
+                    </li>
                     <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
                     <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
-                    <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
                     <li class="nav-item">
                         <ul class="navbar-nav nav ml-auto">
                         <!-- Authentication Links -->
@@ -475,7 +483,7 @@
                                             <div class="field">
                                                 <label class="label">Your Name</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="form-control {{ $errors->has('Name') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" name="Name">
+                                                    <input class="form-control {{ $errors->has('Name') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" value="{{auth()->user()->name}}" name="Name">
                                                     @if ($errors->has('Name'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong class="text-danger">{{ $errors->first('Name') }}</strong>
@@ -490,7 +498,7 @@
                                             <div class="field">
                                                 <label class="label">Your Email Address</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="form-control {{ $errors->has('Email') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" name="Email">
+                                                    <input class="form-control {{ $errors->has('Email') ? ' is-invalid' : ''}}" type="text" value="{{auth()->user()->email}}" placeholder="Text input" name="Email">
                                                     @if ($errors->has('Email'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong class="text-danger">{{ $errors->first('Email') }}</strong>
@@ -505,7 +513,7 @@
                                             <div class="field">
                                                 <label class="label">Your Telephone No</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="form-control {{ $errors->has('Telephone') ? ' is-invalid' : ''}}" type="text" placeholder="Text input" name="Telephone">
+                                                    <input class="form-control {{ $errors->has('Telephone') ? ' is-invalid' : ''}}" type="text" value="{{auth()->user()->phone}}" placeholder="Text input" name="Telephone">
                                                     @if ($errors->has('Telephone'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong class="text-danger">{{ $errors->first('Telephone') }}</strong>

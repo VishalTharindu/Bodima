@@ -17,8 +17,8 @@
                 <div class="columns">
                     <div class="column">
                         <div class="ftsec fstcl">
-                            <h2>About bodima.lk</h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                            <h2>About bodimalk</h2>
+                            <p>The Rentals Service.Bodimalk is intended for the particular purpose of searching and finding Boarding rooms, Annex and other renting items. We endeavour to provide exact matches, or matches which are similar to the criteria provided. </p>
                             <ul class="">
                                 <li><a href="#"><span class="fas fa-facebook"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="fa fa-arrow-right"></span></a></li>

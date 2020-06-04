@@ -111,7 +111,7 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::post('/add/annexrequst','BoardingRequestController@storeAnnexRequest')->middleware('auth');
     Route::get('/edit/anexrequest/{anexRequst}','AnexRequstController@edit')->middleware('auth');
     Route::post('/update/anexRequsts','AnexRequstController@update')->middleware('auth');
-    Route::post('/delete/anexrequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
+    Route::post('/delete/anexrequest/{anexRequst}','AnexRequstController@destroy')->middleware('auth');
     /****************Annex request routes********************/
     Route::get('/show/singelroomrequest','SingleRoomRequestController@show');
     Route::get('/add/singelroomrequest','SingleRoomRequestController@create')->middleware('auth');
@@ -119,7 +119,7 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::post('/add/singelroomrequest','BoardingRequestController@storeSingelRoomRequest')->middleware('auth');
     Route::get('/edit/singleroomrequest/{singleRoomRequest}','SingleRoomRequestController@edit')->middleware('auth');
     Route::post('/update/singleRoomRequests','SingleRoomRequestController@update')->middleware('auth');
-    Route::post('/delete/singleroomrequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
+    Route::post('/delete/singleroomrequest/{singleRoomRequest}','SingleRoomRequestController@destroy')->middleware('auth');
 
 // ++++++++fonction related routies++++++++
 

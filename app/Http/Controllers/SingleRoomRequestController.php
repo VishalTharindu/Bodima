@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\SingleRoomRequest;
 use Auth;
 use App\BoardingRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SingleRoomRequestController extends Controller
@@ -162,7 +163,7 @@ class SingleRoomRequestController extends Controller
             $adsingleromrqs->save();
 
             if ( Auth::guard('admin')->check()) {
-                toastr()->success('User Boarding has been successfully Updated!');
+                toastr()->success('User Boarding Request has been successfully Updated!');
                 return redirect('admin');
             } else {
                 return $this->show();   
@@ -181,7 +182,7 @@ class SingleRoomRequestController extends Controller
     {
         DB::table('single_room_requests')->where('id', '=', $singleRoomRequest->id)->delete();
         DB::table('boarding_requests')->where('id', '=', $singleRoomRequest->boardingrequest->id)->delete();
-        toastr()->success('User Boarding has been deleted successfully!');
+        toastr()->success('User Boarding Request has been deleted successfully!');
         return $this->show();
     }
 }
