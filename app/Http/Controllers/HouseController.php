@@ -158,6 +158,8 @@ class HouseController extends Controller
                 $boarding->Office_girls = 0;
             } 
 
+            $boarding ->longitude = request('longitude');
+            $boarding ->latitude = request('latitude');
             $boarding ->MonthlyRent = request('MonthlyRent');
             $boarding ->KeyMoney = request('KeyMoney');
             $boarding ->Address = request('Address');

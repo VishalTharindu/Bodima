@@ -22,21 +22,11 @@
                 <td>{{$singleroom->boarding->District}}</td>
                 <td><span>Rs : </span>{{$singleroom->boarding->MonthlyRent}}</td>
                 <td>61</td>
-                <td>2011/04/25</td>
+                <td>2011/04/25</td>            
                 <td>
-                  <form action="/admin/delete/{{getBoardingTypeIdById($singleroom->boarding->id)}}/{{$singleroom->id}}" method="post">
-                    @csrf
-                      <button class="btn btn-danger btn-circle float-right" onclick="deleteMe();"><i class="far fa-trash-alt"></i></button>
-                  </form>
-                  <a href="/admin/view/{{getBoardingTypeIdById($singleroom->boarding->id)}}/{{getPropertyTypeIdById($singleroom->boarding->id)}}" class="btn btn-success">More</a>
-                  <a href="/admin/edit/singleroom/{{$singleroom->id}}" class="btn btn-primary">Update</a>
-                  @if (($singleroom->boarding->Availability)!= 'LOCKED')
-                  <a href="/lock/singleroom/{{$singleroom->boarding->id}}" class="btn btn-warning float-right"><i class="fas fa-lock"></i></a>
-                  @else
-                  <a href="/unlock/singleroom/{{$singleroom->boarding->id}}" class="btn btn-warning float-right"><i class="fas fa-unlock"></i></a>
-                  @endif
-                </td>
-                <td>
+                  @php
+                    $cmpcount = App\UserComplain::userComplainCount($singleroom->boarding->id);
+                  @endphp
                   <div class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-bars"></i>
@@ -45,17 +35,19 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                       <a href="/admin/view/{{getBoardingTypeIdById($singleroom->boarding->id)}}/{{getPropertyTypeIdById($singleroom->boarding->id)}}" class="dropdown-item"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;</i>More</a>
                       <a href="/admin/edit/singleroom/{{$singleroom->id}}" class="dropdown-item"><i class="fas fa-edit"></i>&nbsp;&nbsp;Update</a>
-                      @if (($singleroom->boarding->Availability)!= 'LOCKED')
-                        <a href="/lock/anex/{{$anex->boarding->id}}" class="dropdown-item">
-                        <i class="fas fa-lock"></i>&nbsp;&nbsp;<span>Lock</span></a>
-                      @else
-                        <a href="/lock/singleroom/{{$singleroom->boarding->id}}" class="dropdown-item"><i class="fas fa-unlock"></i>&nbsp;&nbsp;Unlock</a>
+                      @if($cmpcount >= 5)
+                        @if (($singleroom->boarding->Availability)!= 'LOCKED')
+                          <a href="/lock/anex/{{$singleroom->boarding->id}}" class="dropdown-item">
+                          <i class="fas fa-lock"></i>&nbsp;&nbsp;<span>Lock</span></a>
+                        @else
+                          <a href="/lock/singleroom/{{$singleroom->boarding->id}}" class="dropdown-item"><i class="fas fa-unlock"></i>&nbsp;&nbsp;Unlock</a>
+                        @endif
                       @endif
                       <form action="/unlock/singleroom/{{$singleroom->boarding->id}}" method="post">
                         @csrf
-                        <a class="dropdown-item" onclick="deleteMe();"><i class="far fa-trash-alt"> Delete</i></a>
+                        <a class="dropdown-item" onclick="deleteMe();"><i class="far fa-trash-alt">&nbsp;&nbsp;Delete</i></a>
                       </form>
-                      <a href="/admin/warning/{{$anex->boarding->id}}" class="dropdown-item"><i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;Warning</a> 
+                      <a href="/admin/warning/{{$singleroom->boarding->id}}" class="dropdown-item"><i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;Warning</a> 
                     </div>
                   </div>
                 </td>

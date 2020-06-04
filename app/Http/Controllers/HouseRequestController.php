@@ -187,7 +187,7 @@ class HouseRequestController extends Controller
     {
         DB::table('house_requests')->where('id', '=', $houseRequest->id)->delete();
         DB::table('boarding_requests')->where('id', '=', $houseRequest->boardingrequest->id)->delete();
-        toastr()->success('User Boarding has been deleted successfully!');
+        toastr()->success('User Boarding Request has been deleted successfully!');
         return $this->show();
     }
 }

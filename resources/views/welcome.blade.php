@@ -147,7 +147,7 @@
                         <div class="column">
                             <div class="ftsec fstcl">
                                 <h2 style="color:#fff">About bodima.lk</h2>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p>The Rentals Service.Bodimalk is intended for the particular purpose of searching and finding Boarding rooms, Annex and other renting items. We endeavour to provide exact matches, or matches which are similar to the criteria provided. </p>
                                 <ul class="">
                                     <li><a href="#"><span class="fas fa-facebook"></span></a></li>
                                     <li class="ftco-animate"><a href="#"><span class="fa fa-arrow-right"></span></a></li>
@@ -159,23 +159,10 @@
                             <div class="ftsec seccl">
                                 <h2 style="color:#fff">Links</h2>
                                 <ul class="list-unstyled">
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspHome</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspAbout</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspServices</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspProjects</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspContact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="ftsec tridcl">
-                                <h2 style="color:#fff">Services</h2>
-                                <ul class="list-unstyled">
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspWeb Design</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspWeb Development</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspBusiness Strategy</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspData Analysis</a></li>
-                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbspGraphic Design</a></li>
+                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbsp;Home</a></li>
+                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbsp;Boarding</a></li>
+                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbsp;Request</a></li>
+                                    <li><a href="#"><span class="fa fa-arrow-right"></span>&nbsp;Profile</a></li>                               
                                 </ul>
                             </div>
                         </div>

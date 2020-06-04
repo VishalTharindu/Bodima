@@ -111,7 +111,7 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::post('/add/annexrequst','BoardingRequestController@storeAnnexRequest')->middleware('auth');
     Route::get('/edit/anexrequest/{anexRequst}','AnexRequstController@edit')->middleware('auth');
     Route::post('/update/anexRequsts','AnexRequstController@update')->middleware('auth');
-    Route::post('/delete/anexrequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
+    Route::post('/delete/anexrequest/{anexRequst}','AnexRequstController@destroy')->middleware('auth');
     /****************Annex request routes********************/
     Route::get('/show/singelroomrequest','SingleRoomRequestController@show');
     Route::get('/add/singelroomrequest','SingleRoomRequestController@create')->middleware('auth');
@@ -119,7 +119,7 @@ Route::get('/requestboarding','BoardingRequestController@create')->middleware('a
     Route::post('/add/singelroomrequest','BoardingRequestController@storeSingelRoomRequest')->middleware('auth');
     Route::get('/edit/singleroomrequest/{singleRoomRequest}','SingleRoomRequestController@edit')->middleware('auth');
     Route::post('/update/singleRoomRequests','SingleRoomRequestController@update')->middleware('auth');
-    Route::post('/delete/singleroomrequest/{boarding_requestsRequest}','BoardingRequestController@destroy')->middleware('auth');
+    Route::post('/delete/singleroomrequest/{singleRoomRequest}','SingleRoomRequestController@destroy')->middleware('auth');
 
 // ++++++++fonction related routies++++++++
 
@@ -139,6 +139,7 @@ Route::get('/user/message/{message}/view','ProfileController@viewMessage')->midd
 Route::post('/profile/message/reply','UserEmailController@replyMessage')->middleware('auth');
 Route::post('/user/message/{message}/delete','ProfileController@deleteMessage')->middleware('auth');
 Route::post('/user/complain','UserComplainController@store')->middleware('auth');
+Route::post('/user/feedback','UserFeedbackController@store')->middleware('auth');
 Route::get('/user/mostlyseaarch/result','UserActivityLogController@index');
 Route::post('/lock/boarding/{boardingid}','BoardingController@markrented')->middleware('auth');
 Route::post('/unlock/boarding/{boardingid}', ['as' => 'boarding.rent', 'uses' => 'BoardingController@rentboarding']);
@@ -186,12 +187,13 @@ Route::get('check/complaint/boarding/{boarding}','AdminController@complainboardi
     Route::get('/admin/edit/house/{house}','HouseController@edit')->middleware('auth:admin');
     Route::get('/admin/edit/anex/{anex}','AnexController@edit')->middleware('auth:admin');
     Route::get('/admin/edit/singleroom/{singleRoom}','SingleRoomController@edit')->middleware('auth:admin');
-    Route::get('admin/warning/{boardingid}','AdminController@warningaUser')->middleware('auth:admin');
+    Route::get('/admin/warning/{boardingid}','AdminController@warningaUser')->middleware('auth:admin');
 
     /* ----Boarding Request Routes----- */
     Route::get('all/house/requests','AdminController@allhouserequest');
     Route::get('all/annex/requests','AdminController@allannexrequest');
     Route::get('all/singleroom/requests','AdminController@allsingleroomrequest');
+    Route::get('admin/view/houserequest/{houserequest}','BoardingRequestController@viewHouseRequest')->middleware('auth:admin');
 
 
 // Route::get('/lg', function () {

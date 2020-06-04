@@ -72,11 +72,23 @@ class PaymentController extends Controller
                     $premiumuser->usertype  = '1';
                     $premiumuser->save();
 
+                    $details = [
+                        'greeting' => 'Hi user',
+                        'body' => 'Payment is successful,You have become Premium',
+                        'thanks' => 'Thank you for registering Bodimalk',
+                    ];
+
+                    $premiumuser->notify(new \App\Notifications\PremiumMemberPayent($details));
+                    // foreach ($premiumuser as $user) {
+
+                        
+                    // }
+
 
                 }
  
                 toastr()->success('Payment is successful,You have become Premium');
-                return redirect()->route('home'); 
+                return redirect()->action('HouseController@show'); 
 
                 // return "Payment is successful. Your payment id is: ". $arr_payment_data['id'];
             } else {

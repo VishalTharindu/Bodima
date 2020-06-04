@@ -9,7 +9,8 @@
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery.rateyo.min.css')}}">
-    <title>Document</title>
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
+    <title>Bodimalk-Single Room</title>
 
     <style>
       .is-centered{
@@ -135,7 +136,22 @@
                           ></div>                                              
                         </form>
                         <div class="my-3"></div>
-                        <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
+                        
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <div class="addthis_inline_share_toolbox_b5ql"></div>
+                        <div class="my-3"></div>
+                        <div class="float-left">
+                        <h6><span>Posted:</span><span>{{$post->created_at->diffForHumans()}}</span></h6>
+                        </div>
+                          @if(($post->boarding->Availability) == "LOCKED")
+                            @if (Auth::user()==$post->boarding->user)
+                              <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>
+                            @else
+                              <h6 class="text-danger">This boarding has already rented</h6>
+                              @endif
+                          @else
+                            <a href="/view/{{getBoardingTypeIdById($post->boarding->id)}}/{{getPropertyTypeIdById($post->boarding->id)}}"><button class="button is-success is-pulled-right">See More</button></a>                
+                          @endif
                       </div>
                     </div>
                   </div>
@@ -148,8 +164,11 @@
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    @toastr_render
     @include('sweet::alert')
-
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e6cabb0119bfabd"></script>
 
     <script>
       $(function () {

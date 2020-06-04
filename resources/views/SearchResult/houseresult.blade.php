@@ -9,7 +9,7 @@
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery.rateyo.min.css')}}">
-    <title>Document</title>
+    <title>Bodimalk-House</title>
 
     <style>
       .is-centered{

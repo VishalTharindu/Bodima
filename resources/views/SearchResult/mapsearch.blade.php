@@ -24,6 +24,12 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
     <div class="my-5"></div>
     <div class="container">
         <div class="row">
@@ -129,7 +135,7 @@
                 rotateControl:false
               }
             var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-            var image = new google.maps.MarkerImage("assets/images/cat_icon.png", null, null, null, new google.maps.Size(40,52));
+            var image = new google.maps.MarkerImage("assets/images/pin.png", null, null, null, new google.maps.Size(40,52));
             var places = @json($mapShops);
     
             for(place in places)

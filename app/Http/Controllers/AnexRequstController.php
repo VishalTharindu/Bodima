@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\AnexRequst;
 use Auth;
 use App\BoardingRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
 
 class AnexRequstController extends Controller
 {
@@ -183,7 +185,7 @@ class AnexRequstController extends Controller
     {
         DB::table('anex_requsts')->where('id', '=', $anexRequst->id)->delete();
         DB::table('boarding_requests')->where('id', '=', $anexRequst->boardingrequest->id)->delete();
-        toastr()->success('User Boarding has been deleted successfully!');
+        toastr()->success('User Boarding Request has been deleted successfully!');
         return $this->show();
     }
 }

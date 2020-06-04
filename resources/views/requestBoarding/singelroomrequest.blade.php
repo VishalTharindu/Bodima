@@ -66,9 +66,17 @@
                           <a class="dropdown-item" href="/show/singelroomrequest">Single Room Request</a>                 
                         </div>
                       </li> 
-                    <li class="nav-item"><a href="/addboarding" class="nav-link"><span>Add bodim</span></a></li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Finders
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/show/houserequest">House Request</a>
+                        <a class="dropdown-item" href="/show/annexrequst">Annex Request</a>
+                        <a class="dropdown-item" href="/show/singelroomrequest">Single Room Request</a>                 
+                        </div>
+                    </li>
                     <li class="nav-item"><a href="/requestboarding" class="nav-link"><span>Request bodim</span></a></li>
-                    <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Filtaring</span></a></li>
                     <li class="nav-item">
                         <ul class="navbar-nav nav ml-auto">
                         <!-- Authentication Links -->
@@ -482,7 +490,7 @@
                                             <div class="field">
                                                 <label class="label">Your Name</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="form-control form-control-alternative" type="text" placeholder="Text input" name="Name">
+                                                    <input class="form-control form-control-alternative" type="text" placeholder="Text input" value="{{auth()->user()->name}}" name="Name">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-user"></i>
                                                     </span>
@@ -498,7 +506,7 @@
                                             <div class="field">
                                                 <label class="label">Your Email Address</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="form-control form-control-alternative" type="text" placeholder="Text input" name="Email">
+                                                    <input class="form-control form-control-alternative" type="text" placeholder="Text input" value="{{auth()->user()->email}}" name="Email">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-user"></i>
                                                     </span>
@@ -514,7 +522,7 @@
                                             <div class="field">
                                                 <label class="label">Your Telephone No</label>
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="form-control form-control-alternative" type="text" placeholder="Text input" name="Telephone">
+                                                    <input class="form-control form-control-alternative" type="text" placeholder="Text input" value="{{auth()->user()->phone}}" name="Telephone">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-user"></i>
                                                     </span>

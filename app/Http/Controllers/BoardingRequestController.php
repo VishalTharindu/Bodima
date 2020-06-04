@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\DB;
 use Alert;
+use App\User;
 
 use App\HouseRequest;
 use App\SingleRoomRequest;
 use App\AnexRequst;
+use App\Notifications\UserSmsinfo;
 class BoardingRequestController extends Controller
 {
     /**
@@ -57,7 +59,7 @@ class BoardingRequestController extends Controller
             'City' => 'required',
             // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'Email' => 'required',
-            'Telephone' => 'required',
+            'Telephone' => 'required|numeric|min:10',
         ]);
 
 
@@ -133,29 +135,27 @@ class BoardingRequestController extends Controller
                 ->where('Province','LIKE',request('Province'))
                 ->latest('created_at')->first();
 
-        if (count($Boadrings) > 0) {           
-            foreach($Boadrings as $boardings){              
-                if($boardings->user->usertype == 1){
-                    $users = User::where('id', $boardings->user->id)->get();
-                    
-                    $details = [
-                        'greeting' => 'Hi user',
-                        'body' => 'we found a boarding place which is matched with your requirement',
-                        'thanks' => 'Thank you for using Bodimalk',
-                    ];
+                if (!empty($Boadrings)) {           
+                    foreach($Boadrings as $boardings){              
+                        $users = User::where('id', $boardings->user->id)->get();
+                        
+                        $details = [
+                            'greeting' => 'Hi user',
+                            'body' => 'we found a boarding place which is matched with your requirement',
+                            'thanks' => 'Thank you for using Bodimalk',
+                        ];
+        
+                        foreach ($users as $user) {
+                            $user->notify(new \App\Notifications\UserSmsinfo($details));
+                        }
 
-                    foreach ($users as $user) {
-                        $user->notify(new \App\Notifications\UserSmsinfo($details));
+                        toastr()->success('Your Request has been successfully added!');
+                        return redirect()->action('HouseRequestController@show'); 
                     }
-
-                    return back()->with('Your Boarding has been successfully added!');
-
-                }    
-            }
-        }
+                }
 
         toastr()->success('Your Request has been successfully added!');
-        return back();
+        return redirect()->action('HouseRequestController@show');
     }
 
     public function storeAnnexRequest(Request $request)
@@ -170,7 +170,8 @@ class BoardingRequestController extends Controller
             'City' => 'required',
             // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'Email' => 'required',
-            'Telephone' => 'required',
+            'Telephone' => 'required|numeric|min:10',
+            
         ]);
 
 
@@ -246,29 +247,26 @@ class BoardingRequestController extends Controller
                 ->where('Province','LIKE',request('Province'))
                 ->latest('created_at')->first();
 
-        if (count($Boadrings) > 0) {           
+        if (!empty($Boadrings)) {           
             foreach($Boadrings as $boardings){              
-                if($boardings->user->usertype == 1){
-                    $users = User::where('id', $boardings->user->id)->get();
-                    
-                    $details = [
-                        'greeting' => 'Hi user',
-                        'body' => 'we found a boarding place which is matched with your requirement',
-                        'thanks' => 'Thank you for using Bodimalk',
-                    ];
+                $users = User::where('id', $boardings->user->id)->get();
+                
+                $details = [
+                    'greeting' => 'Hi user',
+                    'body' => 'we found a boarding place which is matched with your requirement',
+                    'thanks' => 'Thank you for using Bodimalk',
+                ];
 
-                    foreach ($users as $user) {
-                        $user->notify(new \App\Notifications\UserSmsinfo($details));
-                    }
-
-                    return back()->with('Your Boarding has been successfully added!');
-
-                }    
+                foreach ($users as $user) {
+                    $user->notify(new \App\Notifications\UserSmsinfo($details));
+                }
+                toastr()->success('Your Request has been successfully added!');
+                return redirect()->action('AnexRequstController@show'); 
             }
         }
 
         toastr()->success('Boarding request has been successfully added!');
-        return back();
+        return redirect()->action('AnexRequstController@show');
     }
 
     public function storeSingelRoomRequest(Request $request)
@@ -283,7 +281,7 @@ class BoardingRequestController extends Controller
             'City' => 'required',
             // 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'Email' => 'required',
-            'Telephone' => 'required',
+            'Telephone' => 'required|numeric|min:10',
         ]);
 
 
@@ -357,31 +355,29 @@ class BoardingRequestController extends Controller
                 ->where('Province','LIKE',request('Province'))
                 ->latest('created_at')->first();
 
-        if (count($Boadrings) > 0) {           
-            foreach($Boadrings as $boardings){              
-                if($boardings->user->usertype == 1){
-                    $users = User::where('id', $boardings->user->id)->get();
-                    
-                    $details = [
-                        'greeting' => 'Hi user',
-                        'body' => 'we found a boarding place which is matched with your requirement',
-                        'thanks' => 'Thank you for using Bodimalk',
-                    ];
-
-                    foreach ($users as $user) {
-                        $user->notify(new \App\Notifications\UserSmsinfo($details));
+                if (!empty($Boadrings)) {           
+                    foreach($Boadrings as $boardings){              
+                        $users = User::where('id', $boardings->user->id)->get();
+                        
+                        $details = [
+                            'greeting' => 'Hi user',
+                            'body' => 'we found a boarding place which is matched with your requirement',
+                            'thanks' => 'Thank you for using Bodimalk',
+                        ];
+        
+                        foreach ($users as $user) {
+                            $user->notify(new \App\Notifications\UserSmsinfo($details));
+                        }
+                        
+                        toastr()->success('Your Request has been successfully added!');
+                        return redirect()->action('SingleRoomRequestController@show');
                     }
-
-                    return back()->with('Your Boarding has been successfully added!');
-
-                }    
-            }
-        }
+                }
 
         toastr()->success('Boarding request has been successfully added!');
 
         // return view('requestBoarding/addboardingrequest');
-        return back();
+        return redirect()->action('SingleRoomRequestController@show');
         // return back()->with('message', 'Your Request has been successfully added!');
     }
 

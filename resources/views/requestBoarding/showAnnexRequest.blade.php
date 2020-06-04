@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome/fontawesome/css/all.css')}}">
     <link href={{asset('css/css/bootstrap.min.css')}} rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
+    <link href={{asset('css/toastr.min.css')}} rel="stylesheet">
     <title>Document</title>
 
     <style>
@@ -126,8 +127,7 @@
                             </div>
                             <div class="my-4"></div>
                             <div class="row">
-                                <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!
-                                    All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+                                <p>{{$request->boardingrequest->Description}}</p>
                             </div>
                             <div class="row float-right">
                                 <a href="/view/{{getBoardingrequestTypeIdById($request->boardingrequest->id)}}/{{getPropertyrequestTypeIdById($request->boardingrequest->id)}}" class="button is-success is-pulled-right">More Details</a>
@@ -177,5 +177,7 @@
     <script type="text/javascript" src={{asset('js/sweetalert.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/sweetalert2.all.min.js')}}></script>
     <script type="text/javascript" src={{asset('js/bootstrap.min.js')}}></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    @toastr_render
 </body>
 </html>

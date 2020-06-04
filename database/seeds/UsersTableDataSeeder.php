@@ -13,10 +13,10 @@ class UsersTableDataSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'vishal',
-            'email' => 'vishal@test.lk',
+            'name' => 'Thaindu',
+            'email' => 'test@gg.lk',
             'city' => 'kurunegala',
-            'phone' => '0758945785',
+            'phone' => '0773722589',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
             'usertype' => '0',
