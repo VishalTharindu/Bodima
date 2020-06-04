@@ -16,14 +16,13 @@ class ProfileController extends Controller
 
 
         $validated = $request->validated();
-        // dd($request);
 
         
         $id = Auth::user()->id;
-
         
 
         $user = User::find($id);
+
         if(strcmp($user->email,request('email')) != 0 ){
             $user->email_verified_at = NULL;
         }
@@ -34,12 +33,13 @@ class ProfileController extends Controller
         $user->city = request('city');
         $user->phone = request('phone');
         $user->address = request('address');
-        $user->country = request('country');
         $user->postalcode = request('postalcode');
         $user->description = request('description');
         $user->save();
 
-        return back()->with('message', 'Your account has been successfully updated!');
+        toastr()->success('Your account has been successfully updated!');
+        return back();
+
 
     }
 

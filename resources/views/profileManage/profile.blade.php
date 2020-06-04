@@ -191,14 +191,14 @@
               </div>
               <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-control-label" for="input-country">Country</label>
+                  <label class="form-control-label" for="input-country">Phone No</label>
 
-                  <input type="text" name="country" id="input-country" class="form-control form-control-alternative" {{ $errors->has('country') ? ' is-invalid' : '' }}"
-                  placeholder="{{ __('Country') }}" value="{{Auth::user()->city}}">
+                  <input type="text" name="phone" id="input-country" class="form-control form-control-alternative" {{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                  placeholder="{{ __('phone') }}" value="{{Auth::user()->phone}}">
 
-                  @if ($errors->has('country'))
+                  @if ($errors->has('phone'))
                   <span class="invalid-feedback" role="alert">
-                      <strong>{{ $errors->first('country') }}</strong>
+                      <strong>{{ $errors->first('phone') }}</strong>
                   </span>
                   @endif
                 </div>
@@ -228,7 +228,7 @@
               <label>About Me</label>
               <textarea rows="4" name="description" class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}"
                 placeholder="{{ __('A few words about you ...') }}" value="{{Auth::user()->description}}"
-                required autofocus></textarea>
+                autofocus></textarea>
 
                 @if ($errors->has('description'))
                   <span class="invalid-feedback" role="alert">

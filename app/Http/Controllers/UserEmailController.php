@@ -16,7 +16,8 @@ class UserEmailController extends Controller
             'email' => 'required|string|max:255|email',
             'pno' => 'required',
             'subject' => 'required|string|max:255',
-            'message' => 'required|string|max:2500|min:10'
+            'message' => 'required|string|max:2500|min:10',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
         
        

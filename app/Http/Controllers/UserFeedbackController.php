@@ -44,7 +44,7 @@ class UserFeedbackController extends Controller
        
         $feedback->save();
 
-        toastr()->success('Your complain has been successfuly added!');
+        toastr()->success('Your feedback has been successfuly added!');
         return back();
     }
 
